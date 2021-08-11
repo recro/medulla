@@ -8,7 +8,7 @@
    version="1.1"
    id="svg516"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="medulla.svg"
+   sodipodi:docname="logo.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -27,12 +27,12 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.60221661"
-     inkscape:cx="-117.89778"
-     inkscape:cy="306.36817"
+     inkscape:zoom="0.5"
+     inkscape:cx="174"
+     inkscape:cy="371"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
@@ -45,165 +45,188 @@
      transform="translate(-20.556655,-67.250213)">
     <path
        style="fill:#a63ea1;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 149.72959,235.02198 -14.40583,-1.68379 5.0514,-20.81362 z"
+       d="m 149.72959,235.02198 -14.40583,-1.68379 c -18.86918,-41.44196 -3.73483,-25.79921 5.0514,-20.81362 z"
        id="path1153"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9c3ba2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 140.37516,212.52457 -17.77342,-1.73057 12.72202,22.54419 z"
+       d="M 140.37516,212.52457 C 126.04169,178.67213 125.04029,197.57655 122.60174,210.794 l 12.72202,22.54419 z"
        id="path1155"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9c3ba2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 140.37516,212.52457 132.7513,189.88684 122.60174,210.794 Z"
+       d="m 140.37516,212.52457 -7.62386,-22.63773 c -7.45784,-2.87802 -18.76108,-15.04911 -10.14956,20.90716 z"
        id="path1157"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9138a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 132.7513,189.88684 -20.01849,-2.99342 9.86893,23.90058 z"
+       d="m 132.7513,189.88684 c -2.48177,-46.46444 -12.05361,-16.0124 -20.01849,-2.99342 l 9.86893,23.90058 z"
        id="path1159"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9039a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 132.7513,189.88684 -5.00462,-13.65747 -15.01387,10.66405 z"
+       d="m 132.7513,189.88684 c 35.52567,-24.2001 21.36691,-22.15448 -5.00462,-13.65747 -15.48388,-13.93534 -24.44299,-16.98076 -15.01387,10.66405 z"
        id="path1161"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8937a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 127.74668,176.22937 -7.20292,-6.92228 -7.81095,17.58633 z"
+       d="m 127.74668,176.22937 c 27.75183,-25.97165 4.39071,-11.82934 -7.20292,-6.92228 -27.177224,-28.13694 -15.82585,-2.9672 -7.81095,17.58633 z"
        id="path1163"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8637a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 120.54376,169.30709 -20.11203,-0.56127 12.30108,18.1476 z"
+       d="m 120.54376,169.30709 c -9.04931,-68.87092 -14.44223,-30.66161 -20.11203,-0.56127 l 12.30108,18.1476 z"
        id="path1165"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8235a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 120.54376,169.30709 -20.39266,-14.87355 0.28063,14.31228 z"
+       d="m 120.54376,169.30709 c 26.21726,-37.66978 7.16378,-30.48414 -20.39266,-14.87355 -3.563063,2.90961 -70.114424,-26.24069 0.28063,14.31228 z"
        id="path1167"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8937a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 127.74668,176.22937 0.74835,-3.64823 -7.95127,-3.27405 z"
+       d="m 127.74668,176.22937 c 16.32331,-2.7044 22.3379,-4.45428 0.74835,-3.64823 20.3033,-45.11734 -0.27696,-11.81867 -7.95127,-3.27405 z"
        id="path1169"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8c37a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 128.49503,172.58114 8.04481,2.99342 -8.79316,0.65481 z"
+       d="m 128.49503,172.58114 c 6.80838,-8.56256 11.71728,-12.72466 8.04481,2.99342 5.85901,7.48353 33.11505,32.65235 -8.79316,0.65481 z"
        id="path1171"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9039a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 132.7513,189.88684 3.78854,-14.31228 -8.79316,0.65481 z"
+       d="m 132.7513,189.88684 c 13.69719,-28.15158 10.51966,-24.57291 3.78854,-14.31228 l -8.79316,0.65481 z"
        id="path1173"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9239a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 136.53984,175.57456 5.14494,11.97367 -8.93348,2.33861 z"
+       d="m 136.53984,175.57456 c 11.58812,-2.9233 42.21352,-19.1791 5.14494,11.97367 3.21511,4.56864 13.19859,13.27844 -8.93348,2.33861 z"
        id="path1175"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#993aa2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 141.68478,187.54823 3.92886,10.19634 -12.86234,-7.85773 z"
+       d="m 141.68478,187.54823 c 30.08717,-19.6496 49.93922,-31.10174 3.92886,10.19634 l -12.86234,-7.85773 z"
        id="path1177"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#993aa2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 141.68478,187.54823 9.35443,8.41899 -5.42557,1.77735 z"
+       d="m 141.68478,187.54823 c 16.9814,-23.366 31.02981,-41.19484 9.35443,8.41899 l -5.42557,1.77735 z"
        id="path1179"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9d3ba2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 151.03921,195.96722 4.58368,-6.45456 12.16076,3.92887 z"
+       d="m 151.03921,195.96722 c -18.18986,-45.82091 -4.85847,-21.83093 4.58368,-6.45456 25.80964,-26.18576 26.96866,-21.21797 12.16076,3.92887 z"
        id="path1181"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9b3aa1;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 155.62289,189.51266 -13.93811,-1.96443 9.35443,8.41899 z"
+       d="m 155.62289,189.51266 c 3.84341,-46.31774 -6.88344,-14.26514 -13.93811,-1.96443 l 9.35443,8.41899 z"
        id="path1183"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9a3ba3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 150.3844,182.4033 5.23849,7.10936 -13.93811,-1.96443 z"
+       d="m 150.3844,182.4033 c 0.28915,-15.04818 -0.30693,-40.67884 5.23849,7.10936 l -13.93811,-1.96443 c 0.078,-10.21406 -5.15175,-36.41481 8.69962,-5.14493 z"
        id="path1185"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9439a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 150.3844,182.4033 -13.84456,-6.82874 5.14494,11.97367 z"
+       d="m 150.3844,182.4033 c 23.19729,-31.70972 0.31511,-14.65373 -13.84456,-6.82874 l 5.14494,11.97367 z"
        id="path1187"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9239a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 136.53984,175.57456 2.61924,-3.55469 11.22532,10.38343 z"
+       d="m 136.53984,175.57456 c -25.97158,-29.08922 -7.39907,-11.87602 2.61924,-3.55469 -4.97369,-21.79134 -3.21553,-24.0776 11.22532,10.38343 z"
        id="path1189"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#a33da1;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 167.78365,193.44153 4.11595,-6.08038 12.25431,-4.95785 z"
+       d="m 167.78365,193.44153 c -9.86818,-20.09509 -12.57352,-28.67608 4.11595,-6.08038 7.28345,-26.9755 10.95164,-25.33023 12.25431,-4.95785 z"
        id="path1193"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#a13ca2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 171.8996,187.36115 -16.27671,2.15151 12.16076,3.92887 z"
+       d="m 171.8996,187.36115 c 7.84162,-35.84849 -4.13776,-17.06839 -16.27671,2.15151 l 12.16076,3.92887 z"
        id="path1195"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9d3ba0;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 171.8996,187.36115 -14.78001,-1.02899 -1.4967,3.1805 z"
+       d="m 171.8996,187.36115 c -1.35119,-23.50591 -2.27241,-49.79725 -14.78001,-1.02899 -4.3866,-12.2186 -10.2115,-29.34983 -1.4967,3.1805 z"
        id="path1197"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9b3ba2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 157.11959,186.33216 -6.73519,-3.92886 5.23849,7.10936 z"
+       d="m 157.11959,186.33216 c 32.62388,-57.56228 1.60581,-12.45358 -6.73519,-3.92886 l 5.23849,7.10936 z"
        id="path1199"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#000000;fill-opacity:0;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 171.8996,187.36115 0.28063,-4.67722 11.97368,-0.28063 z"
@@ -213,473 +236,540 @@
        inkscape:export-filename="C:\Users\Andrew\path1153.png" />
     <path
        style="fill:#a13ca0;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 157.11959,186.33216 15.06064,-3.64823 -0.28063,4.67722 z"
+       d="m 157.11959,186.33216 c 3.5011,-13.16643 4.56552,-45.50145 15.06064,-3.64823 19.69467,-19.90352 12.06821,-10.17413 -0.28063,4.67722 z"
        id="path1203"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9c3ba2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 172.18023,182.68393 -21.79583,-0.28063 6.73519,3.92886 z"
+       d="M 172.18023,182.68393 C 165.29065,166.2474 158.69994,136.8102 150.3844,182.4033 l 6.73519,3.92886 z"
        id="path1205"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9c3ba2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 150.3844,182.4033 6.08039,-8.13836 15.71544,8.41899 z"
+       d="m 150.3844,182.4033 c -22.82266,-27.71376 -11.54767,-21.12197 6.08039,-8.13836 35.51815,-19.17554 31.74502,-9.82714 15.71544,8.41899 z"
        id="path1207"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#953aa2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 156.46479,174.26494 -17.30571,-2.24507 11.22532,10.38343 z"
+       d="m 156.46479,174.26494 c -15.25201,-24.65731 -19.74558,-22.19123 -17.30571,-2.24507 l 11.22532,10.38343 z"
        id="path1209"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8436a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 141.40415,160.0462 -41.25305,-5.61266 20.39266,14.87355 z"
+       d="m 141.40415,160.0462 c 0.0413,-78.385234 -20.90157,-40.35863 -41.25305,-5.61266 l 20.39266,14.87355 c 9.99046,1.46853 21.42365,5.10116 20.86039,-9.26089 z"
        id="path1213"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9f3da2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 156.46479,174.26494 17.67987,-4.49013 -1.96443,12.90912 z"
+       d="m 156.46479,174.26494 c 24.62507,-22.22898 43.69276,-38.30706 17.67987,-4.49013 2.63984,4.67743 15.44335,10.50983 -1.96443,12.90912 z"
        id="path1215"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#a33da1;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 172.18023,182.68393 11.97368,-0.28063 -10.00925,-12.62849 z"
+       d="m 172.18023,182.68393 c 1.80701,5.91305 7.36531,1.51006 11.97368,-0.28063 6.07571,-37.15195 -2.58063,-22.74172 -10.00925,-12.62849 z"
        id="path1217"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#a43ea2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 184.15391,182.4033 2.33861,-13.56393 -12.34786,0.93544 z"
+       d="m 184.15391,182.4033 2.33861,-13.56393 c -18.63835,-23.81013 -23.14374,-24.14518 -12.34786,0.93544 z"
        id="path1219"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#953aa3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 141.40415,160.0462 12.16076,-2.15152 2.89988,16.37026 z"
+       d="m 141.40415,160.0462 c -10.13985,-43.83308 -4.11037,-38.54802 12.16076,-2.15152 44.36171,-5.72077 22.61094,5.58744 2.89988,16.37026 -9.13783,-2.68077 -16.76243,-6.11816 -15.06064,-14.21874 z"
        id="path1221"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9a3ba3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 174.14466,169.77481 -20.57975,-11.88013 2.89988,16.37026 z"
+       d="m 174.14466,169.77481 c 13.76607,-67.50139 -4.35002,-36.78515 -20.57975,-11.88013 l 2.89988,16.37026 z"
        id="path1223"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#a13ca2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 186.49252,168.83937 -13.47039,-13.09621 1.12253,14.03165 z"
+       d="m 186.49252,168.83937 c 3.62775,-26.62411 -1.64026,-28.85661 -13.47039,-13.09621 -19.63139,-12.56896 -36.02999,-22.35103 1.12253,14.03165 z"
        id="path1225"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9d3ba2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 174.14466,169.77481 -20.57975,-11.88013 19.45722,-2.15152 z"
+       d="m 174.14466,169.77481 -20.57975,-11.88013 c -2.2336,-20.33569 -10.70305,-54.70203 19.45722,-2.15152 z"
        id="path1227"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#a13da0;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 186.49252,168.83937 1.87088,-8.2319 -15.34127,-4.86431 z"
+       d="m 186.49252,168.83937 1.87088,-8.2319 c -2.3424,-48.33862 -9.87238,-9.22933 -15.34127,-4.86431 z"
        id="path1229"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#a13ca2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 188.3634,160.60747 6.36102,-13.65748 -21.70229,8.79317 z"
+       d="m 188.3634,160.60747 6.36102,-13.65748 c -60.23326,-43.44321 -38.97281,-15.57943 -21.70229,8.79317 z"
        id="path1231"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#953aa3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 173.02213,155.74316 -18.70886,-14.49937 -0.74836,16.65089 z"
+       d="m 173.02213,155.74316 c 26.53008,-49.45779 6.31616,-35.25471 -18.70886,-14.49937 -32.41389,-3.07618 -92.206727,-13.49537 -0.74836,16.65089 z"
        id="path1233"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8e38a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 153.56491,157.89468 0.74836,-16.65089 -12.90912,18.80241 z"
+       d="m 153.56491,157.89468 0.74836,-16.65089 C 132.10798,114.00613 110.4761,87.841635 141.40415,160.0462 Z"
        id="path1235"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8436a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 141.40415,160.0462 -41.25305,-5.61266 21.88937,-8.98026 z"
+       d="m 141.40415,160.0462 -41.25305,-5.61266 c -5.551415,-19.67781 -39.005624,-75.590497 21.88937,-8.98026 43.60897,-60.426457 24.06318,-9.87222 19.36368,14.59292 z"
        id="path1237"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8a37a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 122.04047,145.45328 32.2728,-4.20949 -12.90912,18.80241 z"
+       d="m 122.04047,145.45328 c -1.30288,-45.20176 5.27012,-61.801616 32.2728,-4.20949 l -12.90912,18.80241 z"
        id="path1239"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#993aa2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 194.72442,146.94999 -40.41115,-5.7062 18.70886,14.49937 z"
+       d="m 194.72442,146.94999 c -45.27669,-45.49864 -52.88178,-39.36121 -40.41115,-5.7062 l 18.70886,14.49937 z"
        id="path1241"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9a3ba3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 194.72442,146.94999 -4.02241,-14.78 -36.38874,9.0738 z"
+       d="m 194.72442,146.94999 -4.02241,-14.78 c -60.21026,-46.645519 -30.14147,-0.0276 -36.38874,9.0738 z"
        id="path1243"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8535a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 154.31327,141.24379 -15.15419,-5.23849 -17.11861,9.44798 z"
+       d="m 154.31327,141.24379 c 6.9192,-24.80717 11.27046,-44.667278 -15.15419,-5.23849 -59.723822,-59.209248 -18.05783,-1.3729 -17.11861,9.44798 z"
        id="path1245"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#953aa3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 190.70201,132.16999 1.40317,-4.95785 -37.79191,14.03165 z"
+       d="m 190.70201,132.16999 1.40317,-4.95785 c -65.44639,-34.652335 -29.42043,6.20963 -37.79191,14.03165 z"
        id="path1247"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9439a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 192.10518,127.21214 -4.67722,-12.16076 -33.11469,26.19241 z"
+       d="m 192.10518,127.21214 -4.67722,-12.16076 c -80.9384,-28.575465 -31.96768,12.18258 -33.11469,26.19241 z"
        id="path1249"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8f38a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 154.31327,141.24379 24.88279,-29.46647 8.2319,3.27406 z"
+       d="m 154.31327,141.24379 c 8.57131,-11.11502 24.83092,-58.108837 24.88279,-29.46647 1.42191,-5.22512 0.86234,-19.917368 8.2319,3.27406 z"
        id="path1251"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8b38a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 139.15908,136.0053 40.03698,-24.22798 -24.88279,29.46647 z"
+       d="m 139.15908,136.0053 c -15.65583,-40.786978 -4.96099,-51.852846 40.03698,-24.22798 l -24.88279,29.46647 z"
        id="path1253"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#9138a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 187.42796,115.05138 -2.15152,-13.93811 -6.08038,10.66405 z"
+       d="m 187.42796,115.05138 -2.15152,-13.93811 c -26.51495,-9.124461 -28.70728,-5.655489 -6.08038,10.66405 z"
        id="path1255"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8d37a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 179.19606,111.77732 -5.0514,-19.550764 11.13178,8.886714 z"
+       d="m 179.19606,111.77732 c -62.24917,6.60785 -53.08476,-2.25992 -5.0514,-19.550764 l 11.13178,8.886714 z"
        id="path1257"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8a38a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 179.19606,111.77732 -19.64431,-4.77076 14.59291,-14.780004 z"
+       d="m 179.19606,111.77732 c -44.7634,17.98021 -46.91662,14.13929 -19.64431,-4.77076 -21.74011,-16.11887 -35.00242,-28.671218 14.59291,-14.780004 z"
        id="path1259"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8836a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 139.15908,136.0053 20.39267,-28.99874 19.64431,4.77076 z"
+       d="m 139.15908,136.0053 c 1.04586,-13.2567 -53.699848,-61.340863 20.39267,-28.99874 l 19.64431,4.77076 z"
        id="path1263"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7f35a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 122.04047,145.45328 8.41899,-12.2543 8.69962,2.80632 z"
+       d="m 122.04047,145.45328 c -9.16181,-6.79184 -63.063998,-23.70354 8.41899,-12.2543 20.79745,-24.80049 35.5862,-40.960734 8.69962,2.80632 z"
        id="path1265"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8335a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 130.45946,133.19898 29.09229,-26.19242 -20.39267,28.99874 z"
+       d="m 130.45946,133.19898 c -38.108486,21.11627 4.27073,-8.01904 29.09229,-26.19242 l -20.39267,28.99874 z"
        id="path1267"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8335a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 174.14466,92.226556 h -19.64431 l 5.0514,14.780004 z"
+       d="m 174.14466,92.226556 c -30.90385,-15.262934 -41.58938,-17.855721 -19.64431,0 -31.26179,13.354614 -66.886449,27.825304 5.0514,14.780004 z"
        id="path1269"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8134a4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 130.45946,133.19898 24.04089,-40.972424 5.0514,14.780004 z"
+       d="m 130.45946,133.19898 c -24.83599,-0.60763 -28.03318,-9.81149 24.04089,-40.972424 l 5.0514,14.780004 z"
        id="path1271"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#8235a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 154.50035,92.226556 16.55735,-7.85773 3.08696,7.85773 z"
+       d="M 154.50035,92.226556 C 117.83503,83.659999 61.383599,72.303924 171.0577,84.368826 l 3.08696,7.85773 z"
        id="path1273"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7d35a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 154.50035,92.226556 -3.55468,-13.938111 20.11203,6.080381 z"
+       d="M 154.50035,92.226556 C 55.432105,105.86642 121.60296,88.637441 150.94567,78.288445 l 20.11203,6.080381 z"
        id="path1275"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7332a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 150.94567,78.288445 140.28161,69.77591 127.46604,86.333256 Z"
+       d="M 150.94567,78.288445 140.28161,69.77591 C 72.739424,93.51688 111.7888,86.559479 127.46604,86.333256 125.864,96.387278 108.43412,127.8207 150.94567,78.288445 Z"
        id="path1277"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7834a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 127.46604,86.333256 27.03431,5.8933 -3.55468,-13.938111 z"
+       d="m 127.46604,86.333256 c -44.305873,7.609796 -17.88553,7.730933 27.03431,5.8933 l -3.55468,-13.938111 z"
        id="path1279"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7d35a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 127.46604,86.333256 2.99342,46.865724 24.04089,-40.972424 z"
+       d="M 127.46604,86.333256 C 113.93312,72.459959 98.088954,53.895174 130.45946,133.19898 l 24.04089,-40.972424 z"
        id="path1281"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7834a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 127.46604,86.333256 -14.21874,18.054064 17.21216,28.81166 z"
+       d="M 127.46604,86.333256 C 106.69236,75.036893 88.504035,66.53231 113.2473,104.38732 -7.0703683,98.38439 72.315528,117.10666 130.45946,133.19898 Z"
        id="path1283"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7633a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 113.2473,104.38732 -3.83532,21.60874 21.04748,7.20292 z"
+       d="M 113.2473,104.38732 C 86.837462,84.421155 48.016067,51.03709 109.41198,125.99606 l 21.04748,7.20292 z"
        id="path1285"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7d35a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 109.41198,125.99606 12.62849,19.45722 8.41899,-12.2543 z"
+       d="m 109.41198,125.99606 c -9.889627,8.97382 -26.41885,19.11933 12.62849,19.45722 l 8.41899,-12.2543 z"
        id="path1287"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#6e31a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 113.2473,104.38732 -8.51253,-15.528364 22.73127,-2.5257 z"
+       d="M 113.2473,104.38732 C 73.029994,96.54716 65.80401,91.058274 104.73477,88.858956 c -13.965135,-28.449411 0.6574,-20.262201 22.73127,-2.5257 z"
        id="path1289"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#6e31a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 127.46604,86.333256 121.94693,70.804898 140.28161,69.77591 Z"
+       d="M 127.46604,86.333256 C 75.14412,119.24946 111.84065,84.99509 121.94693,70.804898 l 18.33468,-1.028988 z"
        id="path1291"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#6a31a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 104.73477,88.858956 17.21216,-18.054058 5.51911,15.528358 z"
+       d="M 104.73477,88.858956 C 93.270888,92.657045 42.389978,118.94893 121.94693,70.804898 l 5.51911,15.528358 z"
        id="path1293"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#662fa6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 121.94693,70.804898 110.9087,67.250213 104.73477,88.858956 Z"
+       d="M 121.94693,70.804898 110.9087,67.250213 C 24.446424,84.060121 93.165612,83.207098 104.73477,88.858956 Z"
        id="path1295"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#692fa7;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 113.2473,104.38732 92.106275,101.95517 104.73477,88.858956 Z"
+       d="M 113.2473,104.38732 C -16.447047,108.2048 64.232562,104.08365 92.106275,101.95517 75.247961,77.217887 63.785809,57.698514 104.73477,88.858956 Z"
        id="path1297"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7031a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 109.41198,125.99606 92.106275,101.95517 113.2473,104.38732 Z"
+       d="M 109.41198,125.99606 C 82.502237,101.62319 34.744158,61.117674 92.106275,101.95517 l 21.141025,2.43215 z"
        id="path1299"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7a34a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 100.1511,154.43354 9.26088,-28.43748 12.62849,19.45722 z"
+       d="m 100.1511,154.43354 c -10.756717,-28.27505 -10.605766,-41.7405 9.26088,-28.43748 l 12.62849,19.45722 z"
        id="path1301"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#6c31a7;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 92.106275,101.95517 -4.0224,21.79583 21.328105,2.24506 z"
+       d="m 92.106275,101.95517 c -35.679976,-7.322418 -60.841353,-10.176409 -4.0224,21.79583 7.560947,17.68256 14.763145,21.91207 21.328105,2.24506 z"
        id="path1303"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7331a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 88.083875,123.751 12.067225,30.68254 9.26088,-28.43748 z"
+       d="m 88.083875,123.751 c -26.127394,7.21253 -45.082811,15.14226 12.067225,30.68254 l 9.26088,-28.43748 z"
        id="path1305"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#642ea6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 104.73477,88.858956 -19.457225,-1.6838 6.82873,14.780014 z"
+       d="M 104.73477,88.858956 C 67.077618,59.807691 78.040982,75.194531 85.277545,87.175156 41.593691,67.168009 78.797595,91.04329 92.106275,101.95517 Z"
        id="path1307"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#642ea8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 104.73477,88.858956 110.9087,67.250213 85.277545,87.175156 Z"
+       d="M 104.73477,88.858956 110.9087,67.250213 C 73.57017,75.169737 63.010697,81.900841 85.277545,87.175156 Z"
        id="path1309"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#5e2ca7;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 110.9087,67.250213 -35.546855,4.677217 9.9157,15.247726 z"
+       d="M 110.9087,67.250213 75.361845,71.92743 c -3.904695,27.136475 -18.012832,85.48348 9.9157,15.247726 z"
        id="path1311"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#5a2ca8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 75.361845,71.92743 -5.79975,18.334686 15.71545,-3.08696 z"
+       d="M 75.361845,71.92743 C 50.29394,103.41601 42.032178,116.46949 69.562095,90.262116 82.1389,121.92202 91.695328,140.12751 85.277545,87.175156 Z"
        id="path1313"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#5f2da7;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 85.277545,87.175156 6.82873,14.780014 -22.54418,-11.693044 z"
+       d="m 85.277545,87.175156 6.82873,14.780014 c -72.140233,8.1351 -69.458749,2.33896 -22.54418,-11.693044 z"
        id="path1315"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#552ba9;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 75.361845,71.92743 -7.48355,1.216078 1.6838,17.118608 z"
+       d="m 75.361845,71.92743 -7.48355,1.216078 c -25.565283,35.488072 -9.824062,23.89052 1.6838,17.118608 z"
        id="path1317"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#662fa6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 69.562095,90.262116 18.52178,33.488884 4.0224,-21.79583 z"
+       d="M 69.562095,90.262116 C 47.21881,107.3938 49.79381,119.31002 88.083875,123.751 l 4.0224,-21.79583 z"
        id="path1319"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7935a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 100.1511,154.43354 -14.374645,15.21491 14.655275,-0.90263 z"
+       d="m 100.1511,154.43354 c -37.737847,-41.305 -31.548793,-20.77659 -14.374645,15.21491 l 14.655275,-0.90263 z"
        id="path1321"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7432a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 100.1511,154.43354 -13.448605,-3.30592 -0.92604,18.52083 z"
+       d="M 100.1511,154.43354 C 63.650559,91.339903 74.529922,119.98182 86.702495,151.12762 53.932413,110.10557 70.030847,140.1335 85.776455,169.64845 Z"
        id="path1323"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7132a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 86.702495,151.12762 88.083875,123.751 100.1511,154.43354 Z"
+       d="M 86.702495,151.12762 C 33.390867,104.40719 59.991016,113.55728 88.083875,123.751 l 12.067225,30.68254 z"
        id="path1325"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#7332a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 86.702495,151.12762 -18.12396,13.22916 17.19792,5.29167 z"
+       d="m 86.702495,151.12762 c -26.351456,-39.112 -36.155649,-42.76558 -18.12396,13.22916 l 17.19792,5.29167 z"
        id="path1327"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#6c31a5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 68.578535,164.35678 -4.49792,-5.55625 22.62188,-7.67291 z"
+       d="m 68.578535,164.35678 -4.49792,-5.55625 c -5.102531,-45.58516 5.975319,-36.10483 22.62188,-7.67291 z"
        id="path1329"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#6b30a6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 64.080615,158.80053 1.7198,-7.14375 20.90208,-0.52916 z"
+       d="m 64.080615,158.80053 c -17.42672,-30.41969 -17.539732,-33.86995 1.7198,-7.14375 12.248497,-51.38046 16.572623,-25.92896 20.90208,-0.52916 z"
        id="path1331"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#662fa6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 65.800415,151.65678 -14.4198,7.01146 12.7,0.13229 z"
+       d="m 65.800415,151.65678 c 16.549514,-38.78473 1.475686,-16.6777 -14.4198,7.01146 l 12.7,0.13229 z"
        id="path1333"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#642ea6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 65.800415,151.65678 -17.5948,-1.19062 3.175,8.20208 z"
+       d="m 65.800415,151.65678 c -7.109368,-25.42384 -13.630789,-39.02341 -17.5948,-1.19062 l 3.175,8.20208 z"
        id="path1335"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#612ea7;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 48.205615,150.46616 -0.66145,-18.65313 18.25625,19.84375 z"
+       d="m 48.205615,150.46616 c -52.7975418,-67.859779 -2.559364,-14.91906 -0.66145,-18.65313 -5.407151,-39.355688 4.417267,-17.7851 18.25625,19.84375 z"
        id="path1337"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#5c2ca6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 48.205615,150.46616 -16.27187,-4.89479 15.61042,-13.75834 z"
+       d="m 48.205615,150.46616 -16.27187,-4.89479 c 5.203473,-29.87378 10.406947,-33.26753 15.61042,-13.75834 z"
        id="path1339"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 47.544165,131.81303 Z"
@@ -689,74 +779,84 @@
        inkscape:export-filename="C:\Users\Andrew\path1153.png" />
     <path
        style="fill:#582ca8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 47.544165,131.81303 -25.5323,0.52917 9.92188,13.22917 z"
+       d="m 47.544165,131.81303 c 23.565456,-14.00016 29.3633,-20.14766 -25.5323,0.52917 l 9.92188,13.22917 z"
        id="path1343"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#6c31a7;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 65.800415,151.65678 22.28346,-27.90578 -1.38138,27.37662 z"
+       d="M 65.800415,151.65678 C 30.183911,87.478441 49.685898,93.569646 88.083875,123.751 l -1.38138,27.37662 z"
        id="path1345"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#662fa6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 65.932705,129.82866 22.15117,-6.07766 -22.28346,27.90578 z"
+       d="M 65.932705,129.82866 C 13.760838,77.954482 66.060866,113.52374 88.083875,123.751 l -22.28346,27.90578 C 49.74765,126.83929 28.791505,96.67837 65.932705,129.82866 Z"
        id="path1349"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#642ea6;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 65.932705,129.82866 69.562095,90.262116 88.083875,123.751 Z"
+       d="M 65.932705,129.82866 C 56.191112,83.951573 56.03698,66.691604 69.562095,90.262116 L 88.083875,123.751 Z"
        id="path1351"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#5e2ca7;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 47.544165,131.81303 22.01793,-41.550904 -3.62939,39.566534 z"
+       d="m 47.544165,131.81303 c 2.227694,-26.00975 -2.120482,-67.662103 22.01793,-41.550904 l -3.62939,39.566534 c -3.060052,16.00876 -10.886016,8.18797 -18.38854,1.98437 z"
        id="path1353"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#532ba8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 47.544165,131.81303 -25.5323,0.52917 -1.45521,-16.13958 z"
+       d="m 47.544165,131.81303 -25.5323,0.52917 -1.45521,-16.13958 c 34.948832,-39.664421 50.742806,-46.213662 26.98751,15.61041 z"
        id="path1355"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#5029a8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 47.544165,131.81303 -26.98751,-15.61041 1.85209,-14.94896 z"
+       d="m 47.544165,131.81303 -26.98751,-15.61041 1.85209,-14.94896 c 16.13928,-14.49291 26.583698,-10.876156 25.13542,30.55937 z"
        id="path1357"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#532aa8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 69.562095,90.262116 -11.30231,-10.042837 9.61851,-7.075771 z"
+       d="M 69.562095,90.262116 C 52.017178,98.989149 48.0535,95.813524 58.259785,80.219279 l 9.61851,-7.075771 z"
        id="path1359"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#582ca8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 22.408745,101.25366 69.562095,90.262116 47.544165,131.81303 Z"
+       d="M 22.408745,101.25366 C 47.700812,81.344921 59.229334,84.789081 69.562095,90.262116 l -22.01793,41.550914 z"
        id="path1361"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#532aaa;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 69.562095,90.262116 -19.90127,-11.233462 8.59896,1.190625 z"
+       d="M 69.562095,90.262116 C 55.131152,91.433996 36.98867,94.946117 49.660825,79.028654 l 8.59896,1.190625 z"
        id="path1363"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:#5029a8;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 49.660825,79.028654 22.408745,101.25366 69.562095,90.262116 Z"
@@ -773,11 +873,12 @@
        inkscape:export-filename="C:\Users\Andrew\path1153.png" />
     <path
        style="fill:#8f39a2;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 141.40415,160.0462 15.06064,14.21874 -17.30571,-2.24507 -18.61532,-2.71278 z"
+       d="m 141.40415,160.0462 15.06064,14.21874 -17.30571,-2.24507 c -7.05806,2.93402 -12.44579,-1.64841 -18.61532,-2.71278 z"
        id="path1838"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
-       inkscape:export-filename="C:\Users\Andrew\path1153.png" />
+       inkscape:export-filename="C:\Users\Andrew\path1153.png"
+       sodipodi:nodetypes="ccccc" />
     <path
        style="fill:#8e38a3;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 139.15908,172.01987 -2.61924,3.55469 -8.04481,-2.99342 -7.95127,-3.27405 z"
