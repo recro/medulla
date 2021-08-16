@@ -1,0 +1,21 @@
+k8s_yaml(helm('.', name='medulla', namespace='medulla-system'))
+
+medulla_dependencies = [
+    'cert-manager',
+    'cert-manager-cainjector',
+    'cert-manager-webhook',
+    'istiod',
+    'istio-ingressgateway',
+    'tidb-cluster-discovery',
+    'tidb-cluster-pd',
+    'tidb-cluster-tikv',
+    'tidb-cluster-tidb',
+    'schemahero',
+    'workflow-controller'
+]
+
+k8s_resource(new_name='medulla',
+    resource_deps=medulla_dependencies,
+    objects=['medulla-system:namespace'],
+    labels=['medulla'],
+)

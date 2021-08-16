@@ -1,0 +1,30 @@
+k8s_yaml(helm('.', name='argo-workflows', namespace='argo'))
+
+k8s_resource(workload='workflow-controller',
+    objects=[
+        'argo:namespace',
+        'clusterworkflowtemplates.argoproj.io:customresourcedefinition',
+        'cronworkflows.argoproj.io:customresourcedefinition',
+        'workfloweventbindings.argoproj.io:customresourcedefinition',
+        'workflows.argoproj.io:customresourcedefinition',
+        'workflowtemplates.argoproj.io:customresourcedefinition',
+        'argo:serviceaccount',
+        'argo-role:role',
+        'argo-aggregate-to-admin:clusterrole',
+        'argo-aggregate-to-edit:clusterrole',
+        'argo-aggregate-to-view:clusterrole',
+        'argo-cluster-role:clusterrole',
+        'argo-binding:rolebinding',
+        'argo-binding:clusterrolebinding',
+        'workflow-controller-configmap:configmap'
+    ],
+    labels=['argo-workflows'])
+
+k8s_resource(workload='argo-server',
+    resource_deps=['workflow-controller'],
+    objects=[
+        'argo-server:serviceaccount',
+        'argo-server-cluster-role:clusterrole',
+        'argo-server-binding:clusterrolebinding'
+    ],
+    labels=['argo-workflows'])

@@ -1,0 +1,26 @@
+k8s_yaml(helm('.', name='istio-controlplane', namespace='istio-system'))
+
+k8s_kind('IstioOperator', pod_readiness='ignore')
+
+k8s_resource(workload='istio-controlplane',
+    resource_deps=['istio-operator'],
+    objects=['istio-system:namespace'],
+    labels=['istio'])
+
+k8s_resource(new_name='istiod',
+    extra_pod_selectors=[
+        {'app': 'istiod'},
+        {'istio': 'pilot'}
+    ],
+    resource_deps=['istio-controlplane'],
+    objects=['dummy-istiod:configmap'],
+    labels=['istio'])
+
+k8s_resource(new_name='istio-ingressgateway',
+    extra_pod_selectors=[
+        {'app': 'istio-ingressgateway'},
+        {'istio': 'ingressgateway'}
+    ],
+    resource_deps=['istio-controlplane'],
+    objects=['dummy-istio-ingressgateway:configmap'],
+    labels=['istio'])

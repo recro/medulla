@@ -1,0 +1,8 @@
+# dummy configmap for tilt
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dummy-istiod
+  namespace: istio-system
+data:
+  data: istiod

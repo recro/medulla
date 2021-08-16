@@ -1,0 +1,8 @@
+# dummy configmap for tilt
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dummy-tidb-cluster-tikv
+  namespace: tidb-cluster
+data:
+  data: tidb-cluster-tikv

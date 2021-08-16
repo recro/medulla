@@ -1,0 +1,30 @@
+k8s_yaml(helm('.', name='tidb-operator', namespace='tidb-operator'))
+
+k8s_resource(workload='tidb-controller-manager',
+    objects=[
+        'tidb-operator:namespace',
+        'tidbclusters.pingcap.com:customresourcedefinition',
+        'dmclusters.pingcap.com:customresourcedefinition',
+        'backups.pingcap.com:customresourcedefinition',
+        'restores.pingcap.com:customresourcedefinition',
+        'backupschedules.pingcap.com:customresourcedefinition',
+        'tidbmonitors.pingcap.com:customresourcedefinition',
+        'tidbinitializers.pingcap.com:customresourcedefinition',
+        'tidbclusterautoscalers.pingcap.com:customresourcedefinition',
+        'tidb-controller-manager:serviceaccount',
+        'tidb-operator\\:tidb-controller-manager:clusterrole',
+        'tidb-operator\\:tidb-controller-manager:clusterrolebinding'
+    ],
+    labels=['tidb'])
+
+k8s_resource(workload='tidb-scheduler',
+    resource_deps=['tidb-controller-manager'],
+    objects=[
+        'tidb-scheduler:serviceaccount',
+        'tidb-operator\\:tidb-scheduler:clusterrole',
+        'tidb-operator\\:tidb-scheduler:clusterrolebinding',
+        'tidb-operator\\:kube-scheduler:clusterrolebinding',
+        'tidb-operator\\:volume-scheduler:clusterrolebinding',
+        'tidb-scheduler-policy:configmap'
+    ],
+    labels=['tidb'])

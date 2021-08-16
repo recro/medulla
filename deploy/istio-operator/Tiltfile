@@ -1,0 +1,11 @@
+k8s_yaml(helm('.', name='istio-operator', namespace='istio-operator'))
+
+k8s_resource(workload='istio-operator',
+    objects=[
+        'istio-operator:namespace',
+        'istiooperators.install.istio.io:customresourcedefinition',
+        'istio-operator:serviceaccount',
+        'istio-operator:clusterrole',
+        'istio-operator:clusterrolebinding'
+    ],
+    labels=['istio'])
