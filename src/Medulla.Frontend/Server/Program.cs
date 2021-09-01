@@ -24,5 +24,4 @@ app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
 app.MapFallbackToFile("index.html");
-
 app.Run();
