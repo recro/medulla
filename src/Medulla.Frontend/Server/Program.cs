@@ -1,20 +1,17 @@
-﻿using Microsoft.AspNetCore.ResponseCompression;
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
     app.UseWebAssemblyDebugging();
 }
 else
 {
-    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
@@ -23,11 +20,6 @@ app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
-app.UseRouting();
-
-
-app.MapRazorPages();
-app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 app.Run();

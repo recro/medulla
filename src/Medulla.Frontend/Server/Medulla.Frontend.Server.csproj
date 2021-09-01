@@ -13,5 +13,4 @@
     <ProjectReference Include="..\Client\Medulla.Frontend.Client.csproj" />
   </ItemGroup>
 
-
 </Project>
