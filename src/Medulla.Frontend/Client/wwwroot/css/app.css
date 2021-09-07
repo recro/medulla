@@ -1,1 +1,9 @@
-﻿
+body .properties-window {
+  padding: 2em;
+  background: lightgray;
+}
+body .properties-window .header {
+  background: #0c2d6b;
+}
+
+/*# sourceMappingURL=app.css.map */

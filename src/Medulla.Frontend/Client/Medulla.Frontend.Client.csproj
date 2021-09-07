@@ -19,4 +19,14 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\Editor\ComponentDrag" />
+    <Folder Include="Components\Editor\ComponentWindow" />
+    <Folder Include="Components\Editor\FileStructureWindow" />
+    <Folder Include="Components\Editor\Properties" />
+    <Folder Include="Components\Editor\TreeView" />
+    <Folder Include="Components\Editor\WebView" />
+    <Folder Include="Components\Editor\WebViewWindow" />
+  </ItemGroup>
+
 </Project>
