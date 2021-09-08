@@ -1,0 +1,14 @@
+<div class="m-1 Box text-center cursor-pointer" style="width: 130px;height: auto;text-align: center;">
+    <span>
+        @((MarkupString)Component.SvgString)
+    </span>
+    <p>@Component.Name</p>
+</div>
+
+
+@code {
+    
+    [Parameter]
+    public PaletteComponent Component { get; set; }
+
+}
