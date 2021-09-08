@@ -1,6 +1,21 @@
+@namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
+
 <h3>Editor</h3>
-<PropertiesWindow />
+<div class="d-flex flex-row">
+    <div class="width-full">
+        
+    </div>
+    <PropertiesWindow PropertyList="Properties"/>
+</div>
+
 
 @code {
-    
+
+    Properties Properties = new Properties() {PropertyList = new List<Property>
+    {
+        new Property() { Name = "Color", InputDescription = "test", DefaultValue = "test", InputType = "test"},
+        new Property() { Name = "Background", InputDescription = "test", DefaultValue = "test", InputType = "test"},
+        new Property() { Name = "Test", InputDescription = "test", DefaultValue = "test", InputType = "test"},
+    }};
+
 }
