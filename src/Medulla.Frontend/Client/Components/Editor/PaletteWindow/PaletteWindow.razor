@@ -11,7 +11,7 @@
                         <div class="UnderlineNav-body">
                             @foreach (var Category in ComponentCategories.ComponentCategories)
                             {
-                                <a @onclick="() => UpdateActiveCategory(Category)" class="UnderlineNav-item color-bg-canvas" href="#url" aria-current="page">@Category.Name</a>    
+                                <a @onclick="() => UpdateActiveCategory(Category)" @attributes="@IsCategoryActive(Category)" class=" UnderlineNav-item color-bg-canvas" href="#url">@Category.Name</a>    
                             }
                         </div>
                         <div class="UnderlineNav-actions">
@@ -51,6 +51,16 @@
     public void UpdateActiveCategory(PaletteComponentCategory Category)
     {
         ActiveCategory = Category;
+    }
+
+    public Dictionary<string, object> IsCategoryActive(PaletteComponentCategory Category)
+    {
+        var dict = new Dictionary<string, object>();
+        if (ActiveCategory != null && Category.Name == ActiveCategory.Name)
+        {
+            dict.Add("aria-current","page");
+        }
+        return dict;
     }
 
 }
