@@ -7,7 +7,7 @@
     </div>
     <div>
         <PropertiesWindow PropertyList="Properties"/>
-        <PaletteWindow Components="PaletteWindowComponents" />
+        <PaletteWindow ComponentCategories="PaletteComponentCategories" />
     </div>
 </div>
 
@@ -26,20 +26,58 @@
             </svg>";
     
 
-    PaletteWindowComponents PaletteWindowComponents = new PaletteWindowComponents()
+    PaletteComponentCategories PaletteComponentCategories = new PaletteComponentCategories()
     {
-        ComponentList = new()
+        ComponentCategories = new List<PaletteComponentCategory>
         {
-            new PaletteComponent(){ Name = "1 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "2 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "3 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "4 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "5 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "6 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "7 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "8 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "9 Row Divider", SvgString = IconStr1},
-            new PaletteComponent(){ Name = "10 Row Divider", SvgString = IconStr1},
+            new PaletteComponentCategory()
+            {
+                Name = "Dividers",
+                PaletteWindowComponents = new PaletteWindowComponents()
+                {
+                    ComponentList = new()
+                    {
+                        new PaletteComponent(){ Name = "1 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "2 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "3 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "4 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "5 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "6 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "7 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "8 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "9 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "10 Row Divider", SvgString = IconStr1},
+                    }
+                }
+            },
+            new PaletteComponentCategory() {
+                Name = "Buttons",
+                PaletteWindowComponents = new PaletteWindowComponents()
+                {
+                    ComponentList = new()
+                    {
+                        new PaletteComponent(){ Name = "Large Button", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "Medium Button", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "Small Button", SvgString = IconStr1},
+                    }
+                }
+            },
+            new PaletteComponentCategory() {
+                Name = "Text",
+                PaletteWindowComponents = new PaletteWindowComponents()
+                {
+                    ComponentList = new()
+                    {
+                        new PaletteComponent(){ Name = "Paragragh", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "H1", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "H2", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "H3", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "H4", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "H5", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "H6", SvgString = IconStr1},
+                    }
+                }
+            }
         }
     };
 
