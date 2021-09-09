@@ -1,42 +1,36 @@
-<div class="Box">
-    <div class="flex flex-col Box">
-        <div class="color-bg-tertiary p-10 pb-2 pt-2 pl-1">
-            <h3>@WindowTitle</h3>
-        </div>
-        <div class="color-bg-primary">
-            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    
-                    <nav class="UnderlineNav" aria-label="Foo bar">
-                        <div class="UnderlineNav-body">
-                            @foreach (var Category in ComponentCategories.ComponentCategories)
-                            {
-                                <a @onclick="() => UpdateActiveCategory(Category)" @attributes="@IsCategoryActive(Category)" class=" UnderlineNav-item color-bg-canvas" href="#url">@Category.Name</a>    
-                            }
-                        </div>
-                        <div class="UnderlineNav-actions">
-                        </div>
-                    </nav>
-                    
-                    @if (ActiveCategory != null &&
-                         ActiveCategory.PaletteWindowComponents != null &&
-                         ActiveCategory.PaletteWindowComponents.ComponentList != null &&
-                         ActiveCategory.PaletteWindowComponents.ComponentList.Count > 0
-                        )
-                    {
-                        <div style="display:flex;flex-wrap:wrap" class="flex shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-3">
-                            @foreach (var Component in ActiveCategory.PaletteWindowComponents.ComponentList)
-                            {
-                                <PaletteWindowComponent Component="Component"/>
-                            }
-                        </div>    
-                    }
-                    
+
+<Window WindowTitle="Palette Window">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        
+                        <nav class="UnderlineNav" aria-label="Foo bar">
+                            <div class="UnderlineNav-body">
+                                @foreach (var Category in ComponentCategories.ComponentCategories)
+                                {
+                                    <a @onclick="() => UpdateActiveCategory(Category)" @attributes="@IsCategoryActive(Category)" class=" UnderlineNav-item color-bg-canvas" href="#url">@Category.Name</a>    
+                                }
+                            </div>
+                            <div class="UnderlineNav-actions">
+                            </div>
+                        </nav>
+                        
+                        @if (ActiveCategory != null &&
+                             ActiveCategory.PaletteWindowComponents != null &&
+                             ActiveCategory.PaletteWindowComponents.ComponentList != null &&
+                             ActiveCategory.PaletteWindowComponents.ComponentList.Count > 0
+                            )
+                        {
+                            <div style="display:flex;flex-wrap:wrap" class="flex shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-3">
+                                @foreach (var Component in ActiveCategory.PaletteWindowComponents.ComponentList)
+                                {
+                                    <PaletteWindowComponent Component="Component"/>
+                                }
+                            </div>    
+                        }
+                        
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+</Window>
 
 @code {
     
