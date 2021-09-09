@@ -2,7 +2,7 @@
 
 <div class="d-flex flex-row">
     <div class="width-full">
-        <EditorView />
+        <EditorView EditorStructure="EditorStructure" />
     </div>
     <div style="width: 25vw">
         <PropertiesWindow PropertyList="Properties"/>
@@ -12,6 +12,23 @@
 
 
 @code {
+
+    public Type DynamicEditorComponent = typeof(Editor);
+
+
+    public EditorStructure EditorStructure { get; set; } = new()
+    {
+        EditorViewNode = new()
+        {
+            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+            Parameters = new Dictionary<string, object>()
+            {
+                { "Content", "Click Me!"}
+            }
+        }
+    };
+    
+    
 
     Properties Properties = new Properties() {PropertyList = new List<Property>
     {
@@ -29,7 +46,7 @@
     {
         ComponentCategories = new List<PaletteComponentCategory>
         {
-            new PaletteComponentCategory()
+            new()
             {
                 Name = "Dividers",
                 PaletteWindowComponents = new PaletteWindowComponents()
@@ -49,7 +66,7 @@
                     }
                 }
             },
-            new PaletteComponentCategory() {
+            new() {
                 Name = "Buttons",
                 PaletteWindowComponents = new PaletteWindowComponents()
                 {
@@ -61,7 +78,7 @@
                     }
                 }
             },
-            new PaletteComponentCategory() {
+            new() {
                 Name = "Text",
                 PaletteWindowComponents = new PaletteWindowComponents()
                 {
