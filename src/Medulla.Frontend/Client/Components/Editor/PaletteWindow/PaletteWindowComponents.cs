@@ -8,9 +8,9 @@ namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
 {
     public class PaletteWindowComponents
     {
-        
-        public List<PaletteComponent> ComponentList { get; set; }
-        
-        
+
+        public List<PaletteComponent> ComponentList { get; set; } = default!;
+
+
     }
 }

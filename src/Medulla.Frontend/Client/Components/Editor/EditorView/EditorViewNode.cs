@@ -4,26 +4,31 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
 namespace Medulla.Frontend.Client.Components.Editor.EditorView
 {
     public class EditorViewNode
     {
-        public List<EditorViewNode>? Children { get; set; } = new();
+        public readonly List<EditorViewNode> Children = new();
 
         public string RenderComponentType { get; set; } = "RenderFragment";
 
-        public Dictionary<string, object>? Parameters { get; set; } = new();
+        public Dictionary<string, object> Parameters { get; set; } = new();
 
         public void BuildChildrenRenderFragment(RenderTreeBuilder builder)
         {
-            builder.OpenComponent(0, Type.GetType(RenderComponentType));
-
-            foreach (var param in Parameters)
+            var type = Type.GetType(RenderComponentType);
+            if (type == null)
             {
-                builder.AddAttribute(1, param.Key, param.Value);
+                throw new NullReferenceException(
+                    "Type is not expected to be null. The RenderComponentType was not found.");
+            }
+            builder.OpenComponent(0, type);
+
+            foreach (var (key, value) in Parameters)
+            {
+                builder.AddAttribute(1, key, value);
             }
             
             foreach (var node in Children)

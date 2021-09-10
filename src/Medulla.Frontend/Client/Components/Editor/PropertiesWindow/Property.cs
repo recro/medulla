@@ -7,10 +7,10 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
     public class Property
     {
 
-        public string Name { get; set; }
-        public string InputDescription { get; set; }
-        public string DefaultValue { get; set; }
-        public string InputType { get; set; }
+        public string Name { get; set; } = default!;
+        public string InputDescription { get; set; } = default!;
+        public string DefaultValue { get; set; } = default!;
+        public string InputType { get; set; } = default!;
 
     }
 }

@@ -1,3 +1,4 @@
+@using System.ComponentModel.DataAnnotations
 
 <Window WindowTitle="Palette Window">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -5,9 +6,12 @@
                         
                         <nav class="UnderlineNav" aria-label="Foo bar">
                             <div class="UnderlineNav-body">
-                                @foreach (var Category in ComponentCategories.ComponentCategories)
+                                @if (ComponentCategories.ComponentCategories != null)
                                 {
-                                    <a @onclick="() => UpdateActiveCategory(Category)" @attributes="@IsCategoryActive(Category)" class=" UnderlineNav-item color-bg-canvas" href="#url">@Category.Name</a>    
+                                    @foreach (var category in ComponentCategories.ComponentCategories)
+                                    {
+                                        <a @onclick="() => UpdateActiveCategory(category)" @attributes="@IsCategoryActive(category)" class=" UnderlineNav-item color-bg-canvas">@category.Name</a>
+                                    }    
                                 }
                             </div>
                             <div class="UnderlineNav-actions">
@@ -16,14 +20,13 @@
                         
                         @if (ActiveCategory != null &&
                              ActiveCategory.PaletteWindowComponents != null &&
-                             ActiveCategory.PaletteWindowComponents.ComponentList != null &&
                              ActiveCategory.PaletteWindowComponents.ComponentList.Count > 0
                             )
                         {
                             <div style="display:flex;flex-wrap:wrap" class="flex shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-3">
-                                @foreach (var Component in ActiveCategory.PaletteWindowComponents.ComponentList)
+                                @foreach (var component in ActiveCategory.PaletteWindowComponents.ComponentList)
                                 {
-                                    <PaletteWindowComponent Component="Component"/>
+                                    <PaletteWindowComponent Component="component"/>
                                 }
                             </div>    
                         }
@@ -33,24 +36,25 @@
 </Window>
 
 @code {
-    
+
     [Parameter]
-    public PaletteComponentCategories? ComponentCategories { get; set; }
+    [Required]
+    public PaletteComponentCategories ComponentCategories { get; set; } = default!;
     
-    public PaletteComponentCategory? ActiveCategory { get; set; }
+    public PaletteComponentCategory? ActiveCategory { get; set; } = null;
    
     [Parameter] 
     public string WindowTitle { get; set; } = "Palette Window";
 
-    public void UpdateActiveCategory(PaletteComponentCategory Category)
+    public void UpdateActiveCategory(PaletteComponentCategory category)
     {
-        ActiveCategory = Category;
+        ActiveCategory = category;
     }
 
-    public Dictionary<string, object> IsCategoryActive(PaletteComponentCategory Category)
+    public Dictionary<string, object> IsCategoryActive(PaletteComponentCategory category)
     {
         var dict = new Dictionary<string, object>();
-        if (ActiveCategory != null && Category.Name == ActiveCategory.Name)
+        if (ActiveCategory != null && category.Name == ActiveCategory.Name)
         {
             dict.Add("aria-current","page");
         }

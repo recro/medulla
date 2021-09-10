@@ -10,33 +10,8 @@
 </Window>
 
 @code {
-    
+
     [Parameter]
-    public EditorStructure EditorStructure { get; set; }
-
-    // public List<Dictionary<string, List<string>>> DocStructure = new()
-    // {
-    //     new()
-    //     {
-    //         {
-    //             "CustomButton", new()
-    //             {
-    //                 "Button",
-    //                 "Button",
-    //                 "Button",
-    //             }
-    //         } 
-    //     }
-    // };
-    //
-    // public Dictionary<string, object> DynamicButton = new()
-    // {
-    //     { "Content", "Click Me" }
-    // };
-
-
-
-
-
+    public EditorStructure EditorStructure { get; set; } = default!;
 
 }

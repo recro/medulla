@@ -8,8 +8,8 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
 {
     public class Properties
     {
-        
-        public List<Property> PropertyList { get; set; }
+
+        public List<Property> PropertyList { get; set; } = default!;
 
 
     }

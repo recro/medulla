@@ -5,8 +5,8 @@
         <EditorView EditorStructure="EditorStructure" />
     </div>
     <div style="width: 25vw">
-        <PropertiesWindow PropertyList="Properties"/>
-        <PaletteWindow ComponentCategories="PaletteComponentCategories" />
+        <PropertiesWindow PropertyList="_properties"/>
+        <PaletteWindow ComponentCategories="_paletteComponentCategories" />
     </div>
 </div>
 
@@ -23,26 +23,25 @@
             RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
             Parameters = new Dictionary<string, object>()
             {
-                { "Content", "Click Me!"}
+                { "Content", "Click Me!" },
             }
         }
     };
-    
-    
 
-    Properties Properties = new Properties() {PropertyList = new List<Property>
+
+    Properties _properties = new Properties() {PropertyList = new List<Property>
     {
         new Property() { Name = "Color", InputDescription = "test", DefaultValue = "test", InputType = "test"},
         new Property() { Name = "Background", InputDescription = "test", DefaultValue = "test", InputType = "test"},
         new Property() { Name = "Test", InputDescription = "test", DefaultValue = "test", InputType = "test"},
     }};
 
-    static string IconStr1 = @"<svg xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"" style=""width: 48px;"">
+    static string _iconStr1 = @"<svg xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"" style=""width: 48px;"">
         <path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z""></path>
             </svg>";
     
 
-    PaletteComponentCategories PaletteComponentCategories = new PaletteComponentCategories()
+    PaletteComponentCategories _paletteComponentCategories = new PaletteComponentCategories()
     {
         ComponentCategories = new List<PaletteComponentCategory>
         {
@@ -53,16 +52,16 @@
                 {
                     ComponentList = new()
                     {
-                        new PaletteComponent(){ Name = "1 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "2 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "3 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "4 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "5 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "6 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "7 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "8 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "9 Row Divider", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "10 Row Divider", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "1 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "2 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "3 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "4 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "5 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "6 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "7 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "8 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "9 Row Divider", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "10 Row Divider", SvgString = _iconStr1},
                     }
                 }
             },
@@ -72,9 +71,9 @@
                 {
                     ComponentList = new()
                     {
-                        new PaletteComponent(){ Name = "Large Button", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "Medium Button", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "Small Button", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "Large Button", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "Medium Button", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "Small Button", SvgString = _iconStr1},
                     }
                 }
             },
@@ -84,13 +83,13 @@
                 {
                     ComponentList = new()
                     {
-                        new PaletteComponent(){ Name = "Paragragh", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "H1", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "H2", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "H3", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "H4", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "H5", SvgString = IconStr1},
-                        new PaletteComponent(){ Name = "H6", SvgString = IconStr1},
+                        new PaletteComponent(){ Name = "Paragragh", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "H1", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "H2", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "H3", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "H4", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "H5", SvgString = _iconStr1},
+                        new PaletteComponent(){ Name = "H6", SvgString = _iconStr1},
                     }
                 }
             }
