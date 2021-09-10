@@ -21,6 +21,16 @@
         EditorViewNode = new()
         {
             RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+            Children = { 
+                new EditorViewNode()
+                {
+                    RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                    Parameters = new Dictionary<string, object>()
+                    {
+                        { "Content", "Click Me!" },
+                    }
+                } 
+            }
         }
     };
     

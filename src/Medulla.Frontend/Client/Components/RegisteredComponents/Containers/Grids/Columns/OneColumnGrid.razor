@@ -2,12 +2,18 @@
     @ondrop="HandleDrop" 
     @ondragenter="HandleDragEnter"
     @ondragleave="HandleDragLeave"
+    class="@_dropClass width-full"
+    style="height:200px;background: red"
     >
-    
-    
+    @ChildContent
 </div>
 
 @code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+
+    string _dropClass = "";
 
     public void HandleDrop()
     {
@@ -16,12 +22,12 @@
 
     public void HandleDragEnter()
     {
-        
+        _dropClass = "border border-dashed";
     }
 
     public void HandleDragLeave()
     {
-        
+        _dropClass = "";
     }
     
 }
