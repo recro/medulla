@@ -20,13 +20,21 @@
     {
         EditorViewNode = new()
         {
-            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-            Parameters = new Dictionary<string, object>()
-            {
-                { "Content", "Click Me!" },
-            }
+            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
         }
     };
+    
+    // public EditorStructure EditorStructure { get; set; } = new()
+    // {
+    //     EditorViewNode = new()
+    //     {
+    //         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+    //         Parameters = new Dictionary<string, object>()
+    //         {
+    //             { "Content", "Click Me!" },
+    //         }
+    //     }
+    // };
 
 
     Properties _properties = new() {PropertyList = new List<Property>
@@ -50,6 +58,21 @@
         {
             new()
             {
+                Name = "Grids",
+                PaletteWindowComponents = new PaletteWindowComponents()
+                {
+                    ComponentList = new()
+                    {
+                        new PaletteComponent()
+                        {
+                            Name = "1 Column Grid", SvgString = _iconStr1,
+                            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid"
+                        },
+                    }
+                }
+            },
+            new()
+            {
                 Name = "Dividers",
                 PaletteWindowComponents = new PaletteWindowComponents()
                 {
@@ -68,6 +91,7 @@
                     }
                 }
             },
+            
             new() {
                 Name = "Buttons",
                 PaletteWindowComponents = new PaletteWindowComponents()
