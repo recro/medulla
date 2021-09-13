@@ -33,7 +33,7 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
                 builder.AddAttribute(1, key, value);
             }
             
-            // builder.AddAttribute(1, "EditorStructure", editorStructure);
+            builder.AddAttribute(1, "EditorStructure", editorStructure);
             
             builder.AddAttribute(2, "ChildContent", (RenderFragment)((builder2) =>
             {

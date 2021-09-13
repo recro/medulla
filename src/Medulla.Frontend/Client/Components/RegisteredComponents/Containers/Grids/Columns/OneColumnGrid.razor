@@ -24,6 +24,15 @@
         Console.WriteLine("Test");
         Console.WriteLine(EditorStructure);
         Console.WriteLine(typeof(EditorStructure));
+        
+        EditorStructure.EditorViewNode.Children.Add(new EditorViewNode()
+        {
+            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+            Parameters = new Dictionary<string, object>()
+            {
+                { "Content", "Click Me!" },
+            }
+        });
     }
 
     public void HandleDragEnter()
