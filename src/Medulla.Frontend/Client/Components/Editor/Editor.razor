@@ -2,61 +2,57 @@
 
 <div class="d-flex flex-row">
     <div class="width-full">
-        <EditorView EditorStructure="EditorStructure" />
+        <EditorView EditorViewNode="EditorViewNode" />
     </div>
     <div style="width: 25vw">
-        <PropertiesWindow PropertyList="_properties"/>
+        <PropertiesWindow PropertyList="_properties" />
         <PaletteWindow ComponentCategories="_paletteComponentCategories" />
     </div>
 </div>
 
 
 @code {
-
-    public EditorStructure EditorStructure { get; set; } = new()
+    public EditorViewNode EditorViewNode { get; set; } = new()
     {
-        EditorViewNode = new()
-        {
-            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
-            Children = { 
-                new EditorViewNode()
+        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+        Children = {
+            new EditorViewNode()
+            {
+                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                Parameters = new Dictionary<string, object>()
                 {
-                    RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-                    Parameters = new Dictionary<string, object>()
-                    {
-                        { "Content", "Click Me!" },
-                    }
-                },
-                new EditorViewNode()
+                    { "Content", "Click Me!" },
+                }
+            },
+            new EditorViewNode()
+            {
+                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                Parameters = new Dictionary<string, object>()
                 {
-                    RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-                    Parameters = new Dictionary<string, object>()
-                    {
-                        { "Content", "Click Me!" },
-                    }
-                },
-                new EditorViewNode()
+                    { "Content", "Click Me!" },
+                }
+            },
+            new EditorViewNode()
+            {
+                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                Parameters = new Dictionary<string, object>()
                 {
-                    RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-                    Parameters = new Dictionary<string, object>()
-                    {
-                        { "Content", "Click Me!" },
-                    }
-                },
-                new EditorViewNode()
+                    { "Content", "Click Me!" },
+                }
+            },
+            new EditorViewNode()
+            {
+                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+                Children =
                 {
-                    RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
-                    Children =
+                    new EditorViewNode()
                     {
-                        new EditorViewNode()
+                        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                        Parameters = new Dictionary<string, object>()
                         {
-                            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-                            Parameters = new Dictionary<string, object>()
-                            {
-                                { "Content", "This is a child" },
-                            }
-                        },
-                    }
+                            { "Content", "This is a child" },
+                        }
+                    },
                 }
             }
         }
@@ -64,101 +60,104 @@
 
     public void AddEditorViewNodeToTree()
     {
-        EditorStructure.EditorViewNode.Children.Add(new EditorViewNode()
+        EditorViewNode.Children.Add(new EditorViewNode()
+        {
+            Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+            Parameters = new Dictionary<string, object>()
             {
-                RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-                Parameters = new Dictionary<string, object>()
-                {
-                    { "Content", "Click Me!" },
-                }
-            });
+                { "Content", "Click Me!" },
+            }
+        });
     }
-    
-    Properties _properties = new() {PropertyList = new List<Property>
+
+    Properties _properties = new()
     {
-        new() { Name = "Color", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-        new() { Name = "Background", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-        new() { Name = "Test", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-    }};
+        PropertyList = new List<Property>
+    {
+    new() { Name = "Color", InputDescription = "test", DefaultValue = "test", InputType = "test"},
+    new() { Name = "Background", InputDescription = "test", DefaultValue = "test", InputType = "test"},
+    new() { Name = "Test", InputDescription = "test", DefaultValue = "test", InputType = "test"},
+    }
+    };
 
     static string _iconStr1 = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"" style=""width: 48px;"">
-        <path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z""></path>
-            </svg>";
+    <path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z""></path>
+        </svg>";
 
     static string _buttonIcon = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"">
-        <path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"" />
-            </svg>";
+    <path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"" />
+        </svg>";
 
     PaletteComponentCategories _paletteComponentCategories = new()
     {
         ComponentCategories = new List<PaletteComponentCategory>
+    {
+        new()
         {
-            new()
+            Name = "Grids",
+            PaletteWindowComponents = new PaletteWindowComponents()
             {
-                Name = "Grids",
-                PaletteWindowComponents = new PaletteWindowComponents()
+                ComponentList = new()
                 {
-                    ComponentList = new()
+                    new PaletteComponent()
                     {
-                        new PaletteComponent()
-                        {
-                            Name = "1 Column Grid", SvgString = _iconStr1,
-                            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid"
-                        },
-                    }
+                        Name = "1 Column Grid", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid"
+                    },
                 }
-            },
-            new()
+            }
+        },
+        new()
+        {
+            Name = "Dividers",
+            PaletteWindowComponents = new PaletteWindowComponents()
             {
-                Name = "Dividers",
-                PaletteWindowComponents = new PaletteWindowComponents()
+                ComponentList = new()
                 {
-                    ComponentList = new()
-                    {
-                        new PaletteComponent(){ Name = "1 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "2 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "3 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "4 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "5 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "6 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "7 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "8 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "9 Row Divider", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "10 Row Divider", SvgString = _iconStr1},
-                    }
+                    new PaletteComponent(){ Name = "1 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "2 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "3 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "4 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "5 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "6 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "7 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "8 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "9 Row Divider", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "10 Row Divider", SvgString = _iconStr1},
                 }
-            },
-            
-            new() {
-                Name = "Buttons",
-                PaletteWindowComponents = new PaletteWindowComponents()
+            }
+        },
+
+        new() {
+            Name = "Buttons",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
                 {
-                    ComponentList = new()
-                    {
-                        new PaletteComponent() { 
-                            Name = "Small Button", SvgString = _buttonIcon, 
-                            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button"
-                        },
-                    }
+                    new PaletteComponent() {
+                        Name = "Small Button", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button"
+                    },
                 }
-            },
-            new() {
-                Name = "Text",
-                PaletteWindowComponents = new PaletteWindowComponents()
+            }
+        },
+        new() {
+            Name = "Text",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
                 {
-                    ComponentList = new()
-                    {
-                        new PaletteComponent(){ Name = "Paragragh", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "H1", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "H2", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "H3", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "H4", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "H5", SvgString = _iconStr1},
-                        new PaletteComponent(){ Name = "H6", SvgString = _iconStr1},
-                    }
+                    new PaletteComponent(){ Name = "Paragragh", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "H1", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "H2", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "H3", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "H4", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "H5", SvgString = _iconStr1},
+                    new PaletteComponent(){ Name = "H6", SvgString = _iconStr1},
                 }
             }
         }
+    }
     };
 
 

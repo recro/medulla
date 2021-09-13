@@ -15,19 +15,19 @@
     public RenderFragment ChildContent { get; set; } = default!;
 
     [Parameter]
-    public EditorStructure EditorStructure { get; set; } = default!;
+    public EditorViewNode EditorViewNode { get; set; } = default!;
     
     string _dropClass = "";
 
     public void HandleDrop()
     {
         Console.WriteLine("Test");
-        Console.WriteLine(EditorStructure);
-        Console.WriteLine(typeof(EditorStructure));
+        Console.WriteLine(EditorViewNode);
+        Console.WriteLine(typeof(EditorViewNode));
         
-        EditorStructure.EditorViewNode.Children.Add(new EditorViewNode()
+        EditorViewNode.Children.Add(new EditorViewNode()
         {
-            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+            Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
             Parameters = new Dictionary<string, object>()
             {
                 { "Content", "Click Me!" },
