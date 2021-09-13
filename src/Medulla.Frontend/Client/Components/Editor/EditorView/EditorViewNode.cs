@@ -17,26 +17,7 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
 
         public Dictionary<string, object> Parameters { get; set; } = new();
 
-
-        public void renderChild(RenderTreeBuilder builder, string type)
-        {
-            builder.AddAttribute(2, "ChildContent", (RenderFragment)((builder2) =>
-            {
-                builder2.OpenComponent(3, Type.GetType(type));
-                builder2.CloseComponent();
-            }));
-        }
-
-        public void renderChildren(RenderTreeBuilder builder)
-        {
-            foreach (var child in Children)
-            {
-                child.renderChildren(builder);
-                renderChild(builder, child.RenderComponentType);
-            }
-        }
-
-        public void BuildChildrenRenderFragment(RenderTreeBuilder builder)
+        public void Render(RenderTreeBuilder builder)
         {
             var type = Type.GetType(RenderComponentType);
             if (type == null)
@@ -52,7 +33,18 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
                 builder.AddAttribute(1, key, value);
             }
             
-            renderChildren(builder);
+            builder.AddAttribute(2, "ChildContent", (RenderFragment)((builder2) =>
+            {
+                foreach (var child in Children)
+                {
+                    builder2.OpenComponent(3, Type.GetType(child.RenderComponentType));
+                    foreach (var (key, value) in child.Parameters)
+                    {
+                        builder2.AddAttribute(1, key, value);
+                    }
+                    builder2.CloseComponent();
+                }
+            }));
 
             builder.CloseComponent();
         }
