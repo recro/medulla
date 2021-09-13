@@ -2,16 +2,20 @@
 
 <div class="d-flex flex-row">
     <div class="width-full">
-        <EditorView EditorViewNode="EditorViewNode" />
+        <EditorView Editor="this" EditorViewNode="EditorViewNode" />
     </div>
     <div style="width: 25vw">
         <PropertiesWindow PropertyList="_properties" />
-        <PaletteWindow ComponentCategories="_paletteComponentCategories" />
+        <PaletteWindow Editor="this" ComponentCategories="_paletteComponentCategories" />
     </div>
 </div>
 
 
 @code {
+
+    public EditorViewNode CurrentComponent { get; set; } = default!;
+    
+    
     public EditorViewNode EditorViewNode { get; set; } = new()
     {
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",

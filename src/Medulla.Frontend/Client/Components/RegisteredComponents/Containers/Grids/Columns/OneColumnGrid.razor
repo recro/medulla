@@ -1,10 +1,11 @@
+@using System.ComponentModel.DataAnnotations
 <div 
     @ondrop="HandleDrop"
     ondragover="event.preventDefault();"
     @ondragenter="HandleDragEnter"
     @ondragleave="HandleDragLeave"
     class="@_dropClass width-full"
-    style="height:200px;background: red"
+    style="height:200px;"
     >
     @ChildContent
 </div>
@@ -12,27 +13,43 @@
 @code {
 
     [Parameter]
+    [Required]
     public RenderFragment ChildContent { get; set; } = default!;
 
     [Parameter]
+    [Required]
     public EditorViewNode EditorViewNode { get; set; } = default!;
+
+    [Parameter]
+    [Required]
+    public Editor Editor { get; set; } = default!;
     
     string _dropClass = "";
 
     public void HandleDrop()
     {
-        Console.WriteLine("Test");
-        Console.WriteLine(EditorViewNode);
-        Console.WriteLine(typeof(EditorViewNode));
+        string test = "test";
         
-        EditorViewNode.Children.Add(new EditorViewNode()
+        
+        if (EditorViewNode == null)
         {
-            Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-            Parameters = new Dictionary<string, object>()
-            {
-                { "Content", "Click Me!" },
-            }
-        });
+            Console.WriteLine("Editor View node is null");
+            return;
+        }
+        else
+        {
+            Console.WriteLine(EditorViewNode);
+        }
+        if (Editor.CurrentComponent == null)
+        {
+            Console.WriteLine("Editor.CurrentComponent is null");
+            return;
+        } else if (EditorViewNode.Children == null)
+        {
+            Console.WriteLine("EditorViewNode.CHildren is null");
+            return;
+        }
+        EditorViewNode.Children.Add(Editor.CurrentComponent);
     }
 
     public void HandleDragEnter()

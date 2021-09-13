@@ -2,6 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Medulla.Frontend.Client.Components.Editor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
@@ -11,6 +12,9 @@ public class EditorRenderer : ComponentBase
 {
     [Parameter]
     public EditorViewNode EditorViewNode { get; set; } = default!;
+
+    [Parameter] 
+    public Editor Editor { get; set; } = default!;
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -25,10 +29,11 @@ public class EditorRenderer : ComponentBase
             builder.AddAttribute(1, key, value);
 
         builder.AddAttribute(1, "EditorViewNode", EditorViewNode);
+        builder.AddAttribute(2, "Editor", Editor);
 
         if (EditorViewNode.Children.Count > 0)
         {
-            builder.AddAttribute(2, "ChildContent", (RenderFragment)((childBuilder) =>
+            builder.AddAttribute(3, "ChildContent", (RenderFragment)((childBuilder) =>
             {
                 foreach (var child in EditorViewNode.Children)
                 {

@@ -1,8 +1,9 @@
+@using System.ComponentModel.DataAnnotations
 <Window WindowTitle="Editor View">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <EditorRenderer EditorViewNode="EditorViewNode" />
+                <EditorRenderer Editor="Editor" EditorViewNode="EditorViewNode" />
             </div>
         </div>
     </div>
@@ -10,5 +11,11 @@
 
 @code {
     [Parameter]
+    [Required]
     public EditorViewNode EditorViewNode { get; set; } = default!;
+
+    [Parameter]
+    [Required]
+    public Editor Editor { get; set; } = default!;
+
 }

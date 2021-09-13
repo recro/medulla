@@ -1,4 +1,5 @@
-<div draggable="true" class="draggable m-1 Box text-center cursor-pointer" style="width: 130px;height: auto;text-align: center;">
+@using System.ComponentModel
+<div @ondrag="UpdateDragMetaData" draggable="true" class="draggable m-1 Box text-center cursor-pointer" style="width: 130px;height: auto;text-align: center;">
     <span>
         @((MarkupString)Component.SvgString)
     </span>
@@ -10,5 +11,24 @@
 
     [Parameter]
     public PaletteComponent Component { get; set; } = default!;
+
+    [Parameter]
+    public Editor Editor { get; set; } = default!;
+
+    
+    void UpdateDragMetaData()
+    {
+        if (Editor == null)
+        {
+            Console.WriteLine("The editor is null");
+            return;
+        }
+        Editor.CurrentComponent = new EditorViewNode()
+        {
+            Type = Component.RenderComponentType,
+        };
+    }
+    
+    
 
 }

@@ -1,4 +1,5 @@
 @using System.Runtime.CompilerServices
+@using System.ComponentModel.DataAnnotations
 
 <Window WindowTitle="@WindowTitle">
     <table class="width-full">
@@ -40,9 +41,11 @@
 @code {
 
     [Parameter] 
+    [Required]
     public Properties PropertyList { get; set; } = new();
 
     [Parameter]
+    [Required]
     public string WindowTitle { get; set; } = "Properties Window";
 
 

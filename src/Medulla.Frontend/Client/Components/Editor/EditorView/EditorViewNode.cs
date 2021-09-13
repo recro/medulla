@@ -9,6 +9,5 @@ public class EditorViewNode
     public string Type { get; set; } = "RenderFragment";
 
     public readonly List<EditorViewNode> Children = new();
-
     public Dictionary<string, object> Parameters { get; set; } = new();
 }
