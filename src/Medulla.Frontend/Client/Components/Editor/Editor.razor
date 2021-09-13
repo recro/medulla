@@ -13,9 +13,6 @@
 
 @code {
 
-    public Type DynamicEditorComponent = typeof(Editor);
-
-
     public EditorStructure EditorStructure { get; set; } = new()
     {
         EditorViewNode = new()
@@ -42,19 +39,6 @@
         }
     };
     
-    // public EditorStructure EditorStructure { get; set; } = new()
-    // {
-    //     EditorViewNode = new()
-    //     {
-    //         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
-    //         Parameters = new Dictionary<string, object>()
-    //         {
-    //             { "Content", "Click Me!" },
-    //         }
-    //     }
-    // };
-
-
     Properties _properties = new() {PropertyList = new List<Property>
     {
         new() { Name = "Color", InputDescription = "test", DefaultValue = "test", InputType = "test"},
