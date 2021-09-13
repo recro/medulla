@@ -34,10 +34,45 @@
                     {
                         { "Content", "Click Me!" },
                     }
-                } 
+                },
+                new EditorViewNode()
+                {
+                    RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                    Parameters = new Dictionary<string, object>()
+                    {
+                        { "Content", "Click Me!" },
+                    }
+                },
+                new EditorViewNode()
+                {
+                    RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+                    Children =
+                    {
+                        new EditorViewNode()
+                        {
+                            RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                            Parameters = new Dictionary<string, object>()
+                            {
+                                { "Content", "This is a child" },
+                            }
+                        },
+                    }
+                }
             }
         }
     };
+
+    public void AddEditorViewNodeToTree()
+    {
+        EditorStructure.EditorViewNode.Children.Add(new EditorViewNode()
+            {
+                RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                Parameters = new Dictionary<string, object>()
+                {
+                    { "Content", "Click Me!" },
+                }
+            });
+    }
     
     Properties _properties = new() {PropertyList = new List<Property>
     {
