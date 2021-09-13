@@ -38,12 +38,6 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
                 foreach (var child in Children)
                 {
                     child.Render(builder2);
-                    // builder2.OpenComponent(3, Type.GetType(child.RenderComponentType));
-                    // foreach (var (key, value) in child.Parameters)
-                    // {
-                    //     builder2.AddAttribute(1, key, value);
-                    // }
-                    // builder2.CloseComponent();
                 }
             }));
 
