@@ -17,7 +17,7 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
 
         public Dictionary<string, object> Parameters { get; set; } = new();
 
-        public void Render(RenderTreeBuilder builder)
+        public void Render(RenderTreeBuilder builder, EditorStructure editorStructure)
         {
             var type = Type.GetType(RenderComponentType);
             if (type == null)
@@ -33,11 +33,13 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
                 builder.AddAttribute(1, key, value);
             }
             
+            // builder.AddAttribute(1, "EditorStructure", editorStructure);
+            
             builder.AddAttribute(2, "ChildContent", (RenderFragment)((builder2) =>
             {
                 foreach (var child in Children)
                 {
-                    child.Render(builder2);
+                    child.Render(builder2, editorStructure);
                 }
             }));
 

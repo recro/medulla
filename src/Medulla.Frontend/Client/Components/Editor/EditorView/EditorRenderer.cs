@@ -17,7 +17,7 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
         
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            EditorStructure.EditorViewNode.Render(builder);
+            EditorStructure.EditorViewNode.Render(builder, EditorStructure);
         }
     }
 }

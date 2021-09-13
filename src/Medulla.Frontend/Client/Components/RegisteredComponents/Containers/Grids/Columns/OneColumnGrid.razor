@@ -1,5 +1,6 @@
 <div 
-    @ondrop="HandleDrop" 
+    @ondrop="HandleDrop"
+    ondragover="event.preventDefault();"
     @ondragenter="HandleDragEnter"
     @ondragleave="HandleDragLeave"
     class="@_dropClass width-full"
@@ -13,11 +14,16 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; } = default!;
 
+    [Parameter]
+    public EditorStructure EditorStructure { get; set; } = default!;
+    
     string _dropClass = "";
 
     public void HandleDrop()
     {
-        
+        Console.WriteLine("Test");
+        Console.WriteLine(EditorStructure);
+        Console.WriteLine(typeof(EditorStructure));
     }
 
     public void HandleDragEnter()
