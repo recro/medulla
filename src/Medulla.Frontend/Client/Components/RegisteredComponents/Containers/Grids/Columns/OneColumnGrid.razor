@@ -28,27 +28,6 @@
 
     public void HandleDrop()
     {
-        string test = "test";
-        
-        
-        if (EditorViewNode == null)
-        {
-            Console.WriteLine("Editor View node is null");
-            return;
-        }
-        else
-        {
-            Console.WriteLine(EditorViewNode);
-        }
-        if (Editor.CurrentComponent == null)
-        {
-            Console.WriteLine("Editor.CurrentComponent is null");
-            return;
-        } else if (EditorViewNode.Children == null)
-        {
-            Console.WriteLine("EditorViewNode.CHildren is null");
-            return;
-        }
         EditorViewNode.Children.Add(Editor.CurrentComponent);
     }
 

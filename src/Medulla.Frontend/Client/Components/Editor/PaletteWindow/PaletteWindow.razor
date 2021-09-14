@@ -26,7 +26,7 @@
                             <div style="display:flex;flex-wrap:wrap" class="flex shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-3">
                                 @foreach (var component in ActiveCategory.PaletteWindowComponents.ComponentList)
                                 {
-                                    <PaletteWindowComponent Editor="Editor" Component="component"/>
+                                    <PaletteWindowComponent Component="component"/>
                                 }
                             </div>    
                         }
@@ -43,7 +43,7 @@
     
     public PaletteComponentCategory? ActiveCategory { get; set; } = null;
 
-    [Parameter]
+    [CascadingParameter]
     [Required]
     public Editor Editor { get; set; } = new Editor();
    

@@ -13,7 +13,7 @@ public class EditorRenderer : ComponentBase
     [Parameter]
     public EditorViewNode EditorViewNode { get; set; } = default!;
 
-    [Parameter] 
+    [CascadingParameter] 
     public Editor Editor { get; set; } = default!;
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)

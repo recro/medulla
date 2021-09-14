@@ -1,13 +1,15 @@
 @using Medulla.Frontend.Client.Components.Editor.PropertiesWindow
 
 <div class="d-flex flex-row">
-    <div class="width-full">
-        <EditorView Editor="this" EditorViewNode="EditorViewNode" />
-    </div>
-    <div style="width: 25vw">
-        <PropertiesWindow PropertyList="_properties" />
-        <PaletteWindow Editor="this" ComponentCategories="_paletteComponentCategories" />
-    </div>
+    <CascadingValue Value="this">
+        <div class="width-full">
+            <EditorView EditorViewNode="EditorViewNode" />
+        </div>
+        <div style="width: 25vw">
+            <PropertiesWindow PropertyList="_properties" />
+            <PaletteWindow ComponentCategories="_paletteComponentCategories" />
+        </div>
+    </CascadingValue>
 </div>
 
 

@@ -12,17 +12,12 @@
     [Parameter]
     public PaletteComponent Component { get; set; } = default!;
 
-    [Parameter]
+    [CascadingParameter]
     public Editor Editor { get; set; } = default!;
 
     
     void UpdateDragMetaData()
     {
-        if (Editor == null)
-        {
-            Console.WriteLine("The editor is null");
-            return;
-        }
         Editor.CurrentComponent = new EditorViewNode()
         {
             Type = Component.RenderComponentType,
