@@ -18,17 +18,4 @@
 		<Folder Include="wwwroot\css\" />
 	</ItemGroup>
 
-	<Target Name="EnsureNodeEnv" BeforeTargets="BuildCss" Condition="!Exists('$(MSBuildProjectDirectory)node_modules/')">
-		<Exec Command="node --version" ContinueOnError="true">
-			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-		</Exec>
-		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
-		<Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="npm install" />
-	</Target>
-
-	<Target Name="BuildCss" BeforeTargets="Build">
-		<Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="npx postcss ./scss/index.scss -o wwwroot/css/medulla.min.css" />
-	</Target>
-
 </Project>
