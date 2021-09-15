@@ -1,0 +1,19 @@
+<input class="form-control input-sm" type="text" placeholder="Small input" aria-label="Small input" />
+
+@code {
+    /*
+     * These parameters are system required
+     */
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+
+    [Parameter]
+    public EditorViewNode EditorViewNode { get; set; } = default!;
+
+    [Parameter]
+    public Editor Editor { get; set; } = default!;
+    /*
+     * These parameters are system required
+     */
+
+}

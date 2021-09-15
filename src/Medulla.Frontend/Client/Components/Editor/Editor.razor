@@ -140,6 +140,19 @@
             }
         },
         new() {
+            Name = "Inputs",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+                {
+                    new PaletteComponent() {
+                        Name = "TextInput", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Forms.Inputs.TextInput"
+                    },
+                },
+            }
+        },
+        new() {
             Name = "Text",
             PaletteWindowComponents = new PaletteWindowComponents()
             {
