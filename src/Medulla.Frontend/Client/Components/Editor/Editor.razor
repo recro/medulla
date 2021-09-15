@@ -28,10 +28,6 @@
                 Parameters = new Dictionary<string, object>()
                 {
                     { "Content", "Click Me!" },
-                    { "Content", "Click Me!" },
-                    { "Content", "Click Me!" },
-                    { "Content", "Click Me!" },
-                    { "Content", "Click Me!" },
                 }
             },
             new EditorViewNode()
@@ -116,6 +112,31 @@
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button"
                     },
                 }
+            }
+        },
+        new() {
+            Name = "Alerts",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+                {
+                    new PaletteComponent() {
+                        Name = "FlashAlert", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlert"
+                    },
+                    new PaletteComponent() {
+                        Name = "FlashAlertError", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlertError"
+                    },
+                    new PaletteComponent() {
+                        Name = "FlashAlertSuccess", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlertSuccess"
+                    },
+                    new PaletteComponent() {
+                        Name = "FlashAlertWarn", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlertWarn"
+                    },
+                },
             }
         },
         new() {

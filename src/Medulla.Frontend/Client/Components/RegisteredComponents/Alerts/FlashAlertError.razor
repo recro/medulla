@@ -1,0 +1,31 @@
+<div class="flash-messages">
+  <div class="flash flash-error">
+    @Content
+  </div>
+</div>
+
+@code {
+    /*
+     * These parameters are system required
+     */
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+
+    [Parameter]
+    public EditorViewNode EditorViewNode { get; set; } = default!;
+
+    [Parameter]
+    public Editor Editor { get; set; } = default!;
+    /*
+     * These parameters are system required
+     */
+
+    /*
+     * These parameters should be modifiable within the properties window
+     */
+    [Parameter]
+    public string Content { get; set; } = "{No content}";
+    /*
+     * These parameters should be modifiable within the properties window
+     */
+}
