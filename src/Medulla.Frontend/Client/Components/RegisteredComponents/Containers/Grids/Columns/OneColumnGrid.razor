@@ -4,7 +4,7 @@
     ondragover="event.preventDefault();"
     @ondragenter="HandleDragEnter"
     @ondragleave="HandleDragLeave"
-    class="@_dropClass width-full">
+    class="@_dropClass width-full" style="min-height: 100px">
     @ChildContent
     @if (isHovering)
     {
@@ -35,7 +35,9 @@
     public void HandleDrop()
     {
         isHovering = false;
+        Console.WriteLine("handling drop");
         EditorViewNode.Children.Add(Editor.CurrentComponent);
+        Editor.StateChanged();
     }
 
     public void HandleDragEnter()
