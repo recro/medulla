@@ -2,6 +2,7 @@
   "profiles": {
     "Medulla.Frontend.Server": {
       "commandName": "Project",
+      "hotReloadProfile": "aspnetcore",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
