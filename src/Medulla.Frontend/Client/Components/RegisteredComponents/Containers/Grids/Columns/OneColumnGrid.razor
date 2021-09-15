@@ -1,17 +1,23 @@
 @using System.ComponentModel.DataAnnotations
-<div 
+<div
     @ondrop="HandleDrop"
     ondragover="event.preventDefault();"
     @ondragenter="HandleDragEnter"
     @ondragleave="HandleDragLeave"
-    class="@_dropClass width-full"
-    style="height:200px;"
-    >
+    class="@_dropClass width-full">
     @ChildContent
+    @if (isHovering)
+    {
+        <span style="border:thick solid purple">
+            <DynamicComponent Type="@Type.GetType(Editor.CurrentComponent.Type)" />
+        </span>
+    }
 </div>
 
 @code {
 
+    private bool isHovering = false;
+    
     [Parameter]
     [Required]
     public RenderFragment ChildContent { get; set; } = default!;
@@ -28,16 +34,19 @@
 
     public void HandleDrop()
     {
+        isHovering = false;
         EditorViewNode.Children.Add(Editor.CurrentComponent);
     }
 
     public void HandleDragEnter()
     {
+        isHovering = true;
         _dropClass = "border border-dashed";
     }
 
     public void HandleDragLeave()
     {
+        isHovering = false;
         _dropClass = "";
     }
     

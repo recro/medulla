@@ -28,6 +28,10 @@
                 Parameters = new Dictionary<string, object>()
                 {
                     { "Content", "Click Me!" },
+                    { "Content", "Click Me!" },
+                    { "Content", "Click Me!" },
+                    { "Content", "Click Me!" },
+                    { "Content", "Click Me!" },
                 }
             },
             new EditorViewNode()
@@ -113,27 +117,6 @@
                 }
             }
         },
-        new()
-        {
-            Name = "Dividers",
-            PaletteWindowComponents = new PaletteWindowComponents()
-            {
-                ComponentList = new()
-                {
-                    new PaletteComponent(){ Name = "1 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "2 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "3 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "4 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "5 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "6 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "7 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "8 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "9 Row Divider", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "10 Row Divider", SvgString = _iconStr1},
-                }
-            }
-        },
-
         new() {
             Name = "Buttons",
             PaletteWindowComponents = new PaletteWindowComponents()
@@ -153,13 +136,29 @@
             {
                 ComponentList = new()
                 {
-                    new PaletteComponent(){ Name = "Paragragh", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "H1", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "H2", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "H3", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "H4", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "H5", SvgString = _iconStr1},
-                    new PaletteComponent(){ Name = "H6", SvgString = _iconStr1},
+                    new PaletteComponent()
+                    {
+                        Name = "Paragragh", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Text.Paragragh"
+                    },
+                    new PaletteComponent(){ Name = "H1", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Text.H1Text"
+                    },
+                    new PaletteComponent(){ Name = "H2", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Text.H2Text"
+                    },
+                    new PaletteComponent(){ Name = "H3", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Text.H3Text"
+                    },
+                    new PaletteComponent(){ Name = "H4", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Text.H4Text"
+                    },
+                    new PaletteComponent(){ Name = "H5", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Text.H5Text"
+                    },
+                    new PaletteComponent(){ Name = "H6", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Text.H6Text"
+                    },
                 }
             }
         }
