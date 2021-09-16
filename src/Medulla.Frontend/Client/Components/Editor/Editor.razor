@@ -105,6 +105,19 @@
             }
         },
         new() {
+            Name = "Layouts",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+                {
+                    new PaletteComponent() {
+                        Name = "Header", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Layouts.Header"
+                    },
+                },
+            }
+        },
+        new() {
             Name = "Inputs",
             PaletteWindowComponents = new PaletteWindowComponents()
             {
