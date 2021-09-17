@@ -48,10 +48,12 @@
     [Parameter]
     [Required]
     public string WindowTitle { get; set; } = "Properties Window";
+    
+    [Parameter]
+    public Editor Editor { get; set; }
 
     public void UpdatePropertyValue(Property propertyName, ChangeEventArgs e) {
-        Console.WriteLine(propertyName.Name);
-        Console.WriteLine(e.Value.ToString());
+        Editor.UpdateCurrentComponentProperty(propertyName.Name, e.Value.ToString());
     }
 
 

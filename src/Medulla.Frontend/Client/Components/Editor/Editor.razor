@@ -1,4 +1,5 @@
 @using Medulla.Frontend.Client.Components.Editor.PropertiesWindow
+@using System.Xml
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -6,7 +7,7 @@
             <EditorView EditorViewNode="EditorViewNode" />
         </div>
         <div style="width: 25vw">
-            <PropertiesWindow PropertyList="_properties" />
+            <PropertiesWindow Editor="this" PropertyList="_properties" />
             <PaletteWindow ComponentCategories="_paletteComponentCategories" />
         </div>
     </CascadingValue>
@@ -16,6 +17,7 @@
 @code {
 
     public EditorViewNode CurrentComponent { get; set; } = default!;
+    public UniqueId CurrentPropertiesForComponentUniqueId;
 
 
     public EditorViewNode EditorViewNode { get; set; } = new()
@@ -24,8 +26,98 @@
         Children = { }
     };
 
-    public void SetProperties(Properties properties)
+
+    public EditorViewNode EditorViewNode3 = new EditorViewNode()
     {
+        Type = "",
+        Children =
+        {
+            new EditorViewNode()
+            {
+                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                Parameters = new Dictionary<string, object>()
+                {
+                    {"Content", "Click Me!"},
+                }
+            },
+            new EditorViewNode()
+            {
+                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+                Children =
+                {
+                    new EditorViewNode()
+                    {
+                        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                        Parameters = new Dictionary<string, object>()
+                        {
+                            {"Content", "This is a child"},
+                        },
+                        Children = {
+                            new EditorViewNode()
+                            {
+                                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                                Parameters = new Dictionary<string, object>()
+                                {
+                                    { "Content", "Click Me!" },
+                                    { "Content", "Click Me!" },
+                                    { "Content", "Click Me!" },
+                                    { "Content", "Click Me!" },
+                                    { "Content", "Click Me!" },
+                                }
+                            },
+                            new EditorViewNode()
+                            {
+                                Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+                                Children =
+                                {
+                                    new EditorViewNode()
+                                    {
+                                        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button",
+                                        Parameters = new Dictionary<string, object>()
+                                        {
+                                            { "Content", "This is a child" },
+                                            { "Content", "This is a child" },
+                                            { "Content", "This is a child" },
+                                            { "Content", "This is a child" },
+                                            { "Content", "This is a child" },
+                                        }
+                                    },
+                                }
+                            }                    
+                        }
+                    },
+                }
+            }
+        }
+    };
+    
+    
+
+    public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string Name, string Value)
+    {
+        if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
+        {
+            editorViewNode.Parameters[Name] = Value;
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                SetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], Name, Value);
+            }    
+        }
+        
+    }
+    
+    public void UpdateCurrentComponentProperty(string Name, string Value)
+    {
+        SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode, Name, Value);
+        StateChanged();
+    }
+
+    public void SetProperties(Properties properties, UniqueId uniqueId)
+    {
+        CurrentPropertiesForComponentUniqueId = uniqueId;
         _properties = properties;
         StateChanged();
     }

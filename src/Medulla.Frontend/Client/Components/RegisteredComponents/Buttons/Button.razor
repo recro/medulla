@@ -1,4 +1,5 @@
 @using Medulla.Frontend.Client.Code
+@using System.Xml
 <button 
     @onclick="ButtonWasClicked"
     class="btn" type="button">
@@ -29,16 +30,19 @@
      */
     [Parameter]
     public string Content { get; set; } = "{No Button Content}";
+
+    [Parameter]
+    public UniqueId UniqueId { get; set; }
     
     class ButtonClick: EnvironmentAbstractionHandler
     {
-        protected override void HandleInEditor(Editor editor)
+        protected override void HandleInEditor(Editor editor, UniqueId uniqueId)
         {
             //Opens Properties Window
             Console.WriteLine("Button was clicked");
             Properties properties = new ();
             properties.PropertyList.Add(new() {Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input"});
-            editor.SetProperties(properties);
+            editor.SetProperties(properties, uniqueId);
         }
 
         protected override void HandleInProduction()
@@ -56,7 +60,7 @@
     public void ButtonWasClicked()
     {
         var click = new ButtonClick();
-        click.Handle(Editor);
+        click.Handle(Editor, UniqueId);
     }
 
 }

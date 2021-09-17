@@ -1,3 +1,4 @@
+@using Medulla.Frontend.Client.Code.Components
 <div class="Header">
   <div class="Header-item">
     <a href="#" class="Header-link f4 d-flex flex-items-center">
@@ -31,6 +32,10 @@
 
     [Parameter]
     public Editor Editor { get; set; } = default!;
+    
+    [Parameter]
+    public UniqueId UniqueId { get; set; }
+
     /*
      * These parameters are system required
      */

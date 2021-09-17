@@ -1,3 +1,4 @@
+@using Medulla.Frontend.Client.Code.Components
 <input class="form-control input-sm" type="text" placeholder="Small input" aria-label="Small input" />
 
 @code {
@@ -12,6 +13,10 @@
 
     [Parameter]
     public Editor Editor { get; set; } = default!;
+    
+    [Parameter]
+    public UniqueId UniqueId { get; set; }
+
     /*
      * These parameters are system required
      */
