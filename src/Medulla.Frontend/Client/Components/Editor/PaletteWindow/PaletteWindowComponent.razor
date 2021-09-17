@@ -1,5 +1,6 @@
 @using System.ComponentModel
-<div @ondrag="UpdateDragMetaData" draggable="true" class="draggable m-1 Box text-center cursor-pointer" style="width: 130px;height: auto;text-align: center;">
+@using Medulla.Frontend.Client.Code.Components
+<div @ondragstart="UpdateDragMetaData" draggable="true" class="draggable m-1 Box text-center cursor-pointer" style="width: 130px;height: auto;text-align: center;">
     <span>
         @((MarkupString)Component.SvgString)
     </span>
@@ -21,6 +22,7 @@
         Editor.CurrentComponent = new EditorViewNode()
         {
             Type = Component.RenderComponentType,
+            UniqueId = new UniqueId()
         };
     }
     

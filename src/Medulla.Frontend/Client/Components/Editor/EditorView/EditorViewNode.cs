@@ -2,7 +2,9 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-namespace Medulla.Frontend.Client.Components.Editor.EditorView;
+using System.Collections.Generic;
+using Medulla.Frontend.Client.Code.Components;
+
 
 public class EditorViewNode
 {
@@ -10,4 +12,7 @@ public class EditorViewNode
 
     public readonly List<EditorViewNode> Children = new();
     public Dictionary<string, object> Parameters { get; set; } = new();
+    
+    public UniqueId UniqueId { get; set; }
+    
 }
