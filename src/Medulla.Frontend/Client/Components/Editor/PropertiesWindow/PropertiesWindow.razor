@@ -1,5 +1,4 @@
 @using System.ComponentModel.DataAnnotations
-
 <Window WindowTitle="@WindowTitle">
     <table class="width-full">
                             <thead class="bg-gray-50">
@@ -29,7 +28,10 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <input class="form-control input-lg" type="text" placeholder="Small input" aria-label="Repository description"/>
+                                        @{
+                                            int inputId = i;
+                                        }
+                                        <input  @oninput="(value) => UpdatePropertyValue(PropertyList.PropertyList[inputId], value)" class="form-control input-lg" type="text" placeholder="Small input" aria-label="Repository description"/>
                                     </td>
                                 </tr>
                             }
@@ -47,8 +49,9 @@
     [Required]
     public string WindowTitle { get; set; } = "Properties Window";
 
-    public void UpdatePropertyValue() {
-
+    public void UpdatePropertyValue(Property propertyName, ChangeEventArgs e) {
+        Console.WriteLine(propertyName.Name);
+        Console.WriteLine(e.Value.ToString());
     }
 
 
