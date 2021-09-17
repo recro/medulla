@@ -1,5 +1,4 @@
 @using Medulla.Frontend.Client.Components.Editor.PropertiesWindow
-@using System.Reflection.Metadata
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -34,14 +33,6 @@
     public void StateChanged()
     {
         StateHasChanged();
-    }
-    
-    public void UpdateProperties(Type type)
-    {
-        var attributeType = typeof(Parameter); //Type of the attribute
-        var attribute = Attribute.GetCustomAttribute(type, attributeType);
-
-        Console.WriteLine("Published by " + attribute);
     }
 
     Properties _properties = new()
