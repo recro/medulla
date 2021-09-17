@@ -32,11 +32,13 @@
     
     class ButtonClick: EnvironmentAbstractionHandler
     {
-        protected override void HandleInEditor()
+        protected override void HandleInEditor(Editor editor)
         {
             //Opens Properties Window
             Console.WriteLine("Button was clicked");
-
+            Properties properties = new ();
+            properties.PropertyList.Add(new() {Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input"});
+            editor.SetProperties(properties);
         }
 
         protected override void HandleInProduction()
@@ -54,7 +56,7 @@
     public void ButtonWasClicked()
     {
         var click = new ButtonClick();
-        click.Handle();
+        click.Handle(Editor);
     }
 
 }
