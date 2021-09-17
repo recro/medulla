@@ -2,48 +2,52 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using Medulla.Frontend.Client.Components.Editor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace Medulla.Frontend.Client.Components.Editor.EditorView;
-
-public class EditorRenderer : ComponentBase
+namespace Medulla.Frontend.Client.Components.Editor.EditorView
 {
-    [Parameter]
-    public EditorViewNode EditorViewNode { get; set; } = default!;
-
-    [CascadingParameter] 
-    public Editor Editor { get; set; } = default!;
-
-    protected override void BuildRenderTree(RenderTreeBuilder builder)
+    
+    public class EditorRenderer : ComponentBase
     {
-        var type = Type.GetType(EditorViewNode.Type);
+        [Parameter]
+        public EditorViewNode EditorViewNode { get; set; } = default!;
 
-        if (type == null)
-            throw new NullReferenceException("Type is not expected to be null. The RenderComponentType was not found.");
+        [CascadingParameter] 
+        public Editor Editor { get; set; } = default!;
 
-        builder.OpenComponent(0, type);
-
-        foreach (var (key, value) in EditorViewNode.Parameters)
-            builder.AddAttribute(1, key, value);
-
-        builder.AddAttribute(1, "EditorViewNode", EditorViewNode);
-        builder.AddAttribute(2, "Editor", Editor);
-
-        if (EditorViewNode.Children.Count > 0)
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            builder.AddAttribute(3, "ChildContent", (RenderFragment)((childBuilder) =>
-            {
-                foreach (var child in EditorViewNode.Children)
-                {
-                    childBuilder.OpenComponent(0, typeof(EditorRenderer));
-                    childBuilder.AddAttribute(1, "EditorViewNode", child);
-                    childBuilder.CloseComponent();
-                }
-            }));
-        }
+            var type = Type.GetType(EditorViewNode.Type);
 
-        builder.CloseComponent();
+            if (type == null)
+                throw new NullReferenceException("Type is not expected to be null. The RenderComponentType was not found.");
+
+            builder.OpenComponent(0, type);
+
+            foreach (var (key, value) in EditorViewNode.Parameters)
+                builder.AddAttribute(1, key, value);
+
+            builder.AddAttribute(1, "EditorViewNode", EditorViewNode);
+            builder.AddAttribute(2, "Editor", Editor);
+
+            if (EditorViewNode.Children.Count > 0)
+            {
+                builder.AddAttribute(3, "ChildContent", (RenderFragment)((childBuilder) =>
+                {
+                    foreach (var child in EditorViewNode.Children)
+                    {
+                        childBuilder.OpenComponent(0, typeof(EditorRenderer));
+                        childBuilder.AddAttribute(1, "EditorViewNode", child);
+                        childBuilder.CloseComponent();
+                    }
+                }));
+            }
+
+            builder.CloseComponent();
+        }
     }
+
 }

@@ -1,4 +1,3 @@
-@using System.Runtime.CompilerServices
 @using System.ComponentModel.DataAnnotations
 
 <Window WindowTitle="@WindowTitle">
@@ -47,6 +46,10 @@
     [Parameter]
     [Required]
     public string WindowTitle { get; set; } = "Properties Window";
+
+    public void UpdatePropertyValue() {
+
+    }
 
 
 }
