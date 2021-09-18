@@ -1,0 +1,3 @@
+apiVersion: v2
+name: kubed
+version: 0.12.0

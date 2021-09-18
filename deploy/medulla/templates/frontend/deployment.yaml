@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medulla-frontend
+  namespace: medulla-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: medulla-frontend
+  template:
+    metadata:
+      labels:
+        name: medulla-frontend
+    spec:
+      serviceAccountName: medulla-frontend
+      containers:
+        - name: frontend
+          image: ghcr.io/recro/medulla/frontend
+      {{ if not .Values.tilt }}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsGroup: 1337
+        runAsUser: 1337
+        runAsNonRoot: true
+      {{ end }}
+      imagePullPolicy: IfNotPresent
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 50m
+          memory: 128Mi

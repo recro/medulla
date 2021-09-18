@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: medulla-certificate
+  namespace: medulla-system
+spec:
+  secretName: medulla-certificate
+  dnsNames:
+    - "medulla.local"
+  issuerRef:
+    name: medulla-issuer
+    kind: Issuer

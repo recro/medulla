@@ -1,6 +1,7 @@
-k8s_yaml(helm('.', name='cert-manager', namespace='cert-manager'))
+k8s_yaml(helm('.', name='cert-manager', namespace='cert-manager', values=['./values.tilt.yaml']))
 
-k8s_resource(workload='cert-manager',
+k8s_resource(
+    workload='cert-manager',
     objects=[
         'cert-manager:namespace',
         'certificaterequests.cert-manager.io:customresourcedefinition',
@@ -31,9 +32,11 @@ k8s_resource(workload='cert-manager',
         'cert-manager-controller-approve\\:cert-manager-io:clusterrolebinding',
         'cert-manager-controller-certificatesigningrequests:clusterrolebinding'
     ],
-    labels=['cert-manager'])
+    labels=['cert-manager']
+)
 
-k8s_resource(workload='cert-manager-cainjector',
+k8s_resource(
+    workload='cert-manager-cainjector',
     resource_deps=['cert-manager'],
     objects=[
         'cert-manager-cainjector:serviceaccount',
@@ -42,9 +45,11 @@ k8s_resource(workload='cert-manager-cainjector',
         'cert-manager-cainjector\\:leaderelection:rolebinding',
         'cert-manager-cainjector:clusterrolebinding'
     ],
-    labels=['cert-manager'])
+    labels=['cert-manager']
+)
 
-k8s_resource(workload='cert-manager-webhook',
+k8s_resource(
+    workload='cert-manager-webhook',
     resource_deps=['cert-manager'],
     objects=[
         'cert-manager-webhook:mutatingwebhookconfiguration',
@@ -55,4 +60,5 @@ k8s_resource(workload='cert-manager-webhook',
         'cert-manager-webhook\\:subjectaccessreviews:clusterrolebinding',
         'cert-manager-webhook:validatingwebhookconfiguration'
     ],
-    labels=['cert-manager'])
+    labels=['cert-manager']
+)
