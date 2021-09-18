@@ -1,6 +1,7 @@
-k8s_yaml(helm('.', name='schemahero', namespace='schemahero-system'))
+k8s_yaml(helm('.', name='schemahero', namespace='schemahero-system', values=['./values.tilt.yaml']))
 
-k8s_resource(workload='schemahero',
+k8s_resource(
+    workload='schemahero',
     objects=[
         'schemahero-system:namespace',
         'databases.databases.schemahero.io:customresourcedefinition',
@@ -10,4 +11,5 @@ k8s_resource(workload='schemahero',
         'schemahero-rolebinding:clusterrolebinding',
         'webhook-server-secret:secret'
     ],
-    labels=['schemahero'])
+    labels=['schemahero']
+)

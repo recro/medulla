@@ -1,8 +1,9 @@
-# dummy configmap for tilt
+{{ if .Values.tilt }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: dummy-istiod
+  name: tilt-istiod
   namespace: istio-system
 data:
-  data: istiod
+  tilt: istiod
+{{ end }}

@@ -1,0 +1,9 @@
+{{ if .Values.tilt }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tilt-tidb-cluster-discovery
+  namespace: tidb-cluster
+data:
+  tilt: tidb-cluster-discovery
+{{ end }}

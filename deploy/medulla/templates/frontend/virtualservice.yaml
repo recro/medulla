@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: medulla-frontend
+  namespace: medulla-system
+spec:
+  hosts:
+    - "medulla.local"
+  gateways:
+    - medulla-gateway
+  http:
+    - route:
+        - destination:
+            host: medulla-frontend
+            port:
+              number: 5000
