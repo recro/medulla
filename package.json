@@ -11,7 +11,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.cs": "dotnet format --include"
+    "*.cs": "dotnet format src"
   },
   "repository": {
     "type": "git",
