@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace Medulla.Frontend.Client.Components.Editor.EditorView
 {
-    
+
     public class EditorRenderer : ComponentBase
     {
         [Parameter]
         public EditorViewNode EditorViewNode { get; set; } = default!;
 
-        [CascadingParameter] 
+        [CascadingParameter]
         public Editor Editor { get; set; } = default!;
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)

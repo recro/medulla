@@ -12,7 +12,7 @@ public class EditorViewNode
 
     public readonly List<EditorViewNode> Children = new();
     public Dictionary<string, object> Parameters { get; set; } = new();
-    
+
     public UniqueId UniqueId { get; set; }
-    
+
 }

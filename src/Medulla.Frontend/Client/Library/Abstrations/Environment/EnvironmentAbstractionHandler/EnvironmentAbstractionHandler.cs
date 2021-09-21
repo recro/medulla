@@ -31,10 +31,12 @@ namespace Medulla.Frontend.Client.Code
             if (env == Environment.Development)
             {
                 HandleInDevelopment();
-            } else if (env == Environment.Editor)
+            }
+            else if (env == Environment.Editor)
             {
                 HandleInEditor(editor, uniqueId);
-            } else if (env == Environment.Production)
+            } 
+            else if (env == Environment.Production)
             {
                 HandleInProduction();
             }

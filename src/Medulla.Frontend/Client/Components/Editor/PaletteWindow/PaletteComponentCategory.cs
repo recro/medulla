@@ -6,7 +6,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
 {
     public class PaletteComponentCategory
     {
-        
+
         public PaletteWindowComponents? PaletteWindowComponents { get; set; }
         public string Name { get; set; } = "{No Category Name}";
 
