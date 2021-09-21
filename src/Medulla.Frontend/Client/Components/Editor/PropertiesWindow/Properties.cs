@@ -9,8 +9,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
     public class Properties
     {
 
-        public List<Property> PropertyList { get; set; } = 
-        new List<Property>();
+        public List<Property> PropertyList { get; set; } =new List<Property>();
 
     }
 }
