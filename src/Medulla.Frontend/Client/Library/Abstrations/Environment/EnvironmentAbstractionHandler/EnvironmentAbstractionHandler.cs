@@ -35,7 +35,7 @@ namespace Medulla.Frontend.Client.Code
             else if (env == Environment.Editor)
             {
                 HandleInEditor(editor, uniqueId);
-            } 
+            }
             else if (env == Environment.Production)
             {
                 HandleInProduction();
