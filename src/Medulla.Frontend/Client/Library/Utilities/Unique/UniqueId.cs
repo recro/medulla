@@ -19,11 +19,11 @@ namespace Medulla.Frontend.Client.Code.Components
 
         public override bool Equals(object? obj)
         {
-            if ((obj == null) || ! this.GetType().Equals(obj.GetType()))
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
             {
                 return false;
             }
-            UniqueId _otherUniqueId = (UniqueId) obj;
+            UniqueId _otherUniqueId = (UniqueId)obj;
             return _otherUniqueId.Id == this.Id;
         }
 
@@ -31,6 +31,6 @@ namespace Medulla.Frontend.Client.Code.Components
         {
             return Id == other.Id;
         }
-        
+
     }
 }

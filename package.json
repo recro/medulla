@@ -10,9 +10,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
-  "lint-staged": {
-    "*.cs": "dotnet format src/"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/recro/medulla.git"
