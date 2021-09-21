@@ -1,3 +1,4 @@
+@using Medulla.Frontend.Client.Code.Components
 <div class="flash-messages">
   <div class="flash flash-warn">
     @Content
@@ -16,6 +17,10 @@
 
     [Parameter]
     public Editor Editor { get; set; } = default!;
+    
+    [Parameter]
+    public UniqueId UniqueId { get; set; }
+
     /*
      * These parameters are system required
      */

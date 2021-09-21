@@ -1,3 +1,4 @@
+@using Medulla.Frontend.Client.Code.Components
 <h1>H1Text</h1>
 
 @code {
@@ -13,5 +14,9 @@
 
     [Parameter]
     public Editor Editor { get; set; } = default!;
+    
+    [Parameter]
+    public UniqueId UniqueId { get; set; }
+
     
 }
