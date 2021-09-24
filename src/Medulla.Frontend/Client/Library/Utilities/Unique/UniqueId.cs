@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Medulla.Frontend.Client.Code.Components
+namespace Medulla.Frontend.Client.Library.Utilities.Unique
 {
     public class UniqueId
     {
@@ -12,7 +12,7 @@ namespace Medulla.Frontend.Client.Code.Components
 
         public UniqueId()
         {
-            string guid = System.Guid.NewGuid().ToString();
+            var guid = System.Guid.NewGuid().ToString();
             Id = guid;
             Console.WriteLine(Id);
         }

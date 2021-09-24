@@ -1,5 +1,5 @@
 @using Medulla.Frontend.Client.Code
-@using System.Xml
+@using Medulla.Frontend.Client.Library.Utilities.Unique
 <button 
     @onclick="ButtonWasClicked"
     class="btn" type="button">
@@ -48,6 +48,7 @@
         protected override void HandleInProduction()
         {
             //Production Code
+            throw new NotImplementedException();
         }
 
         protected override void HandleInDevelopment()

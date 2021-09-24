@@ -2,10 +2,8 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Xml;
 using Medulla.Frontend.Client.Components.Editor;
-using Medulla.Frontend.Client.Components.RegisteredComponents.Buttons;
+using Medulla.Frontend.Client.Library.Utilities.Unique;
 
 namespace Medulla.Frontend.Client.Code
 {

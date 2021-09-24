@@ -1,5 +1,5 @@
 @using Medulla.Frontend.Client.Components.Editor.PropertiesWindow
-@using System.Xml
+@using Medulla.Frontend.Client.Library.Utilities.Unique
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -27,25 +27,26 @@
     };
 
 
-    public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string Name, string Value)
+    public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name, string value)
     {
+        Console.WriteLine("Test");
         if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
         {
-            editorViewNode.Parameters[Name] = Value;
+            editorViewNode.Parameters[name] = value;
         }
         else
         {
             for (var i = 0; i < editorViewNode.Children.Count; i++)
             {
-                SetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], Name, Value);
+                SetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name, value);
             }    
         }
         
     }
     
-    public void UpdateCurrentComponentProperty(string Name, string Value)
+    public void UpdateCurrentComponentProperty(string name, string value)
     {
-        SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode, Name, Value);
+        SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode, name, value);
         StateChanged();
     }
 
