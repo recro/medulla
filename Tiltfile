@@ -1,3 +1,6 @@
+# deploy kubed
+load_dynamic('./deploy/kubed/Tiltfile')
+
 # deploy cert-manager
 load_dynamic('./deploy/cert-manager/Tiltfile')
 

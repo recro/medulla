@@ -5,3 +5,5 @@ metadata:
   name: istio-controlplane
 spec:
   profile: default
+  meshConfig:
+    accessLogFile: /dev/stdout

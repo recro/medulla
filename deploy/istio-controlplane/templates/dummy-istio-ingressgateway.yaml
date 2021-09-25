@@ -1,8 +1,0 @@
-# dummy configmap for tilt
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dummy-istio-ingressgateway
-  namespace: istio-system
-data:
-  data: istio-ingressgateway
