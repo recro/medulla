@@ -23,8 +23,8 @@
     /*
      * These parameters are system required
      */
-    
-    
+
+
     /*
      * These parameters need to be modifiable in Properties window
      */
@@ -33,12 +33,13 @@
 
     [Parameter]
     public UniqueId UniqueId { get; set; }
-    
+
     class ButtonClick: EnvironmentAbstractionHandler
     {
         protected override void HandleInEditor(Editor editor, UniqueId uniqueId)
         {
             //Opens Properties Window
+            editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
             Console.WriteLine("Button was clicked");
             string currentValue = editor.GetComponentPropertyValue(uniqueId, "Content");
             Properties properties = new ();

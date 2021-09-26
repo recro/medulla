@@ -120,6 +120,16 @@
         return GetEditorViewNodeIfUniqueIdEquals(EditorViewNode, uniqueId);
     }
 
+    public void SetCurrentComponentToEditorViewNodeWithUniqueId(UniqueId uniqueId)
+    {
+        EditorViewNode? editorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
+        if (editorViewNode == null)
+        {
+            throw new Exception("GetEditorViewNodeWithUniqueId returned null");
+        }
+        CurrentComponent = editorViewNode;
+    }
+
     public void SetProperties(Properties properties, UniqueId uniqueId)
     {
         CurrentPropertiesForComponentUniqueId = uniqueId;
