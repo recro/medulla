@@ -46,7 +46,7 @@
     
     public void UpdateCurrentComponentProperty(string name, string value)
     {
-        SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode, name, value);
+        SetEditorViewNodeParameterIfUniqueIdEquals(CurrentComponent, name, value);
         StateChanged();
     }
 
