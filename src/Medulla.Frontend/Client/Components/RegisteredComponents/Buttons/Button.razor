@@ -40,8 +40,9 @@
         {
             //Opens Properties Window
             Console.WriteLine("Button was clicked");
+            string currentValue = editor.GetComponentPropertyValue(uniqueId, "Content");
             Properties properties = new ();
-            properties.PropertyList.Add(new() {Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input"});
+            properties.PropertyList.Add(new() {Name = "Content", InputDescription = "Content", DefaultValue = currentValue, InputType = "input"});
             editor.SetProperties(properties, uniqueId);
         }
 

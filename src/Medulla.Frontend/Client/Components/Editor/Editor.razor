@@ -23,13 +23,13 @@
     public EditorViewNode EditorViewNode { get; set; } = new()
     {
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
-        Children = { }
+        Children = { },
+        UniqueId = new UniqueId()
     };
 
 
     public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name, string value)
     {
-        Console.WriteLine("Test");
         if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
         {
             editorViewNode.Parameters[name] = value;
@@ -39,15 +39,85 @@
             for (var i = 0; i < editorViewNode.Children.Count; i++)
             {
                 SetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name, value);
-            }    
+            }
         }
-        
+
     }
-    
+
+    public string GetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name)
+    {
+        if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
+        {
+            string paramValue = editorViewNode.Parameters[name].ToString();
+            if (paramValue == null)
+            {
+                return "";
+            }
+            else
+            {
+                return paramValue;
+            }
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                return GetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name);
+            }
+        }
+        return "";
+    }
+
+    public EditorViewNode GetEditorViewNodeIfUniqueIdEquals(EditorViewNode editorViewNode, UniqueId uniqueId)
+    {
+        if (editorViewNode.UniqueId.Equals(uniqueId))
+        {
+            return editorViewNode;
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                EditorViewNode checkEditorViewNode = GetEditorViewNodeIfUniqueIdEquals(editorViewNode.Children[i], uniqueId);
+                if (checkEditorViewNode != null)
+                {
+                    return checkEditorViewNode;
+                }
+            }
+        }
+        return null;
+    }
+
+
     public void UpdateCurrentComponentProperty(string name, string value)
     {
         SetEditorViewNodeParameterIfUniqueIdEquals(CurrentComponent, name, value);
         StateChanged();
+    }
+
+    public string GetComponentPropertyValue(UniqueId uniqueId, string name)
+    {
+        EditorViewNode activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
+        Dictionary<string, object> parameters = activeEditorViewNode.Parameters;
+        if (parameters.Count > 0) {
+            if (parameters[name] != null)
+            {
+                var param = parameters[name];
+                return param.ToString();
+            }
+            else
+            {
+                return "";
+            }
+        } else
+        {
+            return "";
+        }
+    }
+
+    public EditorViewNode GetEditorViewNodeWithUniqueId(UniqueId uniqueId)
+    {
+        return GetEditorViewNodeIfUniqueIdEquals(EditorViewNode, uniqueId);
     }
 
     public void SetProperties(Properties properties, UniqueId uniqueId)
@@ -56,7 +126,7 @@
         _properties = properties;
         StateChanged();
     }
-    
+
     public void StateChanged()
     {
         StateHasChanged();

@@ -31,7 +31,7 @@
                         }
                         <input @oninput="(value) => UpdatePropertyValue(PropertyList.PropertyList[inputId], value)"
                         class="form-control input-lg" type="text" placeholder="Small input"
-                        aria-label="Repository description" />
+                        aria-label="Repository description" value="@PropertyList.PropertyList[inputId].DefaultValue" />
                     </td>
                 </tr>
             }
