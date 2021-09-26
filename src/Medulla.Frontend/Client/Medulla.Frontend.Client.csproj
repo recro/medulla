@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Code\Abstrations\Environment\EnvironmentAbstractionHandler\EnvironmentAbstractionHandlers" />
     <Folder Include="Components\RegisteredComponents\Forms" />
   </ItemGroup>
 
