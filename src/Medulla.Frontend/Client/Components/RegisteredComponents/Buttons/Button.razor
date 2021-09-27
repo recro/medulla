@@ -1,29 +1,15 @@
+@inherits ClickableBaseComponent
+
 @using Medulla.Frontend.Client.Code
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 <button 
-    @onclick="ButtonWasClicked"
-    class="btn" type="button">
+    @onclick="Clicked"
+    class="btn @GetBtnSize() @GetBtnType()" type="button">
     @Content
     @ChildContent
 </button>
 
 @code {
-
-    /*
-     * These parameters are system required
-     */
-    [Parameter]
-    public RenderFragment ChildContent { get; set; } = default!;
-
-    [Parameter]
-    public EditorViewNode EditorViewNode { get; set; } = default!;
-
-    [Parameter]
-    public Editor Editor { get; set; } = default!;
-    /*
-     * These parameters are system required
-     */
-
 
     /*
      * These parameters need to be modifiable in Properties window
@@ -32,38 +18,33 @@
     public string Content { get; set; } = "{No Button Content}";
 
     [Parameter]
-    public UniqueId UniqueId { get; set; }
+    public string Size { get; set; } = "";
 
-    class ButtonClick: EnvironmentAbstractionHandler
+    [Parameter]
+    public string Type { get; set; } = "";
+
+    private string GetBtnSize()
     {
-        protected override void HandleInEditor(Editor editor, UniqueId uniqueId)
-        {
-            //Opens Properties Window
-            editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
-            Console.WriteLine("Button was clicked");
-            string currentValue = editor.GetComponentPropertyValue(uniqueId, "Content");
-            Properties properties = new ();
-            properties.PropertyList.Add(new() {Name = "Content", InputDescription = "Content", DefaultValue = currentValue, InputType = "input"});
-            editor.SetProperties(properties, uniqueId);
-        }
-
-        protected override void HandleInProduction()
-        {
-            //Production Code
-            throw new NotImplementedException();
-        }
-
-        protected override void HandleInDevelopment()
-        {
-            //Development Code
-            Console.WriteLine("Button was clicked");
-        }
+        if (Size != "sm" && Size != "large")
+            return "";
+        return "btn-" + Size;
     }
 
-    public void ButtonWasClicked()
+    private string GetBtnType()
     {
-        var click = new ButtonClick();
-        click.Handle(Editor, UniqueId);
+        if (Type == "block") return "btn-block";
+        return "";
     }
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() { Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input" });
+        properties.PropertyList.Add(new() { Name = "Size", InputDescription = "Size", DefaultValue = "", InputType = "input" });
+        properties.PropertyList.Add(new() { Name = "Type", InputDescription = "Type", DefaultValue = "", InputType = "input" });
+        return properties;
+    }
+
+
 
 }

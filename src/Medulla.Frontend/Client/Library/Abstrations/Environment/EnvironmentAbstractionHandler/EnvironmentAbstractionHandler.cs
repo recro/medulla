@@ -7,14 +7,14 @@ using Medulla.Frontend.Client.Library.Utilities.Unique;
 
 namespace Medulla.Frontend.Client.Code
 {
-    abstract public class EnvironmentAbstractionHandler
+    public abstract class EnvironmentAbstractionHandler
     {
 
-        abstract protected void HandleInEditor(Editor editor, UniqueId uniqueId);
+        protected abstract void HandleInEditor(Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent);
 
-        abstract protected void HandleInProduction();
+        protected abstract void HandleInProduction();
 
-        abstract protected void HandleInDevelopment();
+        protected abstract void HandleInDevelopment();
 
         public enum Environment
         {
@@ -23,7 +23,7 @@ namespace Medulla.Frontend.Client.Code
             Development
         }
 
-        public void Handle(Editor editor, UniqueId uniqueId)
+        public void Handle(Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
         {
             Environment env = GetCurrentEnvironment();
             if (env == Environment.Development)
@@ -32,7 +32,7 @@ namespace Medulla.Frontend.Client.Code
             }
             else if (env == Environment.Editor)
             {
-                HandleInEditor(editor, uniqueId);
+                HandleInEditor(editor, uniqueId, clickableBaseComponent);
             }
             else if (env == Environment.Production)
             {
