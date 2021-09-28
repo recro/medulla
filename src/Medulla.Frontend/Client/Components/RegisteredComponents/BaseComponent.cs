@@ -32,6 +32,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
 
         abstract protected Properties GetProperties();
+        abstract protected bool IsClickable();
 
 
         class ClickHandler : Medulla.Frontend.Client.Code.EnvironmentAbstractionHandler
@@ -57,7 +58,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             protected override void HandleInDevelopment()
             {
                 //Development Code
-                Console.WriteLine("Button was clicked");
+                throw new NotImplementedException();
             }
 
         }
@@ -65,7 +66,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         public void Clicked()
         {
             var click = new ClickHandler();
-            click.Handle(Editor, this.UniqueId, this);
+            click.Handle(Editor, this.UniqueId, this, IsClickable());
         }
 
 

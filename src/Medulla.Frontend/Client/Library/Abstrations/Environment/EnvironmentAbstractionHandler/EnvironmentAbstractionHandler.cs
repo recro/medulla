@@ -23,12 +23,15 @@ namespace Medulla.Frontend.Client.Code
             Development
         }
 
-        public void Handle(Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
+        public void Handle(Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent, bool isClickable)
         {
             Environment env = GetCurrentEnvironment();
             if (env == Environment.Development)
             {
-                HandleInDevelopment();
+                if (isClickable)
+                {
+                    HandleInDevelopment();
+                }
             }
             else if (env == Environment.Editor)
             {
@@ -36,7 +39,10 @@ namespace Medulla.Frontend.Client.Code
             }
             else if (env == Environment.Production)
             {
-                HandleInProduction();
+                if (isClickable)
+                {
+                    HandleInProduction();
+                }
             }
         }
 

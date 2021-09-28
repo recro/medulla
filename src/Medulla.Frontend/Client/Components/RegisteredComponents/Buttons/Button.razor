@@ -1,10 +1,10 @@
-@inherits ClickableBaseComponent
+@inherits BaseComponent
 
 @using Medulla.Frontend.Client.Code
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 <button 
     @onclick="Clicked"
-    class="btn @GetBtnSize() @GetBtnType()" type="button">
+    class="btn @GetBtnSize() @GetBtnType() @GetBtnLink()" type="button">
     @Content
     @ChildContent
 </button>
@@ -23,11 +23,21 @@
     [Parameter]
     public string Type { get; set; } = "";
 
+    [Parameter]
+    public string IsLink { get; set; } = "";
+
     private string GetBtnSize()
     {
         if (Size != "sm" && Size != "large")
             return "";
         return "btn-" + Size;
+    }
+
+    private string GetBtnLink()
+    {
+        if (IsLink == "true")
+            return "btn-link";
+        return "";
     }
 
     private string GetBtnType()
@@ -42,7 +52,13 @@
         properties.PropertyList.Add(new() { Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input" });
         properties.PropertyList.Add(new() { Name = "Size", InputDescription = "Size", DefaultValue = "", InputType = "input" });
         properties.PropertyList.Add(new() { Name = "Type", InputDescription = "Type", DefaultValue = "", InputType = "input" });
+        properties.PropertyList.Add(new() { Name = "IsLink", InputDescription = "IsLink", DefaultValue = "", InputType = "input" });
         return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return true;
     }
 
 
