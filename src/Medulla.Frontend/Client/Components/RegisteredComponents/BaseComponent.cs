@@ -40,10 +40,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
             {
                 Properties properties = clickableBaseComponent.GetProperties();
-                //properties.PropertyList.Add(new() { Name = "Content", InputDescription = "Content", DefaultValue = currentValue, InputType = "input" });
-                //properties.PropertyList.Add(new() { Name = "Size", InputDescription = "Size", DefaultValue = currentValueSize, InputType = "input" });
-                //properties.PropertyList.Add(new() { Name = "Type", InputDescription = "Type", DefaultValue = currentValueType, InputType = "input" });
-                //Opens Properties Window
                 editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
                 properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
                 editor.SetProperties(properties, uniqueId);
