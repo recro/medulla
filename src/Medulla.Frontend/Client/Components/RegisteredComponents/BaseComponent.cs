@@ -44,10 +44,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                 //properties.PropertyList.Add(new() { Name = "Type", InputDescription = "Type", DefaultValue = currentValueType, InputType = "input" });
                 //Opens Properties Window
                 editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
-                string currentValue = editor.GetComponentPropertyValue(uniqueId, "Content");
-                string currentValueSize = editor.GetComponentPropertyValue(uniqueId, "Size");
-                string currentValueType = editor.GetComponentPropertyValue(uniqueId, "Type");
-
+                properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
                 editor.SetProperties(properties, uniqueId);
             }
 
