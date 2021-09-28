@@ -1,22 +1,23 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
-<h1>H1Text</h1>
+@inherits BaseComponent
+
+<h1 @onclick="Clicked">@Text</h1>
 
 @code {
-    
-    [Parameter]
-    public RenderFragment ChildContent { get; set; } = default!;
 
     [Parameter]
-    public string Content { get; set; } = "{No Button Content}";
-    
-    [Parameter]
-    public EditorViewNode EditorViewNode { get; set; } = default!;
+    public string Text { get; set; } = "{Update this H1 Text}";
 
-    [Parameter]
-    public Editor Editor { get; set; } = default!;
-    
-    [Parameter]
-    public UniqueId UniqueId { get; set; }
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() { Name = "Text", InputDescription = "Text", DefaultValue = "", InputType = "input" });
+        return properties;
+    }
 
-    
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
 }
