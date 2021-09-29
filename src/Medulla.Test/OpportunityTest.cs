@@ -10,7 +10,7 @@ namespace Medulla.Test
     public class OpportunityTest
     {
         [TestMethod]
-        public async Task TestMethod1()
+        public async Task TestOpportunity()
         {
             // Act
             var response = await OpportunityDA.GetOpportunities();
