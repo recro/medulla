@@ -1,0 +1,36 @@
+@inherits BaseComponent
+
+<div @onclick="Clicked" class="Box">
+  <div class="Box-header">
+    <h3 class="Box-title">
+      @Title
+    </h3>
+  </div>
+    <div class="d-flex " style="min-height: 400px">
+        <div class="Box-body">
+            Box body
+          </div>
+          <div class="Box-footer">
+            Box footer
+          </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "{Title not set}";
+    
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() { Name = "Title", InputDescription = "Title", DefaultValue = "", InputType = "input" });
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+}

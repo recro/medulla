@@ -180,6 +180,21 @@
                 }
             }
         },
+        new()
+        {
+            Name = "Kanban",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+                {
+                    new PaletteComponent()
+                    {
+                        Name = "Kanban Board", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Kanban.BasicKanban"
+                    },
+                }
+            }
+        },
         new() {
             Name = "Buttons",
             PaletteWindowComponents = new PaletteWindowComponents()
