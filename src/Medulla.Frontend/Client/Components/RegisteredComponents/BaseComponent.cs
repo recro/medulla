@@ -34,15 +34,20 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         abstract protected Properties GetProperties();
         abstract protected bool IsClickable();
 
+        protected void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
+        {
+            Properties properties = this.GetProperties();
+            editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
+            properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
+            editor.SetProperties(properties, uniqueId);
+        }
+
 
         class ClickHandler : Medulla.Frontend.Client.Code.EnvironmentAbstractionHandler
         {
             protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
             {
-                Properties properties = clickableBaseComponent.GetProperties();
-                editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
-                properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
-                editor.SetProperties(properties, uniqueId);
+                clickableBaseComponent.UpdatePropertiesWindow(editor, uniqueId);
             }
 
             protected override void HandleInProduction()
