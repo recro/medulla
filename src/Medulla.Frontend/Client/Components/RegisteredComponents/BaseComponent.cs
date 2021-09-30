@@ -27,6 +27,69 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
          * These parameters are system required
          */
 
+        [Parameter] 
+        public string ML { get; set; } = "";
+        
+        [Parameter] 
+        public string MT { get; set; } = "";
+        
+        [Parameter] 
+        public string MB { get; set; } = "";
+        
+        [Parameter] 
+        public string MR { get; set; } = "";
+        
+        
+        [Parameter] 
+        public string PL { get; set; } = "";
+        
+        [Parameter] 
+        public string PT { get; set; } = "";
+        
+        [Parameter] 
+        public string PB { get; set; } = "";
+        
+        [Parameter] 
+        public string PR { get; set; } = "";
+
+
+        private string GetNumber(string prepend, string input)
+        {
+            int number = 0;
+            try
+            {
+                number = Int32.Parse(input);
+            }
+            catch
+            {
+                return prepend + "0";
+            }
+            return prepend + number.ToString();
+        }
+        
+        protected string GetMargin()
+        {
+            string ml = this.GetNumber("ml-", ML);
+            string mr = this.GetNumber("mr-", MR);
+            string mb = this.GetNumber("mb-", MB);
+            string mt = this.GetNumber("mt-", MT);
+            
+
+            return $" {ml} {mr} {mb} {mt} ";
+        }
+
+        protected string GetPadding()
+        {
+            
+            string pl = this.GetNumber("pl-", PL);
+            string pr = this.GetNumber("pr-", PR);
+            string pb = this.GetNumber("pb-", PB);
+            string pt = this.GetNumber("pt-", PT);
+
+            return $" {pl} {pr} {pb} {pt} ";
+        }
+
+
         [Parameter]
         public Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId UniqueId { get; set; } = default!;
 
@@ -34,9 +97,27 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         abstract protected Properties GetProperties();
         abstract protected bool IsClickable();
 
+        abstract protected bool DoesImplementPadding();
+        
+        abstract protected bool DoesImplementMargin();
+
         public void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
         {
             Properties properties = this.GetProperties();
+            if (this.DoesImplementMargin())
+            {
+                properties.PropertyList.Add(new Property() {Name = "ML", DefaultValue = "", InputDescription = "Margin Left", InputType = "input"});
+                properties.PropertyList.Add(new Property() {Name = "MT", DefaultValue = "", InputDescription = "Margin Top", InputType = "input"});
+                properties.PropertyList.Add(new Property() {Name = "MR", DefaultValue = "", InputDescription = "Margin Right", InputType = "input"});
+                properties.PropertyList.Add(new Property() {Name = "MB", DefaultValue = "", InputDescription = "Margin Bottom", InputType = "input"});
+            }
+            if (this.DoesImplementPadding())
+            {
+                properties.PropertyList.Add(new Property() {Name = "PL", DefaultValue = "", InputDescription = "Padding Left", InputType = "input"});
+                properties.PropertyList.Add(new Property() {Name = "PT", DefaultValue = "", InputDescription = "Padding Top", InputType = "input"});
+                properties.PropertyList.Add(new Property() {Name = "PR", DefaultValue = "", InputDescription = "Padding Right", InputType = "input"});
+                properties.PropertyList.Add(new Property() {Name = "PB", DefaultValue = "", InputDescription = "Padding Bottom", InputType = "input"});
+            }
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
             properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
             editor.SetProperties(properties, uniqueId);

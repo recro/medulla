@@ -4,7 +4,7 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 <button 
     @onclick="Clicked"
-    class="btn @GetBtnSize() @GetBtnType() @GetBtnLink()" type="button">
+    class="btn @GetBtnSize() @GetBtnType() @GetBtnLink() @GetMargin() @GetPadding()" type="button">
     @Content
     @ChildContent
 </button>
@@ -57,6 +57,16 @@
     }
 
     protected override bool IsClickable()
+    {
+        return true;
+    }
+    
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
     {
         return true;
     }

@@ -1,6 +1,6 @@
 @inherits BaseComponent
 @using Medulla.Frontend.Client.Library.Utilities.Unique
-<div @onclick="Clicked" class="Header">
+<div @onclick="Clicked" class="Header @GetMargin() @GetPadding()">
   <div class="Header-item">
     <a href="#" class="Header-link f4 d-flex flex-items-center">
       <!-- <%= octicon "mark-github", class: "mr-2", height: 32 %> -->
@@ -38,6 +38,16 @@
     protected override bool IsClickable()
     {
         return false;
+    }
+    
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
     }
 
 }

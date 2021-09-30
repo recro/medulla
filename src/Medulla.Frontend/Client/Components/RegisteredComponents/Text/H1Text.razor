@@ -1,7 +1,7 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @inherits BaseComponent
 
-<h1 @onclick="Clicked">@Text</h1>
+<h1 class=" @GetMargin() @GetPadding()" @onclick="Clicked">@Text</h1>
 
 @code {
 
@@ -18,6 +18,16 @@
     protected override bool IsClickable()
     {
         return false;
+    }
+    
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
     }
 
 }

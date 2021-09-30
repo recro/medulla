@@ -1,6 +1,6 @@
 @inherits BaseComponent
 @using Medulla.Frontend.Client.Library.Utilities.Unique
-<input class="form-control input-sm" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
+<input @onclick="Clicked" class="form-control input-sm @GetPadding() @GetMargin()" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
 
 @code {
 
@@ -17,6 +17,16 @@
     protected override bool IsClickable()
     {
         return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
     }
 
 }

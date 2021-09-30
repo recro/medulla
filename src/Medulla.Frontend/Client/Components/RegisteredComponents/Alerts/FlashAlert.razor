@@ -1,6 +1,6 @@
 @inherits BaseComponent
 @using Medulla.Frontend.Client.Library.Utilities.Unique
-<div class="flash-messages" @onclick="Clicked">
+<div class="flash-messages @GetMargin() @GetPadding()" @onclick="Clicked">
   <div class="flash  @GetErrorType()">
     @Content
   </div>
@@ -38,4 +38,13 @@
         return false;
     }
 
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
 }
