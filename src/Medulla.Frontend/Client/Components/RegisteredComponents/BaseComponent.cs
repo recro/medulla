@@ -34,7 +34,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         abstract protected Properties GetProperties();
         abstract protected bool IsClickable();
 
-        protected void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
+        public void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
         {
             Properties properties = this.GetProperties();
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);

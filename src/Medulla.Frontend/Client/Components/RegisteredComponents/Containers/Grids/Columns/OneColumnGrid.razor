@@ -39,9 +39,12 @@
 
     public void HandleDrop()
     {
+        // Properties properties = baseComponent.GetProperties();
         isHovering = false;
         Console.WriteLine("handling drop");
         EditorViewNode.Children.Add(Editor.CurrentComponent);
+        BaseComponent baseComponent = (BaseComponent)Activator.CreateInstance(Type.GetType(Editor.CurrentComponent.Type));
+        baseComponent.UpdatePropertiesWindow(Editor, Editor.CurrentComponent.UniqueId);
         Editor.StateChanged();
     }
 
