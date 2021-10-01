@@ -8,7 +8,7 @@ namespace Medulla.Frontend.Client.Library.Utilities.Unique
 {
     public class UniqueId
     {
-        private string Id;
+        public string Id;
 
         public UniqueId()
         {

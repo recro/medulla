@@ -62,7 +62,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             }
             catch
             {
-                return prepend + "0";
+                return "";
             }
             return prepend + number.ToString();
         }
