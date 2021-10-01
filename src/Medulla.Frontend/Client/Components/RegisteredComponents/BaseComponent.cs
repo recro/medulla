@@ -128,7 +128,15 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         {
             protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
             {
-                clickableBaseComponent.UpdatePropertiesWindow(editor, uniqueId);
+                try
+                {
+                    clickableBaseComponent.UpdatePropertiesWindow(editor, uniqueId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Just logging error");
+                    Console.WriteLine(e.StackTrace);
+                }
             }
 
             protected override void HandleInProduction()
