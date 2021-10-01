@@ -6,10 +6,10 @@
         <div class="width-full">
             <EditorView EditorViewNode="EditorViewNode" />
         </div>
-        <div style="width: 25vw">
+        <div style="width: 40vw;max-height:100vh;overflow: scroll;">
             <TranslateComponentWindow Editor="this" />
-            <PropertiesWindow Editor="this" PropertyList="_properties"/>
             <PaletteWindow ComponentCategories="_paletteComponentCategories"/>
+            <PropertiesWindow Editor="this" PropertyList="_properties"/>
         </div>
     </CascadingValue>
 </div>
@@ -148,9 +148,6 @@
     {
         PropertyList = new List<Property>
     {
-        new() { Name = "Color", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-        new() { Name = "Background", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-        new() { Name = "Test", InputDescription = "test", DefaultValue = "test", InputType = "test"},
     }
     };
 
