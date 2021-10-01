@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Medulla.Frontend\Server\Medulla.Frontend.Server.csproj" />
+    <ProjectReference Include="..\Medulla.Actions.SamGov\Medulla.Actions.SamGov.csproj" />
   </ItemGroup>
 
 </Project>

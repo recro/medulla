@@ -4,9 +4,9 @@
 
 using System.Net.Http.Headers;
 
-namespace Medulla.Frontend.Server.DataAccess
+namespace Medulla.Actions.SamGov.Services
 {
-    public class OpportunityDA
+    public class OpportunityServices
     {
         public static async Task<bool> GetOpportunities()
         {
