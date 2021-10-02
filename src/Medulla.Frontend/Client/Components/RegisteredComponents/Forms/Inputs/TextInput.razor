@@ -10,6 +10,18 @@
     protected override Properties GetProperties()
     {
         Properties properties = new();
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Placeholder", 
+            InputDescription = "Placeholder", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Placeholder"
+                },
+                { "PropertyName", "Placeholder" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.TextInput" }
+            );
         // properties.PropertyList.Add(new() { Name = "Placeholder", InputDescription = "Placeholder", DefaultValue = "", InputType = "input" });
         return properties;
     }
