@@ -9,7 +9,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
 {
     public class Properties
     {
-
+        
         public List<Property> PropertyList { get; set; } = new List<Property>();
 
 
@@ -18,7 +18,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
             foreach (var prop in PropertyList)
             {
                 string currentValue = editor.GetComponentPropertyValue(uniqueId, prop.Name);
-                prop.DefaultValue = currentValue;
+                // prop.DefaultValue = currentValue;
             }
         }
 

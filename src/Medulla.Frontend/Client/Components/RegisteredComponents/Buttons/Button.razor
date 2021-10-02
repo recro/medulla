@@ -49,10 +49,65 @@
     protected override Properties GetProperties()
     {
         Properties properties = new();
-        properties.PropertyList.Add(new() { Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input" });
-        properties.PropertyList.Add(new() { Name = "Size", InputDescription = "Size", DefaultValue = "", InputType = "input" });
-        properties.PropertyList.Add(new() { Name = "Type", InputDescription = "Type", DefaultValue = "", InputType = "input" });
-        properties.PropertyList.Add(new() { Name = "IsLink", InputDescription = "IsLink", DefaultValue = "", InputType = "input" });
+        // properties.PropertyList.Add(new() { Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input" });
+        // properties.PropertyList.Add(new() { Name = "Size", InputDescription = "Size", DefaultValue = "", InputType = "input" });
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Size", 
+            InputDescription = "Size", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+            {
+                "DropdownItems", new Dictionary<string, string>() {
+                    { "Default", "" },
+                    { "Large", "large" },
+                    { "Small", "sm" }
+                }
+            },
+            {
+                "Title", "Size"
+            },
+            { "PropertyName", "Size" }
+        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+            );
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "IsLink", 
+            InputDescription = "Is Link", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "No", "" },
+                        { "Yes", "true" }
+                    }
+                },
+                {
+                    "Title", "Is Link"
+                },
+                { "PropertyName", "IsLink" }
+            }, 
+            InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" });
+        
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Type", 
+            InputDescription = "Type", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "Default", "" },
+                        { "Block", "block" }
+                    }
+                },
+                {
+                    "Title", "Block Type"
+                },
+                { "PropertyName", "Type" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+            );
+        // properties.PropertyList.Add(new() { Name = "IsLink", InputDescription = "IsLink", DefaultValue = "", InputType = "input" });
         return properties;
     }
 

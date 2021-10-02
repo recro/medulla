@@ -16,7 +16,7 @@
 
 
 @code {
-
+    
     public EditorViewNode CurrentComponent { get; set; } = default!;
     public UniqueId CurrentPropertiesForComponentUniqueId;
 
@@ -95,7 +95,8 @@
         SetEditorViewNodeParameterIfUniqueIdEquals(CurrentComponent, name, value);
         StateChanged();
     }
-
+    
+    
     public string GetComponentPropertyValue(UniqueId uniqueId, string name)
     {
         EditorViewNode activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
@@ -137,7 +138,8 @@
         _properties = properties;
         StateChanged();
     }
-
+    
+    
     public void StateChanged()
     {
         StateHasChanged();

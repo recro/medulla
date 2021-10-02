@@ -29,7 +29,27 @@
     protected override Properties GetProperties()
     {
         Properties properties = new ();
-        properties.PropertyList.Add(new Property() { Name = "ErrorType", DefaultValue = "ErrorType", InputDescription = "Alert Type", InputType = "input"});
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "ErrorType", 
+            InputDescription = "ErrorType", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "Default", "" },
+                        { "Success", "success" },
+                        { "Error", "error" },
+                        { "Warning", "warn" },
+                    }
+                },
+                {
+                    "Title", "Alert Type"
+                },
+                { "PropertyName", "ErrorType" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+            );
+        // properties.PropertyList.Add(new Property() { Name = "ErrorType", DefaultValue = "ErrorType", InputDescription = "Alert Type", InputType = "input"});
         return properties;
     }
 

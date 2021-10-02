@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Medulla.Frontend.Client.Components.Editor.PropertiesWindow;
 using Medulla.Frontend.Client.Library.Utilities.Unique;
 using Microsoft.AspNetCore.Components;
@@ -106,17 +107,201 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             Properties properties = this.GetProperties();
             if (this.DoesImplementMargin())
             {
-                properties.PropertyList.Add(new Property() {Name = "ML", DefaultValue = "", InputDescription = "Margin Left", InputType = "input"});
-                properties.PropertyList.Add(new Property() {Name = "MT", DefaultValue = "", InputDescription = "Margin Top", InputType = "input"});
-                properties.PropertyList.Add(new Property() {Name = "MR", DefaultValue = "", InputDescription = "Margin Right", InputType = "input"});
-                properties.PropertyList.Add(new Property() {Name = "MB", DefaultValue = "", InputDescription = "Margin Bottom", InputType = "input"});
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "ML", 
+                        InputDescription = "Margin Left", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Margin Left"
+                            },
+                            { "PropertyName", "ML" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "MR", 
+                        InputDescription = "Margin Right", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Margin Right"
+                            },
+                            { "PropertyName", "MR" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "MT", 
+                        InputDescription = "Margin Top", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Margin Top"
+                            },
+                            { "PropertyName", "MT" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "MB", 
+                        InputDescription = "Margin Bottom", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Margin Bottom"
+                            },
+                            { "PropertyName", "MB" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                // properties.PropertyList.Add(new Property() {Name = "ML", DefaultValue = "", InputDescription = "Margin Left", InputType = "input"});
+                // properties.PropertyList.Add(new Property() {Name = "MT", DefaultValue = "", InputDescription = "Margin Top", InputType = "input"});
+                // properties.PropertyList.Add(new Property() {Name = "MR", DefaultValue = "", InputDescription = "Margin Right", InputType = "input"});
+                // properties.PropertyList.Add(new Property() {Name = "MB", DefaultValue = "", InputDescription = "Margin Bottom", InputType = "input"});
             }
             if (this.DoesImplementPadding())
             {
-                properties.PropertyList.Add(new Property() {Name = "PL", DefaultValue = "", InputDescription = "Padding Left", InputType = "input"});
-                properties.PropertyList.Add(new Property() {Name = "PT", DefaultValue = "", InputDescription = "Padding Top", InputType = "input"});
-                properties.PropertyList.Add(new Property() {Name = "PR", DefaultValue = "", InputDescription = "Padding Right", InputType = "input"});
-                properties.PropertyList.Add(new Property() {Name = "PB", DefaultValue = "", InputDescription = "Padding Bottom", InputType = "input"});
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "PL", 
+                        InputDescription = "Padding Left", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Padding Left"
+                            },
+                            { "PropertyName", "PL" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "PR", 
+                        InputDescription = "Padding Right", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Padding Right"
+                            },
+                            { "PropertyName", "PR" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "PT", 
+                        InputDescription = "Padding Top", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Padding Top"
+                            },
+                            { "PropertyName", "PT" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "PB", 
+                        InputDescription = "Padding Bottom", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            {
+                                "DropdownItems", new Dictionary<string, string>() {
+                                    { "None", "" },
+                                    { "1", "1" },
+                                    { "2", "2" },
+                                    { "3", "3" },
+                                    { "4", "4" },
+                                    { "5", "5" },
+                                    { "6", "6" },
+                                }
+                            },
+                            {
+                                "Title", "Padding Bottom"
+                            },
+                            { "PropertyName", "PB" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                );
+                // properties.PropertyList.Add(new Property() {Name = "PL", DefaultValue = "", InputDescription = "Padding Left", InputType = "input"});
+                // properties.PropertyList.Add(new Property() {Name = "PT", DefaultValue = "", InputDescription = "Padding Top", InputType = "input"});
+                // properties.PropertyList.Add(new Property() {Name = "PR", DefaultValue = "", InputDescription = "Padding Right", InputType = "input"});
+                // properties.PropertyList.Add(new Property() {Name = "PB", DefaultValue = "", InputDescription = "Padding Bottom", InputType = "input"});
             }
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
             properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
