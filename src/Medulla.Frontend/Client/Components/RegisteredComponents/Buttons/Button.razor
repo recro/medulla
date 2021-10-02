@@ -53,6 +53,18 @@
         // properties.PropertyList.Add(new() { Name = "Size", InputDescription = "Size", DefaultValue = "", InputType = "input" });
         properties.PropertyList.Add(new() 
         { 
+            Name = "Content", 
+            InputDescription = "Content", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Content"
+                },
+                { "PropertyName", "Content" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.TextInput" }
+            );
+        properties.PropertyList.Add(new() 
+        { 
             Name = "Size", 
             InputDescription = "Size", 
             DefaultValue = new Dictionary<string, object>()
