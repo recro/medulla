@@ -21,7 +21,7 @@
                 <ul class="dropdown-menu dropdown-menu-se">
                     @foreach (var item in DropdownItems)
                     {
-                        <li @onclick="() => { isActive = false; SetActiveValue(item.Value); }"><span class="dropdown-item" style="cursor: pointer">@item.Key</span></li>
+                        <li @onclick="() => { isActive = false; SetActiveValue(item.Key, item.Value); }"><span class="dropdown-item" style="cursor: pointer">@item.Key</span></li>
                     }
                 </ul>
             }
@@ -62,10 +62,10 @@
 
     public string ActiveValue { get; set; } = "";
 
-    private void SetActiveValue(string value)
+    private void SetActiveValue(string Key, string value)
     {
         isActive = false;
-        ActiveValue = value;
+        ActiveValue = Key;
         OnChange["EventCallback"](new Dictionary<string, string>()
         {
             { "PropertyName", PropertyName },
