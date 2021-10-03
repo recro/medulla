@@ -1,9 +1,12 @@
 @inherits BaseComponent
 
 <div
+    @onclick="Clicked"
     @ondrop="HandleDrop"
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     ondragover="event.preventDefault();"
-    style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection">
+    style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
     Flex Container
     @ChildContent
 </div>
@@ -20,6 +23,10 @@
     
     public void HandleDrop()
     {
+        if (Editor.PlaceAfterComponentWithUniqueId != null && !Editor.PlaceAfterComponentWithUniqueId.Equals(this.UniqueId))
+        {
+            return;
+        }
         isHovering = false;
         Console.WriteLine("handling drop");
         if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
@@ -81,7 +88,7 @@
 
     protected override bool IsClickable()
     {
-        throw new NotImplementedException();
+        return false;
     }
 
     protected override bool DoesImplementPadding()

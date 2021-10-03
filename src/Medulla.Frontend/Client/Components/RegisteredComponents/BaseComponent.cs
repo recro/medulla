@@ -60,7 +60,8 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         
         protected void MouseOver(MouseEventArgs e)
         {
-            Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
+            Console.WriteLine("enter " + this.UniqueId.Id);
+            // Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
 
             Editor.IsHoverComponentContainer = this.IsHoverComponentContainer();
             Editor.PlaceAfterComponentWithUniqueId = UniqueId;
@@ -73,6 +74,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected void MouseLeave(MouseEventArgs e)
         {
+            Console.WriteLine("leave " + this.UniqueId.Id);
             if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
                 Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
             {
@@ -356,7 +358,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                 // properties.PropertyList.Add(new Property() {Name = "PR", DefaultValue = "", InputDescription = "Padding Right", InputType = "input"});
                 // properties.PropertyList.Add(new Property() {Name = "PB", DefaultValue = "", InputDescription = "Padding Bottom", InputType = "input"});
             }
-            Console.WriteLine("test");
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
             properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
             editor.SetProperties(properties, uniqueId);
