@@ -1,7 +1,7 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @inherits BaseComponent
 
-<p class=" @GetMargin() @GetPadding()" @onclick="Clicked">@Text</p>
+<p style=" @GetFontStyle()" class=" @GetMargin() @GetPadding()" @onclick="Clicked">@Text</p>
 
 @code {
 
@@ -38,6 +38,11 @@
     }
 
     protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
     {
         return true;
     }

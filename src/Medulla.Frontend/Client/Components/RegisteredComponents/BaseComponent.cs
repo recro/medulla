@@ -53,6 +53,20 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         [Parameter] 
         public string PR { get; set; } = "";
 
+        [Parameter] 
+        public string IsBold { get; set; } = "";
+
+        
+        protected string GetFontStyle()
+        {
+            string style = "";
+            if (IsBold == "True")
+            {
+                style += "font-weight: bold";
+            }
+            return $" {style} ";
+        }
+
 
         private string GetNumber(string prepend, string input)
         {
@@ -102,9 +116,23 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         
         abstract protected bool DoesImplementMargin();
 
+        abstract protected bool DoesImplementFonts();
+
         public void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
         {
             Properties properties = this.GetProperties();
+            if (this.DoesImplementFonts())
+            {
+                properties.PropertyList.Add(new() 
+                    { 
+                        Name = "IsBold", 
+                        InputDescription = "Is Bold", 
+                        DefaultValue = new Dictionary<string, object>()
+                        {
+                            { "PropertyName", "IsBold" }
+                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Checkbox" }
+                );
+            }
             if (this.DoesImplementMargin())
             {
                 properties.PropertyList.Add(new() 
