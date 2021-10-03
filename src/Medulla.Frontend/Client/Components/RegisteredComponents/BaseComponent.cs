@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Medulla.Frontend.Client.Components.Editor.PropertiesWindow;
 using Medulla.Frontend.Client.Library.Utilities.Unique;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Medulla.Frontend.Client.Components.RegisteredComponents
 {
@@ -56,6 +57,11 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         [Parameter] 
         public string IsBold { get; set; } = "";
 
+        
+        protected void MouseOver(MouseEventArgs e)
+        {
+            Editor.PlaceAfterComponentWithUniqueId = UniqueId;
+        }
         
         protected string GetFontStyle()
         {

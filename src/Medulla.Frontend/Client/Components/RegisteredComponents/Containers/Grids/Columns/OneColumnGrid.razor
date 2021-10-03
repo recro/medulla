@@ -42,7 +42,8 @@
         // Properties properties = baseComponent.GetProperties();
         isHovering = false;
         Console.WriteLine("handling drop");
-        EditorViewNode.Children.Add(Editor.CurrentComponent);
+        // EditorViewNode.Children.Add(Editor.CurrentComponent);
+        Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
         BaseComponent baseComponent = (BaseComponent)Activator.CreateInstance(Type.GetType(Editor.CurrentComponent.Type));
         baseComponent.UpdatePropertiesWindow(Editor, Editor.CurrentComponent.UniqueId);
         Editor.StateChanged();
