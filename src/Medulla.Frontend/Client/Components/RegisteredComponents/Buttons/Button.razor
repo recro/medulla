@@ -32,38 +32,7 @@
     
     ElementReference Element;
 
-
-    public class BoundingClientRect
-    {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Width { get; set; }
-        public double Height { get; set; }
-        public double Top { get; set; }
-        public double Right { get; set; }
-        public double Bottom { get; set; }
-        public double Left { get; set; }
-    }
-
-    public class MyJsRuntime : JSInProcessRuntime
-    {
-        protected override void BeginInvokeJS(long taskId, string identifier, string? argsJson, JSCallResultType resultType, long targetInstanceId)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void EndInvokeDotNet(DotNetInvocationInfo invocationInfo, in DotNetInvocationResult invocationResult)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override string? InvokeJS(string identifier, string? argsJson, JSCallResultType resultType, long targetInstanceId)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    
-    private async void MouseOver(MouseEventArgs e)
+    private void MouseOver(MouseEventArgs e)
     {
         // var runtime = new MyJsRuntime();
         // var result = await runtime.InvokeAsync<BoundingClientRect>("MyDOMGetBoundingClientRect", Element);
