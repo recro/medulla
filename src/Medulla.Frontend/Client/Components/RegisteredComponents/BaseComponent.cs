@@ -62,6 +62,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         {
             Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
 
+            Editor.IsHoverComponentContainer = this.IsHoverComponentContainer();
             Editor.PlaceAfterComponentWithUniqueId = UniqueId;
             Editor.RemoveComponentOnHoverLeaveWithUniqueId = Editor.CurrentComponent.UniqueId;
 
@@ -139,6 +140,8 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         abstract protected bool DoesImplementMargin();
 
         abstract protected bool DoesImplementFonts();
+
+        abstract protected bool IsHoverComponentContainer();
 
         public void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
         {
@@ -353,6 +356,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                 // properties.PropertyList.Add(new Property() {Name = "PR", DefaultValue = "", InputDescription = "Padding Right", InputType = "input"});
                 // properties.PropertyList.Add(new Property() {Name = "PB", DefaultValue = "", InputDescription = "Padding Bottom", InputType = "input"});
             }
+            Console.WriteLine("test");
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
             properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
             editor.SetProperties(properties, uniqueId);

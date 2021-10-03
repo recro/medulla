@@ -1,0 +1,102 @@
+@inherits BaseComponent
+
+<div
+    @ondrop="HandleDrop"
+    ondragover="event.preventDefault();"
+    style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection">
+    Flex Container
+    @ChildContent
+</div>
+
+@code {
+    
+    [Parameter]
+    public string FlexDirection { get; set; } = "flex-row";
+    
+    private bool isHovering = false;
+    
+    string _dropClass = "";
+
+    
+    public void HandleDrop()
+    {
+        isHovering = false;
+        Console.WriteLine("handling drop");
+        if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
+            Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
+        {
+            Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);    
+        }
+        Editor.PlaceAfterComponentWithUniqueId = this.UniqueId;
+        Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+        BaseComponent baseComponent = (BaseComponent)Activator.CreateInstance(Type.GetType(Editor.CurrentComponent.Type));
+        baseComponent.UpdatePropertiesWindow(Editor, Editor.CurrentComponent.UniqueId);
+        Editor.StateChanged();
+    }
+
+    public void HandleDragEnter()
+    {
+        isHovering = true;
+        _dropClass = "border border-dashed";
+    }
+
+    public void HandleDragLeave()
+    {
+        isHovering = false;
+        _dropClass = "";
+    }
+    
+    
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "FlexDirection", 
+            InputDescription = "Flex Direction", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "Row", "flex-row" },
+                        { "Column", "flex-column" }
+                    }
+                },
+                {
+                    "Title", "Flex Direction"
+                },
+                { "PropertyName", "FlexDirection" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+            );
+        
+        
+        return properties;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return true;
+    }
+
+    protected override bool IsClickable()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+}

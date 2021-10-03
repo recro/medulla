@@ -21,11 +21,12 @@
     public UniqueId CurrentPropertiesForComponentUniqueId;
     public UniqueId PlaceAfterComponentWithUniqueId { get; set; }
     public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
+    public bool IsHoverComponentContainer = false;
 
 
     public EditorViewNode EditorViewNode { get; set; } = new()
     {
-        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Flex",
         Children = { },
         UniqueId = new UniqueId()
     };
@@ -50,8 +51,16 @@
             }
             if (foundIndex != -1)
             {
-                EditorViewNode.Children.Insert(foundIndex+1, CurrentComponent);
-                return true;
+                if (this.IsHoverComponentContainer)
+                {
+                    EditorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                    return true;    
+                }
+                else
+                {
+                    EditorViewNode.Children.Insert(foundIndex+1, CurrentComponent);
+                    return true;
+                }
             }
             else
             {
@@ -223,7 +232,7 @@
     {
         new()
         {
-            Name = "Grids",
+            Name = "Containers",
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
@@ -232,6 +241,11 @@
                     {
                         Name = "1 Column Grid", SvgString = _iconStr1,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid"
+                    },
+                    new PaletteComponent()
+                    {
+                        Name = "Flex", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Flex"
                     },
                 }
             }
