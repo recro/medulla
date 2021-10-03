@@ -60,6 +60,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         
         protected void MouseOver(MouseEventArgs e)
         {
+            Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
             Editor.PlaceAfterComponentWithUniqueId = UniqueId;
         }
         

@@ -1,7 +1,9 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @inherits BaseComponent
 
-<h6 style=" @GetFontStyle()" class=" @GetMargin() @GetPadding()" @onclick="Clicked">@Text</h6>
+<h6
+    @ondragover="MouseOver"
+    style=" @GetFontStyle()" class=" @GetMargin() @GetPadding()" @onclick="Clicked">@Text</h6>
 
 @code {
 

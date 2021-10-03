@@ -1,6 +1,8 @@
 @inherits BaseComponent
 
-<div @onclick="Clicked" class="Box @GetMargin() @GetPadding()">
+<div
+    @ondragover="MouseOver"
+    @onclick="Clicked" class="Box @GetMargin() @GetPadding()">
   <div class="Box-header">
     <h3 class="Box-title">
       @Title
