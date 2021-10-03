@@ -65,6 +65,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             Editor.PlaceAfterComponentWithUniqueId = UniqueId;
             Editor.RemoveComponentOnHoverLeaveWithUniqueId = Editor.CurrentComponent.UniqueId;
 
+            Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
             Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
             Editor.StateChanged();
         }
