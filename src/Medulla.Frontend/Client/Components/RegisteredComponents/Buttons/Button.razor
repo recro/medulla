@@ -5,7 +5,6 @@
 @using Microsoft.JSInterop
 @using Microsoft.JSInterop.Infrastructure
 <button
-    @ref="Element"
     @onmouseover="MouseOver"
     @onclick="Clicked"
     class="btn @GetBtnSize() @GetBtnType() @GetBtnLink() @GetMargin() @GetPadding()" type="button">
@@ -30,8 +29,6 @@
     [Parameter]
     public string IsLink { get; set; } = "";
     
-    ElementReference Element;
-
     private void MouseOver(MouseEventArgs e)
     {
         // var runtime = new MyJsRuntime();
