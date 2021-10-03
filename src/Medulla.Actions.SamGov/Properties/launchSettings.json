@@ -1,18 +1,17 @@
 {
   "profiles": {
-    "Medulla.Frontend.Server": {
+    "Medulla.Actions.SamGov": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "Key": "YPJJ6Z3S6nhqj23bQj8RMbgi31feeQO2OJ6ouSeh",
+        "DOTNET_ENVIRONMENT": "Development",
         "PostedTo": "09/22/2021",
         "PostedFrom": "01/01/2021",
         "Url": "https:/api.sam.gov/prod/opportunities/v1/search?limit=15&api_key={0}&postedFrom={1}&postedTo={2}"
       },
-      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-      "applicationUrl": "http://0.0.0.0:5000",
-      "dotnetRunMessages": true,
-      "hotReloadProfile": "aspnetcore"
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker"
     }
   }
 }

@@ -2,22 +2,13 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using Medulla.Actions.SamGov.Services;
+using Medulla.Actions.SamGov;
 
-var builder = WebApplication.CreateBuilder(args);
+IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>
+    {
+        services.AddHostedService<Worker>();
+    })
+    .Build();
 
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseWebAssemblyDebugging();
-}
-
-app.UseBlazorFrameworkFiles();
-app.UseStaticFiles();
-
-app.MapFallbackToFile("index.html");
-
-await OpportunityServices.GetOpportunities();
-
-app.Run();
+await host.RunAsync();

@@ -2,17 +2,24 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Medulla.Actions.SamGov.Services
 {
     public class OpportunityServices
     {
-        public static async Task<bool> GetOpportunities()
+        public static async Task<bool> GetOpportunities(IConfiguration configuration)
         {
             // Create API key from https://sam.gov/content/home after creating account
             // and change API Key in Environment Variable.
-            var apiKey = Environment.GetEnvironmentVariable("Key");
+
+            var apiKey = configuration["API:Key"]; //Environment.GetEnvironmentVariable("Key");
             var postedFrom = Environment.GetEnvironmentVariable("PostedFrom");
             var postedTo = Environment.GetEnvironmentVariable("PostedTo");
             //string url = string.Format(Environment.GetEnvironmentVariable("Url"), apiKey, postedFrom, postedTo);
@@ -36,7 +43,6 @@ namespace Medulla.Actions.SamGov.Services
                 }
                 await System.IO.File.WriteAllTextAsync($"opportunity_{DateTime.Now.ToString("MMddyyyyss")}.json", response);
                 return isSucess;
-
             }
         }
     }
