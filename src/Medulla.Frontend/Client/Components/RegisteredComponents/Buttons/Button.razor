@@ -5,7 +5,8 @@
 @using Microsoft.JSInterop
 @using Microsoft.JSInterop.Infrastructure
 <button
-    @ondragover="MouseOver"
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     @onclick="Clicked"
     class="btn @GetBtnSize() @GetBtnType() @GetBtnLink() @GetMargin() @GetPadding()" type="button">
     @Content

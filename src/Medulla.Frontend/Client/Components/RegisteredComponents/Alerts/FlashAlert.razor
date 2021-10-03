@@ -1,7 +1,8 @@
 @inherits BaseComponent
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 <div
-    @ondragover="MouseOver"
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     class="flash-messages @GetMargin() @GetPadding()" @onclick="Clicked">
     <div class="flash  @GetErrorType()">
         @Content

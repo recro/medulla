@@ -56,12 +56,26 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         [Parameter] 
         public string IsBold { get; set; } = "";
-
+        
         
         protected void MouseOver(MouseEventArgs e)
         {
             Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
+
             Editor.PlaceAfterComponentWithUniqueId = UniqueId;
+            Editor.RemoveComponentOnHoverLeaveWithUniqueId = Editor.CurrentComponent.UniqueId;
+
+            Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+            Editor.StateChanged();
+        }
+
+        protected void MouseLeave(MouseEventArgs e)
+        {
+            if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
+                Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
+            {
+                Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);    
+            }
         }
         
         protected string GetFontStyle()

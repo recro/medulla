@@ -20,6 +20,7 @@
     public EditorViewNode CurrentComponent { get; set; } = default!;
     public UniqueId CurrentPropertiesForComponentUniqueId;
     public UniqueId PlaceAfterComponentWithUniqueId { get; set; }
+    public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
 
 
     public EditorViewNode EditorViewNode { get; set; } = new()
@@ -31,6 +32,7 @@
 
     public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
     {
+        
         if (PlaceAfterComponentWithUniqueId == null)
         {
             EditorViewNode.Children.Add(CurrentComponent);
@@ -64,6 +66,22 @@
                 return false;
             }
         }
+    }
+
+    public bool RemoveComponentWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId)
+    {
+        for (var i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId))
+            {
+                editorViewNode.Children.RemoveAt(i);
+            }
+            else
+            {
+                RemoveComponentWithUniqueId(editorViewNode.Children[i], uniqueId);
+            }
+        }
+        return true;
     }
 
 

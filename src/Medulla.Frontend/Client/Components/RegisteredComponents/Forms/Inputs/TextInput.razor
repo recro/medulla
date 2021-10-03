@@ -1,7 +1,8 @@
 @inherits BaseComponent
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 <input
-    @ondragover="MouseOver"
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     @onclick="Clicked" class="form-control input-sm @GetPadding() @GetMargin()" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
 
 @code {

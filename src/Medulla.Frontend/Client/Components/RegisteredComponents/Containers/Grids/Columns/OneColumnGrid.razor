@@ -7,12 +7,6 @@
     @ondragleave="HandleDragLeave"
     class="@_dropClass width-full" style="min-height: 100px">
     @ChildContent
-    @if (isHovering)
-    {
-        <span style="border:thick solid purple">
-            <DynamicComponent Type="@Type.GetType(Editor.CurrentComponent.Type)" />
-        </span>
-    }
 </div>
 
 @code {
@@ -42,6 +36,11 @@
         // Properties properties = baseComponent.GetProperties();
         isHovering = false;
         Console.WriteLine("handling drop");
+        if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
+            Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
+        {
+            Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);    
+        }
         // EditorViewNode.Children.Add(Editor.CurrentComponent);
         Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
         BaseComponent baseComponent = (BaseComponent)Activator.CreateInstance(Type.GetType(Editor.CurrentComponent.Type));

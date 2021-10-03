@@ -2,7 +2,8 @@
 @inherits BaseComponent
 
 <p
-    @ondragover="MouseOver"
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     style=" @GetFontStyle()" class=" @GetMargin() @GetPadding()" @onclick="Clicked">@Text</p>
 
 @code {

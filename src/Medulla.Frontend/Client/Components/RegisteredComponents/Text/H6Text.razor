@@ -2,7 +2,8 @@
 @inherits BaseComponent
 
 <h6
-    @ondragover="MouseOver"
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     style=" @GetFontStyle()" class=" @GetMargin() @GetPadding()" @onclick="Clicked">@Text</h6>
 
 @code {

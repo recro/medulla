@@ -1,7 +1,8 @@
 @inherits BaseComponent
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 <div
-    @ondragover="MouseOver"
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     @onclick="Clicked" class="Header @GetMargin() @GetPadding()">
   <div class="Header-item">
     <a href="#" class="Header-link f4 d-flex flex-items-center">
