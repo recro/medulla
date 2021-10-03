@@ -35,7 +35,7 @@
 
     private string GetBtnLink()
     {
-        if (IsLink == "true")
+        if (IsLink == "True")
             return "btn-link";
         return "";
     }
@@ -88,18 +88,9 @@
             InputDescription = "Is Link", 
             DefaultValue = new Dictionary<string, object>()
             {
-                {
-                    "DropdownItems", new Dictionary<string, string>() {
-                        { "No", "" },
-                        { "Yes", "true" }
-                    }
-                },
-                {
-                    "Title", "Is Link"
-                },
                 { "PropertyName", "IsLink" }
-            }, 
-            InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" });
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Checkbox" }
+            );
         
         properties.PropertyList.Add(new() 
         { 
