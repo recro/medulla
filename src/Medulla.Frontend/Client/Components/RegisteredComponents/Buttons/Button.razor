@@ -2,7 +2,11 @@
 
 @using Medulla.Frontend.Client.Code
 @using Medulla.Frontend.Client.Library.Utilities.Unique
-<button 
+@using Microsoft.JSInterop
+@using Microsoft.JSInterop.Infrastructure
+<button
+    @ref="Element"
+    @onmouseover="MouseOver"
     @onclick="Clicked"
     class="btn @GetBtnSize() @GetBtnType() @GetBtnLink() @GetMargin() @GetPadding()" type="button">
     @Content
@@ -21,10 +25,49 @@
     public string Size { get; set; } = "";
 
     [Parameter]
-    public string Type { get; set; } = "";
+    public string IsBlock { get; set; } = "";
 
     [Parameter]
     public string IsLink { get; set; } = "";
+    
+    ElementReference Element;
+
+
+    public class BoundingClientRect
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public double Top { get; set; }
+        public double Right { get; set; }
+        public double Bottom { get; set; }
+        public double Left { get; set; }
+    }
+
+    public class MyJsRuntime : JSInProcessRuntime
+    {
+        protected override void BeginInvokeJS(long taskId, string identifier, string? argsJson, JSCallResultType resultType, long targetInstanceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void EndInvokeDotNet(DotNetInvocationInfo invocationInfo, in DotNetInvocationResult invocationResult)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override string? InvokeJS(string identifier, string? argsJson, JSCallResultType resultType, long targetInstanceId)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    
+    private async void MouseOver(MouseEventArgs e)
+    {
+        var runtime = new MyJsRuntime();
+        var result = await runtime.InvokeAsync<BoundingClientRect>("MyDOMGetBoundingClientRect", Element);
+    }
 
     private string GetBtnSize()
     {
@@ -42,7 +85,7 @@
 
     private string GetBtnType()
     {
-        if (Type == "block") return "btn-block";
+        if (IsBlock == "True") return "btn-block";
         return "";
     }
 
@@ -94,21 +137,12 @@
         
         properties.PropertyList.Add(new() 
         { 
-            Name = "Type", 
-            InputDescription = "Type", 
+            Name = "IsBlock", 
+            InputDescription = "Is Block", 
             DefaultValue = new Dictionary<string, object>()
             {
-                {
-                    "DropdownItems", new Dictionary<string, string>() {
-                        { "Default", "" },
-                        { "Block", "block" }
-                    }
-                },
-                {
-                    "Title", "Block Type"
-                },
-                { "PropertyName", "Type" }
-            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                { "PropertyName", "IsBlock" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Checkbox" }
             );
         // properties.PropertyList.Add(new() { Name = "IsLink", InputDescription = "IsLink", DefaultValue = "", InputType = "input" });
         return properties;
