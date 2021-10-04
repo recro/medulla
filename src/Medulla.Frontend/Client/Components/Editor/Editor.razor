@@ -22,8 +22,6 @@
     public UniqueId PlaceAfterComponentWithUniqueId { get; set; }
     public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
     public bool IsHoverComponentContainer = false;
-    public UniqueId HoverContainerUniqueId { get; set; }
-    public List<UniqueId> AlreadyAddedUniqueIds { get; set; } = new();
 
 
     public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, int count)
@@ -52,20 +50,14 @@
 
     public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
     {
-        if (AlreadyAddedUniqueIds.Contains(CurrentComponent.UniqueId))
-        {
-            return true;
-        }
         if (editorViewNode.UniqueId.Equals(PlaceAfterComponentWithUniqueId))
         {
             editorViewNode.Children.Add(CurrentComponent);
-            AlreadyAddedUniqueIds.Add(CurrentComponent.UniqueId);
             return true;
         }
         if (PlaceAfterComponentWithUniqueId == null)
         {
             EditorViewNode.Children.Add(CurrentComponent);
-            AlreadyAddedUniqueIds.Add(CurrentComponent.UniqueId);
             return true;
         }
         else
@@ -83,13 +75,11 @@
                 if (this.IsHoverComponentContainer)
                 {
                     EditorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
-                    AlreadyAddedUniqueIds.Add(CurrentComponent.UniqueId);
                     return true;    
                 }
                 else
                 {
                     EditorViewNode.Children.Insert(foundIndex+1, CurrentComponent);
-                    AlreadyAddedUniqueIds.Add(CurrentComponent.UniqueId);
                     return true;
                 }
             }
@@ -115,7 +105,6 @@
             if (editorViewNode.Children[i].UniqueId.Equals(uniqueId))
             {
                 editorViewNode.Children.RemoveAt(i);
-                AlreadyAddedUniqueIds.Remove(CurrentComponent.UniqueId);
             }
             else
             {
