@@ -14,5 +14,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
 
         public string RenderComponentType { get; set; } = default!;
 
+        public bool IsContainer { get; set; } = false;
+
     }
 }

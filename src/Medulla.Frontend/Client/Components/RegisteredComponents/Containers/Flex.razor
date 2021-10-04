@@ -1,6 +1,8 @@
 @inherits BaseComponent
 
 <div
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
     @onclick="Clicked"
     style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
     Flex Container

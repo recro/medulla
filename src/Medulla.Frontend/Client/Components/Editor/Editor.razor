@@ -22,6 +22,7 @@
     public UniqueId PlaceAfterComponentWithUniqueId { get; set; }
     public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
     public bool IsHoverComponentContainer = false;
+    public UniqueId LastActiveContainer { get; set; }
 
 
     public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, int count)
@@ -50,14 +51,29 @@
 
     public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
     {
+        if (this.IsHoverComponentContainer)
+        {
+            if (CurrentComponent.Children.Count == 0)
+            {
+                CurrentComponent.Children.Add(new EditorViewNode()
+                {
+                    UniqueId = new UniqueId(),
+                    Children = {  },
+                    Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.ContainerStart"
+                });    
+            }
+            
+        }
         if (editorViewNode.UniqueId.Equals(PlaceAfterComponentWithUniqueId))
         {
             editorViewNode.Children.Add(CurrentComponent);
+            Console.WriteLine("found editor node with id " + editorViewNode.UniqueId.Id);
             return true;
         }
         if (PlaceAfterComponentWithUniqueId == null)
         {
             EditorViewNode.Children.Add(CurrentComponent);
+            Console.WriteLine("placing at the end");
             return true;
         }
         else
@@ -72,16 +88,23 @@
             }
             if (foundIndex != -1)
             {
-                if (this.IsHoverComponentContainer)
+                Console.WriteLine("found editor node matching as child of " + editorViewNode.UniqueId.Id + " with index " + foundIndex);
+                if (editorViewNode.IsContainer)
                 {
-                    EditorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
-                    return true;    
+                    Console.WriteLine("editor node is a container");
+                }
+                Console.WriteLine(editorViewNode.Children[foundIndex].Type);
+                
+                if (LastActiveContainer != null && LastActiveContainer.Equals(PlaceAfterComponentWithUniqueId))
+                {
+                    editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
                 }
                 else
                 {
-                    EditorViewNode.Children.Insert(foundIndex+1, CurrentComponent);
-                    return true;
+                    editorViewNode.Children.Insert(foundIndex+1, CurrentComponent);    
                 }
+                Console.WriteLine("placed at " + foundIndex+1);
+                return true;
             }
             else
             {
@@ -266,7 +289,8 @@
                     new PaletteComponent()
                     {
                         Name = "Flex", SvgString = _iconStr1,
-                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Flex"
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Flex",
+                        IsContainer = true
                     },
                 }
             }

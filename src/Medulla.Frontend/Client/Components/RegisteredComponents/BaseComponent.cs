@@ -65,10 +65,10 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         
         protected void MouseOver(MouseEventArgs e)
         {
-            Console.WriteLine("enter " + this.UniqueId.Id);
+            Console.WriteLine("Hovering over " + this.GetType());
             // Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
 
-            Editor.IsHoverComponentContainer = this.IsHoverComponentContainer();
+            Editor.IsHoverComponentContainer = Editor.CurrentComponent.IsContainer;
             Editor.PlaceAfterComponentWithUniqueId = UniqueId;
             Editor.RemoveComponentOnHoverLeaveWithUniqueId = Editor.CurrentComponent.UniqueId;
 
@@ -79,7 +79,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected void MouseLeave(MouseEventArgs e)
         {
-            Console.WriteLine("leave " + this.UniqueId.Id);
             if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
                 Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
             {
@@ -376,6 +375,10 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                 try
                 {
                     clickableBaseComponent.UpdatePropertiesWindow(editor, uniqueId);
+                    if (editor.CurrentComponent.IsContainer)
+                    {
+                        editor.LastActiveContainer = editor.CurrentComponent.UniqueId;
+                    }
                 }
                 catch (Exception e)
                 {

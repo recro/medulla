@@ -39,7 +39,6 @@
         }
         // Properties properties = baseComponent.GetProperties();
         isHovering = false;
-        Console.WriteLine("handling drop");
         if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
             Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
         {
@@ -55,14 +54,12 @@
 
     public void HandleDragEnter()
     {
-        Console.WriteLine("enter one column grid");
         isHovering = true;
         _dropClass = "border border-dashed";
     }
 
     public void HandleDragLeave()
     {
-        Console.WriteLine("leave one column grid");
         isHovering = false;
         _dropClass = "";
     }

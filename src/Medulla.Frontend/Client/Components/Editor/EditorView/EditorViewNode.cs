@@ -18,4 +18,6 @@ public class EditorViewNode
 
     public UniqueId UniqueId { get; set; }
 
+    public bool IsContainer { get; set; } = false;
+
 }
