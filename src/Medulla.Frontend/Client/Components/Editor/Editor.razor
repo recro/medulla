@@ -26,6 +26,23 @@
     public List<UniqueId> AlreadyAddedUniqueIds { get; set; } = new();
 
 
+    public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, int count)
+    {
+        if (editorViewNode.UniqueId.Equals(uniqueId))
+        {
+            return count;
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            int foundCount = GetDepthOfEditorViewNodeWithUniqueId(editorViewNode.Children[i], uniqueId, count + 1);
+            if (foundCount != -1)
+            {
+                return foundCount;
+            }
+        }
+        return -1;
+    }
+    
     public EditorViewNode EditorViewNode { get; set; } = new()
     {
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",

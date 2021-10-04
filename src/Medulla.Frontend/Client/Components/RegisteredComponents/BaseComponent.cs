@@ -56,7 +56,12 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         [Parameter] 
         public string IsBold { get; set; } = "";
-        
+
+
+        public int GetCount()
+        {
+            return Editor.GetDepthOfEditorViewNodeWithUniqueId(Editor.EditorViewNode, UniqueId, 1);
+        }
         
         protected void MouseOver(MouseEventArgs e)
         {
