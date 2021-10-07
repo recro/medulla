@@ -9,9 +9,6 @@
         "Url": "https:/api.sam.gov/prod/opportunities/v1/search?limit=15&api_key={0}&postedFrom={1}&postedTo={2}"
       },
       "dotnetRunMessages": true
-    },
-    "Docker": {
-      "commandName": "Docker"
-    }
+    }    
   }
 }

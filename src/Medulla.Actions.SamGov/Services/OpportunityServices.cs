@@ -22,26 +22,25 @@ namespace Medulla.Actions.SamGov.Services
             var apiKey = configuration["API:Key"]; //Environment.GetEnvironmentVariable("Key");
             var postedFrom = Environment.GetEnvironmentVariable("PostedFrom");
             var postedTo = Environment.GetEnvironmentVariable("PostedTo");
-            //string url = string.Format(Environment.GetEnvironmentVariable("Url"), apiKey, postedFrom, postedTo);
             string url = $"https://api.sam.gov/prod/opportunities/v1/search?limit=15&api_key={apiKey}&postedFrom={postedFrom}&postedTo={postedTo}";
-            string response = String.Empty;
-            bool isSucess = false;
-            using (var client = new HttpClient())
+            string response;
+            var isSucess = false;
+            using var client = new HttpClient();
             {
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Res = await client.GetAsync(url);
+                var res = await client.GetAsync(url);
 
-                if (Res.IsSuccessStatusCode)
+                if (res.IsSuccessStatusCode)
                 {
-                    response = Res.Content.ReadAsStringAsync().Result;
-                    isSucess = Res.IsSuccessStatusCode;
+                    response = res.Content.ReadAsStringAsync().Result;
+                    isSucess = res.IsSuccessStatusCode;
                 }
                 else
                 {
-                    response = Res.StatusCode.ToString();
+                    response = res.StatusCode.ToString();
                 }
-                await System.IO.File.WriteAllTextAsync($"opportunity_{DateTime.Now.ToString("MMddyyyyss")}.json", response);
+                await File.WriteAllTextAsync($"opportunity_{DateTime.Now.ToString("MMddyyyyss")}.json", response);
                 return isSucess;
             }
         }
