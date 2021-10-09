@@ -65,25 +65,26 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         
         protected void MouseOver(MouseEventArgs e)
         {
+            if (Editor.CurrentComponent.UniqueId.Equals(this.UniqueId)) return;
             if (!Editor.CanHover) return;
             Editor.CanHover = false;
             Console.WriteLine("Hovering over " + this.GetType());
             // Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
-            if (this.IsHoverComponentContainer())
-            {
-                Console.WriteLine("Is Container");
-                Editor.CurrentComponent = new EditorViewNode()
-                {
-                    Type = "Medulla.Frontend.Client.Components.RegisteredComponents.ContainerPositionSelect",
-                    Parameters = new Dictionary<string, object>()
-                    {
-                    },
-                    IsContainer = false,
-                    UniqueId = new UniqueId()
-                };
-                Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
-            }
-            else
+            // if (this.IsHoverComponentContainer())
+            // {
+                // Console.WriteLine("Is Container");
+                // Editor.CurrentComponent = new EditorViewNode()
+                // {
+                //     Type = "Medulla.Frontend.Client.Components.RegisteredComponents.ContainerPositionSelect",
+                //     Parameters = new Dictionary<string, object>()
+                //     {
+                //     },
+                //     IsContainer = false,
+                //     UniqueId = new UniqueId()
+                // };
+                // Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+            // }
+            // else
             {
                 Editor.IsHoverComponentContainer = Editor.CurrentComponent.IsContainer;
                 Editor.PlaceAfterComponentWithUniqueId = UniqueId;
