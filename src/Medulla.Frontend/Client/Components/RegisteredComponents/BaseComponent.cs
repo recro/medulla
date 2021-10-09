@@ -65,20 +65,40 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         
         protected void MouseOver(MouseEventArgs e)
         {
+            if (!Editor.CanHover) return;
+            Editor.CanHover = false;
             Console.WriteLine("Hovering over " + this.GetType());
             // Console.WriteLine("Updating Place After UniqueId to " + UniqueId.Id);
+            if (this.IsHoverComponentContainer())
+            {
+                Console.WriteLine("Is Container");
+                Editor.CurrentComponent = new EditorViewNode()
+                {
+                    Type = "Medulla.Frontend.Client.Components.RegisteredComponents.ContainerPositionSelect",
+                    Parameters = new Dictionary<string, object>()
+                    {
+                    },
+                    IsContainer = false,
+                    UniqueId = new UniqueId()
+                };
+                Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+            }
+            else
+            {
+                Editor.IsHoverComponentContainer = Editor.CurrentComponent.IsContainer;
+                Editor.PlaceAfterComponentWithUniqueId = UniqueId;
+                Editor.RemoveComponentOnHoverLeaveWithUniqueId = Editor.CurrentComponent.UniqueId;
 
-            Editor.IsHoverComponentContainer = Editor.CurrentComponent.IsContainer;
-            Editor.PlaceAfterComponentWithUniqueId = UniqueId;
-            Editor.RemoveComponentOnHoverLeaveWithUniqueId = Editor.CurrentComponent.UniqueId;
-
-            Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
-            Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
-            Editor.StateChanged();
+                Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
+                Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+                Editor.StateChanged();    
+            }
         }
 
         protected void MouseLeave(MouseEventArgs e)
         {
+            Editor.CanHover = true;
+            Editor.RemoveAllEditorViewNodesWithType(Editor.EditorViewNode, "Medulla.Frontend.Client.Components.RegisteredComponents.ContainerPositionSelect");
             if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
                 Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
             {

@@ -23,7 +23,36 @@
     public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
     public bool IsHoverComponentContainer = false;
     public UniqueId LastActiveContainer { get; set; }
+    public bool CanHover { get; set; } = false;
 
+
+    public List<EditorViewNode> FindAllEditorViewNodesWithType(EditorViewNode editorViewNode, string Type, List<EditorViewNode> listOfEditorViewNodes)
+    {
+        if (editorViewNode.Type.Equals(Type))
+        {
+            listOfEditorViewNodes.Add(editorViewNode);
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            if (editorViewNode.Children[i].Type.Equals(Type))
+            {
+                listOfEditorViewNodes.Add(editorViewNode.Children[i]);
+            }
+            FindAllEditorViewNodesWithType(editorViewNode.Children[i], Type, listOfEditorViewNodes);
+        }
+        return listOfEditorViewNodes;
+    }
+
+    public void RemoveAllEditorViewNodesWithType(EditorViewNode editorViewNode, string Type)
+    {
+        var nodes = FindAllEditorViewNodesWithType(editorViewNode, Type, new List<EditorViewNode>());
+        foreach (var node in nodes)
+        {
+            Console.WriteLine("Removing " + node.UniqueId.Id);
+            RemoveComponentWithUniqueId(EditorViewNode, node.UniqueId);
+        }
+        StateChanged();
+    }
 
     public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, int count)
     {
@@ -136,7 +165,6 @@
         }
         return true;
     }
-
 
     public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name, string value)
     {
