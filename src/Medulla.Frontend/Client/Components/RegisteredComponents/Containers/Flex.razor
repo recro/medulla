@@ -23,38 +23,42 @@
             };
 }
 
-<Dropdown Title="Is Container Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
-@if (Editor.ActiveContainers.Contains(this.UniqueId))
-{
-    @if (!HasChildren())
+<div style="position: relative;">
+    <div style="position: absolute; top:-2.3em;">
+        <Dropdown Title="Is Container Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
+    </div>
+    @if (Editor.ActiveContainers.Contains(this.UniqueId))
     {
-        
-        <div @ondragenter="MouseOver"
-             @ondragleave="MouseLeave"
-             @onclick="Clicked"
-             style="min-width: 100px;min-height: 100px;" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
-            @ChildContent
-        </div>
+        @if (!HasChildren())
+        {
+
+            <div @ondragenter="MouseOver"
+                 @ondragleave="MouseLeave"
+                 @onclick="Clicked"
+                 style="min-width: 100px;min-height: 100px;" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
+                @ChildContent
+            </div>
+        }
+        else
+        {
+            <div @onclick="Clicked"
+                 style="min-width: 100px;min-height: 100px;" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
+                @ChildContent
+            </div>
+        }
     }
     else
     {
         <div @onclick="Clicked"
-             style="min-width: 100px;min-height: 100px;" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
-            @ChildContent
+             @ondragenter="MouseOver"
+             @ondragleave="MouseLeave"
+             style="min-width: 100px;min-height: 100px;">
+            <div style="pointer-events: none" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
+                @ChildContent
+            </div>
         </div>
     }
-}
-else
-{
-    <div @onclick="Clicked"
-         @ondragenter="MouseOver"
-         @ondragleave="MouseLeave"
-         style="min-width: 100px;min-height: 100px;">
-        <div style="pointer-events: none" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
-            @ChildContent
-        </div>
-    </div>
-}
+</div>
 
 
 @code {
@@ -183,7 +187,8 @@ else
 
     .medulla-flex-container {
         background: purple;
-        height: 100px;
+        min-height: 100px;
+        padding-top: 2.3em;
     }
 
 
