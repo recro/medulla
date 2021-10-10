@@ -377,10 +377,10 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                 try
                 {
                     clickableBaseComponent.UpdatePropertiesWindow(editor, uniqueId);
-                    if (editor.CurrentComponent.IsContainer)
-                    {
-                        editor.LastActiveContainer = editor.CurrentComponent.UniqueId;
-                    }
+                    // if (editor.CurrentComponent.IsContainer)
+                    // {
+                    //     editor.LastActiveContainer = editor.CurrentComponent.UniqueId;
+                    // }
                 }
                 catch (Exception e)
                 {

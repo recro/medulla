@@ -152,11 +152,11 @@
                 if (LastActiveContainer != null && LastActiveContainer.Equals(PlaceAfterComponentWithUniqueId))
                 {
                     editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
-                    LastActiveContainer = null;
+                    //LastActiveContainer = null;
                 }
                 else
                 {
-                    if (editorViewNode.Children[foundIndex].IsContainer)
+                    if (editorViewNode.Children[foundIndex].IsContainer && editorViewNode.Children[foundIndex].UniqueId.Equals(LastActiveContainer))
                     {
                         editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
                     } else
