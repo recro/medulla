@@ -6,9 +6,10 @@
         <div class="width-full">
             <EditorView EditorViewNode="EditorViewNode" />
         </div>
-        <div style="width: 25vw">
-            <PropertiesWindow Editor="this" PropertyList="_properties" />
-            <PaletteWindow ComponentCategories="_paletteComponentCategories" />
+        <div style="width: 40vw;max-height:100vh;overflow: scroll;">
+            <TranslateComponentWindow Editor="this" />
+            <PaletteWindow ComponentCategories="_paletteComponentCategories"/>
+            <PropertiesWindow Editor="this" PropertyList="_properties"/>
         </div>
     </CascadingValue>
 </div>
@@ -18,18 +19,188 @@
 
     public EditorViewNode CurrentComponent { get; set; } = default!;
     public UniqueId CurrentPropertiesForComponentUniqueId;
+    public UniqueId PlaceAfterComponentWithUniqueId { get; set; }
+    public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
+    public bool IsHoverComponentContainer = false;
+    public UniqueId LastActiveContainer { get; set; }
+    public bool CanHover { get; set; } = false;
 
+
+    public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, ref bool found)
+    {
+        found = false;
+        if (editorViewNode.UniqueId.Equals(uniqueId)) {
+            found = true;
+            if (editorViewNode.Children.Count > 0) return true;
+            else return false;
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++) {
+            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId)) {
+                found = true;
+                if (editorViewNode.Children[i].Children.Count > 0)
+                    return true;
+                else return false;
+            }
+            bool wasFound = false;
+            bool hasChildren = DoesEditorViewNodeHaveChildrenWithUniqueId(editorViewNode.Children[i], uniqueId, ref wasFound);
+            if (wasFound) {
+                return hasChildren;
+            }
+        }
+        return false;
+    }
+
+
+    public List<EditorViewNode> FindAllEditorViewNodesWithType(EditorViewNode editorViewNode, string Type, List<EditorViewNode> listOfEditorViewNodes)
+    {
+        if (editorViewNode.Type.Equals(Type))
+        {
+            listOfEditorViewNodes.Add(editorViewNode);
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            if (editorViewNode.Children[i].Type.Equals(Type))
+            {
+                listOfEditorViewNodes.Add(editorViewNode.Children[i]);
+            }
+            FindAllEditorViewNodesWithType(editorViewNode.Children[i], Type, listOfEditorViewNodes);
+        }
+        return listOfEditorViewNodes;
+    }
+
+    public void RemoveAllEditorViewNodesWithType(EditorViewNode editorViewNode, string Type)
+    {
+        var nodes = FindAllEditorViewNodesWithType(editorViewNode, Type, new List<EditorViewNode>());
+        foreach (var node in nodes)
+        {
+            Console.WriteLine("Removing " + node.UniqueId.Id);
+            RemoveComponentWithUniqueId(EditorViewNode, node.UniqueId);
+        }
+        StateChanged();
+    }
+
+    public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, int count)
+    {
+        if (editorViewNode.UniqueId.Equals(uniqueId))
+        {
+            return count;
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            int foundCount = GetDepthOfEditorViewNodeWithUniqueId(editorViewNode.Children[i], uniqueId, count + 1);
+            if (foundCount != -1)
+            {
+                return foundCount;
+            }
+        }
+        return -1;
+    }
 
     public EditorViewNode EditorViewNode { get; set; } = new()
     {
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
-        Children = { }
+        Children = { },
+        UniqueId = new UniqueId()
     };
 
+    public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
+    {
+        @*if (this.IsHoverComponentContainer)
+        {
+            if (CurrentComponent.Children.Count == 0)
+            {
+                CurrentComponent.Children.Add(new EditorViewNode()
+                {
+                    UniqueId = new UniqueId(),
+                    Children = {  },
+                    Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.ContainerStart"
+                });
+            }
+
+        }*@
+        if (editorViewNode.UniqueId.Equals(PlaceAfterComponentWithUniqueId))
+        {
+            editorViewNode.Children.Add(CurrentComponent);
+            Console.WriteLine("found editor node with id " + editorViewNode.UniqueId.Id);
+            return true;
+        }
+        if (PlaceAfterComponentWithUniqueId == null)
+        {
+            EditorViewNode.Children.Add(CurrentComponent);
+            Console.WriteLine("placing at the end");
+            return true;
+        }
+        else
+        {
+            var foundIndex = -1;
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                if (editorViewNode.Children[i].UniqueId.Equals(PlaceAfterComponentWithUniqueId))
+                {
+                    foundIndex = i;
+                }
+            }
+            if (foundIndex != -1)
+            {
+                @*Console.WriteLine("found editor node matching as child of " + editorViewNode.UniqueId.Id + " with index " + foundIndex);*@
+                @*if (editorViewNode.IsContainer)
+                {
+                    Console.WriteLine("editor node is a container");
+                }*@
+                @*Console.WriteLine(editorViewNode.Children[foundIndex].Type);*@
+
+                if (LastActiveContainer != null && LastActiveContainer.Equals(PlaceAfterComponentWithUniqueId))
+                {
+                    editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                    LastActiveContainer = null;
+                }
+                else
+                {
+                    if (editorViewNode.Children[foundIndex].IsContainer)
+                    {
+                        editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                    } else
+                    {
+                        editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);
+                    }
+
+                }
+                Console.WriteLine("placed at " + foundIndex+1);
+                return true;
+            }
+            else
+            {
+                for (var i = 0; i < editorViewNode.Children.Count; i++)
+                {
+                    bool wasAdded = AddComponentToEditorViewNode(editorViewNode.Children[i]);
+                    if (wasAdded)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+    }
+
+    public bool RemoveComponentWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId)
+    {
+        for (var i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId))
+            {
+                editorViewNode.Children.RemoveAt(i);
+            }
+            else
+            {
+                RemoveComponentWithUniqueId(editorViewNode.Children[i], uniqueId);
+            }
+        }
+        return true;
+    }
 
     public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name, string value)
     {
-        Console.WriteLine("Test");
         if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
         {
             editorViewNode.Parameters[name] = value;
@@ -39,15 +210,96 @@
             for (var i = 0; i < editorViewNode.Children.Count; i++)
             {
                 SetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name, value);
-            }    
+            }
         }
-        
+
     }
-    
+
+    public string GetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name)
+    {
+        if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
+        {
+            string paramValue = editorViewNode.Parameters[name].ToString();
+            if (paramValue == null)
+            {
+                return "";
+            }
+            else
+            {
+                return paramValue;
+            }
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                return GetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name);
+            }
+        }
+        return "";
+    }
+
+    public EditorViewNode GetEditorViewNodeIfUniqueIdEquals(EditorViewNode editorViewNode, UniqueId uniqueId)
+    {
+        if (editorViewNode.UniqueId.Equals(uniqueId))
+        {
+            return editorViewNode;
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                EditorViewNode checkEditorViewNode = GetEditorViewNodeIfUniqueIdEquals(editorViewNode.Children[i], uniqueId);
+                if (checkEditorViewNode != null)
+                {
+                    return checkEditorViewNode;
+                }
+            }
+        }
+        return null;
+    }
+
+
     public void UpdateCurrentComponentProperty(string name, string value)
     {
-        SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode, name, value);
+        SetEditorViewNodeParameterIfUniqueIdEquals(CurrentComponent, name, value);
         StateChanged();
+    }
+
+
+    public string GetComponentPropertyValue(UniqueId uniqueId, string name)
+    {
+        EditorViewNode activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
+        Dictionary<string, object> parameters = activeEditorViewNode.Parameters;
+        if (parameters.Count > 0) {
+            if (parameters[name] != null)
+            {
+                var param = parameters[name];
+                return param.ToString();
+            }
+            else
+            {
+                return "";
+            }
+        } else
+        {
+            return "";
+        }
+    }
+
+    public EditorViewNode GetEditorViewNodeWithUniqueId(UniqueId uniqueId)
+    {
+        return GetEditorViewNodeIfUniqueIdEquals(EditorViewNode, uniqueId);
+    }
+
+    public void SetCurrentComponentToEditorViewNodeWithUniqueId(UniqueId uniqueId)
+    {
+        EditorViewNode? editorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
+        if (editorViewNode == null)
+        {
+            throw new Exception("GetEditorViewNodeWithUniqueId returned null");
+        }
+        CurrentComponent = editorViewNode;
     }
 
     public void SetProperties(Properties properties, UniqueId uniqueId)
@@ -56,7 +308,8 @@
         _properties = properties;
         StateChanged();
     }
-    
+
+
     public void StateChanged()
     {
         StateHasChanged();
@@ -66,11 +319,8 @@
     Properties _properties = new()
     {
         PropertyList = new List<Property>
-    {
-        new() { Name = "Color", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-        new() { Name = "Background", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-        new() { Name = "Test", InputDescription = "test", DefaultValue = "test", InputType = "test"},
-    }
+        {
+        }
     };
 
     static string _iconStr1 = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"" style=""width: 48px;"">
@@ -87,7 +337,7 @@
     {
         new()
         {
-            Name = "Grids",
+            Name = "Containers",
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
@@ -96,6 +346,27 @@
                     {
                         Name = "1 Column Grid", SvgString = _iconStr1,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid"
+                    },
+                    new PaletteComponent()
+                    {
+                        Name = "Flex", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Flex",
+                        IsContainer = true
+                    },
+                }
+            }
+        },
+        new()
+        {
+            Name = "Kanban",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+                {
+                    new PaletteComponent()
+                    {
+                        Name = "Kanban Board", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Kanban.BasicKanban"
                     },
                 }
             }
@@ -122,18 +393,6 @@
                     new PaletteComponent() {
                         Name = "FlashAlert", SvgString = _buttonIcon,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlert"
-                    },
-                    new PaletteComponent() {
-                        Name = "FlashAlertError", SvgString = _buttonIcon,
-                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlertError"
-                    },
-                    new PaletteComponent() {
-                        Name = "FlashAlertSuccess", SvgString = _buttonIcon,
-                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlertSuccess"
-                    },
-                    new PaletteComponent() {
-                        Name = "FlashAlertWarn", SvgString = _buttonIcon,
-                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlertWarn"
                     },
                 },
             }

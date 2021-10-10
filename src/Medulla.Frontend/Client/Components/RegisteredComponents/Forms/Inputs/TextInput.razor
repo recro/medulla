@@ -1,24 +1,57 @@
+@inherits BaseComponent
 @using Medulla.Frontend.Client.Library.Utilities.Unique
-<input class="form-control input-sm" type="text" placeholder="Small input" aria-label="Small input" />
+<input
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
+    @onclick="Clicked" class="form-control input-sm @GetPadding() @GetMargin()" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
 
 @code {
-    /*
-     * These parameters are system required
-     */
-    [Parameter]
-    public RenderFragment ChildContent { get; set; } = default!;
 
     [Parameter]
-    public EditorViewNode EditorViewNode { get; set; } = default!;
-
-    [Parameter]
-    public Editor Editor { get; set; } = default!;
+    public string Placeholder { get; set; } = "{No Placeholder}";
     
-    [Parameter]
-    public UniqueId UniqueId { get; set; }
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Placeholder", 
+            InputDescription = "Placeholder", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Placeholder"
+                },
+                { "PropertyName", "Placeholder" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.TextInput" }
+            );
+        // properties.PropertyList.Add(new() { Name = "Placeholder", InputDescription = "Placeholder", DefaultValue = "", InputType = "input" });
+        return properties;
+    }
 
-    /*
-     * These parameters are system required
-     */
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+    
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
 
 }

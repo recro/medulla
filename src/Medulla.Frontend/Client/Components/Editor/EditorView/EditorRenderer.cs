@@ -32,7 +32,6 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
 
             builder.AddAttribute(1, "EditorViewNode", EditorViewNode);
             builder.AddAttribute(2, "Editor", Editor);
-            Console.WriteLine("test");
             builder.AddAttribute(2, "UniqueId", EditorViewNode.UniqueId);
 
             if (EditorViewNode.Children.Count > 0)

@@ -8,11 +8,16 @@ using Medulla.Frontend.Client.Library.Utilities.Unique;
 
 public class EditorViewNode
 {
+    /// <summary>
+    ///  This class performs an important function.
+    /// </summary>
     public string Type { get; set; } = "RenderFragment";
 
     public readonly List<EditorViewNode> Children = new();
     public Dictionary<string, object> Parameters { get; set; } = new();
 
     public UniqueId UniqueId { get; set; }
+
+    public bool IsContainer { get; set; } = false;
 
 }

@@ -1,0 +1,39 @@
+@inherits BaseComponent
+
+<div>
+    <h3>ContainerStart</h3>
+</div>
+
+@code {
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+}
