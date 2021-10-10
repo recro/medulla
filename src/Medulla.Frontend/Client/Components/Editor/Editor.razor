@@ -23,6 +23,7 @@
     public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
     public bool IsHoverComponentContainer = false;
     public UniqueId LastActiveContainer { get; set; }
+    public List<UniqueId> ActiveContainers { get; set; } = new();
     public bool CanHover { get; set; } = false;
 
 
@@ -149,14 +150,14 @@
                 }*@
                 @*Console.WriteLine(editorViewNode.Children[foundIndex].Type);*@
 
-                if (LastActiveContainer != null && LastActiveContainer.Equals(PlaceAfterComponentWithUniqueId))
+                if (ActiveContainers.Contains(PlaceAfterComponentWithUniqueId))
                 {
                     editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
                     //LastActiveContainer = null;
                 }
                 else
                 {
-                    if (editorViewNode.Children[foundIndex].IsContainer && editorViewNode.Children[foundIndex].UniqueId.Equals(LastActiveContainer))
+                    if (editorViewNode.Children[foundIndex].IsContainer && ActiveContainers.Contains(editorViewNode.Children[foundIndex].UniqueId))
                     {
                         editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
                     } else

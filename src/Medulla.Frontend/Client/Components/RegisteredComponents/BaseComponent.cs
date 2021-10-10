@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace Medulla.Frontend.Client.Components.RegisteredComponents
 {
-    public abstract class BaseComponent :ComponentBase
+    public abstract class BaseComponent : ComponentBase
     {
         public BaseComponent()
         {
@@ -29,32 +29,32 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
          * These parameters are system required
          */
 
-        [Parameter] 
+        [Parameter]
         public string ML { get; set; } = "";
-        
-        [Parameter] 
+
+        [Parameter]
         public string MT { get; set; } = "";
-        
-        [Parameter] 
+
+        [Parameter]
         public string MB { get; set; } = "";
-        
-        [Parameter] 
+
+        [Parameter]
         public string MR { get; set; } = "";
-        
-        
-        [Parameter] 
+
+
+        [Parameter]
         public string PL { get; set; } = "";
-        
-        [Parameter] 
+
+        [Parameter]
         public string PT { get; set; } = "";
-        
-        [Parameter] 
+
+        [Parameter]
         public string PB { get; set; } = "";
-        
-        [Parameter] 
+
+        [Parameter]
         public string PR { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string IsBold { get; set; } = "";
 
 
@@ -62,7 +62,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         {
             return Editor.GetDepthOfEditorViewNodeWithUniqueId(Editor.EditorViewNode, UniqueId, 1);
         }
-        
+
         protected void MouseOver(MouseEventArgs e)
         {
             if (Editor.CurrentComponent.UniqueId.Equals(this.UniqueId)) return;
@@ -74,20 +74,20 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
             Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
             Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
-            Editor.StateChanged();    
+            Editor.StateChanged();
         }
 
         protected void MouseLeave(MouseEventArgs e)
         {
             Editor.CanHover = true;
             Editor.RemoveAllEditorViewNodesWithType(Editor.EditorViewNode, "Medulla.Frontend.Client.Components.RegisteredComponents.ContainerPositionSelect");
-            if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
+            if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null &&
                 Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
             {
-                Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);    
+                Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);
             }
         }
-        
+
         protected string GetFontStyle()
         {
             string style = "";
@@ -112,21 +112,21 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             }
             return prepend + number.ToString();
         }
-        
+
         protected string GetMargin()
         {
             string ml = this.GetNumber("ml-", ML);
             string mr = this.GetNumber("mr-", MR);
             string mb = this.GetNumber("mb-", MB);
             string mt = this.GetNumber("mt-", MT);
-            
+
 
             return $" {ml} {mr} {mb} {mt} ";
         }
 
         protected string GetPadding()
         {
-            
+
             string pl = this.GetNumber("pl-", PL);
             string pr = this.GetNumber("pr-", PR);
             string pb = this.GetNumber("pb-", PB);
@@ -144,7 +144,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         abstract protected bool IsClickable();
 
         abstract protected bool DoesImplementPadding();
-        
+
         abstract protected bool DoesImplementMargin();
 
         abstract protected bool DoesImplementFonts();
@@ -156,23 +156,25 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             Properties properties = this.GetProperties();
             if (this.DoesImplementFonts())
             {
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "IsBold", 
-                        InputDescription = "Is Bold", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "IsBold",
+                    InputDescription = "Is Bold",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             { "PropertyName", "IsBold" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Checkbox" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Checkbox"
+                }
                 );
             }
             if (this.DoesImplementMargin())
             {
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "ML", 
-                        InputDescription = "Margin Left", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "ML",
+                    InputDescription = "Margin Left",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -189,13 +191,15 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Margin Left"
                             },
                             { "PropertyName", "ML" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "MR", 
-                        InputDescription = "Margin Right", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "MR",
+                    InputDescription = "Margin Right",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -212,13 +216,15 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Margin Right"
                             },
                             { "PropertyName", "MR" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "MT", 
-                        InputDescription = "Margin Top", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "MT",
+                    InputDescription = "Margin Top",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -235,13 +241,15 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Margin Top"
                             },
                             { "PropertyName", "MT" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "MB", 
-                        InputDescription = "Margin Bottom", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "MB",
+                    InputDescription = "Margin Bottom",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -258,7 +266,9 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Margin Bottom"
                             },
                             { "PropertyName", "MB" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
                 // properties.PropertyList.Add(new Property() {Name = "ML", DefaultValue = "", InputDescription = "Margin Left", InputType = "input"});
                 // properties.PropertyList.Add(new Property() {Name = "MT", DefaultValue = "", InputDescription = "Margin Top", InputType = "input"});
@@ -267,11 +277,11 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             }
             if (this.DoesImplementPadding())
             {
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "PL", 
-                        InputDescription = "Padding Left", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "PL",
+                    InputDescription = "Padding Left",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -288,13 +298,15 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Padding Left"
                             },
                             { "PropertyName", "PL" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "PR", 
-                        InputDescription = "Padding Right", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "PR",
+                    InputDescription = "Padding Right",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -311,13 +323,15 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Padding Right"
                             },
                             { "PropertyName", "PR" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "PT", 
-                        InputDescription = "Padding Top", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "PT",
+                    InputDescription = "Padding Top",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -334,13 +348,15 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Padding Top"
                             },
                             { "PropertyName", "PT" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
-                properties.PropertyList.Add(new() 
-                    { 
-                        Name = "PB", 
-                        InputDescription = "Padding Bottom", 
-                        DefaultValue = new Dictionary<string, object>()
+                properties.PropertyList.Add(new()
+                {
+                    Name = "PB",
+                    InputDescription = "Padding Bottom",
+                    DefaultValue = new Dictionary<string, object>()
                         {
                             {
                                 "DropdownItems", new Dictionary<string, string>() {
@@ -357,7 +373,9 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                                 "Title", "Padding Bottom"
                             },
                             { "PropertyName", "PB" }
-                        }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+                        },
+                    InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+                }
                 );
                 // properties.PropertyList.Add(new Property() {Name = "PL", DefaultValue = "", InputDescription = "Padding Left", InputType = "input"});
                 // properties.PropertyList.Add(new Property() {Name = "PT", DefaultValue = "", InputDescription = "Padding Top", InputType = "input"});
