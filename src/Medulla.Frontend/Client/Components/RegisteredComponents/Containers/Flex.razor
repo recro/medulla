@@ -1,114 +1,71 @@
 @inherits BaseComponent
 
+
+@{
+    var OnChangeDropdown = new Dictionary<string, Action<Dictionary<string, string>>>()
+    {
+                {"EventCallback", (Dictionary<string,string> test) =>
+                {
+                    Console.WriteLine(test["Value"]);
+                    if (test["Value"] == "active")
+                    {
+                        Editor.ActiveContainers.Add(this.UniqueId);
+                    }
+                    else
+                    {
+                        if (Editor.ActiveContainers.Contains(this.UniqueId))
+                        {
+                            Editor.ActiveContainers.Remove(this.UniqueId);
+                        }
+                    }
+                    Editor.StateChanged();
+                }}
+            };
+}
+
 @if (Editor.ActiveContainers.Contains(this.UniqueId))
 {
     @if (!HasChildren())
     {
-    <div @ondragenter="MouseOver"
-         @ondragleave="MouseLeave"
-         @onclick="Clicked"
-         style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
-        Flex Container
-        @{
-            var OnChangeDropdown = new Dictionary<string, Action<Dictionary<string, string>>>()
+        <div @ondragenter="MouseOver"
+             @ondragleave="MouseLeave"
+             @onclick="Clicked"
+             style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
+            Flex Container
+            <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
+            @if (@ReadyToAdd())
             {
-                {"EventCallback", (Dictionary<string,string> test) =>
-                {
-                    Console.WriteLine(test["Value"]);
-                    if (test["Value"] == "active")
-                    {
-                        Editor.ActiveContainers.Add(this.UniqueId);
-                    }
-                    else
-                    {
-                        if (Editor.ActiveContainers.Contains(this.UniqueId))
-                        {
-                            Editor.ActiveContainers.Remove(this.UniqueId);
-                        }
-                    }
-                    Editor.StateChanged();
-                }}
-            };
-        }
-        <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
-        @if (@ReadyToAdd())
-        {
-            <p>Ready to Add</p>
-        }
-        else
-        {
-            <p>Not ready to add compontnts to container. Click container to add components.</p>
-        }
-        @ChildContent
-    </div>
-    } else
+                <p>Ready to Add</p>
+            }
+            else
+            {
+                <p>Not ready to add compontnts to container. Click container to add components.</p>
+            }
+            @ChildContent
+        </div>
+    }
+    else
     {
-    <div @onclick="Clicked"
-         style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
-        Flex Container
-
-        @{
-            var OnChangeDropdown = new Dictionary<string, Action<Dictionary<string, string>>>()
-            {
-                {"EventCallback", (Dictionary<string,string> test) =>
-                {
-                    Console.WriteLine(test["Value"]);
-                    if (test["Value"] == "active")
-                    {
-                        Editor.ActiveContainers.Add(this.UniqueId);
-                    }
-                    else
-                    {
-                        if (Editor.ActiveContainers.Contains(this.UniqueId))
-                        {
-                            Editor.ActiveContainers.Remove(this.UniqueId);
-                        }
-                    }
-                    Editor.StateChanged();
-                }}
-            };
-        }
-        <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
-
-        @ChildContent
-    </div>
+        <div @onclick="Clicked"
+             style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
+            Flex Container
+            <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
+            @ChildContent
+        </div>
     }
 }
 else
 {
     <div @onclick="Clicked"
-          @ondragenter="MouseOver"
-          @ondragleave="MouseLeave"
+         @ondragenter="MouseOver"
+         @ondragleave="MouseLeave"
          style="min-width: 100px;min-height: 100px;">
         Flex Container
-        
-        @{
-            var OnChangeDropdown = new Dictionary<string, Action<Dictionary<string, string>>>()
-            {
-                {"EventCallback", (Dictionary<string,string> test) =>
-                {
-                    Console.WriteLine(test["Value"]);
-                    if (test["Value"] == "active")
-                    {
-                        Editor.ActiveContainers.Add(this.UniqueId);
-                    }
-                    else
-                    {
-                        if (Editor.ActiveContainers.Contains(this.UniqueId))
-                        {
-                            Editor.ActiveContainers.Remove(this.UniqueId);
-                        }
-                    }
-                    Editor.StateChanged();
-                }}
-            };
-        }
         <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
-        
         <div style="pointer-events: none" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
             @ChildContent
         </div>
-        
+
     </div>
 }
 
@@ -120,18 +77,19 @@ else
         {"Active", "active"},
         {"Not-Active", "not-active"}
     };
-    
+
     [Parameter]
     public string FlexDirection { get; set; } = "flex-row";
 
 
-    public bool HasChildren() {
+    public bool HasChildren()
+    {
         bool wasFound = false;
         bool hasChildren = Editor.DoesEditorViewNodeHaveChildrenWithUniqueId(Editor.EditorViewNode, this.UniqueId, ref wasFound);
         @*if (!wasFound)
-        {
-            throw new Exception("this container wasn't found");
-        }*@
+            {
+                throw new Exception("this container wasn't found");
+            }*@
         return hasChildren;
     }
 
@@ -139,7 +97,8 @@ else
     {
         if (Editor.LastActiveContainer == null)
             return false;
-        if (Editor.LastActiveContainer.Equals(this.UniqueId)) {
+        if (Editor.LastActiveContainer.Equals(this.UniqueId))
+        {
             return true;
         }
         else
@@ -158,7 +117,7 @@ else
             Name = "FlexDirection",
             InputDescription = "Flex Direction",
             DefaultValue = new Dictionary<string, object>()
-            {
+        {
                 {
                     "DropdownItems", new Dictionary<string, string>() {
                         { "Row", "flex-row" },
@@ -169,7 +128,9 @@ else
                     "Title", "Flex Direction"
                 },
                 { "PropertyName", "FlexDirection" }
-            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
+            },
+            InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+        }
             );
 
 
