@@ -30,7 +30,7 @@
         <div @ondragenter="MouseOver"
              @ondragleave="MouseLeave"
              @onclick="Clicked"
-             style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
+             style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
             Flex Container
             <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
             @if (@ReadyToAdd())
@@ -47,7 +47,7 @@
     else
     {
         <div @onclick="Clicked"
-             style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
+             style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
             Flex Container
             <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
             @ChildContent
@@ -62,7 +62,7 @@ else
          style="min-width: 100px;min-height: 100px;">
         Flex Container
         <Dropdown Title="Is Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
-        <div style="pointer-events: none" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
+        <div style="pointer-events: none" class="d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
             @ChildContent
         </div>
 
@@ -80,6 +80,9 @@ else
 
     [Parameter]
     public string FlexDirection { get; set; } = "flex-row";
+
+    [Parameter]
+    public string JustifyContent { get; set; } = "flex-justify-start";
 
 
     public bool HasChildren()
@@ -128,6 +131,30 @@ else
                     "Title", "Flex Direction"
                 },
                 { "PropertyName", "FlexDirection" }
+            },
+            InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
+        }
+            );
+
+        properties.PropertyList.Add(new()
+        {
+            Name = "JustifyContent",
+            InputDescription = "Justify Content",
+            DefaultValue = new Dictionary<string, object>()
+        {
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "Start", "flex-justify-start" },
+                        { "End", "flex-justify-end" },
+                        { "Center", "flex-justify-center" },
+                        { "Between", "flex-justify-between" },
+                        { "Around", "flex-justify-around" },
+                    }
+                },
+                {
+                    "Title", "Justify Content"
+                },
+                { "PropertyName", "JustifyContent" }
             },
             InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
         }
