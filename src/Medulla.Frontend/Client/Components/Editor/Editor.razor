@@ -16,7 +16,7 @@
 
 
 @code {
-    
+
     public EditorViewNode CurrentComponent { get; set; } = default!;
     public UniqueId CurrentPropertiesForComponentUniqueId;
     public UniqueId PlaceAfterComponentWithUniqueId { get; set; }
@@ -24,6 +24,31 @@
     public bool IsHoverComponentContainer = false;
     public UniqueId LastActiveContainer { get; set; }
     public bool CanHover { get; set; } = false;
+
+
+    public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, ref bool found)
+    {
+        found = false;
+        if (editorViewNode.UniqueId.Equals(uniqueId)) {
+            found = true;
+            if (editorViewNode.Children.Count > 0) return true;
+            else return false;
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++) {
+            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId)) {
+                found = true;
+                if (editorViewNode.Children[i].Children.Count > 0)
+                    return true;
+                else return false;
+            }
+            bool wasFound = false;
+            bool hasChildren = DoesEditorViewNodeHaveChildrenWithUniqueId(editorViewNode.Children[i], uniqueId, ref wasFound);
+            if (wasFound) {
+                return hasChildren;
+            }
+        }
+        return false;
+    }
 
 
     public List<EditorViewNode> FindAllEditorViewNodesWithType(EditorViewNode editorViewNode, string Type, List<EditorViewNode> listOfEditorViewNodes)
@@ -70,7 +95,7 @@
         }
         return -1;
     }
-    
+
     public EditorViewNode EditorViewNode { get; set; } = new()
     {
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
@@ -80,7 +105,7 @@
 
     public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
     {
-        if (this.IsHoverComponentContainer)
+        @*if (this.IsHoverComponentContainer)
         {
             if (CurrentComponent.Children.Count == 0)
             {
@@ -89,10 +114,10 @@
                     UniqueId = new UniqueId(),
                     Children = {  },
                     Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.ContainerStart"
-                });    
+                });
             }
-            
-        }
+
+        }*@
         if (editorViewNode.UniqueId.Equals(PlaceAfterComponentWithUniqueId))
         {
             editorViewNode.Children.Add(CurrentComponent);
@@ -117,20 +142,28 @@
             }
             if (foundIndex != -1)
             {
-                Console.WriteLine("found editor node matching as child of " + editorViewNode.UniqueId.Id + " with index " + foundIndex);
-                if (editorViewNode.IsContainer)
+                @*Console.WriteLine("found editor node matching as child of " + editorViewNode.UniqueId.Id + " with index " + foundIndex);*@
+                @*if (editorViewNode.IsContainer)
                 {
                     Console.WriteLine("editor node is a container");
-                }
-                Console.WriteLine(editorViewNode.Children[foundIndex].Type);
-                
+                }*@
+                @*Console.WriteLine(editorViewNode.Children[foundIndex].Type);*@
+
                 if (LastActiveContainer != null && LastActiveContainer.Equals(PlaceAfterComponentWithUniqueId))
                 {
                     editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                    LastActiveContainer = null;
                 }
                 else
                 {
-                    editorViewNode.Children.Insert(foundIndex+1, CurrentComponent);    
+                    if (editorViewNode.Children[foundIndex].IsContainer)
+                    {
+                        editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                    } else
+                    {
+                        editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);
+                    }
+
                 }
                 Console.WriteLine("placed at " + foundIndex+1);
                 return true;
@@ -232,8 +265,8 @@
         SetEditorViewNodeParameterIfUniqueIdEquals(CurrentComponent, name, value);
         StateChanged();
     }
-    
-    
+
+
     public string GetComponentPropertyValue(UniqueId uniqueId, string name)
     {
         EditorViewNode activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
@@ -275,8 +308,8 @@
         _properties = properties;
         StateChanged();
     }
-    
-    
+
+
     public void StateChanged()
     {
         StateHasChanged();
@@ -286,8 +319,8 @@
     Properties _properties = new()
     {
         PropertyList = new List<Property>
-    {
-    }
+        {
+        }
     };
 
     static string _iconStr1 = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"" style=""width: 48px;"">

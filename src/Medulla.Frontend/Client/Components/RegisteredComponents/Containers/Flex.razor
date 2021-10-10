@@ -1,27 +1,61 @@
 @inherits BaseComponent
 
-<div
-    @ondragenter="MouseOver"
-    @ondragleave="MouseLeave"
-    @onclick="Clicked"
-    style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
+@if (!HasChildren())
+{
+<div @ondragenter="MouseOver"
+     @ondragleave="MouseLeave"
+     @onclick="Clicked"
+     style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
+    Flex Container
+
+    @ChildContent
+</div>
+} else
+{
+<div @onclick="Clicked"
+     style="min-width: 100px;min-height: 100px;" class="d-flex @FlexDirection @GetMargin() @GetPadding()">
     Flex Container
     @ChildContent
 </div>
+}
+
 
 @code {
-    
+
     [Parameter]
     public string FlexDirection { get; set; } = "flex-row";
-    
+
+
+    public bool HasChildren() {
+        bool wasFound = false;
+        bool hasChildren = Editor.DoesEditorViewNodeHaveChildrenWithUniqueId(Editor.EditorViewNode, this.UniqueId, ref wasFound);
+        @*if (!wasFound)
+        {
+            throw new Exception("this container wasn't found");
+        }*@
+        return hasChildren;
+    }
+
+    public bool ReadyToAdd()
+    {
+        if (Editor.LastActiveContainer.Equals(this.UniqueId)) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
     protected override Properties GetProperties()
     {
         Properties properties = new();
 
-        properties.PropertyList.Add(new() 
-        { 
-            Name = "FlexDirection", 
-            InputDescription = "Flex Direction", 
+        properties.PropertyList.Add(new()
+        {
+            Name = "FlexDirection",
+            InputDescription = "Flex Direction",
             DefaultValue = new Dictionary<string, object>()
             {
                 {
@@ -36,8 +70,8 @@
                 { "PropertyName", "FlexDirection" }
             }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown" }
             );
-        
-        
+
+
         return properties;
     }
 
