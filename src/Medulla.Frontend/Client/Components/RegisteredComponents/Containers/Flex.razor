@@ -55,13 +55,13 @@
                     Console.WriteLine(test["Value"]);
                     if (test["Value"] == "active")
                     {
-                        Editor.LastActiveContainer = this.UniqueId;
+                        Editor.ActiveContainers.Add(this.UniqueId);
                     }
                     else
                     {
-                        if (Editor.LastActiveContainer.Equals(this.UniqueId))
+                        if (Editor.ActiveContainers.Contains(this.UniqueId))
                         {
-                            Editor.LastActiveContainer = null;
+                            Editor.ActiveContainers.Remove(this.UniqueId);
                         }
                     }
                     Editor.StateChanged();
@@ -90,13 +90,13 @@ else
                     Console.WriteLine(test["Value"]);
                     if (test["Value"] == "active")
                     {
-                        Editor.LastActiveContainer = this.UniqueId;
+                        Editor.ActiveContainers.Add(this.UniqueId);
                     }
                     else
                     {
-                        if (Editor.LastActiveContainer.Equals(this.UniqueId))
+                        if (Editor.ActiveContainers.Contains(this.UniqueId))
                         {
-                            Editor.LastActiveContainer = null;
+                            Editor.ActiveContainers.Remove(this.UniqueId);
                         }
                     }
                     Editor.StateChanged();
