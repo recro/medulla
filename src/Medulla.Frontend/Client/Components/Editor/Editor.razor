@@ -1,5 +1,6 @@
 @using Medulla.Frontend.Client.Components.Editor.PropertiesWindow
 @using Medulla.Frontend.Client.Library.Utilities.Unique
+@using Medulla.Frontend.Client.Components.Editor.TreeView
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -10,6 +11,7 @@
             <TranslateComponentWindow Editor="this" />
             <PaletteWindow ComponentCategories="_paletteComponentCategories"/>
             <PropertiesWindow Editor="this" PropertyList="_properties"/>
+            <TreeView />
         </div>
     </CascadingValue>
 </div>
