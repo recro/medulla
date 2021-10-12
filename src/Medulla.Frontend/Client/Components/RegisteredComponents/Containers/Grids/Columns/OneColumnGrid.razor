@@ -1,67 +1,60 @@
 @using System.ComponentModel.DataAnnotations
 @using Medulla.Frontend.Client.Library.Utilities.Unique
+@inherits BaseComponentContainer
+
 <div
-    @ondrop="HandleDrop"
-    ondragover="event.preventDefault();"
-    @ondragenter="HandleDragEnter"
-    @ondragleave="HandleDragLeave"
-    class="@_dropClass width-full" style="min-height: 100px;padding-top:2.3em;">
-    @ChildContent
+    style="cursor: no-drop;min-height: 100px;padding-top:2.3em;">
+    <div class="@_dropClass width-full">
+        @ChildContent    
+    </div>
+    <svg
+        @ondrop="HandleDrop"
+        ondragover="event.preventDefault();"
+        @ondragenter="HandleDragEnter"
+        @ondragleave="HandleDragLeave"
+        style="
+    height: 100px;
+    border: thin solid;
+    cursor: copy;
+" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+    </svg>
+
 </div>
 
 @code {
 
     private bool isHovering = false;
-    
-    [Parameter]
-    [Required]
-    public RenderFragment ChildContent { get; set; } = default!;
-
-    [Parameter]
-    [Required]
-    public EditorViewNode EditorViewNode { get; set; } = default!;
-
-    [Parameter]
-    [Required]
-    public Editor Editor { get; set; } = default!;
-    
-    [Parameter]
-    public UniqueId UniqueId { get; set; }
-
-    
     string _dropClass = "";
 
-    public void HandleDrop()
+    protected override Properties GetProperties()
     {
-        /*if (Editor.PlaceAfterComponentWithUniqueId != null && !Editor.PlaceAfterComponentWithUniqueId.Equals(this.UniqueId))
-        {
-            return;
-        }
-        // Properties properties = baseComponent.GetProperties();
-        isHovering = false;
-        if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
-            Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
-        {
-            Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);    
-        }
-        // EditorViewNode.Children.Add(Editor.CurrentComponent);
-        
-        Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
-        BaseComponent baseComponent = (BaseComponent)Activator.CreateInstance(Type.GetType(Editor.CurrentComponent.Type));
-        baseComponent.UpdatePropertiesWindow(Editor, Editor.CurrentComponent.UniqueId);
-        Editor.StateChanged();*/
+        return new Properties();
     }
 
-    public void HandleDragEnter()
+    protected override bool IsClickable()
     {
-        isHovering = true;
-        _dropClass = "border border-dashed";
+        return false;
     }
 
-    public void HandleDragLeave()
+    protected override bool DoesImplementPadding()
     {
-        isHovering = false;
-        _dropClass = "";
+        return true;
     }
-    
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return true;
+    }
+
 }

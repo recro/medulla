@@ -21,7 +21,7 @@
 
     public EditorViewNode CurrentComponent { get; set; } = default!;
     public UniqueId CurrentPropertiesForComponentUniqueId;
-    public UniqueId PlaceAfterComponentWithUniqueId { get; set; }
+    public UniqueId PlaceInUniqueId { get; set; }
     public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
     public bool IsHoverComponentContainer = false;
     public UniqueId LastActiveContainer { get; set; }
@@ -112,27 +112,9 @@
 
     public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
     {
-        @*if (this.IsHoverComponentContainer)
-            {
-                if (CurrentComponent.Children.Count == 0)
-                {
-                    CurrentComponent.Children.Add(new EditorViewNode()
-                    {
-                        UniqueId = new UniqueId(),
-                        Children = {  },
-                        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.ContainerStart"
-                    });
-                }
-
-            }*@
-        if (editorViewNode.UniqueId.Equals(PlaceAfterComponentWithUniqueId))
+        if (editorViewNode.UniqueId.Equals(PlaceInUniqueId))
         {
             editorViewNode.Children.Add(CurrentComponent);
-            return true;
-        }
-        if (PlaceAfterComponentWithUniqueId == null)
-        {
-            EditorViewNode.Children.Add(CurrentComponent);
             return true;
         }
         else
@@ -140,29 +122,14 @@
             var foundIndex = -1;
             for (var i = 0; i < editorViewNode.Children.Count; i++)
             {
-                if (editorViewNode.Children[i].UniqueId.Equals(PlaceAfterComponentWithUniqueId))
+                if (editorViewNode.Children[i].UniqueId.Equals(PlaceInUniqueId))
                 {
                     foundIndex = i;
                 }
             }
             if (foundIndex != -1)
             {
-                if (ActiveContainers.Contains(PlaceAfterComponentWithUniqueId))
-                {
-                    editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
-                }
-                else
-                {
-                    if (editorViewNode.Children[foundIndex].IsContainer && ActiveContainers.Contains(editorViewNode.Children[foundIndex].UniqueId))
-                    {
-                        editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
-                    }
-                    else
-                    {
-                        editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);
-                    }
-
-                }
+                editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
                 return true;
             }
             else

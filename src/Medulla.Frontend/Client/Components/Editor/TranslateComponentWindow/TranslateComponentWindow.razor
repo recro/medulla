@@ -66,7 +66,7 @@
         Console.WriteLine("Remove");
         Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
         Editor.StateChanged();
-        Editor.PlaceAfterComponentWithUniqueId = null;
+        Editor.PlaceInUniqueId = null;
         Editor.CurrentComponent = null;
     }
 
