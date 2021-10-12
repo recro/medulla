@@ -33,7 +33,7 @@
 
     public void HandleDrop()
     {
-        if (Editor.PlaceAfterComponentWithUniqueId != null && !Editor.PlaceAfterComponentWithUniqueId.Equals(this.UniqueId))
+        /*if (Editor.PlaceAfterComponentWithUniqueId != null && !Editor.PlaceAfterComponentWithUniqueId.Equals(this.UniqueId))
         {
             return;
         }
@@ -49,7 +49,7 @@
         Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
         BaseComponent baseComponent = (BaseComponent)Activator.CreateInstance(Type.GetType(Editor.CurrentComponent.Type));
         baseComponent.UpdatePropertiesWindow(Editor, Editor.CurrentComponent.UniqueId);
-        Editor.StateChanged();
+        Editor.StateChanged();*/
     }
 
     public void HandleDragEnter()

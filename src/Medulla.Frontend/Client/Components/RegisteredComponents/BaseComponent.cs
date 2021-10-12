@@ -65,42 +65,13 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected void MouseOver(MouseEventArgs e)
         {
-            if (Editor.CurrentHoveringUniqueId == this.UniqueId)
-            {
-                return;
-            }
-            else
-            {
-                Editor.CurrentHoveringUniqueId = this.UniqueId;
-            }
-            //if (Editor.CurrentHoveringUniqueId == null)
-            //    Editor.CurrentHoveringUniqueId = this.UniqueId;
-            if (Editor.CurrentComponent.UniqueId.Equals(this.UniqueId)) return;
-            if (!Editor.CanHover) return;
-            Editor.CanHover = false;
-            Editor.IsHoverComponentContainer = Editor.CurrentComponent.IsContainer;
-            Editor.PlaceAfterComponentWithUniqueId = UniqueId;
-            Editor.RemoveComponentOnHoverLeaveWithUniqueId = Editor.CurrentComponent.UniqueId;
-
-            Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
-            Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+            
             Editor.StateChanged();
         }
 
         protected void MouseLeave(MouseEventArgs e)
         {
-            if (Editor.CurrentHoveringUniqueId == this.UniqueId)
-            {
-                return;
-            }
             
-            Editor.CanHover = true;
-            Editor.RemoveAllEditorViewNodesWithType(Editor.EditorViewNode, "Medulla.Frontend.Client.Components.RegisteredComponents.ContainerPositionSelect");
-            if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null &&
-                Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
-            {
-                Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);
-            }
         }
 
         protected string GetFontStyle()
