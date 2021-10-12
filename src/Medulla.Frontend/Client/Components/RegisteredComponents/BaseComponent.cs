@@ -383,19 +383,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         {
             protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
             {
-                try
-                {
-                    clickableBaseComponent.UpdatePropertiesWindow(editor, uniqueId);
-                    // if (editor.CurrentComponent.IsContainer)
-                    // {
-                    //     editor.LastActiveContainer = editor.CurrentComponent.UniqueId;
-                    // }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Just logging error");
-                    Console.WriteLine(e.StackTrace);
-                }
             }
 
             protected override void HandleInProduction()
