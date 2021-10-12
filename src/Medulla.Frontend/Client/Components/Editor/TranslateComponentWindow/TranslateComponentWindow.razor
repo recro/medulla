@@ -4,7 +4,7 @@
 <Window WindowTitle="Active Component Window" isMaxHeight="true">
 
     @if (Editor.CurrentComponent != null)
-    {
+        {
         <div>
             <p class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider m-0 py-0 m-0"><span class="text-bold">ID:</span> @Editor.?CurrentComponent.UniqueId.Id</p>
         </div>
@@ -42,7 +42,11 @@
         </div>
 
 
-    }
+        }
+        else
+        {
+            <p class="ml-3">No active component</p>
+        }
 
 </Window>
 
