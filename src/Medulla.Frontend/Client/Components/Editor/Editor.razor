@@ -28,6 +28,7 @@
     public List<UniqueId> ActiveContainers { get; set; } = new();
     public bool CanHover { get; set; } = false;
     public UniqueId CurrentHoveringUniqueId { get; set; }
+    public bool PlaceAfter { get; set; } = false;
 
 
     public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, ref bool found)
@@ -129,7 +130,15 @@
             }
             if (foundIndex != -1)
             {
-                editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                if (PlaceAfter)
+                {
+                    editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);
+                    PlaceAfter = false;
+                }
+                else
+                {
+                    editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                }
                 return true;
             }
             else

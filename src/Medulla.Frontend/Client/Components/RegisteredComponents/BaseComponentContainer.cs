@@ -10,6 +10,8 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         protected void HandleDrop()
         {
             Editor.PlaceInUniqueId = this.UniqueId;
+            Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+            Editor.StateChanged();
             /*if (Editor.PlaceAfterComponentWithUniqueId != null && !Editor.PlaceAfterComponentWithUniqueId.Equals(this.UniqueId))
             {
                 return;
