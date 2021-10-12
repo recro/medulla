@@ -1,72 +1,28 @@
-@inherits BaseComponent
+@inherits BaseComponentContainer
 
-
-@{
-    var OnChangeDropdown = new Dictionary<string, Action<Dictionary<string, string>>>()
-{
-                {"EventCallback", (Dictionary<string,string> test) =>
-                {
-                    if (test["Value"] == "active")
-                    {
-                        Editor.ActiveContainers.Add(this.UniqueId);
-                    }
-                    else
-                    {
-                        if (Editor.ActiveContainers.Contains(this.UniqueId))
-                        {
-                            Editor.ActiveContainers.Remove(this.UniqueId);
-                        }
-                    }
-                    Editor.StateChanged();
-                }}
-            };
-}
-
-<div style="position: relative;">
-    <div style="position: absolute; top:-2.3em;">
-        <Dropdown Title="Is Container Active" DropdownItems="IsActiveDropDownItems" PropertyName="Test" OnChange="OnChangeDropdown" />
+<div 
+    @onclick="Clicked"
+style="min-width: 100px;min-height: 100px;">
+    <div class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
+        @ChildContent
     </div>
-    @if (Editor.ActiveContainers.Contains(this.UniqueId))
-    {
-        @if (!HasChildren())
-        {
-
-            <div @ondragenter="MouseOver"
-                 @ondragleave="MouseLeave"
-                 @onclick="Clicked"
-                 style="min-width: 100px;min-height: 100px;" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
-                @ChildContent
-            </div>
-        }
-        else
-        {
-            <div @onclick="Clicked"
-                 style="min-width: 100px;min-height: 100px;" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
-                @ChildContent
-            </div>
-        }
-    }
-    else
-    {
-        <div @onclick="Clicked"
-             @ondragenter="MouseOver"
-             @ondragleave="MouseLeave"
-             style="min-width: 100px;min-height: 100px;">
-            <div style="pointer-events: none" class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
-                @ChildContent
-            </div>
-        </div>
-    }
+    
+    <svg
+            @ondrop="HandleDrop"
+            ondragover="event.preventDefault();"
+            style="
+            margin: 1em;
+        height: 100px;
+        border: thin solid;
+        cursor: copy;
+    " xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 editor-place" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+    
 </div>
 
 
 @code {
-
-    private Dictionary<string, string> IsActiveDropDownItems = new Dictionary<string, string>()
-{
-        {"Active", "active"},
-        {"Not-Active", "not-active"}
-    };
 
     [Parameter]
     public string FlexDirection { get; set; } = "flex-row";
@@ -74,31 +30,6 @@
     [Parameter]
     public string JustifyContent { get; set; } = "flex-justify-start";
 
-
-    public bool HasChildren()
-    {
-        bool wasFound = false;
-        bool hasChildren = Editor.DoesEditorViewNodeHaveChildrenWithUniqueId(Editor.EditorViewNode, this.UniqueId, ref wasFound);
-        @*if (!wasFound)
-            {
-                throw new Exception("this container wasn't found");
-            }*@
-        return hasChildren;
-    }
-
-    public bool ReadyToAdd()
-    {
-        if (Editor.LastActiveContainer == null)
-            return false;
-        if (Editor.LastActiveContainer.Equals(this.UniqueId))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
 
     protected override Properties GetProperties()
@@ -185,7 +116,6 @@
 <style>
 
     .medulla-flex-container {
-        background: purple;
         min-height: 100px;
         padding-top: 2.3em;
     }
