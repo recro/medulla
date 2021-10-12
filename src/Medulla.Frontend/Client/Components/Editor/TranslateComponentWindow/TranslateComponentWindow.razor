@@ -14,11 +14,11 @@
             </p>
         </div>
         <div class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            <Button Content="">
+            <button @onclick="Remove" Content="">
                 <svg style="width: 25px;position: relative;top: 3px;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-            </Button>
+            </button>
             <Button Content="">
                 <svg style="width: 25px;position: relative;top: 3px;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -57,8 +57,13 @@
         string replace = "Medulla.Frontend.Client.Components.RegisteredComponents.";
         return Editor.CurrentComponent.Type.Replace(replace, "");
     }
-    
-    
+
+    private void Remove() {
+        Console.WriteLine("Remove");
+        Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
+        Editor.StateChanged();
+    }
+
 
 
 }
