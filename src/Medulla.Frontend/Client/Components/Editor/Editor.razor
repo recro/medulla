@@ -76,7 +76,6 @@
         var nodes = FindAllEditorViewNodesWithType(editorViewNode, Type, new List<EditorViewNode>());
         foreach (var node in nodes)
         {
-            Console.WriteLine("Removing " + node.UniqueId.Id);
             RemoveComponentWithUniqueId(EditorViewNode, node.UniqueId);
         }
         StateChanged();
@@ -124,13 +123,11 @@
         if (editorViewNode.UniqueId.Equals(PlaceAfterComponentWithUniqueId))
         {
             editorViewNode.Children.Add(CurrentComponent);
-            Console.WriteLine("found editor node with id " + editorViewNode.UniqueId.Id);
             return true;
         }
         if (PlaceAfterComponentWithUniqueId == null)
         {
             EditorViewNode.Children.Add(CurrentComponent);
-            Console.WriteLine("placing at the end");
             return true;
         }
         else
@@ -145,17 +142,9 @@
             }
             if (foundIndex != -1)
             {
-                @*Console.WriteLine("found editor node matching as child of " + editorViewNode.UniqueId.Id + " with index " + foundIndex);*@
-                @*if (editorViewNode.IsContainer)
-                {
-                    Console.WriteLine("editor node is a container");
-                }*@
-                @*Console.WriteLine(editorViewNode.Children[foundIndex].Type);*@
-
                 if (ActiveContainers.Contains(PlaceAfterComponentWithUniqueId))
                 {
                     editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
-                    //LastActiveContainer = null;
                 }
                 else
                 {
@@ -168,7 +157,6 @@
                     }
 
                 }
-                Console.WriteLine("placed at " + foundIndex+1);
                 return true;
             }
             else
