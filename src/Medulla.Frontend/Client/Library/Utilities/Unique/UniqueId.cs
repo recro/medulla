@@ -14,7 +14,6 @@ namespace Medulla.Frontend.Client.Library.Utilities.Unique
         {
             var guid = System.Guid.NewGuid().ToString();
             Id = guid;
-            Console.WriteLine(Id);
         }
 
         public override bool Equals(object? obj)

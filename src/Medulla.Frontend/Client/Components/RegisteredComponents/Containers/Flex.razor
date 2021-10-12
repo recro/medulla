@@ -6,7 +6,6 @@
 {
                 {"EventCallback", (Dictionary<string,string> test) =>
                 {
-                    Console.WriteLine(test["Value"]);
                     if (test["Value"] == "active")
                     {
                         Editor.ActiveContainers.Add(this.UniqueId);
