@@ -1,6 +1,10 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @inherits BaseComponent
 
+
+<div class="editor-place" style="display: inline">
+    <label> <input @onclick="MakeActive" type="radio" id="potato" name="radio-group-example" /> </label>
+</div>
 <h3
     @ondragenter="MouseOver"
     @ondragleave="MouseLeave"

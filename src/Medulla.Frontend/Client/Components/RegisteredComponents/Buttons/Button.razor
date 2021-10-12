@@ -4,6 +4,10 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @using Microsoft.JSInterop
 @using Microsoft.JSInterop.Infrastructure
+
+<div class="editor-place" style="display: inline">
+    <label> <input @onclick="MakeActive" type="radio" id="potato" name="radio-group-example" /> </label>
+</div>
 <button
     @ondragenter="MouseOver"
     @ondragleave="MouseLeave"

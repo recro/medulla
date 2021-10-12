@@ -17,45 +17,33 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /*
          * These parameters are system required
          */
-        [Parameter]
-        public RenderFragment ChildContent { get; set; } = default!;
+        [Parameter] public RenderFragment ChildContent { get; set; } = default!;
 
-        [Parameter]
-        public EditorViewNode EditorViewNode { get; set; } = default!;
+        [Parameter] public EditorViewNode EditorViewNode { get; set; } = default!;
 
-        [Parameter]
-        public Medulla.Frontend.Client.Components.Editor.Editor Editor { get; set; } = default!;
+        [Parameter] public Medulla.Frontend.Client.Components.Editor.Editor Editor { get; set; } = default!;
         /*
          * These parameters are system required
          */
 
-        [Parameter]
-        public string ML { get; set; } = "";
+        [Parameter] public string ML { get; set; } = "";
 
-        [Parameter]
-        public string MT { get; set; } = "";
+        [Parameter] public string MT { get; set; } = "";
 
-        [Parameter]
-        public string MB { get; set; } = "";
+        [Parameter] public string MB { get; set; } = "";
 
-        [Parameter]
-        public string MR { get; set; } = "";
+        [Parameter] public string MR { get; set; } = "";
 
 
-        [Parameter]
-        public string PL { get; set; } = "";
+        [Parameter] public string PL { get; set; } = "";
 
-        [Parameter]
-        public string PT { get; set; } = "";
+        [Parameter] public string PT { get; set; } = "";
 
-        [Parameter]
-        public string PB { get; set; } = "";
+        [Parameter] public string PB { get; set; } = "";
 
-        [Parameter]
-        public string PR { get; set; } = "";
+        [Parameter] public string PR { get; set; } = "";
 
-        [Parameter]
-        public string IsBold { get; set; } = "";
+        [Parameter] public string IsBold { get; set; } = "";
 
 
         public int GetCount()
@@ -65,13 +53,13 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected void MouseOver(MouseEventArgs e)
         {
-            
+
             Editor.StateChanged();
         }
 
         protected void MouseLeave(MouseEventArgs e)
         {
-            
+
         }
 
         protected string GetFontStyle()
@@ -81,6 +69,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             {
                 style += "font-weight: bold";
             }
+
             return $" {style} ";
         }
 
@@ -96,6 +85,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             {
                 return "";
             }
+
             return prepend + number.ToString();
         }
 
@@ -122,9 +112,24 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         }
 
 
-        [Parameter]
-        public Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId UniqueId { get; set; } = default!;
+        [Parameter] public Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId UniqueId { get; set; } = default!;
 
+
+        protected Dictionary<string, object> GetInputAttributes()
+        {
+            if (Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+            {
+                return new Dictionary<string, object>() {{"checked", "true"}};    
+            }
+            return new Dictionary<string, object>() {};
+        }
+
+        protected void MakeActive()
+        {
+            // Editor.CurrentComponent = this.EditorViewNode;
+            UpdatePropertiesWindow(Editor, this.EditorViewNode.UniqueId);
+            // Editor.StateChanged();
+        }
 
         abstract protected Properties GetProperties();
         abstract protected bool IsClickable();
