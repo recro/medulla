@@ -1,6 +1,6 @@
 @using Medulla.Frontend.Client.Components.Editor.PropertiesWindow
 @using Medulla.Frontend.Client.Library.Utilities.Unique
-@using Medulla.Frontend.Client.Components.Editor.TreeView
+@using Medulla.Frontend.Client.Components.Editor.PaletteWindow
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -9,8 +9,8 @@
         </div>
         <div style="width: 40vw;max-height:100vh;overflow: scroll;">
             <TranslateComponentWindow Editor="this" />
-            <PaletteWindow ComponentCategories="_paletteComponentCategories"/>
-            <PropertiesWindow Editor="this" PropertyList="_properties"/>
+            <PaletteWindow ComponentCategories="_paletteComponentCategories" />
+            <PropertiesWindow Editor="this" PropertyList="_properties" />
             <TreeView />
         </div>
     </CascadingValue>
@@ -27,18 +27,22 @@
     public UniqueId LastActiveContainer { get; set; }
     public List<UniqueId> ActiveContainers { get; set; } = new();
     public bool CanHover { get; set; } = false;
+    public UniqueId CurrentHoveringUniqueId { get; set; }
 
 
     public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, ref bool found)
     {
         found = false;
-        if (editorViewNode.UniqueId.Equals(uniqueId)) {
+        if (editorViewNode.UniqueId.Equals(uniqueId))
+        {
             found = true;
             if (editorViewNode.Children.Count > 0) return true;
             else return false;
         }
-        for (int i = 0; i < editorViewNode.Children.Count; i++) {
-            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId)) {
+        for (int i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId))
+            {
                 found = true;
                 if (editorViewNode.Children[i].Children.Count > 0)
                     return true;
@@ -46,7 +50,8 @@
             }
             bool wasFound = false;
             bool hasChildren = DoesEditorViewNodeHaveChildrenWithUniqueId(editorViewNode.Children[i], uniqueId, ref wasFound);
-            if (wasFound) {
+            if (wasFound)
+            {
                 return hasChildren;
             }
         }
@@ -108,18 +113,18 @@
     public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
     {
         @*if (this.IsHoverComponentContainer)
-        {
-            if (CurrentComponent.Children.Count == 0)
             {
-                CurrentComponent.Children.Add(new EditorViewNode()
+                if (CurrentComponent.Children.Count == 0)
                 {
-                    UniqueId = new UniqueId(),
-                    Children = {  },
-                    Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.ContainerStart"
-                });
-            }
+                    CurrentComponent.Children.Add(new EditorViewNode()
+                    {
+                        UniqueId = new UniqueId(),
+                        Children = {  },
+                        Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.ContainerStart"
+                    });
+                }
 
-        }*@
+            }*@
         if (editorViewNode.UniqueId.Equals(PlaceAfterComponentWithUniqueId))
         {
             editorViewNode.Children.Add(CurrentComponent);
@@ -151,7 +156,8 @@
                     if (editorViewNode.Children[foundIndex].IsContainer && ActiveContainers.Contains(editorViewNode.Children[foundIndex].UniqueId))
                     {
                         editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
-                    } else
+                    }
+                    else
                     {
                         editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);
                     }
@@ -262,7 +268,8 @@
     {
         EditorViewNode activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
         Dictionary<string, object> parameters = activeEditorViewNode.Parameters;
-        if (parameters.Count > 0) {
+        if (parameters.Count > 0)
+        {
             if (parameters[name] != null)
             {
                 var param = parameters[name];
@@ -272,7 +279,8 @@
             {
                 return "";
             }
-        } else
+        }
+        else
         {
             return "";
         }
@@ -315,24 +323,24 @@
     };
 
     static string _iconStr1 = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"" style=""width: 48px;"">
-    <path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z""></path>
-        </svg>";
+<path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z""></path>
+    </svg>";
 
     static string _buttonIcon = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"">
-    <path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"" />
-        </svg>";
+<path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"" />
+    </svg>";
 
     PaletteComponentCategories _paletteComponentCategories = new()
     {
         ComponentCategories = new List<PaletteComponentCategory>
-    {
+{
         new()
         {
             Name = "Containers",
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
-                {
+            {
                     new PaletteComponent()
                     {
                         Name = "Flex", SvgString = _iconStr1,
@@ -348,7 +356,7 @@
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
-                {
+            {
                     new PaletteComponent()
                     {
                         Name = "Kanban Board", SvgString = _iconStr1,
@@ -362,7 +370,7 @@
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
-                {
+            {
                     new PaletteComponent() {
                         Name = "Small Button", SvgString = _buttonIcon,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Buttons.Button"
@@ -375,7 +383,7 @@
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
-                {
+            {
                     new PaletteComponent() {
                         Name = "FlashAlert", SvgString = _buttonIcon,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Alerts.FlashAlert"
@@ -388,7 +396,7 @@
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
-                {
+            {
                     new PaletteComponent() {
                         Name = "Header", SvgString = _buttonIcon,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Layouts.Header"
@@ -401,7 +409,7 @@
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
-                {
+            {
                     new PaletteComponent() {
                         Name = "TextInput", SvgString = _buttonIcon,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Forms.Inputs.TextInput"
@@ -414,7 +422,7 @@
             PaletteWindowComponents = new PaletteWindowComponents()
             {
                 ComponentList = new()
-                {
+            {
                     new PaletteComponent()
                     {
                         Name = "Paragragh", SvgString = _iconStr1,

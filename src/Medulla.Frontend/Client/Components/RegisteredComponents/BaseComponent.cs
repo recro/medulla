@@ -65,6 +65,16 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected void MouseOver(MouseEventArgs e)
         {
+            if (Editor.CurrentHoveringUniqueId == this.UniqueId)
+            {
+                return;
+            }
+            else
+            {
+                Editor.CurrentHoveringUniqueId = this.UniqueId;
+            }
+            //if (Editor.CurrentHoveringUniqueId == null)
+            //    Editor.CurrentHoveringUniqueId = this.UniqueId;
             if (Editor.CurrentComponent.UniqueId.Equals(this.UniqueId)) return;
             if (!Editor.CanHover) return;
             Editor.CanHover = false;
@@ -79,6 +89,11 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected void MouseLeave(MouseEventArgs e)
         {
+            if (Editor.CurrentHoveringUniqueId == this.UniqueId)
+            {
+                return;
+            }
+            
             Editor.CanHover = true;
             Editor.RemoveAllEditorViewNodesWithType(Editor.EditorViewNode, "Medulla.Frontend.Client.Components.RegisteredComponents.ContainerPositionSelect");
             if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null &&
