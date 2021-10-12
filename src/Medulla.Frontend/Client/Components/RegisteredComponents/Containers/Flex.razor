@@ -1,6 +1,7 @@
 @inherits BaseComponentContainer
 
 <div 
+class="editor-border "
     @onclick="Clicked"
 style="min-width: 100px;min-height: 100px;">
     <div class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
@@ -118,6 +119,10 @@ style="min-width: 100px;min-height: 100px;">
     .medulla-flex-container {
         min-height: 100px;
         padding-top: 2.3em;
+    }
+    
+    .editor-border {
+        border: thin solid purple;
     }
 
 
