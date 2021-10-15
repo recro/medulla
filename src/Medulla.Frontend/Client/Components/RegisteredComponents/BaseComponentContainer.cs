@@ -12,23 +12,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             Editor.PlaceInUniqueId = this.UniqueId;
             Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
             Editor.StateChanged();
-            /*if (Editor.PlaceAfterComponentWithUniqueId != null && !Editor.PlaceAfterComponentWithUniqueId.Equals(this.UniqueId))
-            {
-                return;
-            }
-            // Properties properties = baseComponent.GetProperties();
-            isHovering = false;
-            if (Editor.RemoveComponentOnHoverLeaveWithUniqueId != null && 
-                Editor.CurrentComponent.UniqueId.Equals(Editor.RemoveComponentOnHoverLeaveWithUniqueId))
-            {
-                Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.RemoveComponentOnHoverLeaveWithUniqueId);    
-            }
-            // EditorViewNode.Children.Add(Editor.CurrentComponent);
-            
-            Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
-            BaseComponent baseComponent = (BaseComponent)Activator.CreateInstance(Type.GetType(Editor.CurrentComponent.Type));
-            baseComponent.UpdatePropertiesWindow(Editor, Editor.CurrentComponent.UniqueId);
-            Editor.StateChanged();*/
         }
 
     }
