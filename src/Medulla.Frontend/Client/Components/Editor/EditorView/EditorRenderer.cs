@@ -48,13 +48,6 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
             }
 
             builder.CloseComponent();
-            
-            builder.OpenComponent(0, Type.GetType("Medulla.Frontend.Client.Components.RegisteredComponents.Place"));
-            builder.AddAttribute(1, "EditorViewNode", EditorViewNode);
-            builder.AddAttribute(2, "Editor", Editor);
-            builder.AddAttribute(2, "UniqueId", EditorViewNode.UniqueId);
-            builder.CloseComponent();
-            
         }
     }
 
