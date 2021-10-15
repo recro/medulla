@@ -30,9 +30,9 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             baseComponent.UpdatePropertiesWindow(Editor, Editor.CurrentComponent.UniqueId);
             Editor.StateChanged();*/
         }
-        
+
     }
-    
-    
-    
+
+
+
 }

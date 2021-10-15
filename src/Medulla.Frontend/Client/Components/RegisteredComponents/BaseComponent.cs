@@ -119,9 +119,9 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         {
             if (Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
             {
-                return new Dictionary<string, object>() {{"checked", "true"}};    
+                return new Dictionary<string, object>() { { "checked", "true" } };
             }
-            return new Dictionary<string, object>() {};
+            return new Dictionary<string, object>() { };
         }
 
         protected void MakeActive()
