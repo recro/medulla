@@ -9,9 +9,19 @@
 
 @code {
 
+
+
+
     [Parameter]
     public string Placeholder { get; set; } = "{No Placeholder}";
     
+
+    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId)
+    {
+
+        return;
+    }
+
     protected override Properties GetProperties()
     {
         Properties properties = new();

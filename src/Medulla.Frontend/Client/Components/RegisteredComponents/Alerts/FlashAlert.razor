@@ -18,6 +18,13 @@
     [Parameter]
     public string ErrorType { get; set; } = "";
 
+
+    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId)
+    {
+
+        return;
+    }
+    
     private string GetErrorType()
     {
         if (ErrorType == "error")

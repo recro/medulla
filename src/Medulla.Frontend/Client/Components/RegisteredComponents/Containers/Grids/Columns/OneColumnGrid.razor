@@ -14,6 +14,33 @@
     private bool isHovering = false;
     string _dropClass = "";
 
+    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId)
+    {
+
+        return;
+    }
+
+    protected override List<EditorViewNode> GetChildrenToAddOnAdd()
+    {
+        var list = new List<EditorViewNode>();
+        list.Add(new EditorViewNode() {
+            Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+            UniqueId = new UniqueId(),
+            IsContainer = true
+        });
+        list.Add(new EditorViewNode() {
+            Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+            UniqueId = new UniqueId(),
+            IsContainer = true
+        });
+        list.Add(new EditorViewNode() {
+            Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+            UniqueId = new UniqueId(),
+            IsContainer = true
+        });
+        return list;
+    }
+
     protected override Properties GetProperties()
     {
         return new Properties();

@@ -32,6 +32,12 @@
     [Parameter]
     public string ImgLink { get; set; } = "https://github.com/octocat.png";
     
+    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId)
+    {
+
+        return;
+    }
+
     protected override Properties GetProperties()
     {
         Properties properties = new();

@@ -28,6 +28,12 @@
     [Parameter]
     public string NumberOfColumns { get; set; } = "3";
 
+    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId uniqueId)
+    {
+
+        return;
+    }
+
     private int GetNumberOfColumns()
     {
         int number = 3;

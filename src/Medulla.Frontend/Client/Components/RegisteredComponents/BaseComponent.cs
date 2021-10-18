@@ -46,6 +46,8 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         [Parameter] public string IsBold { get; set; } = "";
 
 
+        protected abstract void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId);
+
         public int GetCount()
         {
             return Editor.GetDepthOfEditorViewNodeWithUniqueId(Editor.EditorViewNode, UniqueId, 1);

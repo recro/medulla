@@ -31,6 +31,12 @@
     [Parameter]
     public string IsLink { get; set; } = "";
 
+    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId)
+    {
+
+        return;
+    }
+
     private string GetBtnSize()
     {
         if (Size != "sm" && Size != "large")

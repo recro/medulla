@@ -34,6 +34,17 @@ style="min-width: 100px;min-height: 100px;">
 
 
 
+    protected override List<EditorViewNode> GetChildrenToAddOnAdd()
+    {
+        return new();
+    }
+
+    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId uniqueId)
+    {
+
+        return;
+    }
+
     protected override Properties GetProperties()
     {
         Properties properties = new();

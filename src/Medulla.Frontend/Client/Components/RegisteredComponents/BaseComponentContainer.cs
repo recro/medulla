@@ -11,8 +11,16 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         {
             Editor.PlaceInUniqueId = this.UniqueId;
             Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+            foreach (var child in GetChildrenToAddOnAdd())
+            {
+                Editor.PlaceInUniqueId = this.UniqueId;
+                Editor.CurrentComponent = child;
+                Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+            }
             Editor.StateChanged();
         }
+
+        protected abstract List<EditorViewNode> GetChildrenToAddOnAdd();
 
     }
 
