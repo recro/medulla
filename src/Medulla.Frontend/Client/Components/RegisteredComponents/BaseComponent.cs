@@ -145,18 +145,18 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             UpdatePropertiesWindow(Editor, this.EditorViewNode.UniqueId);
         }
 
-        abstract protected Properties GetProperties();
-        abstract protected bool IsClickable();
+        protected abstract Properties GetProperties();
+        protected abstract bool IsClickable();
 
-        abstract protected bool DoesImplementPadding();
+        protected abstract bool DoesImplementPadding();
 
-        abstract protected bool DoesImplementMargin();
+        protected abstract bool DoesImplementMargin();
 
-        abstract protected bool DoesImplementFonts();
+        protected abstract bool DoesImplementFonts();
 
-        abstract protected bool IsHoverComponentContainer();
+        protected abstract bool IsHoverComponentContainer();
 
-        public void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
+        private void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
         {
             Properties properties = this.GetProperties();
             if (this.DoesImplementFonts())
