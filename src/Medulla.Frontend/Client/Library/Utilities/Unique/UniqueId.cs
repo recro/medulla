@@ -2,8 +2,6 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
 namespace Medulla.Frontend.Client.Library.Utilities.Unique
 {
     public class UniqueId
@@ -24,6 +22,11 @@ namespace Medulla.Frontend.Client.Library.Utilities.Unique
             }
             UniqueId _otherUniqueId = (UniqueId)obj;
             return _otherUniqueId.Id == this.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
         }
 
         protected bool Equals(UniqueId other)
