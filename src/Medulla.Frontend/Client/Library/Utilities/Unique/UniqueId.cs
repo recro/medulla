@@ -6,7 +6,7 @@ namespace Medulla.Frontend.Client.Library.Utilities.Unique
 {
     public class UniqueId
     {
-        public string Id;
+        public readonly string Id;
 
         public UniqueId()
         {
@@ -16,12 +16,12 @@ namespace Medulla.Frontend.Client.Library.Utilities.Unique
 
         public override bool Equals(object? obj)
         {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            if (obj == null || !(this.GetType() == obj.GetType()))
             {
                 return false;
             }
-            UniqueId _otherUniqueId = (UniqueId)obj;
-            return _otherUniqueId.Id == this.Id;
+            UniqueId otherUniqueId = (UniqueId)obj;
+            return otherUniqueId.Id == this.Id;
         }
 
         public override int GetHashCode()
