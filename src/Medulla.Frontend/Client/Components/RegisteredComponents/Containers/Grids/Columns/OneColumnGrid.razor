@@ -1,23 +1,17 @@
-@using System.ComponentModel.DataAnnotations
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @inherits BaseComponentContainer
 
 <div
     style="cursor: no-drop;min-height: 100px;padding-top:2.3em;">
-    <div class="@_dropClass width-full">
+    <div class=" width-full">
         @ChildContent    
     </div>
 </div>
 
 @code {
 
-    private bool isHovering = false;
-    string _dropClass = "";
-
-    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId)
+    protected override void AfterAddComponent(Editor editor, UniqueId uniqueId)
     {
-
-        return;
     }
 
     protected override List<EditorViewNode> GetChildrenToAddOnAdd()
