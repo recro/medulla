@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="Components\RegisteredComponents\Forms" />
     <Folder Include="Components\Editor\TreeView\" />
+    <Folder Include="Library\Abstrations\Environment\EnvironmentAbstractionHandler" />
   </ItemGroup>
 
   <ItemGroup>

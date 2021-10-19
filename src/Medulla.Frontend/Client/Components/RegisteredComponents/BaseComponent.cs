@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Medulla.Frontend.Client.Components.Editor.PropertiesWindow;
+using Medulla.Frontend.Client.Library.Abstrations.Environment.EnvironmentAbstractionHandler;
 using Medulla.Frontend.Client.Library.Utilities.Unique;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -384,7 +385,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         }
 
 
-        class ClickHandler : Medulla.Frontend.Client.Code.EnvironmentAbstractionHandler
+        class ClickHandler : EnvironmentAbstractionHandler
         {
             protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
             {
