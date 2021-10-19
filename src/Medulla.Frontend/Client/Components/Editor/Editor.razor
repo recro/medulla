@@ -1,6 +1,7 @@
 @using Medulla.Frontend.Client.Components.Editor.PropertiesWindow
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @using Medulla.Frontend.Client.Components.Editor.PaletteWindow
+@using Medulla.Frontend.Client.Components.Editor.TreeView
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -19,56 +20,58 @@
 
 @code {
 
-    public EditorViewNode CurrentComponent { get; set; } = default!;
-    public UniqueId CurrentPropertiesForComponentUniqueId;
-    public UniqueId PlaceInUniqueId { get; set; }
-    public UniqueId RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
+    public EditorViewNode? CurrentComponent { get; set; } = default!;
+    public UniqueId? CurrentPropertiesForComponentUniqueId;
+    public UniqueId? PlaceInUniqueId { get; set; }
+    public UniqueId? RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
     public bool IsHoverComponentContainer = false;
-    public UniqueId LastActiveContainer { get; set; }
+    public UniqueId? LastActiveContainer { get; set; }
     public List<UniqueId> ActiveContainers { get; set; } = new();
     public bool CanHover { get; set; } = false;
-    public UniqueId CurrentHoveringUniqueId { get; set; }
+    public UniqueId? CurrentHoveringUniqueId { get; set; }
     public bool PlaceAfter { get; set; } = false;
 
 
-    public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, ref bool found)
+    public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode? editorViewNode, UniqueId uniqueId, ref bool found)
     {
         found = false;
-        if (editorViewNode.UniqueId.Equals(uniqueId))
+        if (editorViewNode?.UniqueId != null && editorViewNode.UniqueId.Equals(uniqueId))
         {
             found = true;
             if (editorViewNode.Children.Count > 0) return true;
             else return false;
         }
-        for (int i = 0; i < editorViewNode.Children.Count; i++)
-        {
-            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId))
+        if (editorViewNode != null)
+            for (int i = 0; i < editorViewNode.Children.Count; i++)
             {
-                found = true;
-                if (editorViewNode.Children[i].Children.Count > 0)
-                    return true;
-                else return false;
+                var id = editorViewNode.Children[i]!.UniqueId;
+                if (id != null && id.Equals(uniqueId))
+                {
+                    found = true;
+                    if (editorViewNode.Children[i]!.Children.Count > 0)
+                        return true;
+                    else return false;
+                }
+                bool wasFound = false;
+                bool hasChildren = DoesEditorViewNodeHaveChildrenWithUniqueId(editorViewNode.Children[i], uniqueId, ref wasFound);
+                if (wasFound)
+                {
+                    return hasChildren;
+                }
             }
-            bool wasFound = false;
-            bool hasChildren = DoesEditorViewNodeHaveChildrenWithUniqueId(editorViewNode.Children[i], uniqueId, ref wasFound);
-            if (wasFound)
-            {
-                return hasChildren;
-            }
-        }
         return false;
     }
 
 
-    public List<EditorViewNode> FindAllEditorViewNodesWithType(EditorViewNode editorViewNode, string Type, List<EditorViewNode> listOfEditorViewNodes)
+    public List<EditorViewNode?> FindAllEditorViewNodesWithType(EditorViewNode? editorViewNode, string Type, List<EditorViewNode?> listOfEditorViewNodes)
     {
-        if (editorViewNode.Type.Equals(Type))
+        if (editorViewNode!.Type.Equals(Type))
         {
             listOfEditorViewNodes.Add(editorViewNode);
         }
         for (int i = 0; i < editorViewNode.Children.Count; i++)
         {
-            if (editorViewNode.Children[i].Type.Equals(Type))
+            if (editorViewNode.Children[i]!.Type.Equals(Type))
             {
                 listOfEditorViewNodes.Add(editorViewNode.Children[i]);
             }
@@ -77,19 +80,19 @@
         return listOfEditorViewNodes;
     }
 
-    public void RemoveAllEditorViewNodesWithType(EditorViewNode editorViewNode, string Type)
+    public void RemoveAllEditorViewNodesWithType(EditorViewNode? editorViewNode, string Type)
     {
-        var nodes = FindAllEditorViewNodesWithType(editorViewNode, Type, new List<EditorViewNode>());
+        var nodes = FindAllEditorViewNodesWithType(editorViewNode, Type, new List<EditorViewNode?>());
         foreach (var node in nodes)
         {
-            RemoveComponentWithUniqueId(EditorViewNode, node.UniqueId);
+            RemoveComponentWithUniqueId(EditorViewNode, node!.UniqueId);
         }
         StateChanged();
     }
 
-    public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId, int count)
+    public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode? editorViewNode, UniqueId? uniqueId, int count)
     {
-        if (editorViewNode.UniqueId.Equals(uniqueId))
+        if (editorViewNode!.UniqueId!.Equals(uniqueId))
         {
             return count;
         }
@@ -104,7 +107,7 @@
         return -1;
     }
 
-    public EditorViewNode EditorViewNode { get; set; } = new()
+    public EditorViewNode? EditorViewNode { get; set; } = new()
     {
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
         Children = {
@@ -116,9 +119,9 @@
         UniqueId = new UniqueId()
     };
 
-    public bool AddComponentToEditorViewNode(EditorViewNode editorViewNode)
+    public bool AddComponentToEditorViewNode(EditorViewNode? editorViewNode)
     {
-        if (editorViewNode.UniqueId.Equals(PlaceInUniqueId))
+        if (editorViewNode!.UniqueId!.Equals(PlaceInUniqueId))
         {
             editorViewNode.Children.Add(CurrentComponent);
             return true;
@@ -128,7 +131,7 @@
             var foundIndex = -1;
             for (var i = 0; i < editorViewNode.Children.Count; i++)
             {
-                if (editorViewNode.Children[i].UniqueId.Equals(PlaceInUniqueId))
+                if (editorViewNode!.Children[i]!.UniqueId!.Equals(PlaceInUniqueId))
                 {
                     foundIndex = i;
                 }
@@ -142,7 +145,7 @@
                 }
                 else
                 {
-                    editorViewNode.Children[foundIndex].Children.Add(CurrentComponent);
+                    editorViewNode!.Children[foundIndex]!.Children.Add(CurrentComponent);
                 }
                 return true;
             }
@@ -161,11 +164,11 @@
         }
     }
 
-    public bool RemoveComponentWithUniqueId(EditorViewNode editorViewNode, UniqueId uniqueId)
+    public bool RemoveComponentWithUniqueId(EditorViewNode? editorViewNode, UniqueId? uniqueId)
     {
-        for (var i = 0; i < editorViewNode.Children.Count; i++)
+        for (var i = 0; i < editorViewNode!.Children.Count; i++)
         {
-            if (editorViewNode.Children[i].UniqueId.Equals(uniqueId))
+            if (editorViewNode!.Children[i]!.UniqueId!.Equals(uniqueId))
             {
                 editorViewNode.Children.RemoveAt(i);
             }
@@ -177,9 +180,9 @@
         return true;
     }
 
-    public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name, string value)
+    public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode? editorViewNode, string name, string value)
     {
-        if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
+        if (editorViewNode!.UniqueId!.Equals(CurrentPropertiesForComponentUniqueId))
         {
             editorViewNode.Parameters[name] = value;
         }
@@ -193,11 +196,11 @@
 
     }
 
-    public string GetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode editorViewNode, string name)
+    public string? GetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode? editorViewNode, string name)
     {
-        if (editorViewNode.UniqueId.Equals(CurrentPropertiesForComponentUniqueId))
+        if (editorViewNode!.UniqueId!.Equals(CurrentPropertiesForComponentUniqueId))
         {
-            string paramValue = editorViewNode.Parameters[name].ToString();
+            string? paramValue = editorViewNode!.Parameters[name]!.ToString();
             if (paramValue == null)
             {
                 return "";
@@ -209,7 +212,7 @@
         }
         else
         {
-            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            for (var i = 0; i < editorViewNode.Children.Count; )
             {
                 return GetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name);
             }
@@ -217,9 +220,9 @@
         return "";
     }
 
-    public EditorViewNode GetEditorViewNodeIfUniqueIdEquals(EditorViewNode editorViewNode, UniqueId uniqueId)
+    public EditorViewNode? GetEditorViewNodeIfUniqueIdEquals(EditorViewNode? editorViewNode, UniqueId? uniqueId)
     {
-        if (editorViewNode.UniqueId.Equals(uniqueId))
+        if (editorViewNode!.UniqueId!.Equals(uniqueId))
         {
             return editorViewNode;
         }
@@ -227,7 +230,7 @@
         {
             for (var i = 0; i < editorViewNode.Children.Count; i++)
             {
-                EditorViewNode checkEditorViewNode = GetEditorViewNodeIfUniqueIdEquals(editorViewNode.Children[i], uniqueId);
+                EditorViewNode? checkEditorViewNode = GetEditorViewNodeIfUniqueIdEquals(editorViewNode.Children[i], uniqueId);
                 if (checkEditorViewNode != null)
                 {
                     return checkEditorViewNode;
@@ -245,20 +248,15 @@
     }
 
 
-    public string GetComponentPropertyValue(UniqueId uniqueId, string name)
+    public string? GetComponentPropertyValue(UniqueId? uniqueId, string name)
     {
-        EditorViewNode activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
-        Dictionary<string, object> parameters = activeEditorViewNode.Parameters;
+        EditorViewNode? activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
+        Dictionary<string, object> parameters = activeEditorViewNode!.Parameters;
         if (parameters.Count > 0)
         {
-            if (parameters[name] != null)
             {
                 var param = parameters[name];
-                return param.ToString();
-            }
-            else
-            {
-                return "";
+                return param!.ToString();
             }
         }
         else
@@ -267,12 +265,12 @@
         }
     }
 
-    public EditorViewNode GetEditorViewNodeWithUniqueId(UniqueId uniqueId)
+    public EditorViewNode? GetEditorViewNodeWithUniqueId(UniqueId? uniqueId)
     {
         return GetEditorViewNodeIfUniqueIdEquals(EditorViewNode, uniqueId);
     }
 
-    public void SetCurrentComponentToEditorViewNodeWithUniqueId(UniqueId uniqueId)
+    public void SetCurrentComponentToEditorViewNodeWithUniqueId(UniqueId? uniqueId)
     {
         EditorViewNode? editorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
         if (editorViewNode == null)
@@ -282,7 +280,7 @@
         CurrentComponent = editorViewNode;
     }
 
-    public void SetProperties(Properties properties, UniqueId uniqueId)
+    public void SetProperties(Properties properties, UniqueId? uniqueId)
     {
         CurrentPropertiesForComponentUniqueId = uniqueId;
         _properties = properties;

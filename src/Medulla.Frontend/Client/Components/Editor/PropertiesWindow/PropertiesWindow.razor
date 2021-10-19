@@ -50,7 +50,7 @@
     public string WindowTitle { get; set; } = "Properties Window";
     
     [Parameter]
-    public Editor Editor { get; set; }
+    public Editor? Editor { get; set; }
 
     private Dictionary<string, object> GetParametersForProperty(Property property)
     {
@@ -66,7 +66,7 @@
     }
 
     void UpdatePropertyValue(Dictionary<string, string> updateValues) {
-        Editor.UpdateCurrentComponentProperty(updateValues["PropertyName"], updateValues["Value"]);
+        Editor!.UpdateCurrentComponentProperty(updateValues["PropertyName"], updateValues["Value"]);
     }
 
 

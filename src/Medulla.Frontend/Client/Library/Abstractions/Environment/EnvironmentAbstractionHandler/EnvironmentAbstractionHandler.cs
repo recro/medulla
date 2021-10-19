@@ -10,7 +10,7 @@ namespace Medulla.Frontend.Client.Library.Abstractions.Environment.EnvironmentAb
     public abstract class EnvironmentAbstractionHandler
     {
 
-        protected abstract void HandleInEditor(Editor editor, UniqueId uniqueId, Components.RegisteredComponents.BaseComponent clickableBaseComponent);
+        protected abstract void HandleInEditor(Editor editor, UniqueId? uniqueId, Components.RegisteredComponents.BaseComponent clickableBaseComponent);
 
         protected abstract void HandleInProduction();
 
@@ -23,7 +23,7 @@ namespace Medulla.Frontend.Client.Library.Abstractions.Environment.EnvironmentAb
             Development
         }
 
-        public void Handle(Editor editor, UniqueId uniqueId, Components.RegisteredComponents.BaseComponent clickableBaseComponent, bool isClickable)
+        public void Handle(Editor editor, UniqueId? uniqueId, Components.RegisteredComponents.BaseComponent clickableBaseComponent, bool isClickable)
         {
             var env = GetCurrentEnvironment();
             switch (env)

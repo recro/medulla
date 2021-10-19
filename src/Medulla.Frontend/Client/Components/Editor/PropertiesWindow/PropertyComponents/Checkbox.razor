@@ -1,7 +1,7 @@
 <form>
   <div style="margin:0;margin-bottom: -3px;" class="form-checkbox">
     <label>
-      <input @oninput="(value) => Update(value.Value.ToString())" type="checkbox" aria-describedby="help-text-for-checkbox" />
+      <input @oninput="(value) => Update(value.Value?.ToString())" type="checkbox" aria-describedby="help-text-for-checkbox" />
     </label>
   </div>
 </form>
@@ -11,15 +11,16 @@
     public string PropertyName { get; set; } = "";
     
     [Parameter]
-    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; }
+    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; } = null!;
 
-    private void Update(string input)
+    private void Update(string? input)
     {
-        OnChange["EventCallback"](new Dictionary<string, string>()
-        {
-            { "PropertyName", PropertyName },
-            { "Value", input }
-        });
+        if (input != null)
+            OnChange["EventCallback"](new Dictionary<string, string>()
+            {
+                {"PropertyName", PropertyName},
+                {"Value", input}
+            });
     }
 
 }

@@ -1,5 +1,5 @@
 <div>
-    <input @oninput="(value) => Update(value.Value.ToString())" class="form-control input-sm" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
+    <input @oninput="(value) => Update(value.Value?.ToString())" class="form-control input-sm" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
 </div>
 
 
@@ -9,23 +9,24 @@
     public string PropertyName { get; set; } = "";
     
     [Parameter]
-    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; }
+    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; } = null!;
 
     [Parameter]
     public string Placeholder { get; set; } = "{No Placeholder}";
     
-    private void Update(string value)
+    private void Update(string? value)
     {
         SetActiveValue(value);
     }
 
-    private void SetActiveValue(string value)
+    private void SetActiveValue(string? value)
     {
-        OnChange["EventCallback"](new Dictionary<string, string>()
-        {
-            { "PropertyName", PropertyName },
-            { "Value", value }
-        });
+        if (value != null)
+            OnChange["EventCallback"](new Dictionary<string, string>()
+            {
+                {"PropertyName", PropertyName},
+                {"Value", value}
+            });
     }
 
 }

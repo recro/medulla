@@ -22,7 +22,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             Editor.StateChanged();
         }
 
-        protected abstract List<EditorViewNode> GetChildrenToAddOnAdd();
+        protected abstract List<EditorViewNode?> GetChildrenToAddOnAdd();
 
     }
 

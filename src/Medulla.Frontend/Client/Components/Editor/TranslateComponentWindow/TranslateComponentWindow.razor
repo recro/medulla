@@ -3,7 +3,7 @@
 @using Medulla.Frontend.Client.Components.RegisteredComponents.Buttons
 <Window WindowTitle="Active Component Window" IsMaxHeight="true">
 
-    @if (Editor.CurrentComponent != null)
+    @if (Editor?.CurrentComponent != null)
         {
         <div>
             <p class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider m-0 py-0 m-0"><span class="text-bold">ID:</span> @Editor.?CurrentComponent.UniqueId.Id</p>
@@ -53,21 +53,24 @@
 @code {
 
     [Parameter]
-    public Editor Editor { get; set; }
+    public Editor? Editor { get; set; }
 
 
-    private string GetType()
+    private new string? GetType()
     {
         string replace = "Medulla.Frontend.Client.Components.RegisteredComponents.";
-        return Editor.CurrentComponent.Type.Replace(replace, "");
+        return Editor?.CurrentComponent?.Type.Replace(replace, "");
     }
 
     private void Remove() {
         Console.WriteLine("Remove");
-        Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent.UniqueId);
-        Editor.StateChanged();
-        Editor.PlaceInUniqueId = null;
-        Editor.CurrentComponent = null;
+        Editor?.RemoveComponentWithUniqueId(Editor.EditorViewNode, Editor.CurrentComponent?.UniqueId);
+        Editor?.StateChanged();
+        if (Editor != null)
+        {
+            Editor.PlaceInUniqueId = null;
+            Editor.CurrentComponent = null;
+        }
     }
 
 

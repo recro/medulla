@@ -14,9 +14,9 @@
     {
     }
 
-    protected override List<EditorViewNode> GetChildrenToAddOnAdd()
+    protected override List<EditorViewNode?> GetChildrenToAddOnAdd()
     {
-        var list = new List<EditorViewNode>();
+        var list = new List<EditorViewNode?>();
         list.Add(new EditorViewNode() {
             Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
             UniqueId = new UniqueId(),

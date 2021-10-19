@@ -13,11 +13,11 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
         public List<Property> PropertyList { get; set; } = new List<Property>();
 
 
-        public void SetPropertyValuesFromEditorViewNode(Editor editor, UniqueId uniqueId)
+        public void SetPropertyValuesFromEditorViewNode(Editor editor, UniqueId? uniqueId)
         {
             foreach (var prop in PropertyList)
             {
-                string currentValue = editor.GetComponentPropertyValue(uniqueId, prop.Name);
+                string? currentValue = editor!.GetComponentPropertyValue(uniqueId, prop.Name);
                 // prop.DefaultValue = currentValue;
             }
         }

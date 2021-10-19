@@ -37,7 +37,7 @@
     public string PropertyName { get; set; } = "";
     
     [Parameter]
-    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; }
+    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; } = null!;
 
 
     [Parameter]

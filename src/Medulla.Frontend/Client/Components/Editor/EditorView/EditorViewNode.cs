@@ -13,10 +13,10 @@ public class EditorViewNode
     /// </summary>
     public string Type { get; set; } = "RenderFragment";
 
-    public readonly List<EditorViewNode> Children = new();
+    public readonly List<EditorViewNode?> Children = new();
     public Dictionary<string, object> Parameters { get; set; } = new();
 
-    public UniqueId UniqueId { get; set; }
+    public UniqueId? UniqueId { get; set; }
 
     public bool IsContainer { get; set; } = false;
 

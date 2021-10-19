@@ -13,9 +13,9 @@
         return;
     }
 
-    protected override List<EditorViewNode> GetChildrenToAddOnAdd()
+    protected override List<EditorViewNode?> GetChildrenToAddOnAdd()
     {
-        var list = new List<EditorViewNode>();
+        var list = new List<EditorViewNode?>();
         list.Add(new EditorViewNode() {
             Type = "",
             UniqueId = new Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId(),

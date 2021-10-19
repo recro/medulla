@@ -123,11 +123,16 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
 
         [Parameter] 
-        public UniqueId UniqueId { get; set; } = default!;
+        public UniqueId? UniqueId { get; set; } = default!;
 
 
         protected Dictionary<string, object> GetInputAttributes()
         {
+            if (Editor.CurrentComponent?.UniqueId == null)
+            {
+                Console.WriteLine("Editor.CurrentComponent.UniqueId was null");
+                return new Dictionary<string, object>();
+            }
             return Editor.CurrentComponent.UniqueId.Equals(this.UniqueId) ? new Dictionary<string, object> { { "checked", "true" } } : new Dictionary<string, object>();
         }
 
@@ -147,7 +152,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected abstract bool IsHoverComponentContainer();
 
-        private void UpdatePropertiesWindow(Editor.Editor editor, UniqueId uniqueId)
+        private void UpdatePropertiesWindow(Editor.Editor editor, UniqueId? uniqueId)
         {
             Properties properties = this.GetProperties();
             if (this.DoesImplementFonts())
@@ -378,7 +383,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         private class ClickHandler : EnvironmentAbstractionHandler
         {
-            protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, BaseComponent clickableBaseComponent)
+            protected override void HandleInEditor(Editor.Editor editor, UniqueId? uniqueId, BaseComponent clickableBaseComponent)
             {
             }
 
