@@ -10,11 +10,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 {
     public abstract class BaseComponent : ComponentBase
     {
-        protected BaseComponent()
-        {
-        }
-
-
         /*
          * These parameters are system required
          */
@@ -89,27 +84,27 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         }
 
 
-        private string GetNumber(string prepend, string input)
+        private static string GetNumber(string prepend, string input)
         {
-            int number = 0;
+            var number = 0;
             try
             {
-                number = Int32.Parse(input);
+                number = int.Parse(input);
             }
             catch
             {
                 return "";
             }
 
-            return prepend + number.ToString();
+            return prepend + number;
         }
 
         protected string GetMargin()
         {
-            string ml = this.GetNumber("ml-", ML);
-            string mr = this.GetNumber("mr-", MR);
-            string mb = this.GetNumber("mb-", MB);
-            string mt = this.GetNumber("mt-", MT);
+            string ml = GetNumber("ml-", ML);
+            string mr = GetNumber("mr-", MR);
+            string mb = GetNumber("mb-", MB);
+            string mt = GetNumber("mt-", MT);
 
 
             return $" {ml} {mr} {mb} {mt} ";
@@ -118,17 +113,17 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         protected string GetPadding()
         {
 
-            string pl = this.GetNumber("pl-", PL);
-            string pr = this.GetNumber("pr-", PR);
-            string pb = this.GetNumber("pb-", PB);
-            string pt = this.GetNumber("pt-", PT);
+            string pl = GetNumber("pl-", PL);
+            string pr = GetNumber("pr-", PR);
+            string pb = GetNumber("pb-", PB);
+            string pt = GetNumber("pt-", PT);
 
             return $" {pl} {pr} {pb} {pt} ";
         }
 
 
         [Parameter] 
-        public Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId UniqueId { get; set; } = default!;
+        public UniqueId UniqueId { get; set; } = default!;
 
 
         protected Dictionary<string, object> GetInputAttributes()
@@ -137,7 +132,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             {
                 return new Dictionary<string, object>() { { "checked", "true" } };
             }
-            return new Dictionary<string, object>() { };
+            return new Dictionary<string, object>();
         }
 
         protected void MakeActive()
