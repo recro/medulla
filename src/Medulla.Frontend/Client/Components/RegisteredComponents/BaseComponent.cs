@@ -17,33 +17,45 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /*
          * These parameters are system required
          */
-        [Parameter] public RenderFragment ChildContent { get; set; } = default!;
+        [Parameter]
+	public RenderFragment ChildContent { get; set; } = default!;
 
-        [Parameter] public EditorViewNode EditorViewNode { get; set; } = default!;
+        [Parameter]
+	public EditorViewNode EditorViewNode { get; set; } = default!;
 
-        [Parameter] public Medulla.Frontend.Client.Components.Editor.Editor Editor { get; set; } = default!;
+        [Parameter]
+	public Medulla.Frontend.Client.Components.Editor.Editor Editor { get; set; } = default!;
         /*
          * These parameters are system required
          */
 
-        [Parameter] public string ML { get; set; } = "";
+        [Parameter]
+	public string ML { get; set; } = "";
 
-        [Parameter] public string MT { get; set; } = "";
+        [Parameter]
+	public string MT { get; set; } = "";
 
-        [Parameter] public string MB { get; set; } = "";
+        [Parameter]
+	public string MB { get; set; } = "";
 
-        [Parameter] public string MR { get; set; } = "";
+        [Parameter]
+	public string MR { get; set; } = "";
 
 
-        [Parameter] public string PL { get; set; } = "";
+        [Parameter]
+	public string PL { get; set; } = "";
 
-        [Parameter] public string PT { get; set; } = "";
+        [Parameter]
+	public string PT { get; set; } = "";
 
-        [Parameter] public string PB { get; set; } = "";
+        [Parameter]
+	public string PB { get; set; } = "";
 
-        [Parameter] public string PR { get; set; } = "";
+        [Parameter]
+	public string PR { get; set; } = "";
 
-        [Parameter] public string IsBold { get; set; } = "";
+        [Parameter]
+	public string IsBold { get; set; } = "";
 
 
         protected abstract void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, UniqueId uniqueId);
@@ -114,7 +126,8 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         }
 
 
-        [Parameter] public Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId UniqueId { get; set; } = default!;
+        [Parameter]
+	public Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId UniqueId { get; set; } = default!;
 
 
         protected Dictionary<string, object> GetInputAttributes()
