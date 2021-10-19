@@ -128,9 +128,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected void MakeActive()
         {
-            // Editor.CurrentComponent = this.EditorViewNode;
             UpdatePropertiesWindow(Editor, this.EditorViewNode.UniqueId);
-            // Editor.StateChanged();
         }
 
         abstract protected Properties GetProperties();
@@ -366,10 +364,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                     InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
                 }
                 );
-                // properties.PropertyList.Add(new Property() {Name = "PL", DefaultValue = "", InputDescription = "Padding Left", InputType = "input"});
-                // properties.PropertyList.Add(new Property() {Name = "PT", DefaultValue = "", InputDescription = "Padding Top", InputType = "input"});
-                // properties.PropertyList.Add(new Property() {Name = "PR", DefaultValue = "", InputDescription = "Padding Right", InputType = "input"});
-                // properties.PropertyList.Add(new Property() {Name = "PB", DefaultValue = "", InputDescription = "Padding Bottom", InputType = "input"});
             }
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
             properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
