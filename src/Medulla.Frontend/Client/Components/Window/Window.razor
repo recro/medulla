@@ -50,9 +50,7 @@
 
     private string GetMaxHeightStyle()
     {
-        if (IsMaxHeight == "true")
-            return "max-height: 33vh;overflow: scroll;";
-        return "";
+        return IsMaxHeight == "true" ? "max-height: 33vh;overflow: scroll;" : "";
     }
 
 }
