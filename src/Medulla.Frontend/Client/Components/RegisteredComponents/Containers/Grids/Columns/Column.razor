@@ -15,7 +15,7 @@
 
 @code {
 
-    protected override void AfterAddComponent(Medulla.Frontend.Client.Components.Editor.Editor editor, Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId uniqueId)
+    protected override void AfterAddComponent(Editor editor, Library.Utilities.Unique.UniqueId uniqueId)
     {
 
         return;
@@ -26,7 +26,7 @@
         var list = new List<EditorViewNode?>();
         list.Add(new EditorViewNode() {
             Type = "",
-            UniqueId = new Medulla.Frontend.Client.Library.Utilities.Unique.UniqueId(),
+            UniqueId = new Library.Utilities.Unique.UniqueId(),
             IsContainer = true
         });
         return list;
