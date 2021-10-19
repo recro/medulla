@@ -128,11 +128,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected Dictionary<string, object> GetInputAttributes()
         {
-            if (Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
-            {
-                return new Dictionary<string, object>() { { "checked", "true" } };
-            }
-            return new Dictionary<string, object>();
+            return Editor.CurrentComponent.UniqueId.Equals(this.UniqueId) ? new Dictionary<string, object> { { "checked", "true" } } : new Dictionary<string, object>();
         }
 
         protected void MakeActive()
@@ -156,12 +152,12 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             Properties properties = this.GetProperties();
             if (this.DoesImplementFonts())
             {
-                properties.PropertyList.Add(new()
-                {
+                properties.PropertyList.Add(new Property
+                    {
                     Name = "IsBold",
                     InputDescription = "Is Bold",
-                    DefaultValue = new Dictionary<string, object>()
-                        {
+                    DefaultValue = new Dictionary<string, object>
+                    {
                             { "PropertyName", "IsBold" }
                         },
                     InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Checkbox"
@@ -382,7 +378,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         private class ClickHandler : EnvironmentAbstractionHandler
         {
-            protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, Medulla.Frontend.Client.Components.RegisteredComponents.BaseComponent clickableBaseComponent)
+            protected override void HandleInEditor(Editor.Editor editor, UniqueId uniqueId, BaseComponent clickableBaseComponent)
             {
             }
 
