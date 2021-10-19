@@ -263,10 +263,6 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
                     InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Dropdown"
                 }
                 );
-                // properties.PropertyList.Add(new Property() {Name = "ML", DefaultValue = "", InputDescription = "Margin Left", InputType = "input"});
-                // properties.PropertyList.Add(new Property() {Name = "MT", DefaultValue = "", InputDescription = "Margin Top", InputType = "input"});
-                // properties.PropertyList.Add(new Property() {Name = "MR", DefaultValue = "", InputDescription = "Margin Right", InputType = "input"});
-                // properties.PropertyList.Add(new Property() {Name = "MB", DefaultValue = "", InputDescription = "Margin Bottom", InputType = "input"});
             }
             if (this.DoesImplementPadding())
             {
