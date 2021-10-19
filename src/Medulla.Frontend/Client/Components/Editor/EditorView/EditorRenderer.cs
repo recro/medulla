@@ -22,8 +22,12 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
         {
             var type = Type.GetType(EditorViewNode.Type);
 
+
             if (type == null)
-                throw new NullReferenceException("Type is not expected to be null. The RenderComponentType was not found.");
+	    {
+		Console.WriteLine("EditorViewNode type was null");
+		return;
+	    }
 
             builder.OpenComponent(0, type);
 

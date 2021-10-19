@@ -107,7 +107,12 @@
     public EditorViewNode EditorViewNode { get; set; } = new()
     {
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
-        Children = { },
+        Children = {
+		new EditorViewNode() {
+		  Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+		  UniqueId = new ()
+		}	
+	},
         UniqueId = new UniqueId()
     };
 
