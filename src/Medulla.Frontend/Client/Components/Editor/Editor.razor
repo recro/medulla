@@ -113,8 +113,16 @@
         Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
         Children = {
 		new EditorViewNode() {
-		  Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
-		  UniqueId = new ()
+		  Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Flex",
+		  UniqueId = new (),
+          Children = {
+                new EditorViewNode() {
+		            Type = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+		            UniqueId = new (),
+                    Children = {},
+                    IsContainer = false
+		        }
+            }
 		}	
 	},
         UniqueId = new UniqueId()
@@ -355,6 +363,12 @@
                     {
                         Name = "One Column Grid", SvgString = _iconStr1,
                         RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+                        IsContainer = true
+                    },
+                    new PaletteComponent()
+                    {
+                        Name = "Column", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
                         IsContainer = true
                     },
                 }

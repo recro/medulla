@@ -5,22 +5,22 @@
 class="editor-border "
     @onclick="Clicked"
 style="min-width: 100px;min-height: 100px;">
-    <div class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()">
+    <div class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()" style="width:100%;">
         @ChildContent
     </div>
     
-    <svg
-            @ondrop="HandleDrop"
-            ondragover="event.preventDefault();"
-            style="
-            margin: 1em;
-        height: 100px;
-        border: thin solid;
-        cursor: copy;
-    " xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 editor-place" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-        </svg>
-    
+    <svg style="height: 20px;
+                    cursor: pointer;
+                    z-index: 1000;
+                    background: purple;
+                    color: white;
+                    border-radius: 21px;
+                    box-shadow: 1px 1px 3px grey;
+                    margin: 0 auto;
+                    display: inherit;
+                    margin-top: 8px;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+    </svg>
 </div>
 
 
@@ -129,13 +129,6 @@ style="min-width: 100px;min-height: 100px;">
 <style>
 
     .medulla-flex-container {
-        min-height: 100px;
-        padding-top: 2.3em;
     }
-    
-    .editor-border {
-        border: thin solid purple;
-    }
-
 
 </style>
