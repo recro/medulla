@@ -24,10 +24,20 @@
         <div class="color-bg-primary" style=" @GetMaxHeightStyle()">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                        @ChildContent
-                        <div style="height:100px;"></div>
-                    </div>
+                    @if (maxCalc)
+                    {
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg" style="height: calc(100vh - 65px);">
+                            @ChildContent
+                            <div style="height:100px;"></div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            @ChildContent
+                            <div style="height:100px;"></div>
+                        </div>    
+                    }
                 </div>
             </div>
         </div>
@@ -45,6 +55,9 @@
 
     [Parameter]
     public string IsMaxHeight { get; set; } = "false";
+
+    [Parameter]
+    public bool maxCalc { get; set; } = false;
     
     private bool _windowOpen = true;
 

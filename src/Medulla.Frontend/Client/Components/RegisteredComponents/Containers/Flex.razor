@@ -6,7 +6,7 @@
 class="editor-border "
     @onclick="Clicked"
 style="min-width: 100px;">
-    <div class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()" style="width:100%;">
+    <div class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()" style="width:100%;position: relative;">
         @ChildContent
         
         <svg @onclick="AddColumnAfter" style="height: 20px;
