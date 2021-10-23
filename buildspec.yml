@@ -12,14 +12,10 @@ phases:
       - echo "Logging into ECR"
       - docker login --username AWS --password "$DOCKER_PASSWORD" 369840493607.dkr.ecr.us-east-2.amazonaws.com
       - echo "Building docker image.."
-      - docker build -t 369840493607.dkr.ecr.us-east-2.amazonaws.com/medulla-frontend:latest .
-  post_build:
-    on-failure: ABORT
-    commands:
-      - eval $(aws ecr get-login | sed 's|https://||' | sed 's|-e none||')
-      - echo "Pushing docker image to ECR.."
+      - docker build -t medulla-frontend .
+      - docker tag medulla-frontend 369840493607.dkr.ecr.us-east-2.amazonaws.com/medulla-frontend:latest
       - docker push 369840493607.dkr.ecr.us-east-2.amazonaws.com/medulla-frontend:latest
-      - echo "Moving appspec file to root directory.."
+      - echo "Moving appspec file to root directory.."      
 artifacts:
   files:
     - 'appspec_scripts/ApplicationStart.sh'
