@@ -10,7 +10,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Logging into ECR"
-      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 369840493607.dkr.ecr.us-east-2.amazonaws.com
+      - docker login --username AWS --password "$DOCKER_PASSWORD" 369840493607.dkr.ecr.us-east-2.amazonaws.com
       - echo "Building docker image.."
       - docker build -t 369840493607.dkr.ecr.us-east-2.amazonaws.com/medulla-frontend:latest .
   post_build:
