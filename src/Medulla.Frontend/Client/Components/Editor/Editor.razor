@@ -9,7 +9,7 @@
             <EditorView EditorViewNode="EditorViewNode" />
         </div>
         <div style="width: 40vw;max-height:100vh;overflow: scroll;">
-            <ColumnManager />
+            <ColumnManager Editor="this" />
             <TranslateComponentWindow Editor="this" />
             <PaletteWindow ComponentCategories="_paletteComponentCategories" />
             <PropertiesWindow Editor="this" PropertyList="_properties" />
@@ -32,6 +32,7 @@
     public UniqueId? CurrentHoveringUniqueId { get; set; }
     public bool PlaceAfter { get; set; } = false;
     public EditorViewNode? WrapElementWithEditorViewNode = null;
+    public bool DeleteColumns { get; set; } = false;
 
 
     public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode? editorViewNode, UniqueId uniqueId, ref bool found)
