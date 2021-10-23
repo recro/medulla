@@ -33,6 +33,7 @@
     public bool PlaceAfter { get; set; } = false;
     public EditorViewNode? WrapElementWithEditorViewNode = null;
     public bool DeleteColumns { get; set; } = false;
+    public bool PreviewMode { get; set; } = false;
 
 
     public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode? editorViewNode, UniqueId uniqueId, ref bool found)
