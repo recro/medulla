@@ -19,4 +19,4 @@ phases:
 artifacts:
   files:
     - 'appspec_scripts/ApplicationStart.sh'
-    - 'appspec.yml'                    
+    - 'appspec.yml'   
