@@ -9,8 +9,8 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 {
     public abstract class BaseComponentContainer : BaseComponent
     {
-        
-        
+
+
         protected string hoverClass = "";
 
         protected void HandleDragEnter()

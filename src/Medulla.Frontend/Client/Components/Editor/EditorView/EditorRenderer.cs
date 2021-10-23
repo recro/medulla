@@ -24,10 +24,10 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
 
 
             if (type == null)
-	    {
-		Console.WriteLine("EditorViewNode type was null");
-		return;
-	    }
+            {
+                Console.WriteLine("EditorViewNode type was null");
+                return;
+            }
 
             builder.OpenComponent(0, type);
 

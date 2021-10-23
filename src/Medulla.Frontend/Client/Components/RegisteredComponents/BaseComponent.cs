@@ -16,41 +16,41 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         [Parameter]
         public RenderFragment ChildContent { get; set; } = default!;
 
-        [Parameter] 
+        [Parameter]
         public EditorViewNode EditorViewNode { get; set; } = default!;
 
-        [Parameter] 
+        [Parameter]
         public Medulla.Frontend.Client.Components.Editor.Editor Editor { get; set; } = default!;
         /*
          * These parameters are system required
          */
 
-        [Parameter] 
+        [Parameter]
         public string ML { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string MT { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string MB { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string MR { get; set; } = "";
 
 
-        [Parameter] 
+        [Parameter]
         public string PL { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string PT { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string PB { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string PR { get; set; } = "";
 
-        [Parameter] 
+        [Parameter]
         public string IsBold { get; set; } = "";
 
 
@@ -122,7 +122,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         }
 
 
-        [Parameter] 
+        [Parameter]
         public UniqueId? UniqueId { get; set; } = default!;
 
 
@@ -158,7 +158,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             if (this.DoesImplementFonts())
             {
                 properties.PropertyList.Add(new Property
-                    {
+                {
                     Name = "IsBold",
                     InputDescription = "Is Bold",
                     DefaultValue = new Dictionary<string, object>
