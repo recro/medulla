@@ -1,0 +1,26 @@
+phases:
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+  build:
+    on-failure: ABORT
+    commands:
+      - echo "Logging into ECR"
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 369840493607.dkr.ecr.us-east-2.amazonaws.com
+      - echo "Building docker image.."
+      - docker build -t medulla-frontend .
+  post_build:
+    on-failure: ABORT
+    commands:
+      - eval $(aws ecr get-login | sed 's|https://||' | sed 's|-e none||')
+      - echo "Tagging docker image for ECR.."
+      - docker tag medulla-frontend:latest 369840493607.dkr.ecr.us-east-2.amazonaws.com/medulla-frontend:latest
+      - echo "Pushing docker image to ECR.."
+      - docker push 369840493607.dkr.ecr.us-east-2.amazonaws.com/medulla-frontend:latest
+      - echo "Moving appspec file to root directory.."
+artifacts:
+  files:
+    - 'appspec_scripts/ApplicationStart.sh'
+    - 'appspec.yml'                    

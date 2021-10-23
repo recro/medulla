@@ -1,0 +1,7 @@
+version: 0.0
+os: linux
+hooks:
+  ApplicationStart:
+    - location: ./appspec_scripts/ApplicationStart.sh
+      timeout: 300
+      runas: root
