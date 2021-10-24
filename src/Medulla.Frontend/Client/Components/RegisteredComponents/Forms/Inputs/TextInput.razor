@@ -2,10 +2,45 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 
 
-<input
-    @ondragenter="MouseOver"
-    @ondragleave="MouseLeave"
-    @onclick="Clicked" class="form-control input-sm @GetPadding() @GetMargin()" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
+<div style="position: relative;display:  inline-block;">
+    @if (!Editor.PreviewMode)
+    {
+        @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+        {
+            <svg @onclick="() => Editor.CurrentComponent = null" style="height: 20px;
+                        cursor: pointer;
+                        background: green;
+                        border-radius: 50px;
+                        position: absolute;
+                        top: 0px;
+                        right: 3px;
+                        color: lightgray;
+                    }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        }
+        else
+        {
+            <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="height: 20px;
+                        cursor: pointer;
+                        background: gray;
+                        border-radius: 50px;
+                        position: absolute;
+                        top: 0px;
+                        right: 3px;
+                        color: lightgray;
+                    }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        }
+    }
+    
+    <input
+        @ondragenter="MouseOver"
+        @ondragleave="MouseLeave"
+        @onclick="Clicked" class="form-control input-sm @GetPadding() @GetMargin()" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
+
+</div>
 
 @code {
 
