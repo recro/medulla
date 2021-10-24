@@ -9,7 +9,7 @@
                                 {
                                     @foreach (var category in ComponentCategories.ComponentCategories)
                                     {
-                                        <a @onclick="() => UpdateActiveCategory(category)" @attributes="@IsCategoryActive(category)" class=" UnderlineNav-item color-bg-canvas" style="justify-content: space-between;
+                                        <a @onclick="() => UpdateActiveCategory(category)" @attributes="@IsCategoryActive(category)" class=" UnderlineNav-item color-bg-canvas" style="justify-content: space-between;cursor:pointer;
                                                                                                                                                                                            display: flex;">
                                             @category.Name
                                             
