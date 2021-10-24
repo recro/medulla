@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Medulla.Frontend.Client.Library.Utilities.Unique;
 using System.Text.Json;
+using Medulla.Frontend.Client.Library.Utilities.Unique;
 
 
 public class EditorViewNode
@@ -44,7 +44,7 @@ public class EditorViewNode
                $"\"UniqueId\": \"{UniqueId.Id}\", " +
                $"\"IsContainer\": {IsContainer.ToString().ToLower()} " +
                $" }}";
-        
+
     }
 
 }
