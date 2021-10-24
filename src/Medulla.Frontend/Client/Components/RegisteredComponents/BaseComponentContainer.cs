@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using YamlDotNet.Core.Tokens;
 
 namespace Medulla.Frontend.Client.Components.RegisteredComponents
 {
@@ -12,15 +13,18 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
 
         protected string hoverClass = "";
+        protected bool isHovering = false;
 
         protected void HandleDragEnter()
         {
             hoverClass = "hovering";
+            isHovering = true;
         }
 
         protected void HandleDragLeave()
         {
             hoverClass = "";
+            isHovering = false;
         }
 
 

@@ -152,7 +152,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
         protected abstract bool IsHoverComponentContainer();
 
-        private void UpdatePropertiesWindow(Editor.Editor editor, UniqueId? uniqueId)
+        protected void UpdatePropertiesWindow(Editor.Editor editor, UniqueId? uniqueId)
         {
             Properties properties = this.GetProperties();
             if (this.DoesImplementFonts())
