@@ -378,6 +378,13 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
             properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
             editor.SetProperties(properties, uniqueId);
+            Editor.StateChanged();
+        }
+
+        protected void Unselect()
+        {
+            Editor.CurrentComponent = null;
+            Editor.StateChanged();
         }
 
 

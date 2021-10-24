@@ -11,7 +11,7 @@
             {
                 @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
                 {
-                    <svg @onclick="() => Editor.CurrentComponent = null" style="height: 20px;
+                    <svg @onclick="Unselect" style="height: 20px;
                                 cursor: pointer;
                                 background: green;
                                 border-radius: 50px;

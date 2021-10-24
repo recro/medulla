@@ -1,6 +1,7 @@
 @using System.ComponentModel.DataAnnotations
 <Window WindowTitle="@WindowTitle">
-    <table class="width-full">
+    @if (Editor.CurrentComponent != null) {
+        <table class="width-full">
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -37,6 +38,11 @@
             }
         </tbody>
     </table>
+    }
+    else
+    {
+        <p class="m-4 mt-4">No active component. Select a component to modify its properties.</p>
+    }
 </Window>
 
 @code {
