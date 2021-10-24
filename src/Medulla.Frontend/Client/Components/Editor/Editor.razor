@@ -2,6 +2,8 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @using Medulla.Frontend.Client.Components.Editor.PaletteWindow
 @using Medulla.Frontend.Client.Components.Editor.TreeView
+@using Medulla.Frontend.Client.Library.Abstractions.Environment
+
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -13,7 +15,7 @@
             <TranslateComponentWindow Editor="this" />
             <PaletteWindow ComponentCategories="_paletteComponentCategories" />
             <PropertiesWindow Editor="this" PropertyList="_properties" />
-            <TreeView />
+            <PreviewWindow />
         </div>
     </CascadingValue>
 </div>
@@ -326,6 +328,12 @@
 
     public void StateChanged()
     {
+        // Page page = Page.GetInstance();
+        // if (EditorViewNode != null)
+        //     page.EditorViewNode = EditorViewNode;
+        // Page.UpdateInstance(page);
+        
+        Console.WriteLine(EditorViewNode.GetJson());
         StateHasChanged();
     }
 
