@@ -293,8 +293,16 @@
         if (parameters.Count > 0)
         {
             {
-                var param = parameters[name];
-                return param!.ToString();
+                try
+                {
+                    var param = parameters[name];
+                    return param!.ToString();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return "";
+                }
             }
         }
         else
@@ -332,8 +340,6 @@
         // if (EditorViewNode != null)
         //     page.EditorViewNode = EditorViewNode;
         // Page.UpdateInstance(page);
-        
-        Console.WriteLine(EditorViewNode.GetJson());
         StateHasChanged();
     }
 
