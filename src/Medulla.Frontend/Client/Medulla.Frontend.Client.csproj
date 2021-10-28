@@ -34,4 +34,8 @@
   <ItemGroup>
     <None Remove="Components\Editor\TreeView\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\RegisteredComponents\Menu\Menu1.razor" />
+  </ItemGroup>
 </Project>

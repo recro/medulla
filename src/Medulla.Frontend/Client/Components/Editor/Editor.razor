@@ -392,6 +392,19 @@
             }
         },
         new() {
+            Name = "Lists",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "List", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Lists.List"
+                    },
+                },
+            }
+        },
+        new() {
             Name = "Alerts",
             PaletteWindowComponents = new PaletteWindowComponents()
             {

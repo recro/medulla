@@ -2,11 +2,11 @@
 @using Medulla.Frontend.Client.Components.Window
 @using Medulla.Frontend.Client.Components.RegisteredComponents.Buttons
 <Window WindowTitle="Active Component Window" IsMaxHeight="true">
-
-    @if (Editor?.CurrentComponent != null)
+    <div class="mt-4">
+        @if (Editor?.CurrentComponent != null)
         {
         <div>
-            <p class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider m-0 py-0 m-0"><span class="text-bold">ID:</span> @Editor.?CurrentComponent.UniqueId.Id</p>
+            <p class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider m-0 py-0 m-0"><span class="text-bold">ID:</span> @Editor.CurrentComponent.UniqueId.Id</p>
         </div>
         <div>
             <p class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider m-0 py-0 m-0">
@@ -48,6 +48,7 @@
             <p class="ml-3">No active component</p>
         }
 
+    </div>
 </Window>
 
 @code {
