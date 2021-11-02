@@ -23,7 +23,7 @@ In development you will use k3d and tilt as a part of your inner development loo
 
 In order to get started you will need Docker open, once you have this done you can run the following in powershell:
 ```powershell
-k3d cluster create medulla -s 1 -a 3 -p 80:80@loadbalancer -p 443:443@loadbalancer --k3s-server-arg "--disable=traefik" --registry-create
+k3d cluster create medulla -s 1 -a 3 -p 80:80@server:* -p 443:443@server:* --k3s-arg "--disable=traefik@server:*" --registry-create k3d-medulla-registry:5001
 ```
 
 This will create a k3s Kubernetes cluster inside of Docker with 1 master node, 3 worker nodes, port forwards for HTTP and HTTPS, as well as a docker registry for pushing images.
@@ -41,6 +41,15 @@ You will need to append an entry into your hosts file located at `C:\Windows\Sys
 ```
 
 Once all of the resources have come up in tilt you can navigate to `https://medulla.local` to access Medulla.
+
+Hot reloading is enabled, as you make code changes they will automatically be compiled and launched in the cluster for you.
+
+If you wish to tear down the cluster you can always run the following:
+```powershell
+k3d cluster delete medulla
+```
+
+Be aware that destroying the cluster means you will have to use `k3d cluster create` and `tilt up` as shown above in order to run medulla again.
 
 # Linux
 **Stub Section, Contributors Needed**
