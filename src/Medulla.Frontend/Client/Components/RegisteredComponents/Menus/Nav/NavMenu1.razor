@@ -1,7 +1,27 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @inherits BaseComponent
 
-<p>Component: @Title</p>
+<div class="menu-container">
+    <div>
+        <h1>Logo</h1>
+    </div>
+    <div>
+        <ul class="menu">
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+            <li class="menu-item">Menu</li>
+        </ul>
+    </div>
+</div>
+
 
 @code {
 
@@ -58,4 +78,25 @@
 
 }
 
+
+<style>
+.menu-container {
+    display:  flex;
+    background: lightgray;
+}
+
+.menu {
+    list-style-type: none;
+    display:  flex;
+    border:  none;
+    background: lightgray;
+}
+
+.menu-item {
+    padding: 1em;
+    background: lightgray;
+    border: none;
+    cursor: pointer;
+}
+</style>
 

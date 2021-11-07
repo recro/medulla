@@ -444,6 +444,19 @@
             }
         },
         new() {
+            Name = "Menus",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "Navbar Menu", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Frontend.Client.Components.RegisteredComponents.Menus.Nav.NavMenu1"
+                    },
+                },
+            }
+        },
+        new() {
             Name = "Text",
             PaletteWindowComponents = new PaletteWindowComponents()
             {
