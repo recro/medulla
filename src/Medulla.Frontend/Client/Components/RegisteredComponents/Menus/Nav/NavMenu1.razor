@@ -7,17 +7,83 @@
     </div>
     <div>
         <ul class="menu">
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
-            <li class="menu-item">Menu</li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+                
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a></li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a></li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu
+                    <svg xmlns="http://www.w3.org/2000/svg" class="sub-menu-link-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -82,21 +148,59 @@
 <style>
 .menu-container {
     display:  flex;
-    background: lightgray;
+    background: transparent;
 }
 
 .menu {
     list-style-type: none;
     display:  flex;
     border:  none;
-    background: lightgray;
+    background: transparent;
 }
 
 .menu-item {
-    padding: 1em;
-    background: lightgray;
+    padding: 1em 0;
+    background: transparent;
     border: none;
     cursor: pointer;
+    width:  110px;
+    padding-top: 0;
 }
+
+.sub-menu {
+    list-style-type: none;
+    flex-direction: column;
+    z-index: 1000;
+    position: relative;
+    color: white;
+    padding: 0;
+    width: 230px;
+    background: lightgray;
+    justify-content: start;
+    align-items: start;
+    padding-left: 15px;
+    padding-bottom: 12px;
+    display: none;
+}
+
+.menu-item:hover .sub-menu {
+    display: flex;
+}
+
+.menu-link {
+    background: lightgray;
+    padding: 1em;
+    width: 110px;
+    display: inline-block;
+}
+ 
+ .sub-menu li {
+     height: 47px;
+ }
+ 
+ .sub-menu-link-icon {
+    width: 15px;
+    display: inline;
+ }
 </style>
 
