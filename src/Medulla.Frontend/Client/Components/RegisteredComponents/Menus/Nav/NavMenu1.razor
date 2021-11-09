@@ -1,10 +1,45 @@
 @using Medulla.Frontend.Client.Library.Utilities.Unique
 @inherits BaseComponent
 
-<div class="menu-container">
-    <div>
-        <h1>Logo</h1>
-    </div>
+<div class="menu-container" style="position: relative">
+    
+@if (!Editor.PreviewMode)
+{
+    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+    {
+        <svg @onclick="Unselect" style="    height: 20px;
+                                            cursor: pointer;
+                                            background: green;
+                                            border-radius: 50px;
+                                            position: absolute;
+                                            top: 1.5px;
+                                            left: 23px;
+                                            color: lightgray;
+                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+    else
+    {
+        <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="    height: 20px;
+                                                                                            cursor: pointer;
+                                                                                            background: gray;
+                                                                                            border-radius: 50px;
+                                                                                            position: absolute;
+                                                                                            top: 1.5px;
+                                                                                            left: 23px;
+                                                                                            color: lightgray;
+                                                                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+}
+    @if (@HasLogo == "True")
+    {
+        <div>
+            <h1>Logo</h1>
+        </div>
+    }
     <div>
         <ul class="menu">
             <li class="menu-item">
@@ -12,7 +47,7 @@
             </li>
             <li class="menu-item">
                 <a class="menu-link" href="#">Menu</a>
-                
+
             </li>
             <li class="menu-item">
                 <a class="menu-link" href="#">Menu</a></li>
@@ -21,7 +56,7 @@
             <li class="menu-item">
                 <a class="menu-link" href="#">Menu
                     <svg xmlns="http://www.w3.org/2000/svg" class="sub-menu-link-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
+                </a>
                 <ul class="sub-menu">
                     <li>
                         <a class="menu-link" href="#">Menu</a>
@@ -94,20 +129,21 @@
     [Parameter]
     public string Title { get; set; } = "{No Title}";
     
+    [Parameter]
+    public string HasLogo { get; set; } = "";
+
+    
     protected override Properties GetProperties()
     {
         Properties properties = new();
         properties.PropertyList.Add(new() 
         { 
-            Name = "Title", 
-            InputDescription = "Title", 
+            Name = "Has Logo", 
+            InputDescription = "HasLogo", 
             DefaultValue = new Dictionary<string, object>()
             {
-                {
-                    "Placeholder", "Title"
-                },
-                { "PropertyName", "Title" }
-            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.TextInput" }
+                { "PropertyName", "HasLogo" }
+            }, InputType = "Medulla.Frontend.Client.Components.Editor.PropertiesWindow.PropertyComponents.Checkbox" }
             );
         return properties;
     }
