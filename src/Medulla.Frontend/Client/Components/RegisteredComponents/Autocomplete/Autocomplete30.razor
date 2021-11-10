@@ -1,0 +1,109 @@
+@using Medulla.Frontend.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<div style="position: relative">
+
+@if (!Editor.PreviewMode)
+{
+    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+    {
+        <svg @onclick="Unselect" style="    height: 20px;
+                                            cursor: pointer;
+                                            background: green;
+                                            border-radius: 50px;
+                                            position: absolute;
+                                            top: 1.5px;
+                                            left: 23px;
+                                            color: lightgray;
+                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+    else
+    {
+        <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="    height: 20px;
+                                                                                            cursor: pointer;
+                                                                                            background: gray;
+                                                                                            border-radius: 50px;
+                                                                                            position: absolute;
+                                                                                            top: 1.5px;
+                                                                                            left: 23px;
+                                                                                            color: lightgray;
+                                                                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+}
+
+<div class="position-relative">
+  <input class="form-control input-block" type="text" aria-label="Search by user" placeholder="Search by user">
+  <ul class="autocomplete-results">
+    <li class="autocomplete-item" aria-selected="true">
+      <img src="https://github.com/github.png" width="20" class="avatar mr-1" alt="">
+      <span>GitHub Inc.</span>
+      <span class="text-normal">github</span>
+    </li>
+    <li class="autocomplete-item">
+      <img src="https://github.com/hubot.png" width="20" class="avatar mr-1" alt="">
+      <span>Hubot</span>
+      <span class="text-normal">hubot</span>
+    </li>
+    <li class="autocomplete-item">
+      <img src="https://github.com/octocat.png" width="20" class="avatar mr-1" alt="">
+      <span>Monalisa Octocat</span>
+      <span class="text-normal">octocat</span>
+    </li>
+  </ul>
+</div>
+
+<style>.frame-example {width:300px;height:160px;}</style>
+
+</div>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(Editor editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

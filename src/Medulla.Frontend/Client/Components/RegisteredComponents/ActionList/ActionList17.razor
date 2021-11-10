@@ -1,0 +1,102 @@
+@using Medulla.Frontend.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<div style="position: relative">
+
+@if (!Editor.PreviewMode)
+{
+    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+    {
+        <svg @onclick="Unselect" style="    height: 20px;
+                                            cursor: pointer;
+                                            background: green;
+                                            border-radius: 50px;
+                                            position: absolute;
+                                            top: 1.5px;
+                                            left: 23px;
+                                            color: lightgray;
+                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+    else
+    {
+        <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="    height: 20px;
+                                                                                            cursor: pointer;
+                                                                                            background: gray;
+                                                                                            border-radius: 50px;
+                                                                                            position: absolute;
+                                                                                            top: 1.5px;
+                                                                                            left: 23px;
+                                                                                            color: lightgray;
+                                                                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+}
+
+<ul class="ActionList" role="menu">
+  <li class="ActionList-item" role="menuitemcheckbox" aria-checked="true">
+    <span class="ActionList-content">
+      <span class="ActionList-item-action ActionList-item-action--leading">
+        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="ActionList-item-multiSelectIcon">
+          <rect x="2" y="2" width="12" height="12" rx="4" class="ActionList-item-multiSelectIconRect"
+          ></rect>
+          <path fill-rule="evenodd" d="M4.03231 8.69862C3.84775 8.20646 4.49385 7.77554 4.95539 7.77554C5.41693 7.77554 6.80154 9.85246 6.80154 9.85246C6.80154 9.85246 10.2631 4.314 10.4938 4.08323C10.7246 3.85246 11.8785 4.08323 11.4169 5.00631C11.0081 5.82388 7.26308 11.4678 7.26308 11.4678C7.26308 11.4678 6.80154 12.1602 6.34 11.4678C5.87846 10.7755 4.21687 9.19077 4.03231 8.69862Z" class="ActionList-item-multiSelectCheckmark"
+          ></path>
+        </svg>
+      </span>
+      <span class="ActionList-item-label">Multi select item</span>
+    </span>
+  </li>
+</ul>
+
+</div>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(Editor editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+
