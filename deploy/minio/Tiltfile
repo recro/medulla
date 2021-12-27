@@ -1,0 +1,4 @@
+dockerignore=str(read_file('../../src/.dockerignore')).splitlines()
+
+k8s_yaml(helm('.', name='minio', namespace='minio-system', values=['./values.tilt.yaml']))
+

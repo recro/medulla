@@ -24,3 +24,6 @@ load_dynamic('./deploy/argo-workflows/Tiltfile')
 
 # deploy medulla
 load_dynamic('./deploy/medulla/Tiltfile')
+
+# deploy medulla
+load_dynamic('./deploy/minio/Tiltfile')
