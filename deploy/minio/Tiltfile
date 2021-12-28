@@ -2,3 +2,17 @@ dockerignore=str(read_file('../../src/.dockerignore')).splitlines()
 
 k8s_yaml(helm('.', name='minio', namespace='minio-system', values=['./values.tilt.yaml']))
 
+k8s_resource(
+    workload='minio',
+    resource_deps=['medulla'],
+    objects=[
+ 	'minio-system:namespace',
+        'minio-sa:serviceaccount',
+        'minio:configmap',
+        'minio:secret'
+    ],
+    labels=['minio']
+)
+
+
+
