@@ -1,9 +1,0 @@
-{{ if .Values.tilt }}
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tilt-istiod
-  namespace: istio-system
-data:
-  tilt: istiod
-{{ end }}
