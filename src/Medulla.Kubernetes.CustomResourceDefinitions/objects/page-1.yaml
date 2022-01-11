@@ -1,0 +1,8 @@
+apiVersion: "medulla.recro.com/v1"
+kind: Page
+metadata:
+  name: my-new-page-object
+spec:
+  pageName: "Home Page"
+  pageContent: "Content"
+  path: "/home"
