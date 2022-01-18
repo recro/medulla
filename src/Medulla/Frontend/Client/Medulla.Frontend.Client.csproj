@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Medulla.CSS\Medulla.CSS.csproj" />
+    <ProjectReference Include="..\..\CSS\Medulla.CSS.csproj" />
   </ItemGroup>
 
   <ItemGroup>
