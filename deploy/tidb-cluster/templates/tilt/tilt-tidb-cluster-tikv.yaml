@@ -1,9 +1,0 @@
-{{ if .Values.tilt }}
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tilt-tidb-cluster-tikv
-  namespace: tidb-cluster
-data:
-  tilt: tidb-cluster-tikv
-{{ end }}

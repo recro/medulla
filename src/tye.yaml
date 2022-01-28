@@ -1,0 +1,44 @@
+name: Medulla
+network: medulla
+
+ingress:
+  - name: medulla
+    bindings:
+      - name: http
+        port: 80
+        protocol: http
+      - name: https
+        port: 443
+        protocol: https
+    rules:
+      - service: shell
+        path: /
+
+services:
+  - name: shell
+    project: Medulla/Shell/Server/Medulla.Shell.Server.csproj
+    replicas: 1
+
+  - name: k8s
+    image: rancher/k3s:v1.23.3-k3s1
+    env:
+      - name: K3S_KUBECONFIG_OUTPUT
+        value: /output/kubeconfig.yaml" --privileged -e "K3S_KUBECONFIG_MODE=666"
+    args: server --disable=coredns,servicelb,traefik,local-storage,metrics-server
+    replicas: 1
+    bindings:
+      - name: https
+        protocol: https
+        port: 6443
+        containerPort: 6443
+    volumes:
+      - name: medulla-k8s-data
+        target: /var/lib/rancher/k3s
+      - name: medulla-k8s-kubelet
+        target: /var/lib/kubelet
+      - name: medulla-k8s-cni
+        target: /var/lib/cni
+      - name: medulla-k8s-log
+        target: /var/log
+      - source: .
+        target: /output
