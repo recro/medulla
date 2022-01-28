@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31710.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.CSS", "Medulla\CSS\Medulla.CSS.csproj", "{89C56160-977D-42C8-9108-23FEFFCFF8FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.CSS", "Medulla\Presentation\Assets\Medulla.Presentation.Assets.csproj", "{89C56160-977D-42C8-9108-23FEFFCFF8FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Frontend.Client", "Medulla\Frontend\Client\Medulla.Frontend.Client.csproj", "{BD7A11A4-5094-4503-BA10-072CA23F40CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Frontend.Client", "Medulla\Services\Frontend\Client\Medulla.Services.Frontend.Client.csproj", "{BD7A11A4-5094-4503-BA10-072CA23F40CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Frontend.Server", "Medulla\Frontend\Server\Medulla.Frontend.Server.csproj", "{784897E2-622F-4107-9223-03DA983CECD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Frontend.Server", "Medulla\Services\Frontend\Server\Medulla.Services.Frontend.Server.csproj", "{784897E2-622F-4107-9223-03DA983CECD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
