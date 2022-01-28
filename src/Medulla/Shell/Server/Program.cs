@@ -10,6 +10,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
 }
+else
+{
+    app.UseHsts();
+}
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();

@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
+    <ProjectReference Include="..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
   </ItemGroup>
 
   <ItemGroup>

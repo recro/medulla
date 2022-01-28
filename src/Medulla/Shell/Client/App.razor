@@ -1,4 +1,8 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
