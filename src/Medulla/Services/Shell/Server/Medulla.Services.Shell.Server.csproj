@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\Medulla.Services.Frontend.Client.csproj" />
+    <ProjectReference Include="..\Client\Medulla.Services.Shell.Client.csproj" />
   </ItemGroup>
 
 </Project>
