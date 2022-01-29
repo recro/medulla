@@ -40,7 +40,7 @@ public sealed class AppOptionsSingleton {
                 return KubeConfigLoadType.LoadLocal;
             } else throw new Exception("Environment variable KUBE_CONFIG_LOAD_TYPE must be in-cluster or local");
         }
-        return KubeConfigLoadType.LoadInCluster;
+        return KubeConfigLoadType.LoadLocal;
     }
 
     public bool IsKubernetesConfigInCluster() {

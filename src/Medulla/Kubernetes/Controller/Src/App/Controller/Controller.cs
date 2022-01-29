@@ -19,7 +19,7 @@ public sealed class Controller {
 
         } else if (appOptions.IsKubernetesConfigLocal()) {
             Logger.Message("Kube config is local");
-            config = KubernetesClientConfiguration.BuildDefaultConfig();
+            config = KubernetesClientConfiguration.BuildConfigFromConfigFile();
         } else {
             throw new System.Exception("Failed not appOptions.IsKubernetesConfigInCluster or appOptions.IsKubernetesConfigLocal");
         }
