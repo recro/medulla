@@ -6,7 +6,7 @@ public sealed class Controller {
 
     public static void Start() {
 
-        AppOptions appOptions = AppOptions.GetInstance();
+        AppOptionsSingleton appOptions = AppOptionsSingleton.GetInstance();
 
         if (appOptions.IsKubernetesConfigInCluster()) {
             Logger.Message("Kube config is in-cluster");
