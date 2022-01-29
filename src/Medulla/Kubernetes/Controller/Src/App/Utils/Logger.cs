@@ -1,6 +1,6 @@
 
 using System;
-namespace Utils;
+namespace App.Utils;
 
 public sealed class Logger {
     public static void Message(string msg) {
