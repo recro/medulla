@@ -13,6 +13,8 @@ public sealed class AppInfo {
     public const string DATE = "01/29/2022";
 
     public static void PrintInfo() {
+        var currentColor = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
         Console.WriteLine($""+
             $"\n\n\nWelcome to the Kubernetes Controller for {AppInfo.APP_NAME}\n"+
             "This Controller manages your Medulla Application on your Kubernetes Cluster through the CustomResourceDefinitions.\n\n\n"+
@@ -20,8 +22,10 @@ public sealed class AppInfo {
             $"App: {AppInfo.APP_NAME}\n"+
             $"Version: {AppInfo.VERSION}\n"+
             $"Company: {AppInfo.COMPANY}\n"+
-            $"Date: {AppInfo.DATE}\n\n\n\n"
+            $"Date: {AppInfo.DATE}\n\n\n\n",
+            Console.ForegroundColor
             );
+        Console.ForegroundColor = currentColor;
     }
 
 
