@@ -1,6 +1,6 @@
 using App.Utils;
 
-namespace App;
+namespace App.Controller;
 
 public sealed class Controller {
 
