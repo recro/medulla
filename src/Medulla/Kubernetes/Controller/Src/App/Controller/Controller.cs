@@ -1,5 +1,7 @@
 using App.Utils;
 using k8s;
+using System;
+using k8s.Models;
 
 namespace App.Controller;
 
@@ -27,7 +29,19 @@ public sealed class Controller {
     }
 
 
-    public static void StartWithConfig(KubernetesClientConfiguration config) {
+    private async static void StartWithConfig(KubernetesClientConfiguration config) {
+
+        IKubernetes client = new Kubernetes(config);
+
+        var podlistResp = client.ListNamespacedPodWithHttpMessagesAsync("default", watch: true);
+        // C# 8 required https://docs.microsoft.com/en-us/archive/msdn-magazine/2019/november/csharp-iterating-with-async-enumerables-in-csharp-8
+        await foreach (var (type, item) in podlistResp.WatchAsync<V1Pod, V1PodList>())
+        {
+            Console.WriteLine("==on watch event==");
+            Console.WriteLine(type);
+            Console.WriteLine(item.Metadata.Name);
+            Console.WriteLine("==on watch event==");
+        }
 
     }
 
