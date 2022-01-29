@@ -1,25 +1,54 @@
 
-using App;
 using System;
+using App.Utils;
 
 namespace App;
 
 public enum KubeConfigLoadType {
-    LoadInCluster,
-    LoadLocal
+    LoadLocal,
+    LoadInCluster
+    
 }
 
 public sealed class AppOptions {
 
-    public static KubeConfigLoadType GetKubeConfigLoadType() {
+    private KubeConfigLoadType _loadType { get; set; }
+    private static AppOptions _instance; 
+
+
+    private AppOptions() {
+        _loadType = GetKubeConfigLoadType();
+    }
+
+    public static AppOptions GetInstance() {
+        if (_instance == null) {
+            _instance = new AppOptions();
+        }
+        return _instance;
+    }
+
+
+
+    private KubeConfigLoadType GetKubeConfigLoadType() {
         var loadType = Environment.GetEnvironmentVariable("KUBE_CONFIG_LOAD_TYPE");
-        if (loadType == "in-cluster") {
-            KubeConfigLoadType type = KubeConfigLoadType.LoadInCluster;
-            return type;
-        } else if (loadType == "local") {
-            KubeConfigLoadType type = KubeConfigLoadType.LoadLocal;
-            return type;
-        } else throw new Exception("KubeConfigLoadType Failed env KUBE_CONFIG_LOAD_TYPE was not local or in-cluster");
+        if (loadType == null) {
+            Logger.Message("Environment variable was not found KUBE_CONFIG_LOAD_TYPE default setting is local");
+        } else {
+            if (loadType == "in-cluster") {
+                return KubeConfigLoadType.LoadInCluster;
+            } else if (loadType == "local") {
+                return KubeConfigLoadType.LoadLocal;
+            } else throw new Exception("Environment variable KUBE_CONFIG_LOAD_TYPE must be in-cluster or local");
+        }
+        return KubeConfigLoadType.LoadInCluster;
+    }
+
+    public bool IsKubernetesConfigInCluster() {
+        return _loadType == KubeConfigLoadType.LoadInCluster;
+    }
+
+    public bool IsKubernetesConfigLocal() {
+        return _loadType == KubeConfigLoadType.LoadLocal;
     }
 
 }

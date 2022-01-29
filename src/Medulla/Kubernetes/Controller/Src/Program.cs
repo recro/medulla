@@ -1,10 +1,10 @@
 
-using App;
 
 class Controller {
 
     public static void Main() {
-        AppInfo.PrintInfo();
+        App.AppInfo.PrintInfo();
+        App.Controller.Start();
     }
 
 }
