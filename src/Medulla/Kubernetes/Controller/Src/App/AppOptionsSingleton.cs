@@ -10,19 +10,19 @@ public enum KubeConfigLoadType {
     
 }
 
-public sealed class AppOptions {
+public sealed class AppOptionsSingleton {
 
     private KubeConfigLoadType _loadType { get; set; }
-    private static AppOptions _instance; 
+    private static AppOptionsSingleton _instance; 
 
 
-    private AppOptions() {
+    private AppOptionsSingleton() {
         _loadType = GetKubeConfigLoadType();
     }
 
-    public static AppOptions GetInstance() {
+    public static AppOptionsSingleton GetInstance() {
         if (_instance == null) {
-            _instance = new AppOptions();
+            _instance = new AppOptionsSingleton();
         }
         return _instance;
     }
