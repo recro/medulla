@@ -5,7 +5,7 @@
 <!-- Please run through this checklist below to ensure a smooth review and merge process for your PR.
 Replace the space in the square brackets with an x to check them. -->
 
-- [ ] You've read the [Contributor Guide](../CONTRIBUTING.md) and [Code of Conduct](../CODE-OF-CONDUCT.md).
+- [ ] You've read the [Contributor Guide](../blob/main/CONTRIBUTING.md) and [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md).
 - [ ] You've included unit or integration tests for your change, where applicable.
 - [ ] You've included inline docs for your change, where applicable.
 - [ ] There's an open issue for the PR that you are making. If you'd like to propose a new feature or change, please open an issue to discuss the change or find an existing issue.
