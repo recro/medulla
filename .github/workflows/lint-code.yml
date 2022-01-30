@@ -1,4 +1,4 @@
-name: Lint
+name: Lint Code
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  run-linters:
-    name: Run linters
+  lint-code:
+    name: Lint
     runs-on: ubuntu-latest
 
     steps:

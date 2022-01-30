@@ -1,4 +1,4 @@
-name: Build
+name: Test Code
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  run-linters:
-    name: Run build
+  test-code:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +22,5 @@ jobs:
         with:
           dotnet-version: "6.0.x"
 
-      - name: Build solution
-        run: dotnet build src/
+      - name: Test solution
+        run: dotnet test src/
