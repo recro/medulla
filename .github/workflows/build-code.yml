@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-code:
-    name: Build
+    name: Build Code
     runs-on: ubuntu-latest
 
     steps:
