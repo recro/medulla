@@ -3,7 +3,13 @@
 [![GitHub issues](https://img.shields.io/github/issues/recro/medulla?style=for-the-badge)](https://github.com/recro/medulla/issues)
 
 # Medulla
-This repository contains the source code for Medulla.
+Medulla is an open-source and Kubernetes-native platform for building modern web apps and API's. Apps run using Blazor, a Web Assembly based SPA framework.
 
 ## Getting Started
-This repository contains all the source code for Medulla. This includes the deployment manifests, platform source code, and documentation files.
+Check out the [Medulla documentation](https://recro.github.io/medulla/) to find out all you need in relation to Medulla.
+
+## Reporting security issues and bugs
+You can follow the instructions in our [Security Policy](SECURITY.md) to report security related issues. You can also find the full list of supported Medulla versions there as well.
+
+## Code of Conduct
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
