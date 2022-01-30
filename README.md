@@ -3,7 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/recro/medulla?style=for-the-badge)](https://github.com/recro/medulla/issues)
 
 # Medulla
-Medulla is an open-source and Kubernetes-native platform for building modern web apps and API's. Apps run using Blazor, a Web Assembly based SPA framework.
+Medulla is an open-source and Kubernetes-native platform for building modern web apps and API's. Apps run using Blazor, a WebAssembly based SPA framework.
 
 ## Getting Started
 Check out the [Medulla documentation](https://recro.github.io/medulla/) to find out all you need in relation to Medulla.
