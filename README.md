@@ -9,7 +9,7 @@ Medulla is an open-source and Kubernetes-native platform for building modern web
 Check out the [Medulla documentation](https://recro.github.io/medulla/) to find out all you need in relation to Medulla.
 
 ## Reporting security issues and bugs
-You can follow the instructions in our [Security Policy](SECURITY.md) to report security related issues. You can also find the full list of supported Medulla versions there as well.
+You can follow the instructions in our [Security Policy](https://github.com/recro/medulla/security/policy) to report security related issues. You can also find the full list of supported Medulla versions there as well.
 
 ## Code of Conduct
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
