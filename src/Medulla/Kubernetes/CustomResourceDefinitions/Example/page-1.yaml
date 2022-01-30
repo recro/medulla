@@ -3,6 +3,10 @@ kind: Page
 metadata:
   name: my-new-page-object
 spec:
-  pageName: "Home Page"
-  pageContent: "Content"
-  path: "/home"
+  name: test
+  namespace: test
+  version: test
+  author: test
+  company: test
+  blazorFile: test
+  urlPath: test
