@@ -1,12 +1,23 @@
+# {PR title}
+
+<!-- Thank you for submitting a pull request to our repo. -->
+
+<!-- Please run through this checklist below to ensure a smooth review and merge process for your PR.
+Replace the space in the square brackets with an x to check them. -->
+
+- [ ] You've read the [Contributor Guide](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md) and [Code of Conduct](https://github.com/dotnet/aspnetcore/blob/main/CODE-OF-CONDUCT.md).
 - [ ] You've included unit or integration tests for your change, where applicable.
 - [ ] You've included inline docs for your change, where applicable.
-- [ ] There's an open issue for your PR that you are making. Please open an issue to dicuss changes or new features.
+- [ ] There's an open issue for the PR that you are making. If you'd like to propose a new feature or change, please open an issue to discuss the change or find an existing issue.
 
-**PR Title**
-Summary of the changes.
+<!-- Once all that is done, you're ready to go. Open the PR with the contents below. -->
 
-**PR Description**
-Detail 1
-Detail 2
+## Summary of the changes
 
-Fixes #issuenumber
+{Summary} (Less than 80 characters)
+
+## Description
+
+{Detail}
+
+Fixes #{issue number}
