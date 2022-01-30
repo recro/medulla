@@ -12,7 +12,7 @@ on:
 
 jobs:
   scan-code:
-    name: Scan
+    name: Scan Code
     runs-on: ubuntu-latest
 
     permissions:
