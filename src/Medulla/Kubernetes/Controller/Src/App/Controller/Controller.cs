@@ -31,11 +31,8 @@ public sealed class Controller {
 
 
     private async static void StartWithConfig(KubernetesClientConfiguration config) {
-
-        IKubernetes client = new Kubernetes(config);
         CRD crd = new CRD(config, "pages", "v1", "pages", "default");
         await crd.GetResources();
-
     }
 
 }
