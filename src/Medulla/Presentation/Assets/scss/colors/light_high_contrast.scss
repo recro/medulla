@@ -1,0 +1,33 @@
+@mixin medulla-colors-light_high_contrast {
+    & {
+        --color-select-menu-tap-focus-bg: #e0c5ff;
+        --color-btn-focus-shadow: 0 0 0 3px rgba(98,44,188,0.3);
+        --color-btn-shadow-input-focus: 0 0 0 0.2em rgba(98,44,188,0.3);
+        --color-btn-primary-bg: #622cbc;
+        --color-btn-primary-border: #411d7b;
+        --color-btn-primary-hover-bg: #512598;
+        --color-btn-primary-hover-border: #411d7b;
+        --color-btn-primary-selected-bg: hsla(263,61%,37%,1);
+        --color-btn-primary-selected-shadow: inset 0 1px 0 rgba(38,15,73,0.2);
+        --color-btn-primary-disabled-bg: #faf0fe;
+        --color-btn-primary-focus-bg: #411d7b;
+        --color-btn-primary-focus-border: #411d7b;
+        --color-btn-primary-focus-shadow: 0 0 0 3px rgba(65,29,123,0.4);
+        --color-btn-outline-text: #512598;
+        --color-btn-outline-hover-bg: #622cbc;
+        --color-btn-outline-hover-border: #411d7b;
+        --color-btn-outline-selected-bg: #411d7b;
+        --color-btn-outline-selected-shadow: inset 0 1px 0 rgba(38,15,73,0.2);
+        --color-btn-outline-disabled-text: rgba(98,44,188,0.5);
+        --color-btn-outline-disabled-counter-bg: rgba(98,44,188,0.05);
+        --color-btn-outline-focus-border: #411d7b;
+        --color-btn-outline-focus-shadow: 0 0 0 3px rgba(81,37,152,0.4);
+        --color-btn-outline-counter-bg: rgba(98,44,188,0.1);
+        --color-accent-fg: #622cbc;
+        --color-accent-emphasis: #622cbc;
+        --color-accent-muted: #a371f7;
+        --color-accent-subtle: #faf0fe;
+        --color-primer-border-active: #a371f7;
+        --color-primer-shadow-focus: 0 0 0 3px rgba(98,44,188,0.3);
+    }
+}

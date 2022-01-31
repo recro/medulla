@@ -1,0 +1,5 @@
+@import '../../colors/light.scss';
+
+@include color-mode-theme(light, true) {
+    @include medulla-colors-light;
+}

@@ -1,0 +1,5 @@
+@import '../../colors/dark.scss';
+
+@include color-mode-theme(dark) {
+    @include medulla-colors-dark;
+}
