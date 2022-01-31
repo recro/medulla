@@ -1,12 +1,19 @@
 {
   "name": "@medulla/css",
   "version": "0.1.0",
+  "scripts": {
+    "dist": "postcss scss/index.scss -o wwwroot/css/medulla.min.css"
+  },
   "devDependencies": {
-    "@primer/css": "^17.6.1",
-    "autoprefixer": "^10.3.3",
-    "postcss": "^8.3.6",
-    "postcss-cli": "^8.3.1",
-    "postcss-node-sass": "^3.1.1",
-    "postcss-scss": "^4.0.0"
+    "@koddsson/postcss-sass": "5.0.1",
+    "@primer/css": "19.2.0",
+    "autoprefixer": "10.4.2",
+    "postcss": "8.4.5",
+    "postcss-calc": "8.2.3",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "14.0.2",
+    "postcss-load-config": "3.1.1",
+    "postcss-scss": "4.0.3",
+    "postcss-simple-vars": "6.0.3"
   }
 }

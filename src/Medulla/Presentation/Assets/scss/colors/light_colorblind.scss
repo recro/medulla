@@ -1,15 +1,15 @@
-@mixin medulla-colors-light {
+@mixin medulla-colors-light_colorblind {
     & {
         --color-select-menu-tap-focus-bg: #ecd8ff;
         --color-btn-focus-shadow: 0 0 0 3px rgba(130,80,223,0.3);
         --color-btn-shadow-input-focus: 0 0 0 0.2em rgba(130,80,223,0.3);
         --color-btn-primary-bg: #8250df;
         --color-btn-primary-hover-bg: #6639ba;
-        --color-btn-primary-selected-bg: hsla(261,92%,72%,1);
+        --color-btn-primary-selected-bg: hsla(261,69%,59%,1);
         --color-btn-primary-selected-shadow: inset 0 1px 0 rgba(46,20,97,0.2);
-        --color-btn-primary-disabled-bg: #ecd8ff;
+        --color-btn-primary-disabled-bg: #d8b9ff;
         --color-btn-primary-focus-bg: #8250df;
-        --color-btn-primary-focus-shadow: 0 0 0 3px rgba(164,117,249,0.4);
+        --color-btn-primary-focus-shadow: 0 0 0 3px rgba(164, 117, 249,0.4);
         --color-btn-outline-text: #8250df;
         --color-btn-outline-hover-bg: #8250df;
         --color-btn-outline-selected-bg: hsla(261,53%,48%,1);

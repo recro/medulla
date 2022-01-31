@@ -1,16 +1,22 @@
-﻿const path = require('path')
+const autoprefixer = require('autoprefixer')
+const sass = require('@koddsson/postcss-sass')
+const scss = require('postcss-scss')
+const scssImport = require('postcss-import')
+const {join} = require('path')
 
 module.exports = {
-    parser: 'postcss-scss',
     map: {
-        sourcesContent: false,
-        annotation: false
+        sourceContent: false,
+        annotation: true
     },
+    customSyntax: scss,
+    parser: scss,
     plugins: [
-        require('postcss-node-sass')({
-            includePaths: [path.join(__dirname, 'node_modules')],
+        scssImport,
+        sass({
+            includePaths: [join(__dirname, 'node_modules')],
             outputStyle: 'compressed'
         }),
-        require('autoprefixer')
+        autoprefixer
     ]
 }
