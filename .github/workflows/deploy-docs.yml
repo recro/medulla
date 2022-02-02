@@ -1,0 +1,39 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-docs:
+    name: Deploy Docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "6.0.x"
+
+      - name: Create release directory
+        run: mkdir release
+
+      - name: Build docs
+        run: dotnet publish src/Medulla/Documentation/Client/Medulla.Documentation.Client.csproj -c Release -o release --nologo
+      
+      - name: Stage docs
+        run: |
+          cp release/wwwroot/docs/index.html release/wwwroot/docs/404.html
+          touch release/wwwroot/.nojekyll
+      
+      - name: Deploy docs
+        uses: JamesIves/github-pages-deploy-action@4
+        with:
+          token: ${{ secrets.DOCS_TOKEN }}
+          branch: main
+          folder: release/wwwroot
+          repository-name: recro/recro.github.io

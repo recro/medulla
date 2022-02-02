@@ -6,7 +6,7 @@
 Medulla is an open-source and Kubernetes-native platform for building modern web apps and API's. Apps run using Blazor, a WebAssembly based SPA framework.
 
 ## Getting Started
-Check out the [Medulla documentation](https://recro.github.io/medulla/) to find out all you need in relation to Medulla.
+Check out the [Medulla documentation](https://recro.github.io/docs/) to find out all you need in relation to Medulla.
 
 ## Reporting security issues and bugs
 You can follow the instructions in our [Security Policy](https://github.com/recro/medulla/security/policy) to report security related issues. You can also find the full list of supported Medulla versions there as well.
