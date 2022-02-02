@@ -11,10 +11,16 @@ ingress:
         port: 443
         protocol: https
     rules:
+      - service: docs
+        path: /docs
       - service: shell
         path: /
 
 services:
+  - name: docs
+    project: Medulla/Documentation/Server/Medulla.Documentation.Server.csproj
+    replicas: 1
+
   - name: shell
     project: Medulla/Shell/Server/Medulla.Shell.Server.csproj
     replicas: 1

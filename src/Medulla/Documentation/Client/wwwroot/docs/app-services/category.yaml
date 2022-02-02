@@ -1,0 +1,5 @@
+title: Medulla App Services
+shortTitle: App Services
+intro: Here is where you can find all Medulla app services. These are the services that actuall host and support a deployed Medulla app.
+pages:
+  - app-service

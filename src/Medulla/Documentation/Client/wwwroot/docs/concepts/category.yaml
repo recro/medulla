@@ -1,0 +1,7 @@
+title: Concepts
+shortTitle: Concepts
+intro: Here you can find some high level concepts so you can understand what Medulla is, where it fits in, and what the goals of the project are.
+pages:
+  - what-is-medulla
+  - what-is-low-code
+  - architecture-overview

@@ -1,0 +1,10 @@
+title: Medulla System Services
+shortTitle: System Services
+intro: Here is where you can find all Medulla system services. These services offer core capabilities of Medulla, these tend to be the core building block services that apps on Medulla consume.
+pages:
+  - app-service
+  - database-service
+  - designer-service
+  - secret-service
+  - workflow-service
+  - kubernetes-controller

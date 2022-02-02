@@ -1,0 +1,13 @@
+title: Medulla Docs
+description: A Kubernetes Native Low-Code Platform
+author: The Medulla Contributors
+product: Medulla
+github: https://github.com/recro/medulla
+repoDocumentationPath: /src/Medulla/Documentation/Client/wwwroot/docs/
+categories:
+  - get-started
+  - concepts
+  - dependencies
+  - system-services
+  - app-services
+  - deployment
