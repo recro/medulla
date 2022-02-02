@@ -1,4 +1,4 @@
-.search-input {
+﻿.search-input {
     min-width: 256px;
     background: var(--color-canvas-default) url(../images/search.svg) no-repeat 6px;
     padding: 10px 8px 10px 32px;
@@ -69,4 +69,24 @@ details[open] > summary > .octicon-three-bars {
 
 .sidebar-article.active:before {
     border-left: 2px solid var(--color-fg-default);
+}
+
+#preloader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url(../images/preloader.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#preloader-text {
+    position: absolute;
+    top: 60%;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }

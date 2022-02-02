@@ -17,7 +17,13 @@
 </head>
 
 <body data-color-mode="auto" data-light-theme="light" data-dark-theme="dark_dimmed">
-    <div id="app">Loading...</div>
+    <div id="app">
+        <div id="preloader"></div>
+        <h1 class="text-center" id="preloader-text">
+            <span>Loading Medulla Docs</span>
+            <span class="AnimatedEllipsis"></span>
+        </h1>
+    </div>
 
     <script src="shared/js/prism.min.js" data-manual></script>
     <script src="_framework/blazor.webassembly.js"></script>
