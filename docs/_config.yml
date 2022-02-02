@@ -1,7 +1,0 @@
-title: Medulla Docs
-tagline: A Kubernetes Native Low-Code Platform
-description: A Kubernetes Native Low-Code Platform
-author: The Medulla Contributors
-permalink: /:categories/:title
-markdown: kramdown
-highlighter: rouge

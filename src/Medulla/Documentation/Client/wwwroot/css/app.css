@@ -1,0 +1,72 @@
+.search-input {
+    min-width: 256px;
+    background: var(--color-canvas-default) url(../images/search.svg) no-repeat 6px;
+    padding: 10px 8px 10px 32px;
+}
+
+.search-input-mobile {
+    width: 100%;
+    background: var(--color-canvas-default) url(../images/search.svg) no-repeat 6px;
+    padding: 10px 8px 10px 32px;
+}
+
+.content {
+    max-width: 720px;
+}
+
+@media (min-width: 1280px) {
+    .content {
+        max-width: none;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        grid-template-columns: minmax(500px,720px) minmax(220px,1fr);
+        grid-template-areas: "top sidebar" "bottom sidebar";
+        column-gap: 80px;
+    }
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.toc {
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    padding-bottom: 24px;
+}
+
+.article {
+    grid-area: bottom;
+}
+
+details[open] > summary > div > span > svg {
+    transform: rotateX(180deg);
+}
+
+details[open] > summary > .octicon-x {
+    display: inline-block !important;
+}
+
+details[open] > summary > .octicon-three-bars {
+    display: none !important;
+}
+
+.sidebar-category.active {
+    background-color: rgba(149, 157, 165, .1);
+}
+
+.sidebar-article:before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    height: 100%;
+    border-left: 1px solid var(--color-fg-default);
+    width: 1px;
+    top: 0;
+}
+
+.sidebar-article.active:before {
+    border-left: 2px solid var(--color-fg-default);
+}

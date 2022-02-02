@@ -1,0 +1,224 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+@using System.Web
+
+@inherits LayoutComponentBase
+
+@inject DocumentationService docs;
+@inject NavigationManager navigation;
+
+<div class="d-lg-flex">
+    <div class="d-none d-lg-block color-bg-subtle position-sticky top-0 overflow-y-auto" style="height: 100vh; width: 286px;">
+        <div class="d-flex flex-items-center p-4 position-sticky top-0 color-bg-subtle">
+            <a href="" class="color-fg-default">
+                <svg class="octicon" width="32" height="32" version="1.1" viewBox="0 0 174.17 167.77" xmlns="http://www.w3.org/2000/svg">
+                    <Logo />
+                </svg>
+            </a>
+            <a href="" class="h4 color-fg-default no-underline no-wrap pl-2 flex-auto">
+                @if (docs.Ready)
+                {
+                    @docs.Site.Title
+                }
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li class="mb-2">
+                    <a href="" class="pl-4 pr-5 pb-1 f4 color-fg-muted no-underline">
+                        @if (docs.Ready)
+                        {
+                            @docs.Site.Product
+                        }
+                    </a>
+                </li>
+                <li>
+                    <ul class="list-style-none">
+                        @if (docs.Ready)
+                        {
+                            @foreach (var category in docs.Site.Categories)
+                            {
+                                <li class="sidebar-category py-1 @(docs.IsCategoryActive(category) ? "active" : string.Empty)">
+                                    <details class="details-reset" @attributes="GetDetailsAttributes(docs.IsCategoryActive(category))">
+                                        <summary>
+                                            <div class="d-flex flex-justify-between">
+                                                <div class="pl-4 pr-1 py-2 f6 text-uppercase d-block flex-auto mr-3 color-fg-default no-underline text-bold">
+                                                    @category.ShortTitle
+                                                </div>
+                                                <span style="margin-top: 7px;" class="flex-shrink-0 pr-3 color-fg-muted">
+                                                    <svg aria-hidden="true" role="img" class="opacity-60 rotate-180" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path fill-rule="evenodd" d="M12.78 6.22a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0L3.22 7.28a.75.75 0 011.06-1.06L8 9.94l3.72-3.72a.75.75 0 011.06 0z"></path></svg>
+                                                </span>
+                                            </div>
+                                        </summary>
+                                        <ul class="list-style-none">
+                                            @foreach (var page in category.Pages)
+                                            {
+                                                <li class="position-relative sidebar-article @(docs.IsPageActive(page) ? "active" : string.Empty)">
+                                                    <a href="@(Path.Combine(category.Name, page.Name))" class="pl-6 pr-5 py-1 no-underline d-block @(docs.IsPageActive(page) ? "text-bold" : "color-fg-muted")">
+                                                        @(page.ShortTitle)
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </details>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="flex-1 min-width-0">
+        <div class="border-bottom color-border-muted no-print">
+            <header class="container-xl px-3 px-md-6 pt-3 pb-3 position-relative" style="z-index:2">
+                <div class="d-none d-lg-flex flex-justify-end">
+                    <div class="d-inline-block ml-4">
+                        <EditForm OnSubmit="Search" Model="@search">
+                            <span class="d-flex">
+                                <InputText @bind-Value="search.Query" id="search" class="form-control input-lg search-input" placeholder="Search topics..." />
+                            </span>
+                        </EditForm>
+                    </div>
+                </div>
+                <div class="d-lg-none">
+                    <div class="d-flex flex-justify-between">
+                        <div class="d-flex flex-items-center">
+                            <a href="">
+                                <svg class="octicon" width="32" height="32" version="1.1" viewBox="0 0 174.17 167.77" xmlns="http://www.w3.org/2000/svg">
+                                    <Logo />
+                                </svg>
+                            </a>
+                            <a href="" class="h4 color-fg-default no-underline no-wrap pl-2">@docs.Site.Title</a>
+                        </div>
+                        <details class="details-reset">
+                            <summary class="btn btn-outline" style="background-color: var(--color-bg-default); border-color: var(--color-border-muted);">
+                                <svg aria-hidden="true" role="img" class="octicon octicon-three-bars" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"><path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path></svg>
+                                <svg aria-hidden="true" role="img" class="octicon octicon-x" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display: none; user-select: none; vertical-align: text-bottom; overflow: visible;"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+                            </summary>
+                            <div class="width-full position-absolute left-0 right-0 color-shadow-large color-bg-default px-3 px-md-6 pb-3 d-block mt-2">
+                                <div class="mt-3 mb-2">
+                                    <form action="/" method="get">
+                                        <input name="query" id="mobile-search" class="form-control input-lg search-input-mobile" type="text" placeholder="Search topics..." />
+                                    </form>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </header>
+        </div>
+        @if (docs.Ready)
+        {
+            @Body
+        }
+        <div class="mt-lg-9 py-7 px-3 px-md-6 no-print color-bg-subtle">
+            <div class="container-xl gutter-lg-spacious clearfix">
+                <div class="col-12 col-lg-6 col-xl-4 mb-6 mb-xl-0 float-left">
+                    <div class="f5">
+                        <h2 class="f4">Help us make @docs.Site.Product better!</h2>
+                        <p class="color-fg-muted f6">
+                            @docs.Site.Product is a developing open source project and is always seeking keep developers to make the it better.
+                        </p>
+                        <a class="btn btn-outline" href="@(docs.Site.Github)/blob/main/CONTRIBUTING.md" target="_blank">
+                            <svg aria-hidden="true" role="img" class="octicon mr-1" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path fill-rule="evenodd" d="M4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.565 20.565 0 008 13.393a20.561 20.561 0 003.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.75.75 0 01-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5zM8 14.25l-.345.666-.002-.001-.006-.003-.018-.01a7.643 7.643 0 01-.31-.17 22.075 22.075 0 01-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.08 22.08 0 01-3.744 2.584l-.018.01-.006.003h-.002L8 14.25zm0 0l.345.666a.752.752 0 01-.69 0L8 14.25z"></path></svg>
+                            Learn how to contribute
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-4 mb-6 mb-xl-0 float-left">
+                    <h2 class="f4">Help us make these docs better!</h2>
+                    <p class="color-fg-muted f6">
+                        All of our docs are open source. See something thats wrong or unclear? Submit a pull request to help those in the future.
+                    </p>
+                    <a class="btn btn-outline" href="@(docs.GetGithubEditLink())" target="_blank">
+                        <svg aria-hidden="true" role="img" class="octicon mr-1" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path fill-rule="evenodd" d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path></svg>
+                        Contribute a fix
+                    </a>
+                </div>
+                <div class="col-12 col-lg-12 col-xl-4 float-left">
+                    <h2 class="f4">Still need help?</h2>
+                    <p class="color-fg-muted f6">
+                        If you cant find what you need in the docs feel free to reach out to the community on GitHub for further assistance.
+                    </p>
+                    <a class="btn btn-outline" href="@(docs.Site.Github)/issues" target="_blank">
+                        <svg aria-hidden="true" role="img" class="octicon mr-1" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path fill-rule="evenodd" d="M5.5 3.5a2 2 0 100 4 2 2 0 000-4zM2 5.5a3.5 3.5 0 115.898 2.549 5.507 5.507 0 013.034 4.084.75.75 0 11-1.482.235 4.001 4.001 0 00-7.9 0 .75.75 0 01-1.482-.236A5.507 5.507 0 013.102 8.05 3.49 3.49 0 012 5.5zM11 4a.75.75 0 100 1.5 1.5 1.5 0 01.666 2.844.75.75 0 00-.416.672v.352a.75.75 0 00.574.73c1.2.289 2.162 1.2 2.522 2.372a.75.75 0 101.434-.44 5.01 5.01 0 00-2.56-3.012A3 3 0 0011 4z"></path></svg>
+                        Ask the community
+                    </a>
+                </div>
+            </div>
+        </div>
+        <footer class="py-6 text-small">
+            <div class="container-xl d-flex px-3 px-md-6">
+                <ul class="d-flex list-style-none flex-wrap flex-justify-center flex-xl-justify-start">
+                    <li class="d-flex mr-xl-3 color-fg-muted">
+                        <svg class="octicon mr-2 mr-xl-3" width="20" height="20" version="1.1" viewBox="0 0 174.17 167.77" xmlns="http://www.w3.org/2000/svg">
+                            <Logo />
+                        </svg>
+                        <span>
+                            &copy; @(DateTime.Now.Year) @docs.Site.Author
+                        </span>
+                    </li>
+                    <li class="ml-3">
+                        <a href="@(docs.Site.Github)/blob/main/LICENSE.txt">Terms</a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="@(docs.Site.Github)/blob/main/SECURITY.md">Security</a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="">Help</a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="@docs.Site.Github">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</div>
+
+@code {
+    /// <summary>
+    /// The search query
+    /// </summary>
+    private DocumentationSearch search = new();
+
+    /// <summary>
+    /// Occurs when the page is initialized
+    /// </summary>
+    /// <returns>A task</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        await docs.InitializeAsync("docs/");
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="active"></param>
+    /// <returns></returns>
+    private Dictionary<string, object> GetDetailsAttributes(bool active)
+    {
+        if (active)
+        {
+            return new()
+            {
+                { "open", "true" }
+            };
+        }
+        else
+        {
+            return new();
+        }
+    }
+
+    /// <summary>
+    /// Performs a search
+    /// </summary>
+    private void Search()
+    {
+        navigation.NavigateTo($"search?query={HttpUtility.UrlEncode(search.Query)}");
+    }
+}

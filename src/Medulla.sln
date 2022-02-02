@@ -5,9 +5,13 @@ VisualStudioVersion = 17.0.31710.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Presentation.Assets", "Medulla\Presentation\Assets\Medulla.Presentation.Assets.csproj", "{89C56160-977D-42C8-9108-23FEFFCFF8FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Shell.Client", "Medulla\Shell\Client\Medulla.Shell.Client.csproj", "{BD7A11A4-5094-4503-BA10-072CA23F40CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Shell.Client", "Medulla\Shell\Client\Medulla.Shell.Client.csproj", "{BD7A11A4-5094-4503-BA10-072CA23F40CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Shell.Server", "Medulla\Shell\Server\Medulla.Shell.Server.csproj", "{784897E2-622F-4107-9223-03DA983CECD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Shell.Server", "Medulla\Shell\Server\Medulla.Shell.Server.csproj", "{784897E2-622F-4107-9223-03DA983CECD2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Server", "Medulla\Documentation\Server\Medulla.Documentation.Server.csproj", "{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Client", "Medulla\Documentation\Client\Medulla.Documentation.Client.csproj", "{9B65899C-1359-44AC-9A49-68EEFAB39D23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{784897E2-622F-4107-9223-03DA983CECD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{784897E2-622F-4107-9223-03DA983CECD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{784897E2-622F-4107-9223-03DA983CECD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

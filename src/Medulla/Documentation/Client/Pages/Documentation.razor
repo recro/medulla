@@ -1,0 +1,203 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+@page "/"
+@page "/{category}"
+@page "/{category}/{page}"
+
+@inject DocumentationService docs;
+@inject IJSRuntime js;
+
+@if(category == null)
+{
+    <PageTitle>@docs.Site.Title</PageTitle>
+}
+else
+{
+    @if (page == null)
+    {
+        <PageTitle>@(category.Title) | @docs.Site.Title</PageTitle>
+    }
+    else
+    {
+        <PageTitle>@(page.Title) | @docs.Site.Title</PageTitle>
+    }
+}
+
+<div class="container-xl px-3 px-md-6 my-4 my-lg-4">
+    <div class="d-lg-flex flex-justify-between">
+        <div class="d-flex flex-items-center">
+            <nav class="f5">
+                @if (category == null)
+                {
+                    <a href="" class="d-inline-block px-2 color-fg-muted">Medulla</a>
+                }
+                else
+                {
+                    <a href="" class="d-inline-block px-2">Medulla</a>
+                    <span class="color-fg-muted">/</span>
+                    @if (page == null)
+                    {
+                        <a href="@category.Name" class="d-inline-block px-2 color-fg-muted">@category.Title</a>
+                    }
+                    else
+                    {
+                        <a href="@Category" class="d-inline-block px-2">@category.Title</a>
+                        <span class="color-fg-muted">/</span>
+                        <a href="@(Path.Combine(category.Name, page.Name))" class="d-inline-block px-2 color-fg-muted">@(page.Title)</a>
+                    }
+                }
+            </nav>
+        </div>
+    </div>
+    <div class="mt-7 content">
+        <div class="pb-3">
+            <div class="d-flex flex-items-baseline flex-justify-between">
+                <h1 class="my-4 border-bottom-0">
+                    @if (category == null)
+                    {
+                        @docs.Site.Product
+                    }
+                    else
+                    {
+                        if (page == null)
+                        {
+                            @category.Title
+                        }
+                        else
+                        {
+                            @(page.Title)
+                        }
+                    }
+                </h1>
+            </div>
+            <div class="h6-mktg">
+                <p>
+                    @if (category == null)
+                    {
+                        @docs.Site.Description
+                    }
+                    else
+                    {
+                        if (page == null)
+                        {
+                            @category.Intro
+                        }
+                        else
+                        {
+                            @(page.Intro)
+                        }
+                    }
+                </p>
+            </div>
+            @if (category == null)
+            {
+                <div class="border-bottom border-xl-0 pb-4 mb-5 pb-xl-2 mb-xl-2"></div>
+                <div class="mt-7">
+                    <ul class="list-style-none">
+                        @foreach (var child in docs.Site.Categories)
+                        {
+                            <li class="mb-5">
+                                <a href="@child.Name" class="no-underline d-block py-1 border-bottom color-border-default">
+                                    <h2 class="h4">@child.Title</h2>
+                                </a>
+                                <p class="f4 mt-3">@child.Intro</p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            else
+            {
+                if (page == null)
+                {
+                    <div class="mt-2">
+                        <ul class="list-style-inside pl-4">
+                            @foreach (var child in category.Pages)
+                            {
+                                <li class="f4 my-1">
+                                    <a href="@(Path.Combine(category.Name, child.Name))">@child.Title</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
+        @if (category != null && page != null)
+        {
+            <div class="border-bottom border-xl-0 pb-4 mb-5 pb-xl-0 mb-xl-0 sidebar">
+                <div class="toc">
+                    <h2 class="f5 mb-2">In this article</h2>
+                    <ul class="list-style-none pl-0 f5 mb-0">
+                        @foreach (var header in page.Headers)
+                        {
+                            <li class="ml-0 mb-2 lh-condensed">
+                                <a href="@(Path.Combine(category.Name, page.Name))#@header.Id" target="_top">@header.Value</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="article">
+                <div class="markdown-body">
+                    @(page.Html)
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    /// <summary>
+    /// The documentation category
+    /// </summary>
+    [Parameter]
+    public string? Category { get; set; }
+
+    /// <summary>
+    /// The documentation page
+    /// </summary>
+    [Parameter]
+    public string? Page { get; set; }
+
+    /// <summary>
+    /// The current category
+    /// </summary>
+    private DocumentationCategory? category;
+
+    /// <summary>
+    /// The current page
+    /// </summary>
+    private DocumentationPage? page;
+
+    /// <summary>
+    /// Occurs when the page initalizes
+    /// </summary>
+    protected override void OnParametersSet()
+    {
+        page = null;
+        category = null;
+
+        if (Category != null)
+        {
+            category = docs.GetCategory(Category);
+
+            if (Page != null)
+            {
+                page = docs.GetPage(Category, Page);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Occurs after the page has rendered
+    /// </summary>
+    /// <param name="firstRender">If this is the first render</param>
+    /// <returns>A task</returns>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("Prism.highlightAll");
+    }
+}

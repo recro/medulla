@@ -8,10 +8,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Medulla</title>
-    <base href="/" />
+    <title>Medulla Docs</title>
+    <base href="/docs/" />
     <link href="shared/css/medulla.min.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
+    <link href="css/app.css" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
 </head>
@@ -19,8 +19,8 @@
 <body data-color-mode="auto" data-light-theme="light" data-dark-theme="dark_dimmed">
     <div id="app">Loading...</div>
 
+    <script src="shared/js/prism.min.js" data-manual></script>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
 
 </html>

@@ -1,0 +1,47 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+@page "/search"
+
+@inject DocumentationService docs;
+
+<div class="container-xl px-3 px-md-6 my-4 my-lg-4">
+    <div class="d-lg-flex flex-justify-between">
+        <div class="d-flex flex-items-center">
+            <nav class="f5">
+                <a href="" class="d-inline-block px-2">Medulla</a>
+                <span class="color-fg-muted">/</span>
+                <a href="search" class="d-inline-block px-2 color-fg-muted">Search</a>
+            </nav>
+        </div>
+    </div>
+    <div class="mt-7 content">
+        <div class="pb-3">
+            <div class="border-bottom border-xl-0 pb-4 mb-5 pb-xl-2 mb-xl-2"></div>
+            <div class="mt-7">
+                <ul class="list-style-none" id="search-results">
+                    @if (Query != null)
+                    {
+                        @foreach (var result in docs.Search(Query))
+                        {
+                            <li class="mb-5">
+                                <a href="@(Path.Combine(result.Category.Name, result.Name))" class="no-underline d-block py-1 border-bottom color-border-default"><h2 class="h4">@result.Title</h2></a>
+                                <p class="f4 mt-3">@result.Intro</p>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    /// <summary>
+    /// The search query
+    /// </summary>
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "query")]
+    public string? Query { get; set; }
+}

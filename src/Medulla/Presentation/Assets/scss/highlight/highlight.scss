@@ -1,65 +1,69 @@
-.c,
-.c1,
-.cd,
-.cm {
+.token.comment,
+.token.prolog,
+.token.doctype {
     color: var(--color-prettylights-syntax-comment);
 }
 
-.nc,
-.nf,
-.nn,
-.nx {
-    color: var(--color-prettylights-syntax-entity);
-}
-
-.na,
-.nt {
-    color: var(--color-prettylights-syntax-entity-tag);
-}
-
-.cp,
-.mf,
-.o,
-.p,
-.pi,
-.sx,
-.w {
-    color: var(--color-text-primary);
-}
-
-.dl,
-.nl,
-.s,
-.s1,
-.s2,
-.se {
+.token.cdata,
+.token.string,
+.token.char,
+.token.regex,
+.token.attr-value,
+.token.url {
     color: var(--color-prettylights-syntax-string);
 }
 
-.k,
-.kd,
-.kn,
-.kr,
-.kt {
+.token.punctuation,
+.token.entity {
+    color: unset;
+}
+
+.token.class-name,
+.token.attr-name,
+.token.constant,
+.token.builtin,
+.token.function,
+.token.namespace {
+    color: var(--color-prettylights-syntax-entity);
+}
+
+.token.keyword,
+.token.symbol,
+.token.important,
+.token.operator {
     color: var(--color-prettylights-syntax-keyword);
 }
 
-.n {
-    color: var(--color-prettylights-syntax-variable);
-}
-
-.bp,
-.kc,
-.m,
-.mi,
-.nb,
-.nd,
-.no,
-.py,
-.sr {
+.token.boolean,
+.token.number,
+.token.selector {
     color: var(--color-prettylights-syntax-constant);
 }
 
-.nv {
+.token.property,
+.token.atrule,
+.token.tag {
+    color: var(--color-prettylights-syntax-entity-tag);
+}
+
+.token.deleted {
+    color: var(--color-diff-blob-deletion-fg);
+    background-color: var(--color-diff-blob-deletion-word-bg);
+}
+
+.token.inserted {
+    color: var(--color-diff-blob-addition-fg);
+    background-color: var(--color-diff-blob-addition-word-bg);
+}
+
+.token.variable {
     color: var(--color-prettylights-syntax-storage-modifier-import);
+}
+
+.token.bold {
+    font-weight: $font-weight-bold !important;
+}
+
+.token.italic {
+    font-style: italic !important;
 }
