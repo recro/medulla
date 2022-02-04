@@ -8,7 +8,7 @@ const k8s = require('@kubernetes/client-node');
 
 
 const kc: KubeConfig = new k8s.KubeConfig();
-kc.loadFromDefault();
+kc.loadFromCluster();
 
 const watch: Watch = new k8s.Watch(kc);
 
