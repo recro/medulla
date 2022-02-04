@@ -42,7 +42,7 @@ const watchUrlRecompile = (url :string) => {
         {
             allowWatchBookmarks: false,
         },
-        (type, apiObj, watchObj) => {
+        (type :any, apiObj :any, watchObj :any) => {
             console.log(type, apiObj, watchObj);
             console.log('starting 10 second timer to recompile');
             clearTimeout(timeout);
@@ -52,10 +52,10 @@ const watchUrlRecompile = (url :string) => {
                 recompile();
             }, 10000);
         },
-        (err) => {
+        (err :Error) => {
             console.log(err);
         })
-        .then((req) => {
+        .then((req :any) => {
             console.log(req);
         });
 };
