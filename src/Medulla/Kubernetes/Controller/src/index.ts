@@ -14,6 +14,9 @@ const watch: Watch = new k8s.Watch(kc);
 
 let timeout :NodeJS.Timeout|any = null;
 
+/**
+ * @param objectType  objectType is the plural kubernetes resource type defined by the CRD (pages)
+ */
 const getAllResources = async (objectType:string): Promise<any> => {
     return new Promise((resolve) => {
         const customObjectsApi :CustomObjectsApi = kc.makeApiClient(k8s.CustomObjectsApi);
@@ -29,6 +32,9 @@ const getAllResources = async (objectType:string): Promise<any> => {
     })
 }
 
+/**
+ * @param url  url is the watch url for which when an event attached to that url is received then recompile
+ */
 const watchUrlRecompile = (url :string) => {
     watch.watch(url,
         {
@@ -52,6 +58,9 @@ const watchUrlRecompile = (url :string) => {
         });
 };
 
+/**
+ * @param name is a kubernetes name formatted string like my-custom-object which will be converted to MyCustomObject.razor
+ */
 const convertKubernetesNameToRazorFileName = (name :string) => {
     let _name = '';
     let isUppercase = false;
@@ -76,7 +85,9 @@ const convertKubernetesNameToRazorFileName = (name :string) => {
     return `${_name}.razor`;
 };
 
-
+/**
+ *
+ */
 const recompile = async () => {
     console.log("recompiling pages")
     const pages = await getAllResources("pages");
