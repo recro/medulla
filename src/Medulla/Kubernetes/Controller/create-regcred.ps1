@@ -1,0 +1,1 @@
+kubectl create secret docker-registry regcred --docker-server=369840493607.dkr.ecr.us-east-2.amazonaws.com --docker-username=AWS  --docker-password=$(aws ecr --profile=recro get-login-password --region us-east-2) --docker-email=keith.becker@recro.com
