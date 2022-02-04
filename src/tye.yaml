@@ -17,6 +17,10 @@ ingress:
         path: /
 
 services:
+  - name: controller
+    dockerFile: Medulla/Kubernetes/Controller/Dockerfile
+    replicas: 1
+
   - name: docs
     project: Medulla/Documentation/Server/Medulla.Documentation.Server.csproj
     replicas: 1
