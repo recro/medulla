@@ -1,4 +1,0 @@
-
-
-# CRD Kubernetes Controller
-
