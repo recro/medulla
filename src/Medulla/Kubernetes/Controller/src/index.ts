@@ -15,6 +15,7 @@ const watch: Watch = new k8s.Watch(kc);
 let timeout :NodeJS.Timeout|any = null;
 
 /**
+ * getAllResources will get all resources in the Kubernetes cluster with the plural name.
  * @param objectType  objectType is the plural kubernetes resource type defined by the CRD (pages)
  */
 const getAllResources = async (objectType:string): Promise<any> => {
@@ -33,6 +34,7 @@ const getAllResources = async (objectType:string): Promise<any> => {
 }
 
 /**
+ * watchUrlRecompile will watch a url for event changes and recompile.
  * @param url  url is the watch url for which when an event attached to that url is received then recompile
  */
 const watchUrlRecompile = (url :string) => {
@@ -59,6 +61,7 @@ const watchUrlRecompile = (url :string) => {
 };
 
 /**
+ * convertKubernetesNameToRazorFileName will convert a kubernetes object name to a C# File name with .razor extension.
  * @param name is a kubernetes name formatted string like my-custom-object which will be converted to MyCustomObject.razor
  */
 const convertKubernetesNameToRazorFileName = (name :string) => {
@@ -86,7 +89,7 @@ const convertKubernetesNameToRazorFileName = (name :string) => {
 };
 
 /**
- *
+ * recompile will get Pages Kubernetes resource and set the state in DAPR redis, then send a publish event to DAPR.
  */
 const recompile = async () => {
     console.log("recompiling pages")

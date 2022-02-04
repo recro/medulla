@@ -1,6 +1,7 @@
 import { DaprClient, CommunicationProtocolEnum } from 'dapr-client';
 
 /**
+ * Publish will send a publish event to the DAPR instance.
  * @param pubsubName the name of the dapr pubsub
  * @param topicName the name of the dapr topic
  * @param dataMessage the data to send
