@@ -100,9 +100,9 @@
                             </summary>
                             <div class="width-full position-absolute left-0 right-0 color-shadow-large color-bg-default px-3 px-md-6 pb-3 d-block mt-2">
                                 <div class="mt-3 mb-2">
-                                    <form action="/" method="get">
-                                        <input name="query" id="mobile-search" class="form-control input-lg search-input-mobile" type="text" placeholder="Search topics..." />
-                                    </form>
+                                    <EditForm OnSubmit="Search" Model="@search">
+                                        <InputText @bind-Value="search.Query" id="mobile-search" class="form-control input-lg search-input-mobile" placeholder="Search topics..." />
+                                    </EditForm>
                                 </div>
                             </div>
                         </details>
