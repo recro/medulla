@@ -1,6 +1,5 @@
 import {CustomObjectsApi, KubeConfig, Watch} from "@kubernetes/client-node";
 
-import { getState, setState } from "./dapr-state";
 import publish from "./dapr-publish";
 
 require("regenerator-runtime");
@@ -94,13 +93,7 @@ const convertKubernetesNameToRazorFileName = (name :string) => {
 const recompile = async () => {
     console.log("recompiling pages")
     const pages = await getAllResources("pages");
-    await setState("pages", pages);
-    await publish("pages_compile_pub_sub", "compile", "compiled");
-
-    const pagesInState = await getState("pages");
-    if (pagesInState !== pages) {
-        throw new Error("pages in state does not match pages from resources");
-    }
+    await publish("pages_compile_pub_sub", "compile", pages);
 };
 
 (async () => {
