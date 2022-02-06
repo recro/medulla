@@ -1,0 +1,28 @@
+apiVersion: "medulla.recro.com/v1"
+kind: Page
+metadata:
+  name: privacy-policy
+spec:
+  razor: |
+    @page /
+    <FrontPageBlazorCode />
+
+    @code {
+
+    }
+  cs: |
+    class SomeClass {
+
+    }
+    
+  css: |
+    .some-css {
+      property: value;
+    }
+  js: |
+
+    function someFunction() {
+
+    }
+
+      
