@@ -59,33 +59,6 @@ const watchUrlRecompile = (url :string) => {
         });
 };
 
-/**
- * convertKubernetesNameToRazorFileName will convert a kubernetes object name to a C# File name with .razor extension.
- * @param name is a kubernetes name formatted string like my-custom-object which will be converted to MyCustomObject.razor
- */
-const convertKubernetesNameToRazorFileName = (name :string) => {
-    let _name = '';
-    let isUppercase = false;
-    let isDash = false;
-    for (let i = 0; i < name.length; i++) {
-        if (i === 0) isUppercase = true;
-        if (name[i] === '-') isDash = true;
-
-        if (isDash) {
-            isUppercase = true;
-            isDash = false;
-            continue;
-        }
-        if (isUppercase) {
-            _name += name[i].toUpperCase();
-            isUppercase = false;
-            continue;
-        }
-        _name += name[i];
-
-    }
-    return `${_name}.razor`;
-};
 
 /**
  * recompile will get Pages Kubernetes resource and set the state in DAPR redis, then send a publish event to DAPR.
