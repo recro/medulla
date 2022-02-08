@@ -1,6 +1,9 @@
 import {CustomObjectsApi, KubeConfig, Watch} from "@kubernetes/client-node";
 
 import publish from "./dapr-publish";
+const homedir = require('os').homedir();
+const fs = require('fs')
+
 
 require("regenerator-runtime");
 const k8s = require('@kubernetes/client-node');
@@ -68,6 +71,12 @@ const recompile = async () => {
     await publish("pages_compile_pub_sub", "compile", pages);
 };
 
+const wait = async (time : number) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, time)
+    })
+}
+
 
 async function loadEnv() {
     console.log("loading env")
@@ -75,6 +84,17 @@ async function loadEnv() {
         console.log("loading from cluster")
         kc.loadFromCluster();
     } else {
+        const homedir = require('os').homedir();
+        while (true) {
+            if (fs.existsSync( `${homedir}/.kube/config` )) {
+                console.log("kube config file found")
+                break;
+            } else {
+                console.log("kube config file not found")
+                await wait(1000);
+                continue;
+            }
+        }
         console.log("loading from default")
         kc.loadFromDefault();
     }
