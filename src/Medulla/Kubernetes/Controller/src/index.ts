@@ -86,6 +86,16 @@ const wait = async (time : number) => {
 async function loadEnv() {
     console.log("loading env")
     if (process.env.LOAD_FROM_CLUSTER) {
+        while (true) {
+            if (fs.existsSync( "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt" )) {
+                console.log("/var/run/secrets/kubernetes.io/serviceaccount/ca.crt found")
+                break;
+            } else {
+                console.log("/var/run/secrets/kubernetes.io/serviceaccount/ca.crt not found")
+                await wait(1000);
+                continue;
+            }
+        }
         console.log("loading from cluster")
         kc.loadFromCluster();
     } else {
