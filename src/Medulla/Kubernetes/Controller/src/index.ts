@@ -71,13 +71,18 @@ const recompile = async () => {
     await publish("pages_compile_pub_sub", "compile", pages);
 };
 
+/**
+ * waits for some time
+ */
 const wait = async (time : number) => {
     return new Promise((resolve) => {
         setTimeout(resolve, time)
     })
 }
 
-
+/**
+ * loads env
+ */
 async function loadEnv() {
     console.log("loading env")
     if (process.env.LOAD_FROM_CLUSTER) {
