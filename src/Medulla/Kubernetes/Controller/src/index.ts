@@ -7,7 +7,9 @@ const k8s = require('@kubernetes/client-node');
 
 
 const kc: KubeConfig = new k8s.KubeConfig();
-kc.loadFromCluster();
+
+
+
 
 const watch: Watch = new k8s.Watch(kc);
 
@@ -54,9 +56,6 @@ const watchUrlRecompile = (url :string) => {
         (err :Error) => {
             console.log(err);
         })
-        .then((req :any) => {
-            console.log(req);
-        });
 };
 
 
@@ -69,9 +68,21 @@ const recompile = async () => {
     await publish("pages_compile_pub_sub", "compile", pages);
 };
 
+
+async function loadEnv() {
+    console.log("loading env")
+    if (process.env.LOAD_FROM_CLUSTER) {
+        console.log("loading from cluster")
+        kc.loadFromCluster();
+    } else {
+        console.log("loading from default")
+        kc.loadFromDefault();
+    }
+    await (async () => {
+        watchUrlRecompile('/apis/medulla.recro.com/v1/pages');
+    })();
+}
+
 (async () => {
-    watchUrlRecompile('/apis/medulla.recro.com/v1/pages');
-    watchUrlRecompile('/apis/medulla.recro.com/v1/apps');
-})();
-
-
+    await loadEnv()
+})()
