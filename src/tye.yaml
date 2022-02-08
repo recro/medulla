@@ -4,7 +4,6 @@ network: medulla
 extensions:
   - name: dapr
     log-level: debug
-    components-path: "./src/Medulla/Kubernetes/Controller/DaprComponents/"
     placement-port: 6050
 
 ingress:
