@@ -5,6 +5,8 @@ extensions:
   - name: dapr
     log-level: debug
     placement-port: 6050
+    components-path: .\Medulla\Kubernetes\Controller\DaprComponents
+
 
 ingress:
   - name: medulla
@@ -61,3 +63,9 @@ services:
         target: /var/log
       - source: .
         target: /output
+
+
+  - name: redis
+    image: redis
+    bindings:
+      - port: 6379
