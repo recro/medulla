@@ -1,17 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.0.31710.8
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Presentation.Assets", "Medulla\Presentation\Assets\Medulla.Presentation.Assets.csproj", "{89C56160-977D-42C8-9108-23FEFFCFF8FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Client", "Documentation\Client\Medulla.Documentation.Client.csproj", "{9EF36DBB-5778-4D42-A5A1-F072BA9B6579}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Shell.Client", "Medulla\Shell\Client\Medulla.Shell.Client.csproj", "{BD7A11A4-5094-4503-BA10-072CA23F40CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Server", "Documentation\Server\Medulla.Documentation.Server.csproj", "{BE4785DE-7387-4E50-8EBF-9F47B88E69A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Shell.Server", "Medulla\Shell\Server\Medulla.Shell.Server.csproj", "{784897E2-622F-4107-9223-03DA983CECD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Presentation.Assets", "Presentation\Assets\Medulla.Presentation.Assets.csproj", "{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Server", "Medulla\Documentation\Server\Medulla.Documentation.Server.csproj", "{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{8457ECE5-1285-43BB-8864-83863F65C064}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Client", "Medulla\Documentation\Client\Medulla.Documentation.Client.csproj", "{9B65899C-1359-44AC-9A49-68EEFAB39D23}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{421E8D73-A1B8-4D9D-9868-045DDF5BBD57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Shell.Server", "Shell\Server\Medulla.Shell.Server.csproj", "{684054EF-5272-44B6-929E-6B72B81DE00F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Shell.Client", "Shell\Client\Medulla.Shell.Client.csproj", "{93942F5B-76AF-4E5D-8B34-07217FB4AFBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shell", "Shell", "{02D01352-BCEB-4764-A39E-965D75FCCE1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tye", "Tye", "{6A9E255A-3500-43FE-8EB8-C7778CF5551E}"
+	ProjectSection(SolutionItems) = preProject
+		tye.yaml = tye.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,31 +30,38 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89C56160-977D-42C8-9108-23FEFFCFF8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89C56160-977D-42C8-9108-23FEFFCFF8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89C56160-977D-42C8-9108-23FEFFCFF8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89C56160-977D-42C8-9108-23FEFFCFF8FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD7A11A4-5094-4503-BA10-072CA23F40CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD7A11A4-5094-4503-BA10-072CA23F40CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD7A11A4-5094-4503-BA10-072CA23F40CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD7A11A4-5094-4503-BA10-072CA23F40CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{784897E2-622F-4107-9223-03DA983CECD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{784897E2-622F-4107-9223-03DA983CECD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{784897E2-622F-4107-9223-03DA983CECD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{784897E2-622F-4107-9223-03DA983CECD2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FFBDD3C-BA81-4D99-B8BF-492D0EAE2915}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B65899C-1359-44AC-9A49-68EEFAB39D23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF36DBB-5778-4D42-A5A1-F072BA9B6579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF36DBB-5778-4D42-A5A1-F072BA9B6579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF36DBB-5778-4D42-A5A1-F072BA9B6579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF36DBB-5778-4D42-A5A1-F072BA9B6579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE4785DE-7387-4E50-8EBF-9F47B88E69A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE4785DE-7387-4E50-8EBF-9F47B88E69A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE4785DE-7387-4E50-8EBF-9F47B88E69A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE4785DE-7387-4E50-8EBF-9F47B88E69A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{684054EF-5272-44B6-929E-6B72B81DE00F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{684054EF-5272-44B6-929E-6B72B81DE00F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{684054EF-5272-44B6-929E-6B72B81DE00F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{684054EF-5272-44B6-929E-6B72B81DE00F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93942F5B-76AF-4E5D-8B34-07217FB4AFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93942F5B-76AF-4E5D-8B34-07217FB4AFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93942F5B-76AF-4E5D-8B34-07217FB4AFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93942F5B-76AF-4E5D-8B34-07217FB4AFBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9EF36DBB-5778-4D42-A5A1-F072BA9B6579} = {8457ECE5-1285-43BB-8864-83863F65C064}
+		{BE4785DE-7387-4E50-8EBF-9F47B88E69A8} = {8457ECE5-1285-43BB-8864-83863F65C064}
+		{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69} = {421E8D73-A1B8-4D9D-9868-045DDF5BBD57}
+		{684054EF-5272-44B6-929E-6B72B81DE00F} = {02D01352-BCEB-4764-A39E-965D75FCCE1F}
+		{93942F5B-76AF-4E5D-8B34-07217FB4AFBE} = {02D01352-BCEB-4764-A39E-965D75FCCE1F}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {34864A2A-6889-4870-8C8C-82A3C4FE1611}
+		SolutionGuid = {E031215B-9116-4BC0-AA58-A00A8C67440D}
 	EndGlobalSection
 EndGlobal
