@@ -8,9 +8,13 @@ intro: Find out what you need to contribute to Medulla.
 In order to contribute to Medulla from windows you will need a few things. Dependencies recommended are as follows:
 
 - [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-- [Docker Desktop](https://docs.docker.com/desktop/windows/install/)
+- [Rancher Desktop](https://rancherdesktop.io/)
 
 Along with these general dependencies, you will also require a code editor. You can use [Visual Studio 2022 Community Edition](https://visualstudio.microsoft.com/vs/preview/), [Visual Studio Code](https://code.visualstudio.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/).
+
+On another note, the reason we use Rancher Desktop instead of Docker Desktop is because of both licensing concerns as well as for the Kubernetes k3s distribution thats included.
+
+You can use Docker Desktop if you wish, but you must have a Kubernetes cluster accessable for Medulla to operate correctly.
 
 ## Starting Medulla
 In development you will use tye as a part of your inner development loop. This means that as you edit code and save the files, tye will automatically pick up those changes, compile them, and run them.
