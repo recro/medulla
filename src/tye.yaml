@@ -7,7 +7,6 @@ extensions:
     placement-port: 6050
     components-path: .\Medulla\Kubernetes\Controller\DaprComponents
 
-
 ingress:
   - name: medulla
     bindings:
@@ -24,14 +23,6 @@ ingress:
         path: /
 
 services:
-  - name: controller
-    dockerFile: Medulla/Kubernetes/Controller/Dockerfile
-    replicas: 1
-    volumes:
-      - name: kubernetes-config
-        source: ./kubeconfig.yaml
-        target: /root/.kube/config
-
   - name: docs
     project: Medulla/Documentation/Server/Medulla.Documentation.Server.csproj
     replicas: 1
