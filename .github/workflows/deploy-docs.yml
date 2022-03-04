@@ -23,7 +23,7 @@ jobs:
         run: mkdir release
 
       - name: Build docs
-        run: dotnet publish src/Medulla/Documentation/Client/Medulla.Documentation.Client.csproj -c Release -o release --nologo
+        run: dotnet publish src/Documentation/Client/Medulla.Documentation.Client.csproj -c Release -o release --nologo
       
       - name: Stage docs
         run: |
