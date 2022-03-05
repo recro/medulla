@@ -1,7 +1,6 @@
 name: Medulla
 namespace: medulla-system
 network: medulla
-solution: Medulla.sln
 
 ingress:
   - name: medulla
