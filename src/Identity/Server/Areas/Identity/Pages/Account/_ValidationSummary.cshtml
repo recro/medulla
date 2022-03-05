@@ -1,0 +1,15 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+@if (!ViewData.ModelState.IsValid)
+{
+    @foreach (var error in ViewData.ModelState.SelectMany(kvp => kvp.Value != null ? kvp.Value.Errors : new()))
+    {
+        <div class="flash flash-full flash-error p-3 mx-auto my-0 f5" style="border-width: 1px;">
+            <div class="px-2">
+                @error.ErrorMessage
+            </div>
+        </div>
+    }
+}

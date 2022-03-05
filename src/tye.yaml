@@ -18,6 +18,9 @@ ingress:
       - service: documentation
         path: /docs
         preservePath: true
+      - service: identity
+        path: /identity
+        preservePath: true
 
 services:
   - name: shell
@@ -29,6 +32,13 @@ services:
 
   - name: documentation
     project: Documentation/Server/Medulla.Documentation.Server.csproj
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+
+  - name: identity
+    project: Identity/Server/Medulla.Identity.Server.csproj
     replicas: 1
     bindings:
       - name: http

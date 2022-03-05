@@ -2,11 +2,16 @@
 @* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
 @* See the LICENSE file in the project root for more information. *@
 
-@inherits LayoutComponentBase
+@page "/app/{appId}"
 
-<HeaderBar />
-<SideBar />
+@attribute [Authorize]
 
-<div class="position-fixed color-bg-inset p-4" style="top: 56px; left: 80px; height: calc(100vh - 56px); width: calc(100vw - 80px); overflow-y: auto;">
-    @Body
-</div>
+<p>@AppId</p>
+
+@code {
+    /// <summary>
+    /// The app id.
+    /// </summary>
+    [Parameter]
+    public string? AppId { get; set; }
+}
