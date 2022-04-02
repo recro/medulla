@@ -1,0 +1,10 @@
+.vs
+node_modules
+*obj/*
+.idea/
+packages
+*/obj/
+*/bin/
+**/bin/
+**/obj/
+

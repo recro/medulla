@@ -1,0 +1,91 @@
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model Database {
+  id          Int           @id
+  database    Int
+  AccountTest AccountTest[]
+  User        User[]
+  Addresses   Addresses[]
+  Products    Products[]
+  Purchases   Purchases[]
+  Orders      Orders[]
+  TEST        TEST[]
+}
+
+model AccountTest {
+  id       Int      @id
+  database Database @relation(fields: [id], references: [id])
+
+
+  firstName String
+
+}
+
+model User {
+  id       Int      @id
+  database Database @relation(fields: [id], references: [id])
+
+
+  lastName String
+
+  email String
+
+}
+
+model Addresses {
+  id       Int      @id
+  database Database @relation(fields: [id], references: [id])
+
+
+  street String
+
+  zip String
+
+  country String
+
+}
+
+model Products {
+  id       Int      @id
+  database Database @relation(fields: [id], references: [id])
+
+
+  name String
+
+}
+
+model Purchases {
+  id       Int      @id
+  database Database @relation(fields: [id], references: [id])
+
+
+  date String
+
+}
+
+model Orders {
+  id       Int      @id
+  database Database @relation(fields: [id], references: [id])
+
+
+  name String
+
+  test String
+
+}
+
+model TEST {
+  id       Int      @id
+  database Database @relation(fields: [id], references: [id])
+
+
+  test String
+
+}
