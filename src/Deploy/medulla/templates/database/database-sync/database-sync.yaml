@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-sync-deployment
+  namespace: {{ .Release.namespace }}
+  labels:
+    app: database-sync
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database-sync
+  template:
+    metadata:
+      labels:
+        app: database-sync
+    spec:
+      containers:
+      - name: database-sync
+        image: {{ .Values.image }}:{{ .Values.tag }}
+        ports:
+        - containerPort: 3000
