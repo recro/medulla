@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: database-sync
-        image: {{ .Values.image }}:{{ .Values.tag }}
+        image: keithlogan94/database-sync:latest
         ports:
         - containerPort: 3000
