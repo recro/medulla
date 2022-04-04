@@ -13,4 +13,3 @@ FROM nginx:latest
 COPY --from=build /app/out/wwwroot /usr/share/nginx/html
 
 EXPOSE 80
-
