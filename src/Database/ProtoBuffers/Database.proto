@@ -1,0 +1,97 @@
+﻿
+syntax = "proto3";
+
+option csharp_namespace = "GrpcDatabase";
+option go_package = "./database";
+
+package database;
+
+
+service DatabaseSvc {
+  // Create databases rpcs
+  rpc GetDatabases (GetDatabasesRequest) returns (GetDatabasesResponse) {}
+  rpc UpdateDatabases (UpdateDatabasesRequest) returns (UpdateDatabasesResponse) {}
+	rpc DeleteDatabases (DeleteDatabasesRequest) returns (DeleteDatabasesResponse) {}
+
+
+	// Query Models rpcs
+	//  rpc QueryModel (QueryModelRequest) returns (QueryModelResponse) {}
+
+}
+
+message Column {
+	string name = 1;
+	// type will be an enum type
+	string type = 2;
+	bool allowNull = 3;
+	string defaultValue = 4;
+	bool primaryKey = 5;
+	string fieldName = 6;
+	bool unique = 7;
+	string comment = 8;
+}
+
+message Model {
+	string name = 1;
+	repeated Column column = 2;
+}
+
+message Database {
+	string name = 1;
+	repeated Model models = 2;
+}
+
+message GetDatabasesRequest {
+	string name = 1;
+}
+
+message GetDatabasesResponse {
+	repeated Database databases = 1;
+}
+
+message UpdateDatabasesRequest {
+	string uuid = 1;
+	repeated Database database = 2;
+}
+
+message UpdateDatabasesResponse {
+	bool isUpdated = 1;
+}
+
+message DeleteDatabasesRequest {
+	string name = 1;
+}
+
+message DeleteDatabasesResponse {
+	bool isDeleted = 1;
+}
+
+//
+//message Filter {
+//	string columnName = 1;
+//	// any of these can be null
+//	string columnContains = 2;
+//	string columnEquals = 3;
+//	// for comparison C# should choose the type of comparison based on the object type
+//	string columnGreaterThan = 4;
+//	string columnLessThan = 5;
+//	bool getAll = 6;
+//	bool getFirst = 7;
+//	bool getLast = 8;
+//	int32 numberRecordsToGet = 9;
+//}
+//
+//message QueryModelRequest {
+//	string database = 1;
+//	string model = 2;
+//	bool withFilter = 4;
+//	repeated Filter filters = 5;
+//}
+//
+//message QueryModelResponse {
+//	// return dynamic json response to allow for any table definition
+//	string json = 1;
+//}
+
+
+
