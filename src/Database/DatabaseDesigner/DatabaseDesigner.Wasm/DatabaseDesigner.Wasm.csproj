@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.4" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    <PackageReference Include="Z.Blazor.Diagrams" Version="2.0.0-rc.2" />
+  </ItemGroup>
+
+  <Target Name="AddMyWatchItems" BeforeTargets="GenerateWatchList">
+    <ItemGroup>
+      <Watch Include="**\*.js;**\*.css;**\*.cs;**\*.razor;**\*.html" />
+    </ItemGroup>
+  </Target>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseDesigner.Core\DatabaseDesigner.Core.csproj" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+  </PropertyGroup>
+</Project>
