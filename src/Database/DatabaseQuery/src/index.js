@@ -21,20 +21,48 @@ let routeguide = protoDescriptor.routeguide;
 console.log(packageDefinition);
 
 
-function Create() {
-    
+function Create(call, callback) {
+    call.on('data', function(createRequest) {
+        console.log("received data")
+        console.log(createRequest)
+    });
+    call.on('end', function() {
+        console.log("ended data received")
+        callback(null, {});
+    }
 }
 
-function Get() {
-    
+function Get(call, callback) {
+    call.on('data', function(getRequest) {
+        console.log("received data")
+        console.log(createRequest)
+    });
+    call.on('end', function() {
+        console.log("ended data received")
+        callback(null, {});
+    }
 }
 
-function Delete() {
-    
+function Delete(call, callback) {
+    call.on('data', function(deleteRequest) {
+        console.log("received data")
+        console.log(createRequest)
+    });
+    call.on('end', function() {
+        console.log("ended data received")
+        callback(null, {});
+    }
 }
 
-function Update() {
-    
+function Update(call, callback) {
+    call.on('data', function(updateRequest) {
+        console.log("received data")
+        console.log(createRequest)
+    });
+    call.on('end', function() {
+        console.log("ended data received")
+        callback(null, {});
+    }
 }
 
 
@@ -48,7 +76,6 @@ function getServer() {
     });
     return server;
 }
-
 
 
 var routeServer = getServer();
