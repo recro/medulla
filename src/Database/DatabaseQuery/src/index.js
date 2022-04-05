@@ -29,7 +29,7 @@ function Create(call, callback) {
     call.on('end', function() {
         console.log("ended data received")
         callback(null, {});
-    }
+    });
 }
 
 function Get(call, callback) {
@@ -40,7 +40,7 @@ function Get(call, callback) {
     call.on('end', function() {
         console.log("ended data received")
         callback(null, {});
-    }
+    });
 }
 
 function Delete(call, callback) {
@@ -51,7 +51,7 @@ function Delete(call, callback) {
     call.on('end', function() {
         console.log("ended data received")
         callback(null, {});
-    }
+    });
 }
 
 function Update(call, callback) {
@@ -62,7 +62,7 @@ function Update(call, callback) {
     call.on('end', function() {
         console.log("ended data received")
         callback(null, {});
-    }
+    });
 }
 
 
