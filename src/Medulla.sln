@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseDesigner.Wasm", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseDesigner.Core", "Database\DatabaseDesigner\DatabaseDesigner.Core\DatabaseDesigner.Core.csproj", "{DC4CAAFC-96DF-494B-8596-BFC96C6185B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseQueryCS", "Database\DatabaseQueryCS\DatabaseQueryCS.csproj", "{1F03B0A1-0889-47B1-848E-5166B2B4484D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{DC4CAAFC-96DF-494B-8596-BFC96C6185B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC4CAAFC-96DF-494B-8596-BFC96C6185B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC4CAAFC-96DF-494B-8596-BFC96C6185B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F03B0A1-0889-47B1-848E-5166B2B4484D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F03B0A1-0889-47B1-848E-5166B2B4484D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F03B0A1-0889-47B1-848E-5166B2B4484D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F03B0A1-0889-47B1-848E-5166B2B4484D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +128,7 @@ Global
 		{DC209F3A-6AAD-40E1-9FFB-ABC93C32049F} = {243904F8-DDA2-4FF3-9D3E-DD62A2A8F0B4}
 		{B9AC6A43-65A7-41BF-8E33-224D0C3CE04E} = {DC209F3A-6AAD-40E1-9FFB-ABC93C32049F}
 		{DC4CAAFC-96DF-494B-8596-BFC96C6185B4} = {DC209F3A-6AAD-40E1-9FFB-ABC93C32049F}
+		{1F03B0A1-0889-47B1-848E-5166B2B4484D} = {243904F8-DDA2-4FF3-9D3E-DD62A2A8F0B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E031215B-9116-4BC0-AA58-A00A8C67440D}
