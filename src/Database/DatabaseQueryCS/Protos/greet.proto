@@ -2,20 +2,51 @@ syntax = "proto3";
 
 option csharp_namespace = "DatabaseQueryCS";
 
-package greet;
+package query;
 
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
+service DbQuery {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc Update(UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+message CreateRequest {
+  string Model = 1;
+  string Database = 2;
 }
 
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
+message CreateResponse {
+  string Model = 1;
+  string Database = 2;
+}
+
+message GetRequest {
+  string Model = 1;
+  string Database = 2;
+}
+
+message GetResponse {
+  string Model = 1;
+  string Database = 2;
+}
+
+message UpdateRequest {
+  string Model = 1;
+  string Database = 2;
+}
+
+message UpdateResponse {
+  string Model = 1;
+  string Database = 2;
+}
+
+message DeleteRequest {
+  string Model = 1;
+  string Database = 2;
+}
+
+message DeleteResponse {
+  string Model = 1;
+  string Database = 2;
 }

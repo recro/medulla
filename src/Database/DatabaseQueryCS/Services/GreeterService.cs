@@ -3,17 +3,18 @@ using DatabaseQueryCS;
 
 namespace DatabaseQueryCS.Services;
 
-public class GreeterService : Greeter.GreeterBase
+public class DatabaseQuery : DbQuery.DbQueryBase
 {
-    private readonly ILogger<GreeterService> _logger;
+    private readonly ILogger<DatabaseQuery> _logger;
 
-    public GreeterService(ILogger<GreeterService> logger)
+    public DatabaseQuery(ILogger<DatabaseQuery> logger)
     {
         _logger = logger;
     }
 
-    public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
+    public override Task<CreateResponse> Create(CreateRequest request, ServerCallContext context)
     {
-        return Task.FromResult(new HelloReply {Message = "Hello " + request.Name});
+        Console.WriteLine("Create request");
+        return Task.FromResult(new CreateResponse() {});
     }
 }

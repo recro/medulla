@@ -10,6 +10,10 @@
     <ItemGroup>
         <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
     </ItemGroup>
+  
+    <Target Name="Protobuf_Compile_Before_AssemblyReferences" BeforeTargets="ResolveAssemblyReferences">
+      <CallTarget Targets="_Protobuf_Compile_BeforeCsCompile" />
+    </Target>
 
     <ItemGroup>
         <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
