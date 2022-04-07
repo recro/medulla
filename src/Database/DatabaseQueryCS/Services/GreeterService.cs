@@ -17,4 +17,20 @@ public class DatabaseQuery : DbQuery.DbQueryBase
         Console.WriteLine("Create request");
         return Task.FromResult(new CreateResponse() {});
     }
+
+    public override Task<GetResponse> Get(GetRequest request, ServerCallContext context)
+    {
+        return base.Get(request, context);
+    }
+
+
+    public override Task<DeleteResponse> Delete(DeleteRequest request, ServerCallContext context)
+    {
+        return base.Delete(request, context);
+    }
+
+    public override Task<UpdateResponse> Update(UpdateRequest request, ServerCallContext context)
+    {
+        return base.Update(request, context);
+    }
 }
