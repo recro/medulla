@@ -21,15 +21,10 @@ let routeguide = protoDescriptor.routeguide;
 console.log(packageDefinition);
 
 
+
 function Create(call, callback) {
-    call.on('data', function(createRequest) {
-        console.log("received data")
-        console.log(createRequest)
-    });
-    call.on('end', function() {
-        console.log("ended data received")
-        callback(null, {});
-    });
+    console.log(call.request)
+    callback(null, { Model: "test", Database: "test database" })
 }
 
 function Get(call, callback) {
