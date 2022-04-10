@@ -146,6 +146,7 @@ spec:
               - passwordSecretName
               - models
               type: object
+            nullable: true
             type: array
         type: object
     served: true

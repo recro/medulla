@@ -2,12 +2,18 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-
-using DatabaseControllerKubeOps;
+using Controller;
 using KubeOps.Operator;
+
+namespace DatabaseControllerKubeOps;
 
 public static class Program
 {
+    /// <summary>
+    /// Main
+    /// </summary>
+    /// <param name="args"></param>
+    /// <returns></returns>
     public static Task<int> Main(string[] args) =>
         CreateHostBuilder(args)
             .Build()

@@ -80,26 +80,26 @@ internal class OnChange
 public class DataCtrl : IResourceController<V1Alpha1DataEntity>
 {
 
-    private ILogger<DataCtrl> _iLogger { get; set; }
+    private ILogger<DataCtrl>? _iLogger { get; set; }
 
     /// <summary>
     /// CreatedAsync called by KubeOps when CRD created
     /// </summary>
     /// <param name="resource">crd resource</param>
     /// <returns></returns>
-    public Task<ResourceControllerResult> CreatedAsync(V1Alpha1DataEntity resource)
+    public Task<ResourceControllerResult?> CreatedAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger.LogInformation("Created");
+        _iLogger!.LogInformation("Created");
 
-        _iLogger.LogInformation("creating channel");
+        _iLogger!.LogInformation("creating channel");
         var channel = GrpcChannel.ForAddress("http://localhost:5188");
-        _iLogger.LogInformation("Creating client");
+        _iLogger!.LogInformation("Creating client");
         var client = new DatabaseSvc.DatabaseSvcClient(channel);
-        _iLogger.LogInformation("Client created");
+        _iLogger!.LogInformation("Client created");
 
-        for (var i = 0; i < resource.Spec.Count; i++)
+        for (var i = 0; i < resource.Spec!.Count; i++)
         {
-            _iLogger.LogInformation("Sending request to Create Database Resources");
+            _iLogger!.LogInformation("Sending request to Create Database Resources");
             client.CreateDatabaseResources(new CreateDatabaseResourcesRequest()
             {
                 Name = resource.Metadata.Name,
@@ -110,12 +110,12 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
             }, new CallOptions() { });
         }
         
-        _iLogger.LogInformation("Waiting for 5 seconds for resources to be created");
+        _iLogger!.LogInformation("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
         
-        OnChange.UpdateDatabase(resource, _iLogger);
+        OnChange.UpdateDatabase(resource, _iLogger!);
         
-        return Task.FromResult<ResourceControllerResult>(null);
+        return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
     /// <summary>
@@ -123,19 +123,19 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// </summary>
     /// <param name="resource">KubeOps CRD resource</param>
     /// <returns></returns>
-    public Task<ResourceControllerResult> ReconcileAsync(V1Alpha1DataEntity resource)
+    public Task<ResourceControllerResult?> ReconcileAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger.LogInformation("Created");
+        _iLogger!.LogInformation("Created");
 
-        _iLogger.LogInformation("creating channel");
+        _iLogger!.LogInformation("creating channel");
         var channel = GrpcChannel.ForAddress("http://internal-database-service:5188");
-        _iLogger.LogInformation("Creating client");
+        _iLogger!.LogInformation("Creating client");
         var client = new DatabaseSvc.DatabaseSvcClient(channel);
-        _iLogger.LogInformation("Client created");
+        _iLogger!.LogInformation("Client created");
 
-        for (var i = 0; i < resource.Spec.Count; i++)
+        for (var i = 0; i < resource.Spec!.Count; i++)
         {
-            _iLogger.LogInformation("Sending request to Create Database Resources");
+            _iLogger!.LogInformation("Sending request to Create Database Resources");
             client.CreateDatabaseResources(new CreateDatabaseResourcesRequest()
             {
                 Name = resource.Metadata.Name,
@@ -146,12 +146,12 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
             }, new CallOptions() { });
         }
         
-        _iLogger.LogInformation("Waiting for 5 seconds for resources to be created");
+        _iLogger!.LogInformation("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
         
-        OnChange.UpdateDatabase(resource, _iLogger);
+        OnChange.UpdateDatabase(resource, _iLogger!);
         
-        return Task.FromResult<ResourceControllerResult>(null);
+        return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
     /// <summary>
@@ -161,9 +161,9 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult> StatusModifiedAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger.LogInformation("StatusModifiedAsync");
-        OnChange.UpdateDatabase(resource, _iLogger);
-        return Task.FromResult<ResourceControllerResult>(null);
+        _iLogger!.LogInformation("StatusModifiedAsync");
+        OnChange.UpdateDatabase(resource, _iLogger!);
+        return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
     /// <summary>
@@ -173,8 +173,8 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult> DeletedAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger.LogInformation("DeletedAsync");
-        return Task.FromResult<ResourceControllerResult>(null);
+        _iLogger!.LogInformation("DeletedAsync");
+        return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
 }

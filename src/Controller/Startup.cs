@@ -4,7 +4,7 @@
 
 using KubeOps.Operator;
 
-namespace DatabaseControllerKubeOps;
+namespace Controller;
 
 public class Startup
 {

@@ -95,5 +95,5 @@ public struct ColumnSpec
     PluralName = "data")]
 public class V1Alpha1DataEntity : CustomKubernetesEntity
 {
-    public List<DatabaseSpec> Spec { get; set; }
+    public List<DatabaseSpec>? Spec { get; set; }
 }
