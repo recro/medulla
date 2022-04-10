@@ -1,4 +1,8 @@
-﻿apiVersion: medulla.recro.com/v1alpha1
+﻿# Licensed to the Medulla Contributors under one or more agreements.
+# The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+# See the LICENSE file in the project root for more information.
+
+apiVersion: medulla.recro.com/v1alpha1
 kind: Data
 metadata:
   name: test-1
