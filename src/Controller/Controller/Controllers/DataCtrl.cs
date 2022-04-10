@@ -19,9 +19,19 @@ using Microsoft.Rest;
 namespace DatabaseControllerKubeOps.Controller.Controllers;
 
 
+/// <summary>
+/// On Change exposes interface for updating DataSync service with the database structure.
+/// The DataSync Service will apply changes to the database structure.
+/// </summary>
 internal class OnChange
 {
 
+    
+    /// <summary>
+    /// UpdateDatabase will send a request to the data sync service with the updated database entity.
+    /// </summary>
+    /// <param name="entity">V1Alpha1DataEntity entity received from KubeOps for crd</param>
+    /// <param name="_iLogger">ILogger interface for logging</param>
     public static async void UpdateDatabase(V1Alpha1DataEntity entity, ILogger<DataCtrl> _iLogger)
     {
         try
@@ -63,12 +73,20 @@ internal class OnChange
 }
 
 
+/// <summary>
+/// DataCtrl class for KubeOps Data CRD
+/// </summary>
 [EntityRbac(typeof(V1Alpha1DataEntity), Verbs = RbacVerb.All)]
 public class DataCtrl : IResourceController<V1Alpha1DataEntity>
 {
 
     private ILogger<DataCtrl> _iLogger { get; set; }
 
+    /// <summary>
+    /// CreatedAsync called by KubeOps when CRD created
+    /// </summary>
+    /// <param name="resource">crd resource</param>
+    /// <returns></returns>
     public Task<ResourceControllerResult> CreatedAsync(V1Alpha1DataEntity resource)
     {
         _iLogger.LogInformation("Created");
@@ -100,6 +118,11 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
         return Task.FromResult<ResourceControllerResult>(null);
     }
 
+    /// <summary>
+    /// ReconcileAsync called by KubeOps when resource updated
+    /// </summary>
+    /// <param name="resource">KubeOps CRD resource</param>
+    /// <returns></returns>
     public Task<ResourceControllerResult> ReconcileAsync(V1Alpha1DataEntity resource)
     {
         _iLogger.LogInformation("Created");
@@ -131,6 +154,11 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
         return Task.FromResult<ResourceControllerResult>(null);
     }
 
+    /// <summary>
+    /// StatusModifiedAsync called by KubeOps when status modified
+    /// </summary>
+    /// <param name="resource">KubeOps CRD resource</param>
+    /// <returns></returns>
     public Task<ResourceControllerResult> StatusModifiedAsync(V1Alpha1DataEntity resource)
     {
         _iLogger.LogInformation("StatusModifiedAsync");
@@ -138,6 +166,11 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
         return Task.FromResult<ResourceControllerResult>(null);
     }
 
+    /// <summary>
+    /// DeletedAsync Called by KubeOps when resource deleted
+    /// </summary>
+    /// <param name="resource">KubeOps CRD Resource</param>
+    /// <returns></returns>
     public Task<ResourceControllerResult> DeletedAsync(V1Alpha1DataEntity resource)
     {
         _iLogger.LogInformation("DeletedAsync");

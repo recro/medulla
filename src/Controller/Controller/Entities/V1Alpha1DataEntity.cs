@@ -9,7 +9,9 @@ using KubeOps.Operator.Entities.Annotations;
 namespace DatabaseControllerKubeOps.Controller.Entities;
 
 
-
+/// <summary>
+/// DatabaseSpec is spec of CRD for database
+/// </summary>
 public struct DatabaseSpec
 {
     [Required]
@@ -26,6 +28,9 @@ public struct DatabaseSpec
     public List<ModelSpec> Models { get; set; }
 }
 
+/// <summary>
+/// Spec of CRD for model within Database
+/// </summary>
 public struct ModelSpec
 {
     [Required]
@@ -36,6 +41,9 @@ public struct ModelSpec
 
 
 
+/// <summary>
+/// Spec in Column for validation
+/// </summary>
 public struct ValidateSpec
 {
     public string? Is { get; set; }
@@ -58,6 +66,9 @@ public struct ValidateSpec
     public bool? NotEmpty { get; set; }
 }
 
+/// <summary>
+/// Spec of Column within Model as array
+/// </summary>
 public struct ColumnSpec
 {
     public string? ColumnName { get; set; }
@@ -73,6 +84,9 @@ public struct ColumnSpec
 
 }
 
+/// <summary>
+/// V1Alpha1DataEntity is CRD for data
+/// </summary>
 [Description("A CustomResourceDefinition which allows building with data in Medulla.")]
 [KubernetesEntity(
     ApiVersion = "v1alpha1",
