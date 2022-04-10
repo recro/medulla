@@ -18,7 +18,7 @@ namespace DatabaseControllerKubeOps.Controller.Controllers;
 internal class OnChange
 {
 
-    public static async void UpdateDatabase(V1Alpha1DataEntity entity)
+    public static async void UpdateDatabase(V1Alpha1DataEntity entity, ILogger<DataCtrl> _iLogger)
     {
         try
         {
@@ -32,28 +32,28 @@ internal class OnChange
 
             var response = await httpClient.PostAsync("http://database-sync-service:3000/listen-for-database-schema", content);
             var responseString = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseString);
+            _iLogger.LogInformation(responseString);
         }
         catch (HttpOperationException httpOperationException) when (httpOperationException.Message.Contains("422"))
         {
             var phase = httpOperationException.Response.ReasonPhrase;
             var content = httpOperationException.Response.Content;
-            Console.WriteLine("response content: {0}", content);
-            Console.WriteLine("response phase: {0}", phase);
+            _iLogger.LogInformation("response content: {0}", content);
+            _iLogger.LogInformation("response phase: {0}", phase);
         }
         catch (HttpOperationException e)
         {
-            Console.WriteLine("In this exception catch");
-            Console.WriteLine(e);
-            Console.WriteLine(e.Body);
-            Console.WriteLine(e.Response.ReasonPhrase);
-            Console.WriteLine(e.Response.StatusCode);
-            Console.WriteLine(e.Response.Content);
-            Console.WriteLine(e.Response.Headers);
+            _iLogger.LogInformation("In this exception catch");
+            _iLogger.LogInformation(e.ToString());
+            _iLogger.LogInformation(e.Body.ToString());
+            _iLogger.LogInformation(e.Response.ReasonPhrase);
+            _iLogger.LogInformation(e.Response.StatusCode.ToString());
+            _iLogger.LogInformation(e.Response.Content.ToString());
+            _iLogger.LogInformation(e.Response.Headers.ToString());
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            _iLogger.LogInformation(e.ToString());
         }
     }
 }
@@ -91,7 +91,7 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
         _iLogger.LogInformation("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
         
-        OnChange.UpdateDatabase(resource);
+        OnChange.UpdateDatabase(resource, _iLogger);
         
         return Task.FromResult<ResourceControllerResult>(null);
     }
@@ -122,7 +122,7 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
         _iLogger.LogInformation("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
         
-        OnChange.UpdateDatabase(resource);
+        OnChange.UpdateDatabase(resource, _iLogger);
         
         return Task.FromResult<ResourceControllerResult>(null);
     }
@@ -130,7 +130,7 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     public Task<ResourceControllerResult> StatusModifiedAsync(V1Alpha1DataEntity resource)
     {
         _iLogger.LogInformation("StatusModifiedAsync");
-        OnChange.UpdateDatabase(resource);
+        OnChange.UpdateDatabase(resource, _iLogger);
         return Task.FromResult<ResourceControllerResult>(null);
     }
 
