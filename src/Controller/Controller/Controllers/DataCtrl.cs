@@ -3,17 +3,17 @@
 // See the LICENSE file in the project root for more information.
 
 
-using KubeOps.Operator.Controller;
-using KubeOps.Operator.Rbac;
-using DatabaseControllerKubeOps.Controller.Entities;
-using KubeOps.Operator.Controller.Results;
-using k8s;
-using k8s.Models;
 using System.Text.Json;
 using System.Threading;
+using DatabaseControllerKubeOps.Controller.Entities;
 using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcDatabaseService;
+using k8s;
+using k8s.Models;
+using KubeOps.Operator.Controller;
+using KubeOps.Operator.Controller.Results;
+using KubeOps.Operator.Rbac;
 using Microsoft.Rest;
 
 namespace DatabaseControllerKubeOps.Controller.Controllers;
@@ -26,7 +26,7 @@ namespace DatabaseControllerKubeOps.Controller.Controllers;
 internal class OnChange
 {
 
-    
+
     /// <summary>
     /// UpdateDatabase will send a request to the data sync service with the updated database entity.
     /// </summary>
@@ -109,12 +109,12 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
                 User = resource.Spec[i].UsernameSecretName,
             }, new CallOptions() { });
         }
-        
+
         _iLogger!.LogInformation("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
-        
+
         OnChange.UpdateDatabase(resource, _iLogger!);
-        
+
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
@@ -145,12 +145,12 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
                 User = resource.Spec[i].UsernameSecretName,
             }, new CallOptions() { });
         }
-        
+
         _iLogger!.LogInformation("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
-        
+
         OnChange.UpdateDatabase(resource, _iLogger!);
-        
+
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
