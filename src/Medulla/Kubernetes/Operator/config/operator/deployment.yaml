@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    operator-deployment: databasecontrollerkubeops
+    operator-deployment: operator
   name: operator
 spec:
   replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      operator: databasecontrollerkubeops
+      operator: operator
   template:
     metadata:
       labels:
-        operator: databasecontrollerkubeops
+        operator: operator
     spec:
       containers:
       - env:
