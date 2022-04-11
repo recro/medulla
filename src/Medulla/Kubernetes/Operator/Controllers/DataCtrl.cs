@@ -16,7 +16,7 @@ using KubeOps.Operator.Controller.Results;
 using KubeOps.Operator.Rbac;
 using Microsoft.Rest;
 
-namespace Medulla.Kubernetes.Operator.Controllers;
+namespace DatabaseControllerKubeOps.Controller.Controllers;
 
 
 /// <summary>
