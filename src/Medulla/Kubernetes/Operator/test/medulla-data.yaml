@@ -113,4 +113,3 @@ databases:
             field: "phone_number3"
             unique: "phoneNumber"
             comment: "This is a phone number field"
-          

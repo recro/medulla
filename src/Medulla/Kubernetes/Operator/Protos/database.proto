@@ -120,4 +120,3 @@ message DeleteDatabasesResponse {
 //	// return dynamic json response to allow for any table definition
 //	string json = 1;
 //}
-
