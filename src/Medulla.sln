@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Identity.Server", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{F297D403-0BD6-4214-90FE-AA3684EBAE0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseControllerKubeOps", "Controller\DatabaseControllerKubeOps.csproj", "{52708F76-0B1E-48A3-8E6E-82D913E98E1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator", "Medulla\Kubernetes\Operator\Operator.csproj", "{52708F76-0B1E-48A3-8E6E-82D913E98E1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
