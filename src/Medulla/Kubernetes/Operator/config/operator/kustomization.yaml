@@ -9,5 +9,8 @@ configMapGenerator:
   - DATABASE_SERVICE_HOST=34.135.192.171
   - DATABASE_SERVICE_PORT=5188
   - DATABASE_SERVICE_PROTOCOL=http
+  - DATABASE_SYNC_SERVICE_PROTOCOL=http
+  - DATABASE_SYNC_SERVICE_HOST=database-sync-service.default.svc.cluster.local
+  - DATABASE_SYNC_SERVICE_PORT=3000
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
