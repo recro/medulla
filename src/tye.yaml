@@ -23,7 +23,10 @@ ingress:
       - service: database-service
         path: /database-service
         preservePath: false
-
+      - service: database-designer
+        path: /designer
+        preservePath: false
+        
 services:
   - name: shell
     project: Shell/Server/Medulla.Shell.Server.csproj
@@ -48,6 +51,17 @@ services:
         
   - name: database-service
     project: Medulla/Kubernetes/Database/DatabaseService/DatabaseService.csproj
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+        
+  - name: database-sync
+    dockerFile: Medulla/Kubernetes/Database/DatabaseSync/Dockerfile
+    replicas: 1
+
+  - name: database-designer
+    dockerFile: Medulla/Kubernetes/Database/DatabaseDesigner/Dockerfile
     replicas: 1
     bindings:
       - name: http
