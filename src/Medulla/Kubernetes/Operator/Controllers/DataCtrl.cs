@@ -45,7 +45,13 @@ internal class OnChange
 
             HttpClient httpClient = new HttpClient();
 
-            var response = await httpClient.PostAsync("http://database-sync-service:3000/listen-for-database-schema", content);
+            var dbSyncServiceProtocol = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_PROTOCOL");
+            var dbSyncServiceHost = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_HOST");
+            var dbSyncServicePort = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_PORT");
+            var dbSyncServiceAddress =
+                $"{dbSyncServiceProtocol}://{dbSyncServiceHost}:{dbSyncServicePort}/listen-for-database-schema";
+            Console.WriteLine("db sync service address: " + dbSyncServiceAddress);
+            var response = await httpClient.PostAsync(dbSyncServiceAddress, content);
             var responseString = await response.Content.ReadAsStringAsync();
             Console.WriteLine(responseString);
         }
