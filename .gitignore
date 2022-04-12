@@ -466,3 +466,5 @@ packages
 **/bin/
 **/obj/
 
+src/LocalDeploy
+
