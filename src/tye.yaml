@@ -46,11 +46,6 @@ services:
       - name: http
         protocol: http
         
-  - name: install-operator
-    project: Medulla/Kubernetes/Operator/Operator.csproj
-    args: " install"
-    replicas: 1
-        
   - name: database-service
     project: Medulla/Kubernetes/Database/DatabaseService/DatabaseService.csproj
     replicas: 1
