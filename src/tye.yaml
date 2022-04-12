@@ -20,6 +20,9 @@ ingress:
       - service: identity
         path: /identity
         preservePath: true
+      - service: database-service
+        path: /database-service
+        preservePath: false
 
 services:
   - name: shell
@@ -38,6 +41,13 @@ services:
 
   - name: identity
     project: Identity/Server/Medulla.Identity.Server.csproj
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+        
+  - name: database-service
+    project: Medulla/Kubernetes/Database/DatabaseService/DatabaseService.csproj
     replicas: 1
     bindings:
       - name: http
