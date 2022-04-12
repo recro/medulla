@@ -33,7 +33,7 @@ internal class OnChange
     /// </summary>
     /// <param name="entity">V1Alpha1DataEntity entity received from KubeOps for crd</param>
     /// <param name="_iLogger">ILogger interface for logging</param>
-    public static async void UpdateDatabase(V1Alpha1DataEntity entity, ILogger<DataCtrl> _iLogger)
+    public static async void UpdateDatabase(V1Alpha1DataEntity entity)
     {
         try
         {
@@ -47,28 +47,28 @@ internal class OnChange
 
             var response = await httpClient.PostAsync("http://database-sync-service:3000/listen-for-database-schema", content);
             var responseString = await response.Content.ReadAsStringAsync();
-            _iLogger.LogInformation(responseString);
+            Console.WriteLine(responseString);
         }
         catch (HttpOperationException httpOperationException) when (httpOperationException.Message.Contains("422"))
         {
             var phase = httpOperationException.Response.ReasonPhrase;
             var content = httpOperationException.Response.Content;
-            _iLogger.LogInformation("response content: {0}", content);
-            _iLogger.LogInformation("response phase: {0}", phase);
+            Console.WriteLine("response content: {0}", content);
+            Console.WriteLine("response phase: {0}", phase);
         }
         catch (HttpOperationException e)
         {
-            _iLogger.LogInformation("In this exception catch");
-            _iLogger.LogInformation(e.ToString());
-            _iLogger.LogInformation(e.Body.ToString());
-            _iLogger.LogInformation(e.Response.ReasonPhrase);
-            _iLogger.LogInformation(e.Response.StatusCode.ToString());
-            _iLogger.LogInformation(e.Response.Content.ToString());
-            _iLogger.LogInformation(e.Response.Headers.ToString());
+            Console.WriteLine("In this exception catch");
+            Console.WriteLine(e.ToString());
+            Console.WriteLine(e.Body.ToString());
+            Console.WriteLine(e.Response.ReasonPhrase);
+            Console.WriteLine(e.Response.StatusCode.ToString());
+            Console.WriteLine(e.Response.Content.ToString());
+            Console.WriteLine(e.Response.Headers.ToString());
         }
         catch (Exception e)
         {
-            _iLogger.LogInformation(e.ToString());
+            Console.WriteLine(e.ToString());
         }
     }
 }
@@ -81,8 +81,6 @@ internal class OnChange
 public class DataCtrl : IResourceController<V1Alpha1DataEntity>
 {
 
-    private ILogger<DataCtrl>? _iLogger { get; set; }
-
     /// <summary>
     /// CreatedAsync called by KubeOps when CRD created
     /// </summary>
@@ -90,22 +88,22 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult?> CreatedAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger!.LogInformation("Created");
+        Console.WriteLine("Created");
 
-        _iLogger!.LogInformation("creating channel");
+        Console.WriteLine("creating channel");
         var dbServiceHost = Environment.GetEnvironmentVariable("DATABASE_SERVICE_HOST");
         var dbServicePort = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PORT");
         var dbServiceProtocol = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PROTOCOL");
         var dbServiceAddress = $"{dbServiceProtocol}://{dbServiceHost}:{dbServicePort}";
-        _iLogger.LogInformation("DatabaseServiceAddress: " + dbServiceAddress);
+        Console.WriteLine("DatabaseServiceAddress: " + dbServiceAddress);
         var channel = GrpcChannel.ForAddress(dbServiceAddress);
-        _iLogger!.LogInformation("Creating client");
+        Console.WriteLine("Creating client");
         var client = new DatabaseSvc.DatabaseSvcClient(channel);
-        _iLogger!.LogInformation("Client created");
+        Console.WriteLine("Client created");
 
         for (var i = 0; i < resource.Spec!.Count; i++)
         {
-            _iLogger!.LogInformation("Sending request to Create Database Resources");
+            Console.WriteLine("Sending request to Create Database Resources");
             client.CreateDatabaseResources(new CreateDatabaseResourcesRequest()
             {
                 Name = resource.Metadata.Name,
@@ -116,10 +114,10 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
             }, new CallOptions() { });
         }
 
-        _iLogger!.LogInformation("Waiting for 5 seconds for resources to be created");
+        Console.WriteLine("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
 
-        OnChange.UpdateDatabase(resource, _iLogger!);
+        OnChange.UpdateDatabase(resource);
 
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
@@ -131,17 +129,22 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult?> ReconcileAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger!.LogInformation("Created");
+        Console.WriteLine("Created");
 
-        _iLogger!.LogInformation("creating channel");
-        var channel = GrpcChannel.ForAddress("http://internal-database-service:5188");
-        _iLogger!.LogInformation("Creating client");
+        Console.WriteLine("creating channel");
+        var dbServiceHost = Environment.GetEnvironmentVariable("DATABASE_SERVICE_HOST");
+        var dbServicePort = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PORT");
+        var dbServiceProtocol = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PROTOCOL");
+        var dbServiceAddress = $"{dbServiceProtocol}://{dbServiceHost}:{dbServicePort}";
+        Console.WriteLine("DatabaseServiceAddress: " + dbServiceAddress);
+        var channel = GrpcChannel.ForAddress(dbServiceAddress);
+        Console.WriteLine("Creating client");
         var client = new DatabaseSvc.DatabaseSvcClient(channel);
-        _iLogger!.LogInformation("Client created");
+        Console.WriteLine("Client created");
 
         for (var i = 0; i < resource.Spec!.Count; i++)
         {
-            _iLogger!.LogInformation("Sending request to Create Database Resources");
+            Console.WriteLine("Sending request to Create Database Resources");
             client.CreateDatabaseResources(new CreateDatabaseResourcesRequest()
             {
                 Name = resource.Metadata.Name,
@@ -152,10 +155,10 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
             }, new CallOptions() { });
         }
 
-        _iLogger!.LogInformation("Waiting for 5 seconds for resources to be created");
+        Console.WriteLine("Waiting for 5 seconds for resources to be created");
         System.Threading.Thread.Sleep(5000);
 
-        OnChange.UpdateDatabase(resource, _iLogger!);
+        OnChange.UpdateDatabase(resource);
 
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
@@ -167,8 +170,8 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult> StatusModifiedAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger!.LogInformation("StatusModifiedAsync");
-        OnChange.UpdateDatabase(resource, _iLogger!);
+        Console.WriteLine("StatusModifiedAsync");
+        OnChange.UpdateDatabase(resource);
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
@@ -179,7 +182,7 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult> DeletedAsync(V1Alpha1DataEntity resource)
     {
-        _iLogger!.LogInformation("DeletedAsync");
+        Console.WriteLine("DeletedAsync");
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 

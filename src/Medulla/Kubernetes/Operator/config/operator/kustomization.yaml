@@ -6,5 +6,8 @@ configMapGenerator:
 - name: webhook-config
   literals:
   - KESTREL__ENDPOINTS__HTTP__URL=http://0.0.0.0:5000
+  - DATABASE_SERVICE_HOST=34.135.192.171
+  - DATABASE_SERVICE_PORT=5188
+  - DATABASE_SERVICE_PROTOCOL=http
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

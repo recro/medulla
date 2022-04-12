@@ -20,10 +20,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Protobuf Include="Protos\database.proto" GrpcServices="Client" />
-  </ItemGroup>
-
   <Target Name="Protobuf_Compile_Before_AssemblyReferences" BeforeTargets="ResolveAssemblyReferences">
     <CallTarget Targets="_Protobuf_Compile_BeforeCsCompile" />
   </Target>
