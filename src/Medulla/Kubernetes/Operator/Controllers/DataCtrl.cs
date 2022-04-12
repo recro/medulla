@@ -15,6 +15,7 @@ using KubeOps.Operator.Controller;
 using KubeOps.Operator.Controller.Results;
 using KubeOps.Operator.Rbac;
 using Microsoft.Rest;
+using System.IO;
 
 namespace DatabaseControllerKubeOps.Controller.Controllers;
 
@@ -92,7 +93,12 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
         _iLogger!.LogInformation("Created");
 
         _iLogger!.LogInformation("creating channel");
-        var channel = GrpcChannel.ForAddress("http://localhost:5188");
+        var dbServiceHost = Environment.GetEnvironmentVariable("DATABASE_SERVICE_HOST");
+        var dbServicePort = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PORT");
+        var dbServiceProtocol = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PROTOCOL");
+        var dbServiceAddress = $"{dbServiceProtocol}://{dbServiceHost}:{dbServicePort}";
+        _iLogger.LogInformation("DatabaseServiceAddress: " + dbServiceAddress);
+        var channel = GrpcChannel.ForAddress(dbServiceAddress);
         _iLogger!.LogInformation("Creating client");
         var client = new DatabaseSvc.DatabaseSvcClient(channel);
         _iLogger!.LogInformation("Client created");
