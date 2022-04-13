@@ -48,7 +48,7 @@ public class Load
                 Dialect = requestDatabases[i].Dialect,
                 UsernameSecretName = RandomPassword.RandomString(10),
                 PasswordSecretName = RandomPassword.RandomString(10),
-                Host = "test",
+                Host = "db-" + requestDatabases[i].Name,
                 Models = models
             });
         }
