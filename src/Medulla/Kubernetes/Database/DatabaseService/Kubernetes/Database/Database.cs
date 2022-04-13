@@ -1,5 +1,5 @@
+using DatabaseService.Utils;
 using GrpcDatabaseService;
-using k8s;
 using k8s.Autorest;
 using k8s.Models;
 
@@ -14,7 +14,7 @@ public class Database
         var pod = new V1Pod("v1", "Pod", 
             new V1ObjectMeta()
             {
-                Name = request.Name,
+                Name = "db-" + request.Name + RandomPassword.RandomString(Constants.LENGTH_OF_DATABASE_RANDOM_STRING).ToLower(),
                 Labels = new Dictionary<string, string>()
                 {
                     {"database", request.Name}
