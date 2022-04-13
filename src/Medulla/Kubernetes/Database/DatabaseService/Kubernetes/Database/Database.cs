@@ -113,6 +113,10 @@ public class Database
             Kind = "Service",
             Metadata = new V1ObjectMeta()
             {
+                Labels = new Dictionary<string, string>()
+                {
+                    {"database", dbName}
+                },
                 Name = dbName
             },
             Spec = new V1ServiceSpec()
