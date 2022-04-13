@@ -26,7 +26,7 @@ public class Database
                 Name = dbName,
                 Labels = new Dictionary<string, string>()
                 {
-                    {"database", request.Name}
+                    {"database", dbName}
                 }
             },
             new V1PodSpec()
@@ -119,7 +119,7 @@ public class Database
             {
                 Selector = new Dictionary<string, string>()
                 {
-                    { "database", request.Name }
+                    { "database", dbName }
                 },
                 Type = "ClusterIP",
                 Ports = new List<V1ServicePort>()
