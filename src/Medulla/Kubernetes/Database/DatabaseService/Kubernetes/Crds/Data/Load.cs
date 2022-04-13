@@ -46,8 +46,8 @@ public class Load
             {
                 Name = requestDatabases[i].Name,
                 Dialect = requestDatabases[i].Dialect,
-                UsernameSecretName = RandomPassword.RandomString(10),
-                PasswordSecretName = RandomPassword.RandomString(10),
+                UsernameSecretName = "test",
+                PasswordSecretName = "test",
                 Host = "db-" + requestDatabases[i].Name,
                 Models = models
             });
