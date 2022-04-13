@@ -10,9 +10,15 @@ public class Database
 
     public static async Task<bool> Create(CreateDatabaseResourcesRequest request)
     {
-        string dbName = "db-" + request.Name +
-                              new String(RandomPassword.RandomString(Constants.LENGTH_OF_DATABASE_RANDOM_STRING)
-                                  .ToLower());
+        string uuid = Guid.NewGuid().ToString();
+        Console.WriteLine(uuid);
+        Console.WriteLine(uuid);
+        Console.WriteLine(uuid);
+        Console.WriteLine(uuid);
+        Console.WriteLine(uuid);
+        Console.WriteLine(uuid);
+        string dbName = "db-" + request.Name + uuid;
+        Console.WriteLine("new db name" + dbName);
         var client = Kubernetes.Load.Client.Load.GetClient();
         var pod = new V1Pod("v1", "Pod", 
             new V1ObjectMeta()
@@ -115,7 +121,7 @@ public class Database
                 {
                     { "database", request.Name }
                 },
-                Type = "LoadBalancer",
+                Type = "ClusterIP",
                 Ports = new List<V1ServicePort>()
                 {
                     new V1ServicePort()
