@@ -14,7 +14,7 @@ async function syncDatabase(data) {
     data = JSON.parse(data.data)
     console.log(data);
 
-    const databases = data.Databases;
+    const databases = data.Spec;
 
     for (let i = 0; i < databases.length; i++) {
         const { Name, Host: host, Dialect: dialect, UsernameSecretName, PasswordSecretName, Models } = databases[i];

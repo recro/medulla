@@ -10,14 +10,7 @@ public class Database
 
     public static async Task<bool> Create(CreateDatabaseResourcesRequest request)
     {
-        string uuid = Guid.NewGuid().ToString();
-        Console.WriteLine(uuid);
-        Console.WriteLine(uuid);
-        Console.WriteLine(uuid);
-        Console.WriteLine(uuid);
-        Console.WriteLine(uuid);
-        Console.WriteLine(uuid);
-        string dbName = "db-" + request.Name + uuid;
+        string dbName = "db-" + request.Name;
         Console.WriteLine("new db name" + dbName);
         var client = Kubernetes.Load.Client.Load.GetClient();
         var pod = new V1Pod("v1", "Pod", 
