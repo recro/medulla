@@ -32,7 +32,6 @@ internal class OnChange
     /// UpdateDatabase will send a request to the data sync service with the updated database entity.
     /// </summary>
     /// <param name="entity">V1Alpha1DataEntity entity received from KubeOps for crd</param>
-    /// <param name="_iLogger">ILogger interface for logging</param>
     public static async void UpdateDatabase(V1Alpha1DataEntity entity)
     {
         try
