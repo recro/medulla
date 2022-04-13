@@ -10,11 +10,14 @@ public class Database
 
     public static async Task<bool> Create(CreateDatabaseResourcesRequest request)
     {
+        string dbName = "db-" + request.Name +
+                              new String(RandomPassword.RandomString(Constants.LENGTH_OF_DATABASE_RANDOM_STRING)
+                                  .ToLower());
         var client = Kubernetes.Load.Client.Load.GetClient();
         var pod = new V1Pod("v1", "Pod", 
             new V1ObjectMeta()
             {
-                Name = "db-" + request.Name + RandomPassword.RandomString(Constants.LENGTH_OF_DATABASE_RANDOM_STRING).ToLower(),
+                Name = dbName,
                 Labels = new Dictionary<string, string>()
                 {
                     {"database", request.Name}
@@ -104,7 +107,7 @@ public class Database
             Kind = "Service",
             Metadata = new V1ObjectMeta()
             {
-                Name = request.ServiceName
+                Name = dbName
             },
             Spec = new V1ServiceSpec()
             {
