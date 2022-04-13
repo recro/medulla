@@ -9,7 +9,7 @@ resources:
 - ../operator
 images:
 - name: operator
-  newName: keithlogan94/controller
+  newName: ghcr.io/recro/medulla/controller
   newTag: latest
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
