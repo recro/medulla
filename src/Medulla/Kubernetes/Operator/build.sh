@@ -1,2 +1,2 @@
-﻿docker build -t keithlogan94/controller:latest .
-docker push keithlogan94/controller:latest
+﻿docker build -t ghcr.io/recro/medulla/controller:latest .
+docker push ghcr.io/recro/medulla/controller:latest
