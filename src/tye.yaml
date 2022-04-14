@@ -63,7 +63,7 @@ services:
     replicas: 1
     bindings:
       - name: http
-        port: 8085    
+        port: 3000    
 
   - name: database-designer
     dockerFile: Medulla/Kubernetes/Database/DatabaseDesigner/Dockerfile
@@ -82,13 +82,6 @@ services:
     bindings:
       - name: http
         protocol: http
-    env:
-      - name: DATABASE_SYNC_SERVICE_PROTOCOL
-        value: http
-      - name: DATABASE_SYNC_SERVICE_HOST
-        value: localhost
-      - name: DATABASE_SYNC_SERVICE_PORT
-        value: 8085
 
   - name: mysql
     image: mysql:latest

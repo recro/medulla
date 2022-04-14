@@ -29,7 +29,7 @@ internal abstract class ServiceUris
 
     public static string GetDatabaseSyncUri()
     {
-        return $"{GetEnvNotEmpty("DATABASE_SYNC_SERVICE_PROTOCOL")}://{GetEnvNotEmpty("DATABASE_SYNC_SERVICE_HOST")}:{GetEnvNotEmpty("DATABASE_SYNC_SERVICE_PORT")}";        
+        return $"http://{GetEnvNotEmpty("SERVICE__DATABASE-SYNC__HTTP__HOST")}:{GetEnvNotEmpty("SERVICE__DATABASE-SYNC__HTTP__PORT")}";        
     }
     
     

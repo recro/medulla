@@ -16,6 +16,7 @@ using KubeOps.Operator.Controller.Results;
 using KubeOps.Operator.Rbac;
 using Microsoft.Rest;
 using System.IO;
+using Operator;
 
 namespace DatabaseControllerKubeOps.Controller.Controllers;
 
@@ -44,11 +45,9 @@ internal class OnChange
 
             HttpClient httpClient = new HttpClient();
 
-            var dbSyncServiceProtocol = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_PROTOCOL");
-            var dbSyncServiceHost = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_HOST");
-            var dbSyncServicePort = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_PORT");
+            var dbSyncServiceUri = ServiceUris.GetDatabaseSyncUri();
             var dbSyncServiceAddress =
-                $"{dbSyncServiceProtocol}://{dbSyncServiceHost}:{dbSyncServicePort}/listen-for-database-schema";
+                $"{dbSyncServiceUri}/listen-for-database-schema";
             Console.WriteLine("db sync service address: " + dbSyncServiceAddress);
             var response = await httpClient.PostAsync(dbSyncServiceAddress, content);
             var responseString = await response.Content.ReadAsStringAsync();
@@ -137,10 +136,7 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
         Console.WriteLine("Created");
 
         Console.WriteLine("creating channel");
-        var dbServiceHost = Environment.GetEnvironmentVariable("DATABASE_SERVICE_HOST");
-        var dbServicePort = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PORT");
-        var dbServiceProtocol = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PROTOCOL");
-        var dbServiceAddress = $"{dbServiceProtocol}://{dbServiceHost}:{dbServicePort}";
+        var dbServiceAddress = ServiceUris.GetDatabaseServiceUri();
         Console.WriteLine("DatabaseServiceAddress: " + dbServiceAddress);
         var channel = GrpcChannel.ForAddress(dbServiceAddress);
         Console.WriteLine("Creating client");
