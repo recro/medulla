@@ -98,4 +98,6 @@ app.post('/listen-for-database-schema', async function (req, res) {
     res.send('Synced database')
 })
 
-app.listen(3000)
+app.listen(3000, () => console.log("listening on port 3000"))
+
+

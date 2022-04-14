@@ -1,3 +1,5 @@
+# Before running Tye make sure you have a local Kubernetes cluster running
+
 name: Medulla
 namespace: medulla-system
 network: medulla
@@ -6,7 +8,7 @@ ingress:
   - name: medulla
     bindings:
       - name: http
-        port: 80
+        port: 8080
         protocol: http
       - name: https
         port: 443
@@ -26,7 +28,7 @@ ingress:
       - service: database-designer
         path: /designer
         preservePath: false
-        
+
 services:
   - name: shell
     project: Shell/Server/Medulla.Shell.Server.csproj
@@ -59,6 +61,9 @@ services:
   - name: database-sync
     dockerFile: Medulla/Kubernetes/Database/DatabaseSync/Dockerfile
     replicas: 1
+    bindings:
+      - name: http
+        port: 8085    
 
   - name: database-designer
     dockerFile: Medulla/Kubernetes/Database/DatabaseDesigner/Dockerfile
@@ -66,3 +71,36 @@ services:
     bindings:
       - name: http
         protocol: http
+
+  
+  # Before you can run Tye with this Controller process
+  # You need to install the Kubectl config manifests for the Controller
+  # kubectl apply -k .\src\Medulla\Kubernetes\Operator\config\install\
+  - name: controller
+    project: Medulla/Kubernetes/Operator/Operator.csproj
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+    env:
+      - name: DATABASE_SYNC_SERVICE_PROTOCOL
+        value: http
+      - name: DATABASE_SYNC_SERVICE_HOST
+        value: localhost
+      - name: DATABASE_SYNC_SERVICE_PORT
+        value: 8085
+
+  - name: mysql
+    image: mysql:latest
+    replicas: 1
+    bindings:
+      - name: mysql
+        protocol: http
+        port: 3306
+
+
+  - name: adminer
+    image: adminer:latest
+    replicas: 1
+    bindings:
+      - port: 8081
