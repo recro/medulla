@@ -5,7 +5,6 @@
 using System.Collections;
 using Controller;
 using KubeOps.Operator;
-using Operator;
 
 namespace DatabaseControllerKubeOps;
 
@@ -17,9 +16,11 @@ public static class Program
     /// <param name="args"></param>
     /// <returns></returns>
     public static Task<int> Main(string[] args) {
-        Console.WriteLine("Listing Service Uris");
-        Console.WriteLine(ServiceUris.GetDatabaseServiceUri());
-        Console.WriteLine(ServiceUris.GetDatabaseSyncUri());
+        Console.WriteLine("Trying to get uri for database service");
+        Console.WriteLine();
+        Console.WriteLine("GetEnvironmentVariables: ");
+        foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+            Console.WriteLine("  {0} = {1}", de.Key, de.Value);
 
         return CreateHostBuilder(args)
             .Build()
