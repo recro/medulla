@@ -25,9 +25,6 @@ ingress:
       - service: database-service
         path: /database-service
         preservePath: false
-      - service: database-designer
-        path: /designer
-        preservePath: false
 
 services:
   - name: shell
@@ -63,20 +60,13 @@ services:
     replicas: 1
     bindings:
       - name: http
-        port: 3000
+        protocol: http
+        containerPort: 3000
     env:
     - name: DATABASE_USERNAME
       value: root
     - name: DATABASE_PASSWORD
       value: test
-
-  - name: database-designer
-    dockerFile: Medulla/Kubernetes/Database/DatabaseDesigner/Dockerfile
-    replicas: 1
-    bindings:
-      - name: http
-        protocol: http
-
   
   # Before you can run Tye with this Controller process
   # You need to install the Kubectl config manifests for the Controller
