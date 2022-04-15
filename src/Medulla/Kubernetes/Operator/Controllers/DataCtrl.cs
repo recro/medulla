@@ -92,37 +92,7 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult?> CreatedAsync(V1Alpha1DataEntity resource)
     {
-        Console.WriteLine("Created");
-
-        Console.WriteLine("creating channel");
-        var dbServiceHost = Environment.GetEnvironmentVariable("DATABASE_SERVICE_HOST");
-        var dbServicePort = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PORT");
-        var dbServiceProtocol = Environment.GetEnvironmentVariable("DATABASE_SERVICE_PROTOCOL");
-        var dbServiceAddress = $"{dbServiceProtocol}://{dbServiceHost}:{dbServicePort}";
-        Console.WriteLine("DatabaseServiceAddress: " + dbServiceAddress);
-        var channel = GrpcChannel.ForAddress(dbServiceAddress);
-        Console.WriteLine("Creating client");
-        var client = new DatabaseSvc.DatabaseSvcClient(channel);
-        Console.WriteLine("Client created");
-
-        for (var i = 0; i < resource.Spec!.Count; i++)
-        {
-            Console.WriteLine("Sending request to Create Database Resources");
-            client.CreateDatabaseResources(new CreateDatabaseResourcesRequest()
-            {
-                Name = resource.Metadata.Name,
-                DatabaseName = resource.Spec[i].Name,
-                Password = resource.Spec[i].PasswordSecretName,
-                ServiceName = resource.Spec[i].Host,
-                User = resource.Spec[i].UsernameSecretName,
-            }, new CallOptions() { });
-        }
-
-        Console.WriteLine("Waiting for 5 seconds for resources to be created");
-        System.Threading.Thread.Sleep(5000);
-
         OnChange.UpdateDatabase(resource);
-
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
@@ -133,34 +103,7 @@ public class DataCtrl : IResourceController<V1Alpha1DataEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult?> ReconcileAsync(V1Alpha1DataEntity resource)
     {
-        Console.WriteLine("Created");
-
-        Console.WriteLine("creating channel");
-        var dbServiceAddress = ServiceUris.GetDatabaseServiceUri();
-        Console.WriteLine("DatabaseServiceAddress: " + dbServiceAddress);
-        var channel = GrpcChannel.ForAddress(dbServiceAddress);
-        Console.WriteLine("Creating client");
-        var client = new DatabaseSvc.DatabaseSvcClient(channel);
-        Console.WriteLine("Client created");
-
-        for (var i = 0; i < resource.Spec!.Count; i++)
-        {
-            Console.WriteLine("Sending request to Create Database Resources");
-            client.CreateDatabaseResources(new CreateDatabaseResourcesRequest()
-            {
-                Name = resource.Metadata.Name,
-                DatabaseName = resource.Spec[i].Name,
-                Password = resource.Spec[i].PasswordSecretName,
-                ServiceName = resource.Spec[i].Host,
-                User = resource.Spec[i].UsernameSecretName,
-            }, new CallOptions() { });
-        }
-
-        Console.WriteLine("Waiting for 5 seconds for resources to be created");
-        System.Threading.Thread.Sleep(5000);
-
         OnChange.UpdateDatabase(resource);
-
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 
