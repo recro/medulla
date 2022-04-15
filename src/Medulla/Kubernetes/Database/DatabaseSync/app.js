@@ -11,16 +11,38 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 async function syncDatabase(data) {
+    // log all env variables
+
+    console.log("___________________LOGGING ALL ENV VARS_____________________________")
+    let keys = Object.keys(process.env);
+    for (let i = 0; i < keys.length; i++) {
+        console.log({ [keys[i]]: process.env[keys[i]] });
+    }
+    console.log("___________________AFTER LOGGING ALL ENV VARS_____________________________")
+
+
+
+    const { DATABASE_USERNAME, DATABASE_PASSWORD, SERVICE__MYSQL__HOST,
+        MYSQL_MYSQL_SERVICE_PORT } = process.env;
+
+
     data = JSON.parse(data.data)
     console.log(data);
 
     const databases = data.Spec;
 
     for (let i = 0; i < databases.length; i++) {
+
         const { Name, Host: host, Dialect: dialect, UsernameSecretName, PasswordSecretName, Models } = databases[i];
+
+        console.log("CONNECTING ON HOST " + SERVICE__MYSQL__HOST)
+        await resetDatabase(Name, DATABASE_USERNAME, DATABASE_PASSWORD,
+            SERVICE__MYSQL__HOST, 3306)
+
         console.log(Name, host, dialect, UsernameSecretName, PasswordSecretName)
-        const sequelize = new Sequelize(Name, UsernameSecretName, PasswordSecretName, {
-            host,
+        console.log("CONNECTING ON HOST " + SERVICE__MYSQL__HOST)
+        const sequelize = new Sequelize(Name, DATABASE_USERNAME, DATABASE_PASSWORD, {
+            host: SERVICE__MYSQL__HOST,
             dialect,
             port: 3306
         });
@@ -87,6 +109,39 @@ async function syncDatabase(data) {
 
 }
 
+function resetDatabase(dbName, user, password, host, port) {
+    return new Promise((resolve, reject) => {
+        try {
+            const mysql = require('mysql2/promise');
+
+            console.log({ dbName, user, password, host, port })
+    
+            mysql.createConnection({
+                user,
+                password,
+                host,
+                port,
+            }).then((connection) => {
+                console.log("successfully connected to database")
+                console.log("droping database if exists " + dbName)
+                // reset database
+                connection.query(`DROP DATABASE IF EXISTS ${dbName};`).then(() => {
+                    console.log("database dropped");
+                    console.log("creating database " + dbName)
+                    // create database
+                    connection.query(`CREATE DATABASE IF NOT EXISTS ${dbName};`).then(() => {
+                        console.log("creating database complete");
+                        resolve(true);
+                    })
+                })
+                
+            })
+        } catch (err) {
+            reject(err)
+        }
+    })
+}
+
 
 app.post('/listen-for-database-schema', async function (req, res) {
     try {
@@ -97,6 +152,19 @@ app.post('/listen-for-database-schema', async function (req, res) {
     }
     res.send('Synced database')
 })
+
+app.post('/create-database', async function (req, res) {
+    try {
+        const { dbName } = req.body;
+        if (!dbName) {
+            res.send("Must specify name of database to create");
+        }
+        await createDatabase(dbName);
+    } catch (err) {
+        console.error(err);
+        return res.send(err);
+    }
+});
 
 app.listen(3000, () => console.log("listening on port 3000"))
 

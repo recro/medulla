@@ -8,7 +8,7 @@ ingress:
   - name: medulla
     bindings:
       - name: http
-        port: 8080
+        port: 80
         protocol: http
       - name: https
         port: 443
@@ -63,7 +63,12 @@ services:
     replicas: 1
     bindings:
       - name: http
-        port: 3000    
+        port: 3000
+    env:
+    - name: DATABASE_USERNAME
+      value: root
+    - name: DATABASE_PASSWORD
+      value: test
 
   - name: database-designer
     dockerFile: Medulla/Kubernetes/Database/DatabaseDesigner/Dockerfile
@@ -87,13 +92,20 @@ services:
     image: mysql:latest
     replicas: 1
     bindings:
-      - name: mysql
-        protocol: http
-        port: 3306
+      - port: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: test
+    - name: MYSQL_DATABASE
+      value: medulla
+    - name: MYSQL_USER
+      value: medulla_user
+    - name: MYSQL_PASSWORD
+      value: test
 
 
   - name: adminer
     image: adminer:latest
     replicas: 1
     bindings:
-      - port: 8081
+      - port: 8080
