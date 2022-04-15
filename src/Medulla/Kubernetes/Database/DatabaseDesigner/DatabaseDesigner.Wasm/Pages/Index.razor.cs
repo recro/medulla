@@ -85,6 +85,7 @@ namespace DatabaseDesigner.Wasm.Pages
 
         private async Task ShowJson()
         {
+            Console.WriteLine("Test");
             var json = JsonConvert.SerializeObject(new
             {
                 Nodes = Diagram.Nodes.Cast<object>(),
