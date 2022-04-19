@@ -21,7 +21,7 @@ namespace DatabaseDesigner.Wasm.Pages
 
         public Diagram Diagram { get; } = new Diagram(new DiagramOptions
         {
-            GridSize = 40,
+            GridSize = 80,
             AllowMultiSelection = false,
             Links = new DiagramLinkOptions
             {
@@ -47,7 +47,9 @@ namespace DatabaseDesigner.Wasm.Pages
             base.OnInitialized();
 
             Diagram.RegisterModelComponent<Table, TableNode>();
+            Diagram.RegisterModelComponent<Database, DatabaseNode>();
             Diagram.Nodes.Add(new Table());
+            Diagram.Nodes.Add(new Database());
 
             Diagram.Links.Added += OnLinkAdded;
             Diagram.Links.Removed += Diagram_LinkRemoved;

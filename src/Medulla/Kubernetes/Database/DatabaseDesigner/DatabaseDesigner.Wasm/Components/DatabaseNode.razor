@@ -1,0 +1,10 @@
+﻿<div data-color-mode="dark" class="border rounded-0 p-2 mb-2 color-bg-default box card @(Node.Selected ? "selected" : "")" style="width: 320px;">
+    <div class="box-header card-header">
+        <h4 class="mb-0">@Node.Name</h4>
+    </div>
+
+    @if (Node.HasPrimaryColumn)
+    {
+        <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+    }
+</div>
