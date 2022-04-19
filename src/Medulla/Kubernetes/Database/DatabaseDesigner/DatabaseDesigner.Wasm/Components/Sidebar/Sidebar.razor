@@ -1,8 +1,12 @@
 ﻿@using DatabaseDesigner.Wasm.Components.Database;
-@using DatabaseDesigner.Core.Models;
-@using Microsoft.AspNetCore.Components;
+@using DatabaseDesigner.Wasm.Components.Database.TableNode;
 @using DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode;
 
 <div class="Box sidebar">
-    <DatabaseNode InTray="@true" />
+    <div>
+        <DatabaseNode InTray="@true" />
+    </div>
+    <div>
+        <TableNode InTray="@true"  />
+    </div>
 </div>
