@@ -92,10 +92,3 @@ services:
       value: medulla_user
     - name: MYSQL_PASSWORD
       value: test
-
-
-  - name: adminer
-    image: adminer:latest
-    replicas: 1
-    bindings:
-      - port: 8080
