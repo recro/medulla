@@ -49,7 +49,11 @@ namespace DatabaseDesigner.Wasm.Pages
             Diagram.RegisterModelComponent<Table, TableNode>();
             Diagram.RegisterModelComponent<Database, DatabaseNode>();
             Diagram.Nodes.Add(new Table());
+            Diagram.Nodes.Add(new Table());
             Diagram.Nodes.Add(new Database());
+            Diagram.Nodes.Add(new Database());
+
+            Console.WriteLine(Diagram.Nodes[0].Position.Add(100, 500));
 
             Diagram.Links.Added += OnLinkAdded;
             Diagram.Links.Removed += Diagram_LinkRemoved;
