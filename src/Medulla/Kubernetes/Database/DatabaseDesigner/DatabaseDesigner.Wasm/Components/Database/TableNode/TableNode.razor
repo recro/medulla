@@ -1,6 +1,11 @@
-﻿<Entity AddToScene="@AddToScene" Diagram="@Diagram" Name="Table" InTray="@InTray" Image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjyqihdMPTpykRIbZDtlR2CruYX1StcKKCLA&usqp=CAU" >
-    @if (Node.HasPrimaryColumn)
-    {
-        <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
-    }
+﻿<Entity SettingsTitle="Table Settings" AddToScene="@AddToScene" Diagram="@Diagram" Name="Table" InTray="@InTray" Image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjyqihdMPTpykRIbZDtlR2CruYX1StcKKCLA&usqp=CAU" >
+    <SettingsForm>
+        <p>This is a test</p>
+    </SettingsForm>
+   <NodePorts>
+       @if (Node.HasPrimaryColumn)
+        {
+            <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+        }
+   </NodePorts>
 </Entity>

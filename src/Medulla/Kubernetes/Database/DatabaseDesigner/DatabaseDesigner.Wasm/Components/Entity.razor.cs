@@ -10,8 +10,12 @@ namespace DatabaseDesigner.Wasm.Components
 {
     public partial class Entity
     {
+
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        public RenderFragment SettingsForm { get; set; }
+
+        [Parameter]
+        public RenderFragment NodePorts { get; set; }
         
         [Parameter]
         public bool InTray { get; set; } = false;
@@ -29,6 +33,9 @@ namespace DatabaseDesigner.Wasm.Components
 
         [Parameter]
         public Action<Diagram> AddToScene { get; set; }
+
+        [Parameter]
+        public string SettingsTitle { get; set; } = "[Settings Title]";
 
         private void Clicked() {
             if (InTray) {

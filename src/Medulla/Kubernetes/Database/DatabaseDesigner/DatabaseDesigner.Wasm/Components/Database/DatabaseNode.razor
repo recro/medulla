@@ -1,6 +1,11 @@
-﻿<Entity AddToScene="@AddToScene" Diagram="@Diagram" Name="Database" InTray="@InTray" Image="https://icones.pro/wp-content/uploads/2021/05/icone-base-donnees-jaune.png">
-    @if (Node.HasPrimaryColumn)
-    {
-        <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
-    }
+﻿<Entity SettingsTitle="Database Settings" AddToScene="@AddToScene" Diagram="@Diagram" Name="Database" InTray="@InTray" Image="https://icones.pro/wp-content/uploads/2021/05/icone-base-donnees-jaune.png">
+    <SettingsForm>
+        <p>This is a test</p>
+    </SettingsForm>
+   <NodePorts>
+       @if (Node.HasPrimaryColumn)
+        {
+            <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+        }
+   </NodePorts>
 </Entity>

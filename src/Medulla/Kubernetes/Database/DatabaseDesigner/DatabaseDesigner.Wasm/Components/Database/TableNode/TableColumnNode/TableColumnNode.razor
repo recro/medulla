@@ -1,6 +1,11 @@
-﻿<Entity AddToScene="@AddToScene" Diagram="@Diagram" Name="Column" InTray="@InTray" Image="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/table_selection_column.png" >
-   @if (Node.HasPrimaryColumn)
-    {
-        <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
-    }
+﻿<Entity SettingsTitle="Column Settings" AddToScene="@AddToScene" Diagram="@Diagram" Name="Column" InTray="@InTray" Image="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/table_selection_column.png" >
+    <SettingsForm>
+        <p>This is a test</p>
+    </SettingsForm>
+   <NodePorts>
+       @if (Node.HasPrimaryColumn)
+        {
+            <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+        }
+   </NodePorts>
 </Entity>

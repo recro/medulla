@@ -12,8 +12,10 @@
                 <div style="height: 0;position: absolute;top: -208px;left: -29px;" class="position-relative text-center">
                     <div class="Popover position-relative">
                         <div class="Popover-message Popover-message--bottom p-4 mx-auto mb-2 text-left Box color-shadow-large">
-                        <h4 class="mb-2">Popover heading</h4>
-                        <p>Message about this particular piece of UI.</p>
+                        <h4 class="mb-2">@SettingsTitle</h4>
+                        
+                        @SettingsForm
+
                         <button type="submit" class="btn btn-outline mt-2 text-bold">Got it!</button>
                         </div>
                     </div>
@@ -29,6 +31,6 @@
 
     @if (!InTray) 
     {
-        @ChildContent
+        @NodePorts
     }
 </div>
