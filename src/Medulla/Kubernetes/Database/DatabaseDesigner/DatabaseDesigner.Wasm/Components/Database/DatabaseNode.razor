@@ -1,16 +1,1 @@
-﻿<div data-color-mode="dark" class="position-relative border rounded-0 p-2 mb-2 color-bg-default box card" style="width: 115px;height: 115px;">
-    <div class="box-header card-header">
-        <h4 class="mb-0" style="font-size: 10px;color: gainsboro;">Database</h4>
-    </div>
-
-    <div class="position-relative text-center" style="position: absolute!important;left: 0;right: 0;">
-    <img style="margin: 5%;width: 49%;" src="https://icones.pro/wp-content/uploads/2021/05/icone-base-donnees-jaune.png    " />
-    </div>
-    @if (!InTray) 
-    {
-        @if (Node.HasPrimaryColumn)
-        {
-            <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
-        }
-    }
-</div>
+﻿<Entity Name="Database" Node="@Node" InTray="@InTray" Image="https://icones.pro/wp-content/uploads/2021/05/icone-base-donnees-jaune.png" />
