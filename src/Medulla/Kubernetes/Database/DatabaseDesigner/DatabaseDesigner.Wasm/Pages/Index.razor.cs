@@ -48,10 +48,12 @@ namespace DatabaseDesigner.Wasm.Pages
 
             Diagram.RegisterModelComponent<Table, TableNode>();
             Diagram.RegisterModelComponent<Database, DatabaseNode>();
+            Diagram.RegisterModelComponent<DatabaseDesigner.Core.Models.TableColumn, TableColumnNode>();
             Diagram.Nodes.Add(new Table());
             Diagram.Nodes.Add(new Table());
             Diagram.Nodes.Add(new Database());
             Diagram.Nodes.Add(new Database());
+            Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.TableColumn());
 
             Console.WriteLine(Diagram.Nodes[0].Position.Add(100, 500));
 
