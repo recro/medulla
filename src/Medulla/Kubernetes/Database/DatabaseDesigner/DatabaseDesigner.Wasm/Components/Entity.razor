@@ -2,7 +2,7 @@
     string inTrayHover = (InTray ? "cursor:pointer;": "");
 
 }
-<div data-color-mode="dark" class="position-relative border rounded-0 p-2 mb-2 color-bg-default box card" style="width: 115px;height: 115px; @inTrayHover">
+<div @onclick="@Clicked" data-color-mode="dark" class="position-relative border rounded-0 p-2 mb-2 color-bg-default box card" style="width: 115px;height: 115px; @inTrayHover">
     <div class="box-header card-header">
         <h4 class="mb-0" style="font-size: 10px;color: gainsboro;">@Name</h4>
         @if (!InTray) 

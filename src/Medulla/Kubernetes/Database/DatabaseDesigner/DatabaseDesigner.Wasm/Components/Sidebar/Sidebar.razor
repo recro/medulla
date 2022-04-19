@@ -2,14 +2,31 @@
 @using DatabaseDesigner.Wasm.Components.Database.TableNode;
 @using DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode;
 
+@{
+
+    void AddDatabase(Diagram diagram) {
+        Diagram.Nodes.Add(new Database());
+    }
+
+    void AddTable(Diagram diagram) {
+        Diagram.Nodes.Add(new Database());
+    }
+
+    void AddColumn(Diagram diagram) {
+        Diagram.Nodes.Add(new Database());
+    }
+
+}
+
+
 <div class="Box sidebar">
     <div>
-        <DatabaseNode InTray="@true" />
+        <DatabaseNode Diagram="Diagram" InTray="@true" AddToScene="@AddDatabase" />
     </div>
     <div>
-        <TableNode InTray="@true"  />
+        <TableNode Diagram="Diagram" InTray="@true" AddToScene="@AddTable"  />
     </div>
     <div>
-        <TableColumnNode InTray="@true"  />
+        <TableColumnNode Diagram="Diagram" InTray="@true" AddToScene="@AddColumn"  />
     </div>
 </div>
