@@ -1,11 +1,8 @@
-﻿<div class="Box sidebar">
-    <div data-color-mode="dark" class="position-relative border rounded-0 p-2 mb-2 color-bg-default box card" style="width: 115px;height: 115px;">
-        <div class="box-header card-header">
-            <h4 class="mb-0" style="font-size: 10px;color: gainsboro;">Database</h4>
-        </div>
+﻿@using DatabaseDesigner.Wasm.Components.Database;
+@using DatabaseDesigner.Core.Models;
+@using Microsoft.AspNetCore.Components;
+@using DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode;
 
-        <div class="position-relative text-center" style="position: absolute!important;left: 0;right: 0;">
-        <img style="margin: 5%;width: 49%;" src="https://icones.pro/wp-content/uploads/2021/05/icone-base-donnees-jaune.png    " />
-        </div>
-    </div>
+<div class="Box sidebar">
+    <DatabaseNode InTray="@true" />
 </div>

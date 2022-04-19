@@ -8,5 +8,8 @@ namespace DatabaseDesigner.Wasm.Components.Database
     {
         [Parameter]
         public DatabaseDesigner.Core.Models.Database Node { get; set; }
+
+        [Parameter]
+        public bool InTray { get; set; } = false;
     }
 }
