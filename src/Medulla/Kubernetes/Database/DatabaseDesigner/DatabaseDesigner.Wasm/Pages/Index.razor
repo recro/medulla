@@ -1,26 +1,10 @@
 ﻿@page "/"
-
-@* <nav class="Box navbar navbar-expand-lg navbar-dark bg-primary">
-    <span class="navbar-brand" href="#">Database Designer</span>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#" @onclick="NewTable">New table</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" @onclick="ShowJson">Show JSON</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" @onclick="Debug">DEBUG</a>
-            </li>
-        </ul>
-    </div>
-</nav> *@
-
+@using DatabaseDesigner.Wasm.Components.Sidebar;
 <div class="wrapper">
     <CascadingValue Value="Diagram">
         <div class="diagram-container">
             <DiagramCanvas></DiagramCanvas>
         </div>
+        <Sidebar />
     </CascadingValue>
 </div>

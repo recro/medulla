@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
-namespace DatabaseDesigner.Wasm.Components
+namespace DatabaseDesigner.Wasm.Components.Sidebar.TableColumn
 {
     public partial class TableColumn : IDisposable
     {

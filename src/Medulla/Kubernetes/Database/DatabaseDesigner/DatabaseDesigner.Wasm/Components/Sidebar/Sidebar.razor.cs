@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 
-namespace DatabaseDesigner.Wasm.Components
+namespace DatabaseDesigner.Wasm.Components.Sidebar
 {
     public partial class Sidebar : IDisposable
     {

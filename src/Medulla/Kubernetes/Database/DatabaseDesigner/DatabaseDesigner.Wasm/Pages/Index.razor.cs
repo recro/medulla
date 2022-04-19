@@ -11,6 +11,9 @@ using System;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using DatabaseDesigner.Wasm.Components.Database;
+using DatabaseDesigner.Wasm.Components.Database.TableNode;
+using DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode;
 
 namespace DatabaseDesigner.Wasm.Pages
 {
