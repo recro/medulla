@@ -3,14 +3,23 @@
     {
         <PortRenderer Port="Table.GetPort(Column)"></PortRenderer>
     }
-    @if (Column.Primary)
+    @* @if (Column.Primary)
     {
         <i class="fas fa-key mr-2 text-warning"></i>
     }
     else if (HasLinks)
     {
         <i class="fas fa-key mr-2 text-secondary"></i>
-    }
-    <span class="text-primary @(Column.Primary || HasLinks ? "" : "ml-4")">@Column.Type.ToString()</span>
-    @Column.Name
+    } *@
+    <select class="form-select select-sm" aria-label="Important decision">
+        <option>@Column.Type.ToString()</option>
+        <option value="option 1">Integer</option>
+        <option value="option 1">String</option>
+        <option value="option 1">ENUM</option>
+        <option value="option 1">Date</option>
+        <option value="option 1">Boolean</option>
+  </select>
+    @* <span class="text-primary @(Column.Primary || HasLinks ? "" : "ml-4")"></span> *@
+    <input class="form-control" type="text" value="@Column.Name" placeholder="Standard input" aria-label="Repository description" />
+    
 </li>
