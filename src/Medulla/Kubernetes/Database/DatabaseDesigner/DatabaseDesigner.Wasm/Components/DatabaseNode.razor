@@ -3,6 +3,17 @@
         <h4 class="mb-0">@Node.Name</h4>
     </div>
 
+    <div class="position-relative text-center">
+    <button class="btn btn-primary">Add Table</button>
+    <div class="Popover right-0 left-0 position-relative">
+        <div class="Popover-message text-left p-4 mt-2 mx-auto Box color-shadow-large">
+        <h4 class="mb-2">Add A Database Table</h4>
+        <p>You can create new Database Tables by clicking this button.</p>
+        <button type="submit" class="btn btn-outline mt-2 text-bold">Got it!</button>
+        </div>
+    </div>
+    </div>
+
     @if (Node.HasPrimaryColumn)
     {
         <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
