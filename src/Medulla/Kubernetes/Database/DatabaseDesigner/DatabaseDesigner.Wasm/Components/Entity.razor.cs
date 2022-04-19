@@ -15,5 +15,7 @@ namespace DatabaseDesigner.Wasm.Components
 
         [Parameter]
         public string Image { get; set; } = "#";
+
+        private bool SettingsOn { get; set; } = false;
     }
 }
