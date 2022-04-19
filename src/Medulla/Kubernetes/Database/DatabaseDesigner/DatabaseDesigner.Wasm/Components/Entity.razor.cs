@@ -5,8 +5,8 @@ namespace DatabaseDesigner.Wasm.Components
     public partial class Entity
     {
         [Parameter]
-        public DatabaseDesigner.Core.Models.Database Node { get; set; }
-
+        public RenderFragment ChildContent { get; set; }
+        
         [Parameter]
         public bool InTray { get; set; } = false;
 

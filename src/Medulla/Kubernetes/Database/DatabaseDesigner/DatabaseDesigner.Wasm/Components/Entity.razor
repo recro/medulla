@@ -6,11 +6,9 @@
     <div class="position-relative text-center" style="position: absolute!important;left: 0;right: 0;">
     <img style="margin: 5%;width: 49%;" src="@Image" />
     </div>
+
     @if (!InTray) 
     {
-        @if (Node.HasPrimaryColumn)
-        {
-            <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
-        }
+        @ChildContent
     }
 </div>

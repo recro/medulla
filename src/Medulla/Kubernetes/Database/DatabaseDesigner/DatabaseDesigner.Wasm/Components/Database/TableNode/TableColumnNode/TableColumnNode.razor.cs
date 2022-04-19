@@ -7,5 +7,8 @@ namespace DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode
     {
         [Parameter]
         public DatabaseDesigner.Core.Models.TableColumn Node { get; set; }
+        
+        [Parameter]
+        public bool InTray { get; set; } = false;
     }
 }
