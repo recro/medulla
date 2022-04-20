@@ -19,5 +19,9 @@ namespace DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode
         [Parameter]
         public Action<Diagram> AddToScene { get; set; }
 
+        
+        [Parameter]
+        public RenderFragment Preview { get; set; }
+
     }
 }

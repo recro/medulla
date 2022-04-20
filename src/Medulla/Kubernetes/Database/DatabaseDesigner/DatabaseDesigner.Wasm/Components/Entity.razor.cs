@@ -17,6 +17,9 @@ namespace DatabaseDesigner.Wasm.Components
 
         [Parameter]
         public RenderFragment NodePorts { get; set; }
+
+        [Parameter]
+        public RenderFragment Preview { get; set; }
         
         [Parameter]
         public bool InTray { get; set; } = false;

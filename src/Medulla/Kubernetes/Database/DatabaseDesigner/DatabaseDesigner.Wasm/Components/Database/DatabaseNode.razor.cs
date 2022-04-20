@@ -25,5 +25,8 @@ namespace DatabaseDesigner.Wasm.Components.Database
 
         public void QuickLoadingOnEntity() => Entity.QuickLoading();
 
+        [Parameter]
+        public RenderFragment Preview { get; set; }
+
     }
 }
