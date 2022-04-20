@@ -5,6 +5,12 @@
 <div @onclick="@Clicked" data-color-mode="dark" class="position-relative border rounded-0 p-2 mb-2 color-bg-default box card" style="width: 115px;height: 115px; @inTrayHover">
     <div class="box-header card-header">
         <h4 class="mb-0" style="font-size: 10px;color: gainsboro;">@Name</h4>
+        @if (InTray) {
+            <img style="width: 20px;
+            position: absolute;
+            right: 3px;
+            top: 3px;" @onmouseover="MouseOver" @onmouseout="MouseOut" src="img/preview.png" />
+        }
         @if (!InTray) 
         {
             @if (SettingsOn) 
@@ -53,8 +59,28 @@
 
                 </div>
             }
+
+           
+
+
             <img @onclick="() => SettingsOn = !SettingsOn" class="settings-icon" style="position: absolute;top: 0;width: 40px;right: 0;" src="https://static.vecteezy.com/system/resources/thumbnails/004/154/528/small/setting-icon-design-sign-gear-isolated-sign-free-free-vector.jpg" />
         }
+
+
+         @if (ShowPreview && InTray) {
+                <div style="height: 0;position: absolute;width:232px;top: -37px;left: -269px" class="position-relative text-center">       
+                    <div class="Popover position-relative">
+                        <div class="Popover-message Popover-message--right p-4 mx-auto mb-2 text-left Box color-shadow-large">
+                        <h4 class="mb-2">@SettingsTitle</h4>
+                        
+                        @SettingsForm
+
+                        <button @onclick="() => SettingsOn = !SettingsOn" type="submit" class="btn btn-outline mt-2 text-bold">Got it!</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
     </div>
 
     <div class="position-relative text-center" style="position: absolute!important;left: 0;right: 0;">

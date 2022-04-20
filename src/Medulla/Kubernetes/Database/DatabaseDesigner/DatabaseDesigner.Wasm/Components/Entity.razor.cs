@@ -40,6 +40,8 @@ namespace DatabaseDesigner.Wasm.Components
 
         private bool IsLoading { get; set; } = false;
 
+        private bool ShowPreview { get; set; } = false;
+
         public async void QuickLoading()
         {
             IsLoading = true;
@@ -52,6 +54,16 @@ namespace DatabaseDesigner.Wasm.Components
             if (InTray) {
                 AddToScene(Diagram);
             }
+        }
+
+        private void MouseOver() {
+            Console.WriteLine("Showing preview");
+            ShowPreview = true;
+        }
+
+        private void MouseOut() {
+            ShowPreview = false;
+            Console.WriteLine("Hiding preview");
         }
 
     }
