@@ -45,6 +45,7 @@ namespace DatabaseDesigner.Wasm.Components
             IsLoading = true;
             await Task.Delay(1000);
             IsLoading = false;
+            this.StateHasChanged();
         }
 
         private void Clicked() {
