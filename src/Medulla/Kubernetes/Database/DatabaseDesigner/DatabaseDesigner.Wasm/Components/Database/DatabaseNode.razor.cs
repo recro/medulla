@@ -20,5 +20,10 @@ namespace DatabaseDesigner.Wasm.Components.Database
         
         [Parameter]
         public Action<Diagram> AddToScene { get; set; }
+
+        private Entity Entity { get; set; }
+
+        public void QuickLoadingOnEntity() => Entity.QuickLoading();
+
     }
 }

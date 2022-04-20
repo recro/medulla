@@ -5,6 +5,7 @@ using DatabaseDesigner.Wasm.Components.Database.TableNode;
 using DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode;
 using System.Threading;
 using System;
+using System.Threading.Tasks;
 
 namespace DatabaseDesigner.Wasm.Components
 {
@@ -36,6 +37,15 @@ namespace DatabaseDesigner.Wasm.Components
 
         [Parameter]
         public string SettingsTitle { get; set; } = "[Settings Title]";
+
+        private bool IsLoading { get; set; } = false;
+
+        public async void QuickLoading()
+        {
+            IsLoading = true;
+            await Task.Delay(1000);
+            IsLoading = false;
+        }
 
         private void Clicked() {
             if (InTray) {
