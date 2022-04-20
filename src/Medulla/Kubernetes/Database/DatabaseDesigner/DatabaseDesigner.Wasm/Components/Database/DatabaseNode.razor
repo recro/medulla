@@ -1,6 +1,10 @@
 ﻿<Entity SettingsTitle="Database Settings" AddToScene="@AddToScene" Diagram="@Diagram" Name="Database" InTray="@InTray" Image="https://icones.pro/wp-content/uploads/2021/05/icone-base-donnees-jaune.png">
     <SettingsForm>
-        <p>This is a test</p>
+        <form>
+            <label for="name">Name</label>
+            <input class="form-control" type="text" id="name" />
+            <Comment>Changes are automatically saved.</Comment>
+        </form>
     </SettingsForm>
    <NodePorts>
        @if (Node.HasPrimaryColumn)
