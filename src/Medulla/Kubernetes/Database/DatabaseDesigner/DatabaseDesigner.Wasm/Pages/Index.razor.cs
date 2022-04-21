@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using DatabaseDesigner.Wasm.Components.Database;
 using DatabaseDesigner.Wasm.Components.Database.TableNode;
 using DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode;
+using DatabaseDesigner.Wasm.Components.RegisteredComponents.Footer;
 
 namespace DatabaseDesigner.Wasm.Pages
 {
@@ -52,9 +53,11 @@ namespace DatabaseDesigner.Wasm.Pages
             Diagram.RegisterModelComponent<Table, TableNode>();
             Diagram.RegisterModelComponent<Database, DatabaseNode>();
             Diagram.RegisterModelComponent<DatabaseDesigner.Core.Models.TableColumn, TableColumnNode>();
+            Diagram.RegisterModelComponent<DatabaseDesigner.Core.Models.RegisteredComponents.Footer, Footer>();
             // Diagram.Nodes.Add(new Table());
             // Diagram.Nodes.Add(new Table());
             Diagram.Nodes.Add(new Database());
+            Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.Footer());
             // Diagram.Nodes.Add(new Database());
             // Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.TableColumn());
 
