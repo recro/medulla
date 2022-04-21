@@ -30,6 +30,10 @@
         Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.Footer());
     }
 
+    void AddHeader(Diagram diagram) {
+        Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.Header());
+    }
+
 
 }
 
@@ -82,5 +86,13 @@
                 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
             </Preview>
         </Footer>
+    </div>
+    <div>
+        <DatabaseDesigner.Wasm.Components.RegisteredComponents.Header.Header Diagram="Diagram" InTray="@true" AddToScene="@AddHeader"  >
+            <Preview>
+                <h4 class="mb-2">Column Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </DatabaseDesigner.Wasm.Components.RegisteredComponents.Header.Header>
     </div>
 </div>
