@@ -1,0 +1,17 @@
+<Entity @ref="Entity" SettingsTitle="Cron Settings" AddToScene="@AddToScene" Diagram="@Diagram" Name="Cron" InTray="@InTray" Image="img/cron.png">
+    <SettingsForm>
+        <form>
+            <Input WhenChanged="@QuickLoadingOnEntity" Label="Name" />
+            <Comment>Changes are automatically saved.</Comment>
+        </form>
+    </SettingsForm>
+   <NodePorts>
+       @if (Node.HasPrimaryColumn)
+        {
+            <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+        }
+   </NodePorts>
+    <Preview>
+        @Preview
+    </Preview>
+</Entity>
