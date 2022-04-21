@@ -1,0 +1,25 @@
+@* Add html here instead of just img *@
+
+@if (InTray) {
+    <Entity @ref="Entity" SettingsTitle="DataTable Settings" AddToScene="@AddToScene" Diagram="@Diagram" Name="DataTable" InTray="@InTray" Image="data:image/png;base64,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">
+        <SettingsForm>
+            <form>
+                <Input WhenChanged="@QuickLoadingOnEntity" Label="Name" />
+                <Comment>Changes are automatically saved.</Comment>
+            </form>
+        </SettingsForm>
+    <NodePorts>
+        @if (Node.HasPrimaryColumn)
+            {
+                <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+            }
+    </NodePorts>
+        <Preview>
+            @Preview
+        </Preview>
+    </Entity>
+} else {
+    <img src="img/footer.png" />
+}
+
+

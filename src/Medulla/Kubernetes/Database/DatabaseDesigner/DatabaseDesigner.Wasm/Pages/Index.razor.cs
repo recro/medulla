@@ -58,6 +58,7 @@ namespace DatabaseDesigner.Wasm.Pages
             Diagram.RegisterModelComponent<DatabaseDesigner.Core.Models.RegisteredComponents.Header, Header>();
             Diagram.RegisterModelComponent<DatabaseDesigner.Core.Models.Cron, DatabaseDesigner.Wasm.Components.Cron.Cron>();
             Diagram.RegisterModelComponent<DatabaseDesigner.Core.Models.RegisteredComponents.PageWrapper, DatabaseDesigner.Wasm.Components.RegisteredComponents.PageWrapper.PageWrapper>();
+            Diagram.RegisterModelComponent<DatabaseDesigner.Core.Models.RegisteredComponents.DataTable, DatabaseDesigner.Wasm.Components.DataTable.DataTable>();
             // Diagram.Nodes.Add(new Table());
             // Diagram.Nodes.Add(new Table());
             Diagram.Nodes.Add(new Database());
