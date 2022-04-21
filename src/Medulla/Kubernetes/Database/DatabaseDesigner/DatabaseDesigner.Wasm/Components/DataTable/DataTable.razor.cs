@@ -28,6 +28,8 @@ namespace DatabaseDesigner.Wasm.Components.DataTable
         [Parameter]
         public RenderFragment Preview { get; set; }
 
+        private bool SettingsOn { get; set; }
+
     
 
     }
