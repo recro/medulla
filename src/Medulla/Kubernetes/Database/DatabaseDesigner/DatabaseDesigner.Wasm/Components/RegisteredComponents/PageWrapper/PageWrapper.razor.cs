@@ -11,7 +11,7 @@ namespace DatabaseDesigner.Wasm.Components.RegisteredComponents.PageWrapper
         [Parameter]
         public DatabaseDesigner.Core.Models.RegisteredComponents.PageWrapper Node { get; set; }
 
-         [Parameter]
+        [Parameter]
         public bool InTray { get; set; } = false;
 
         [Parameter]

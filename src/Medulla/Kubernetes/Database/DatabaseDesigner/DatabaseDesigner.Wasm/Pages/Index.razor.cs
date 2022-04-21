@@ -59,11 +59,11 @@ namespace DatabaseDesigner.Wasm.Pages
             // Diagram.Nodes.Add(new Table());
             // Diagram.Nodes.Add(new Table());
             Diagram.Nodes.Add(new Database());
-            Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.Footer());
+            // Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.Footer());
             // Diagram.Nodes.Add(new Database());
             // Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.TableColumn());
 
-            Console.WriteLine(Diagram.Nodes[0].Position.Add(100, 500));
+            // Console.WriteLine(Diagram.Nodes[0].Position.Add(100, 500));
 
             Diagram.Links.Added += OnLinkAdded;
             Diagram.Links.Removed += Diagram_LinkRemoved;
