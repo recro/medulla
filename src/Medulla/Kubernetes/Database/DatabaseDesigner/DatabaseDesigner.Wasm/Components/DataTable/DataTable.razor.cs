@@ -9,7 +9,7 @@ namespace DatabaseDesigner.Wasm.Components.DataTable
     public partial class DataTable
     {
         [Parameter]
-        public DatabaseDesigner.Core.Models.RegisteredComponents.Footer Node { get; set; }
+        public DatabaseDesigner.Core.Models.RegisteredComponents.DataTable Node { get; set; }
 
         [Parameter]
         public bool InTray { get; set; } = false;
