@@ -54,6 +54,15 @@ services:
     bindings:
       - name: http
         protocol: http
+
+  - name: database-designer
+    dockerFile: Medulla/Kubernetes/Database/DatabaseDesigner/Dockerfile
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+        port: 5000
+        containerPort: 80
         
   - name: database-sync
     dockerFile: Medulla/Kubernetes/Database/DatabaseSync/Dockerfile
