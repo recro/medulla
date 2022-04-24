@@ -102,7 +102,7 @@ public class AuthorizationController : Controller
 
         var result = await HttpContext.AuthenticateAsync(IdentityConstants.ApplicationScheme);
 
-        if (result == null || !result.Succeeded || (request.MaxAge != null && result.Properties?.IssuedUtc != null &&
+        if (!result.Succeeded || (request.MaxAge != null && result.Properties?.IssuedUtc != null &&
             DateTimeOffset.UtcNow - result.Properties.IssuedUtc > TimeSpan.FromSeconds(request.MaxAge.Value)))
         {
             if (request.HasPrompt(Prompts.None))
