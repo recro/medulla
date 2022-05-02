@@ -7,9 +7,9 @@ namespace Medulla.Frontend.Client.Components.Editor.DataSources
     public class DataSource
     {
 
-        public string uuid { get; set; }
+        public string? uuid { get; set; }
 
-        public string dataSourceName { get; set; }
+        public string? dataSourceName { get; set; }
 
         public bool isStaticData { get; set; }
 
@@ -17,15 +17,15 @@ namespace Medulla.Frontend.Client.Components.Editor.DataSources
 
         public bool isExternApiRestSource { get; set; }
 
-        public string dataSourceType { get; set; }
+        public string? dataSourceType { get; set; }
 
-        public string staticData { get; set; }
+        public string? staticData { get; set; }
 
-        public string castDataToType { get; set; }
+        public string? castDataToType { get; set; }
 
-        public string grpcSource { get; set; }
+        public string? grpcSource { get; set; }
 
-        public string externalRestApiSource { get; set; }
+        public string? externalRestApiSource { get; set; }
 
 
 
