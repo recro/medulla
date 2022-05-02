@@ -42,3 +42,11 @@ services:
     bindings:
       - name: http
         protocol: http
+
+  - name: editor
+    project: Medulla/Editor/Client/Medulla.Frontend.Client.csproj
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+        port: 8080
