@@ -1,0 +1,17 @@
+﻿@import "@primer/css/support/mixins/color-modes.scss";
+
+@import "../colors/light.scss";
+@import "../colors/dark.scss";
+@import "../colors/dark_dimmed.scss";
+
+@include color-mode-theme(light, true) {
+    @include medulla-colors-light;
+}
+
+@include color-mode-theme(dark) {
+    @include medulla-colors-dark;
+}
+
+@include color-mode-theme(dark_dimmed) {
+    @include medulla-colors-dark_dimmed;
+}

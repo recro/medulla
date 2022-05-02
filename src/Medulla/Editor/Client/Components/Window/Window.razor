@@ -1,0 +1,72 @@
+<div class="flex flex-col Box" style="width: 100%">
+    
+    <div class="color-bg-tertiary p-10 pb-2 pt-2 pl-1" style="display:flex;justify-content: space-between;align-content: center;align-items: center;">
+        <h3>@WindowTitle</h3>
+        @if (_windowOpen)
+        {
+            <div @onclick="() => _windowOpen = !_windowOpen" style="width:20px;margin-right:10px;padding-top: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </div>    
+        }
+        else
+        {
+            <div @onclick="() => _windowOpen = !_windowOpen" style="width:20px;margin-right:10px;padding-top: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                </svg>
+            </div>
+        }
+    </div>
+    @if (_windowOpen)
+    {
+        <div class="color-bg-primary" style=" @GetMaxHeightStyle()">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    @if (maxCalc)
+                    {
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg" style="height: calc(100vh - 65px);">
+                            @ChildContent
+                            <div style="height:100px;"></div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            @ChildContent
+                            <div style="height:100px;"></div>
+                        </div>    
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    
+    [Parameter]
+    public string WindowTitle { get; set; } = "{No Title}";
+
+    [Parameter]
+    public string IsMaxHeight { get; set; } = "false";
+
+    [Parameter]
+    public string IsMaxWidth { get; set; } = "false";
+
+    [Parameter]
+    public bool maxCalc { get; set; } = false;
+    
+    private bool _windowOpen = true;
+
+    private string GetMaxHeightStyle()
+    {
+        return IsMaxHeight == "true" ? "max-height: 33vh;overflow: scroll;" : "";
+    }
+
+}

@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Medulla.Frontend' ">
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Library\Abstrations\**" />
+    <Content Remove="Library\Abstrations\**" />
+    <EmbeddedResource Remove="Library\Abstrations\**" />
+    <None Remove="Library\Abstrations\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="YamlDotNet" Version="11.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Medulla.CSS\Medulla.CSS.csproj" />
+    <ProjectReference Include="..\..\PageProtoBufgRPCIntegrationTests\Medulla.Backend.Editor.Api.Web.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\RegisteredComponents\CustomForms" />
+    <Folder Include="Components\Editor\TreeView\" />
+    <Folder Include="Library\Abstractions\Editor\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Components\Editor\TreeView\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\RegisteredComponents\Menu\Menu1.razor" />
+    <_ContentIncludedByDefault Remove="Components\RegisteredComponents\ActionList\ActionList0.razor" />
+  </ItemGroup>
+</Project>

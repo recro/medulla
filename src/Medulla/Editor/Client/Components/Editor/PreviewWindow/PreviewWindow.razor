@@ -1,0 +1,23 @@
+@inject NavigationManager NavigationManager
+
+<Window WindowTitle="Preview Window">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8" style="margin-bottom: 0!important;
+                                                                                          margin: 2em;">
+            <div>
+                <button @onclick="Preview">
+                    Preview
+                </button>
+            </div>
+        </div>
+    </div>
+</Window>
+
+@code {
+
+    private void Preview()
+    {
+        NavigationManager.NavigateTo("/preview");
+    }
+    
+}
