@@ -6,8 +6,14 @@ using System.Collections.Generic;
 
 namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
 {
+    /// <summary>
+    /// Palette Category
+    /// </summary>
     public class PaletteComponentCategories
     {
+        /// <summary>
+        /// Component Categories
+        /// </summary>
         public List<PaletteComponentCategory>? ComponentCategories { get; set; }
     }
 }

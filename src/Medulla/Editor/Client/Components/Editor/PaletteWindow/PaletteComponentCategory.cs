@@ -4,10 +4,20 @@
 
 namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
 {
+    /// <summary>
+    /// Palette Component Category
+    /// </summary>
     public class PaletteComponentCategory
     {
 
+        /// <summary>
+        /// Palette Window Components
+        /// </summary>
         public PaletteWindowComponents? PaletteWindowComponents { get; set; }
+        
+        /// <summary>
+        /// Name
+        /// </summary>
         public string Name { get; set; } = "{No Category Name}";
 
     }

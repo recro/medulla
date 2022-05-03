@@ -7,12 +7,23 @@ using Medulla.Frontend.Client.Library.Utilities.Unique;
 
 namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
 {
+    /// <summary>
+    /// Properties in Property Window
+    /// </summary>
     public class Properties
     {
 
+        /// <summary>
+        /// List of properties
+        /// </summary>
         public List<Property> PropertyList { get; set; } = new List<Property>();
 
 
+        /// <summary>
+        /// Set Property
+        /// </summary>
+        /// <param name="editor"></param>
+        /// <param name="uniqueId"></param>
         public void SetPropertyValuesFromEditorViewNode(Editor editor, UniqueId? uniqueId)
         {
             foreach (var prop in PropertyList)

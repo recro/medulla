@@ -10,14 +10,28 @@ using Microsoft.AspNetCore.Components.Rendering;
 namespace Medulla.Frontend.Client.Components.Editor.EditorView
 {
 
+    /// <summary>
+    /// EditorRender renders editor
+    /// </summary>
     public class EditorRenderer : ComponentBase
     {
+        
+        /// <summary>
+        /// editor view node base node
+        /// </summary>
         [Parameter]
         public EditorViewNode EditorViewNode { get; set; } = default!;
 
+        /// <summary>
+        /// Editor object
+        /// </summary>
         [CascadingParameter]
         public Editor Editor { get; set; } = default!;
 
+        /// <summary>
+        /// Builds render tree
+        /// </summary>
+        /// <param name="builder"></param>
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             var type = Type.GetType(EditorViewNode.Type);

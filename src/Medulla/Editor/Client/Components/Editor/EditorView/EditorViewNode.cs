@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text.Json;
 using Medulla.Frontend.Client.Library.Utilities.Unique;
 
-
+/// <summary>
+/// Editor View Node
+/// </summary>
 public class EditorViewNode
 {
     /// <summary>
@@ -16,14 +18,30 @@ public class EditorViewNode
     /// </summary>
     public string Type { get; set; } = "RenderFragment";
 
+    /// <summary>
+    /// Children
+    /// </summary>
     public readonly List<EditorViewNode?> Children = new();
+    
+    /// <summary>
+    /// Parameters
+    /// </summary>
     public Dictionary<string, object> Parameters { get; set; } = new();
 
+    /// <summary>
+    /// Unique Id
+    /// </summary>
     public UniqueId? UniqueId { get; set; }
 
+    /// <summary>
+    /// Is Container
+    /// </summary>
     public bool IsContainer { get; set; } = false;
 
 
+    /// <summary>
+    /// Get Json
+    /// </summary>
     public string GetJson()
     {
         List<string> childrenJson = new List<string>();

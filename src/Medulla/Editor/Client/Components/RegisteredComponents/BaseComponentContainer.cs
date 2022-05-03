@@ -8,19 +8,35 @@ using YamlDotNet.Core.Tokens;
 
 namespace Medulla.Frontend.Client.Components.RegisteredComponents
 {
+    /// <summary>
+    /// Base Component Container
+    /// </summary>
     public abstract class BaseComponentContainer : BaseComponent
     {
 
 
+        /// <summary>
+        /// hover class
+        /// </summary>
         protected string hoverClass = "";
+        
+        /// <summary>
+        /// is Hovering
+        /// </summary>
         protected bool isHovering = false;
 
+        /// <summary>
+        /// Handle Drag Enter
+        /// </summary>
         protected void HandleDragEnter()
         {
             hoverClass = "hovering";
             isHovering = true;
         }
 
+        /// <summary>
+        /// Handle Drag Leave
+        /// </summary>
         protected void HandleDragLeave()
         {
             hoverClass = "";
@@ -28,6 +44,9 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         }
 
 
+        /// <summary>
+        /// Handle Drop
+        /// </summary>
         protected void HandleDrop()
         {
             hoverClass = "";
@@ -43,6 +62,9 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
             Editor.StateChanged();
         }
 
+        /// <summary>
+        /// Get Children To Add On Add
+        /// </summary>
         protected abstract List<EditorViewNode?> GetChildrenToAddOnAdd();
 
     }

@@ -7,13 +7,25 @@ using Medulla.Frontend.Client.Library.Utilities.Unique;
 
 namespace Medulla.Frontend.Client.Library.Abstractions.Environment.EnvironmentAbstractionHandler
 {
+    /// <summary>
+    /// Environment Abstraction Handler
+    /// </summary>
     public abstract class EnvironmentAbstractionHandler
     {
 
+        /// <summary>
+        /// Handle In Editor
+        /// </summary>
         protected abstract void HandleInEditor(Editor editor, UniqueId? uniqueId, Components.RegisteredComponents.BaseComponent clickableBaseComponent);
 
+        /// <summary>
+        /// Handle In Production
+        /// </summary>
         protected abstract void HandleInProduction();
 
+        /// <summary>
+        /// Handle In Development
+        /// </summary>
         protected abstract void HandleInDevelopment();
 
         private enum Environment
@@ -23,6 +35,9 @@ namespace Medulla.Frontend.Client.Library.Abstractions.Environment.EnvironmentAb
             Development
         }
 
+        /// <summary>
+        /// Handle
+        /// </summary>
         public void Handle(Editor editor, UniqueId? uniqueId, Components.RegisteredComponents.BaseComponent clickableBaseComponent, bool isClickable)
         {
             var env = GetCurrentEnvironment();

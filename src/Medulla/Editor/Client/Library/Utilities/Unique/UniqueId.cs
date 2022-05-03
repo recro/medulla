@@ -4,16 +4,28 @@
 
 namespace Medulla.Frontend.Client.Library.Utilities.Unique
 {
+    /// <summary>
+    /// Unique id
+    /// </summary>
     public class UniqueId
     {
+        /// <summary>
+        /// Id
+        /// </summary>
         public readonly string Id;
 
+        /// <summary>
+        /// Unique Id
+        /// </summary>
         public UniqueId()
         {
             var guid = System.Guid.NewGuid().ToString();
             Id = guid;
         }
 
+        /// <summary>
+        /// Equals
+        /// </summary>
         public override bool Equals(object? obj)
         {
             if (obj == null || !(this.GetType() == obj.GetType()))
@@ -24,11 +36,17 @@ namespace Medulla.Frontend.Client.Library.Utilities.Unique
             return otherUniqueId.Id == this.Id;
         }
 
+        /// <summary>
+        /// Get Hash Code
+        /// </summary>
         public override int GetHashCode()
         {
             return Id.GetHashCode();
         }
 
+        /// <summary>
+        /// Equals
+        /// </summary>
         protected bool Equals(UniqueId other)
         {
             return Id == other.Id;

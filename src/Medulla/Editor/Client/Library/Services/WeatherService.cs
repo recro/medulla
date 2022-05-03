@@ -11,16 +11,28 @@ using Medulla.Frontend.Client.Library.Services.Models;
 
 namespace Medulla.Frontend.Client.Library.Services.TestWeatherService
 {
+    /// <summary>
+    /// Weather Service
+    /// </summary>
     public class WeatherService
     {
 
+        /// <summary>
+        /// Http Client
+        /// </summary>
         private readonly HttpClient _httpClient;
 
+        /// <summary>
+        /// Weather Service
+        /// </summary>
         public WeatherService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
+        /// <summary>
+        /// Get Weather
+        /// </summary>
         public async Task<WeatherForecast[]> GetWeather()
         {
             var result = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
