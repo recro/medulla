@@ -15,7 +15,7 @@ namespace Medulla.Frontend.Client.Components.Editor.EditorView
     /// </summary>
     public class EditorRenderer : ComponentBase
     {
-        
+
         /// <summary>
         /// editor view node base node
         /// </summary>

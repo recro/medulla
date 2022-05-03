@@ -28,7 +28,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
         {
             foreach (var prop in PropertyList)
             {
-                string? currentValue = editor!.GetComponentPropertyValue(uniqueId, prop.Name);
+                var currentValue = editor!.GetComponentPropertyValue(uniqueId, prop.Name);
                 // prop.DefaultValue = currentValue;
             }
         }

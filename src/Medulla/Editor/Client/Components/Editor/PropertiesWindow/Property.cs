@@ -16,17 +16,17 @@ namespace Medulla.Frontend.Client.Components.Editor.PropertiesWindow
         /// Name
         /// </summary>
         public string Name { get; set; } = default!;
-        
+
         /// <summary>
         /// Input Description
         /// </summary>
         public string InputDescription { get; set; } = default!;
-        
+
         /// <summary>
         /// Default Value
         /// </summary>
         public Dictionary<string, object> DefaultValue { get; set; } = default!;
-        
+
         /// <summary>
         /// InputType
         /// </summary>

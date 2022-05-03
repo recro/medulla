@@ -14,7 +14,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
         /// Name
         /// </summary>
         public string Name { get; set; } = "{No Component Name}";
-        
+
         /// <summary>
         /// Image
         /// </summary>

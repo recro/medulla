@@ -32,7 +32,7 @@ namespace Medulla.Frontend.Client.Library.Utilities.Unique
             {
                 return false;
             }
-            UniqueId otherUniqueId = (UniqueId)obj;
+            var otherUniqueId = (UniqueId)obj;
             return otherUniqueId.Id == this.Id;
         }
 

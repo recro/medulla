@@ -33,22 +33,22 @@
     {
         dataSources.Add(new DataSource()
         {
-            uuid = createUuid(),
-            dataSourceName = "",
-            dataSourceType = "string",
-            isExternApiRestSource = false,
-            isStaticData = false,
-            isGrpcDataSource = true
+            Uuid = createUuid(),
+            DataSourceName = "",
+            DataSourceType = "string",
+            IsExternApiRestSource = false,
+            IsStaticData = false,
+            IsGrpcDataSource = true
         });
         Editor.dataSourcesUpdated(dataSources);
     }
 
     private void deleteDataSource(DataSource dataSource)
     {
-        Console.WriteLine("deleting " + dataSource.uuid);
+        Console.WriteLine("deleting " + dataSource.Uuid);
         dataSources.RemoveAll((indexId) =>
         {
-            return indexId.uuid == dataSource.uuid;
+            return indexId.Uuid == dataSource.Uuid;
         });
         StateHasChanged();
     }

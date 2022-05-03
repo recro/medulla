@@ -14,7 +14,7 @@ namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
         /// Palette Window Components
         /// </summary>
         public PaletteWindowComponents? PaletteWindowComponents { get; set; }
-        
+
         /// <summary>
         /// Name
         /// </summary>

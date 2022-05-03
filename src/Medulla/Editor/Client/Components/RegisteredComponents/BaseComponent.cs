@@ -20,7 +20,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /*
          * These parameters are system required
          */
-        
+
         /// <summary>
         /// Child Content
         /// </summary>
@@ -131,7 +131,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /// </summary>
         protected string GetFontStyle()
         {
-            string style = "";
+            var style = "";
             if (IsBold == "True")
             {
                 style += "font-weight: bold";
@@ -157,16 +157,16 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
 
             return prepend + number;
         }
-        
+
         /// <summary>
         /// Get Margin
         /// </summary>
         protected string GetMargin()
         {
-            string ml = GetNumber("ml-", ML);
-            string mr = GetNumber("mr-", MR);
-            string mb = GetNumber("mb-", MB);
-            string mt = GetNumber("mt-", MT);
+            var ml = GetNumber("ml-", ML);
+            var mr = GetNumber("mr-", MR);
+            var mb = GetNumber("mb-", MB);
+            var mt = GetNumber("mt-", MT);
 
 
             return $" {ml} {mr} {mb} {mt} ";
@@ -179,10 +179,10 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         protected string GetPadding()
         {
 
-            string pl = GetNumber("pl-", PL);
-            string pr = GetNumber("pr-", PR);
-            string pb = GetNumber("pb-", PB);
-            string pt = GetNumber("pt-", PT);
+            var pl = GetNumber("pl-", PL);
+            var pr = GetNumber("pr-", PR);
+            var pb = GetNumber("pb-", PB);
+            var pt = GetNumber("pt-", PT);
 
             return $" {pl} {pr} {pb} {pt} ";
         }
@@ -219,7 +219,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /// Get Properties
         /// </summary>
         protected abstract Properties GetProperties();
-        
+
         /// <summary>
         /// Is Clickable
         /// </summary>
@@ -250,7 +250,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /// </summary>
         public void UpdatePropertiesWindow(Editor.Editor editor, UniqueId? uniqueId)
         {
-            Properties properties = this.GetProperties();
+            var properties = this.GetProperties();
             if (this.DoesImplementFonts())
             {
                 properties.PropertyList.Add(new Property

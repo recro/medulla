@@ -4,7 +4,7 @@
                                                                                         flex-direction: row;justify-content: space-between; align-items:  center;background:  #1d1d20a8">
     
     @{
-        var name = @dataSource.dataSourceName;
+        var name = @dataSource.DataSourceName;
         if (name.Length == 0)
         {
             name = "{No DataSource Name}";
@@ -39,7 +39,7 @@
                     
                 <form>
                     <input
-                        value="@dataSource.dataSourceName"
+                        value="@dataSource.DataSourceName"
                         @oninput="(e) => { updateDataSourceName(e.Value.ToString()); }"
                         class="form-control input-hide-webkit-autofill mb-1"
                         placeholder="Data Source Name"
@@ -53,7 +53,7 @@
                     <br />
                     
                     <select
-                        value="@dataSource.dataSourceType"
+                        value="@dataSource.DataSourceType"
                         @oninput="(e) => { updateDataSourceType(e.Value.ToString()); }"
                         class="form-select" aria-label="Preference">
                         <option>Choose an option</option>
@@ -62,41 +62,41 @@
                         <option>External Rest Api</option>
                     </select>
                     <br />
-                    @if (@dataSource.isGrpcDataSource)
+                    @if (@dataSource.IsGrpcDataSource)
                     {
                         <span class="ActionList-content">
                             <span class="ActionList-item-label">Grpc Source</span>
                         </span>
                         <br />
                         <select
-                            value="@dataSource.grpcSource"
+                            value="@dataSource.GrpcSource"
                             @oninput="(e) => { updateGrpcSource(e.Value.ToString()); }"
                             class="form-select" aria-label="Preference">
                             <option>Choose an option</option>
                             <option>WeatherData</option>
                         </select>
-                    } else if (@dataSource.isExternApiRestSource)
+                    } else if (@dataSource.IsExternApiRestSource)
                     {
                         <span class="ActionList-content">
                             <span class="ActionList-item-label">External Rest Api Source</span>
                         </span>
                         <br />
                         <input
-                            value="@dataSource.externalRestApiSource"
+                            value="@dataSource.ExternalRestApiSource"
                             @oninput="(e) => { updateExternalRestApiSource(e.Value.ToString()); }"
                             class="form-control input-hide-webkit-autofill mb-1"
                             placeholder="External Rest Api Url"
                             type="text"
                             aria-label="Hide Webkit's contact autofill on this input"
                         />
-                    } else if (@dataSource.isStaticData)
+                    } else if (@dataSource.IsStaticData)
                     {
                         <span class="ActionList-content">
                             <span class="ActionList-item-label">Static Source</span>
                         </span>
                         <br />
                         <textarea
-                            value="@dataSource.staticData"
+                            value="@dataSource.StaticData"
                             @oninput="(e) => { updateStaticData(e.Value.ToString()); }"
                             class="form-control input-hide-webkit-autofill mb-1"
                             placeholder="#800080"
@@ -109,7 +109,7 @@
                         </span>
                         <br />
                         <input
-                            value="@dataSource.castDataToType"
+                            value="@dataSource.CastDataToType"
                             @oninput="(e) => { castDataToType(e.Value.ToString()); }"
                             class="form-control input-hide-webkit-autofill mb-1"
                             placeholder="string"
@@ -147,13 +147,13 @@
 
     private async void delete()
     {
-        Console.WriteLine("deleting id " + dataSource.uuid + " with name " + _dataSourceName);
+        Console.WriteLine("deleting id " + dataSource.Uuid + " with name " + _dataSourceName);
         await onDelete.InvokeAsync(dataSource);
     }
 
     private void updateDataSourceName(string name)
     {
-        dataSource.dataSourceName = name;
+        dataSource.DataSourceName = name;
     }
 
     private void updateDataSourceType(string type)
@@ -161,22 +161,22 @@
         Console.WriteLine(type);
         if (type == "Static")
         {
-            dataSource.isStaticData = true;
-            dataSource.isGrpcDataSource = false;
-            dataSource.isExternApiRestSource = false;
-            dataSource.dataSourceType = type;
+            dataSource.IsStaticData = true;
+            dataSource.IsGrpcDataSource = false;
+            dataSource.IsExternApiRestSource = false;
+            dataSource.DataSourceType = type;
         } else if (type == "Grpc")
         {
-            dataSource.isStaticData = false;
-            dataSource.isGrpcDataSource = true;
-            dataSource.isExternApiRestSource = false;
-            dataSource.dataSourceType = type;
+            dataSource.IsStaticData = false;
+            dataSource.IsGrpcDataSource = true;
+            dataSource.IsExternApiRestSource = false;
+            dataSource.DataSourceType = type;
         } else if (type == "External Rest Api")
         {
-            dataSource.isStaticData = false;
-            dataSource.isGrpcDataSource = false;
-            dataSource.isExternApiRestSource = true;
-            dataSource.dataSourceType = type;
+            dataSource.IsStaticData = false;
+            dataSource.IsGrpcDataSource = false;
+            dataSource.IsExternApiRestSource = true;
+            dataSource.DataSourceType = type;
         }
         else
         {
@@ -186,22 +186,22 @@
 
     private void updateStaticData(string data)
     {
-        dataSource.staticData = data;
+        dataSource.StaticData = data;
     }
 
     private void castDataToType(string type)
     {
-        dataSource.castDataToType = type;
+        dataSource.CastDataToType = type;
     }
 
     public void updateGrpcSource(string source)
     {
-        dataSource.grpcSource = source;
+        dataSource.GrpcSource = source;
     }
 
     public void updateExternalRestApiSource(string source)
     {
-        dataSource.externalRestApiSource = source;
+        dataSource.ExternalRestApiSource = source;
     }
 
 

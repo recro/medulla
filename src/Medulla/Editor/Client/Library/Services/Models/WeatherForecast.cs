@@ -6,7 +6,7 @@ using System;
 
 namespace Medulla.Frontend.Client.Library.Services.Models
 {
-    
+
     /// <summary>
     /// Weather Forecast
     /// </summary>

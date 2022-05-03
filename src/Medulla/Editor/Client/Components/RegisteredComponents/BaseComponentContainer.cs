@@ -18,20 +18,20 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /// <summary>
         /// hover class
         /// </summary>
-        protected string hoverClass = "";
-        
+        protected string _hoverClass = "";
+
         /// <summary>
         /// is Hovering
         /// </summary>
-        protected bool isHovering = false;
+        protected bool _isHovering = false;
 
         /// <summary>
         /// Handle Drag Enter
         /// </summary>
         protected void HandleDragEnter()
         {
-            hoverClass = "hovering";
-            isHovering = true;
+            _hoverClass = "hovering";
+            _isHovering = true;
         }
 
         /// <summary>
@@ -39,8 +39,8 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /// </summary>
         protected void HandleDragLeave()
         {
-            hoverClass = "";
-            isHovering = false;
+            _hoverClass = "";
+            _isHovering = false;
         }
 
 
@@ -49,7 +49,7 @@ namespace Medulla.Frontend.Client.Components.RegisteredComponents
         /// </summary>
         protected void HandleDrop()
         {
-            hoverClass = "";
+            _hoverClass = "";
             Console.WriteLine("handling drop");
             Editor.PlaceInUniqueId = this.UniqueId;
             Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);

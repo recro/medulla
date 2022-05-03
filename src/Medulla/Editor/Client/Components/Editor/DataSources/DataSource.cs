@@ -11,54 +11,54 @@ namespace Medulla.Frontend.Client.Components.Editor.DataSources
     {
 
         /// <summary>
-        /// uuid
+        /// Uuid
         /// </summary>
-        public string? uuid { get; set; }
+        public string? Uuid { get; set; }
 
         /// <summary>
         /// data source name
         /// </summary>
-        public string? dataSourceName { get; set; }
+        public string? DataSourceName { get; set; }
 
         /// <summary>
         /// is static data
         /// </summary>
-        public bool isStaticData { get; set; }
+        public bool IsStaticData { get; set; }
 
         /// <summary>
         /// is grpc data source
         /// </summary>
-        public bool isGrpcDataSource { get; set; }
+        public bool IsGrpcDataSource { get; set; }
 
         /// <summary>
         /// is external api rest source
         /// </summary>
-        public bool isExternApiRestSource { get; set; }
+        public bool IsExternApiRestSource { get; set; }
 
         /// <summary>
         /// data source type
         /// </summary>
-        public string? dataSourceType { get; set; }
+        public string? DataSourceType { get; set; }
 
         /// <summary>
         /// static data
         /// </summary>
-        public string? staticData { get; set; }
+        public string? StaticData { get; set; }
 
         /// <summary>
         /// cast to data type
         /// </summary>
-        public string? castDataToType { get; set; }
+        public string? CastDataToType { get; set; }
 
         /// <summary>
         /// grpc source
         /// </summary>
-        public string? grpcSource { get; set; }
+        public string? GrpcSource { get; set; }
 
         /// <summary>
         /// external rest api source
         /// </summary>
-        public string? externalRestApiSource { get; set; }
+        public string? ExternalRestApiSource { get; set; }
 
 
 

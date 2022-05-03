@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Medulla.Frontend.Client.Components.Editor.PaletteWindow
 {
-    
+
     /// <summary>
     /// Palette Window Components
     /// </summary>
