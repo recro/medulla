@@ -4,6 +4,7 @@ labels:
   - enhancement
   - design proposal
   - design proposal has not been approved (remove label when approved)
+  - design proposal acceptance criteria has not been approved (verify acceptance criteria is specific and remove label)
 body:
   - type: input
     attributes:
