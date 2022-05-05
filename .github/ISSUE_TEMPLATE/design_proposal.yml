@@ -3,10 +3,10 @@ description: Collaborate on a design for a feature/fix or other change
 labels:
   - enhancement
 body:
-  - type: textarea
+  - type: input
     attributes:
-      label: Summary
-      description: 1-2 sentences. Say what this is about.
+      label: Url Link
+      description: Url Link to Feature Request that this Design Proposal is Solving
     validations:
       required: true
   - type: textarea
