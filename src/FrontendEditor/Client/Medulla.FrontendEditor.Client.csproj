@@ -7,17 +7,7 @@
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Medulla.Frontend' ">
-    <ExternalConsole>true</ExternalConsole>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Library\Abstrations\**" />
-    <Content Remove="Library\Abstrations\**" />
-    <EmbeddedResource Remove="Library\Abstrations\**" />
-    <None Remove="Library\Abstrations\**" />
-  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />
@@ -33,18 +23,4 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Components\RegisteredComponents\CustomForms" />
-    <Folder Include="Components\Editor\TreeView\" />
-    <Folder Include="Library\Abstractions\Editor\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Components\Editor\TreeView\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Components\RegisteredComponents\Menu\Menu1.razor" />
-    <_ContentIncludedByDefault Remove="Components\RegisteredComponents\ActionList\ActionList0.razor" />
-  </ItemGroup>
 </Project>
