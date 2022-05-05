@@ -2,6 +2,8 @@ name: 🤔 Design Proposal
 description: Collaborate on a design for a feature/fix or other change
 labels:
   - enhancement
+  - design proposal
+  - design proposal has not been approved (remove label when approved)
 body:
   - type: input
     attributes:
