@@ -13,6 +13,12 @@ body:
       required: true
   - type: textarea
     attributes:
+      label: Summary
+      description: 1-2 sentences. Say what this is about.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
       label: Motivation and goals
       description: 1-2 paragraphs, or a bullet-pointed list. What existing pain points does this solve? What evidence shows it's valuable to solve this?
     validations:
