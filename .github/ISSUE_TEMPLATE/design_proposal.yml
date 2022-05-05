@@ -21,7 +21,7 @@ body:
   - type: textarea
     attributes:
       label: Acceptance Criteria
-      description: Bullet point list of acceptance criteria that must be complete to mark this task as complete. Be Specific.
+      description: List of acceptance criteria that must be complete to mark this task as complete. Be Specific.
     validations:
       required: true
   - type: textarea
