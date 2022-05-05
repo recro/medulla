@@ -20,6 +20,12 @@ body:
       required: true
   - type: textarea
     attributes:
+      label: Acceptance Criteria
+      description: Bullet point list of acceptance criteria that must be complete to mark this task as complete. Be Specific.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
       label: Motivation and goals
       description: 1-2 paragraphs, or a bullet-pointed list. What existing pain points does this solve? What evidence shows it's valuable to solve this?
     validations:
