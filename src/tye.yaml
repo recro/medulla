@@ -44,7 +44,7 @@ services:
         protocol: http
 
   - name: editor
-    project: Medulla/Editor/Client/Medulla.Frontend.Client.csproj
+    project: FrontendEditor/Client/Medulla.FrontendEditor.Client.csproj
     replicas: 1
     bindings:
       - name: http
