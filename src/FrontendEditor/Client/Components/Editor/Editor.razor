@@ -3,8 +3,6 @@
 @using Medulla.FrontendEditor.Client.Components.Editor.PaletteWindow
 @using Medulla.FrontendEditor.Client.Components.Editor.TreeView
 @using Medulla.FrontendEditor.Client.Library.Abstractions.Environment
-@using Medulla.FrontendEditor.Client.Library.Services.TestWeatherService
-@inject WeatherService _weatherService
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -47,15 +45,6 @@
         StateChanged();
     }
 
-    public async void GetWeather()
-    {
-        foreach (var item in await _weatherService.GetWeather())
-        {
-            Console.WriteLine(String.Join(", ", item.Date, item.Summary, item.TemperatureC, item.TemperatureF));
-        }
-    }
-    
-    
 
     public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode? editorViewNode, UniqueId uniqueId, ref bool found)
     {
@@ -360,7 +349,6 @@
         //     page.EditorViewNode = EditorViewNode;
         // Page.UpdateInstance(page);
         StateHasChanged();
-        GetWeather();
     }
 
     //Properties
