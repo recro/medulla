@@ -1,0 +1,62 @@
+@inherits BaseComponent
+
+<div class="Box" style="position: absolute;
+                            width: 500px;
+                            opacity: .7;">
+  <ul>
+    <li class="Box-row">
+      Box row one
+    </li>
+    <li class="Box-row">
+      Box row two
+    </li>
+    <li class="Box-row">
+      Box row three
+    </li>
+    <li class="Box-row">
+      Box row four
+    </li>
+  </ul>
+</div>
+
+@code {
+
+
+
+    protected override void AfterAddComponent(EditorPage editor, Library.Utilities.Unique.UniqueId uniqueId)
+    {
+
+        return;
+    }
+    
+    protected override Properties GetProperties()
+    {
+        return new Properties();
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+}

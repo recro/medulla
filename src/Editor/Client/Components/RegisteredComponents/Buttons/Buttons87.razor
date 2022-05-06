@@ -1,0 +1,138 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<button class="btn btn-primary @GetBtnSize() @GetBtnLink() @GetBtnType() @GetMargin() @GetPadding()" type="button">@Content</button>
+
+</ComponentContainer>
+
+@code {
+
+    [Parameter]
+    public string Content { get; set; } = "{No Button Content}";
+
+    [Parameter]
+    public string Size { get; set; } = "";
+
+    [Parameter]
+    public string IsBlock { get; set; } = "";
+
+    [Parameter]
+    public string IsLink { get; set; } = "";
+    
+    private string GetBtnSize()
+    {
+        if (Size != "sm" && Size != "large")
+            return "";
+        return "btn-" + Size;
+    }
+
+    private string GetBtnLink()
+    {
+        if (IsLink == "True")
+            return "btn-link";
+        return "";
+    }
+
+    private string GetBtnType()
+    {
+        if (IsBlock == "True") return "btn-block";
+        return "";
+    }
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Content", 
+            InputDescription = "Content", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Content"
+                },
+                { "PropertyName", "Content" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.TextInput" }
+            );
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Size", 
+            InputDescription = "Size", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "Default", "" },
+                        { "Large", "large" },
+                        { "Small", "sm" }
+                    }
+                },
+                {
+                    "Title", "Size"
+                },
+                { "PropertyName", "Size" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Dropdown" }
+            );
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "IsLink", 
+            InputDescription = "Is Link", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                { "PropertyName", "IsLink" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Checkbox" }
+            );
+        
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "IsBlock", 
+            InputDescription = "Is Block", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                { "PropertyName", "IsBlock" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Checkbox" }
+            );
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

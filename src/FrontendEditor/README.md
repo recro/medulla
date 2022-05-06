@@ -1,3 +1,0 @@
-
-
-# Medulla Editor

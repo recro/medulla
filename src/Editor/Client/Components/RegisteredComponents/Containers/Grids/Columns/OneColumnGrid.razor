@@ -1,0 +1,68 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponentContainer
+
+<div
+    style="cursor: no-drop;">
+    <div class=" width-full">
+        @ChildContent    
+    </div>
+</div>
+
+@code {
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+    }
+
+    protected override List<EditorViewNode?> GetChildrenToAddOnAdd()
+    {
+        var list = new List<EditorViewNode?>();
+        list.Add(new EditorViewNode() {
+            Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+            UniqueId = new UniqueId(),
+            IsContainer = true
+        });
+        list.Add(new EditorViewNode() {
+            Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+            UniqueId = new UniqueId(),
+            IsContainer = true
+        });
+        list.Add(new EditorViewNode() {
+            Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+            UniqueId = new UniqueId(),
+            IsContainer = true
+        });
+        return list;
+    }
+
+    protected override Properties GetProperties()
+    {
+        return new Properties();
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return true;
+    }
+
+}

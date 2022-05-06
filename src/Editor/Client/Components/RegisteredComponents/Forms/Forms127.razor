@@ -1,0 +1,93 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<form>
+  <div class="form-group">
+    <div class="form-group-header">
+      <label for="example-text">Example Text</label>
+    </div>
+    <div class="form-group-body">
+      <input class="form-control" type="text" value="Example Value" id="example-text" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-group-header">
+      <label for="example-select">Example Select</label>
+    </div>
+    <div class="form-group-body">
+      <select class="form-select" id="example-select">
+        <option>Choose an option</option>
+        <option>Git</option>
+        <option>Subversion</option>
+        <option>Social Coding</option>
+        <option>Beets</option>
+        <option>Bears</option>
+        <option>Battlestar Galactica</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-group-header">
+      <label for="example-textarea">Example Textarea</label>
+    </div>
+    <div class="form-group-body">
+      <textarea class="form-control" id="example-textarea"></textarea>
+    </div>
+  </div>
+</form>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

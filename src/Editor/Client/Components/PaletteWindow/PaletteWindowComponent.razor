@@ -1,0 +1,34 @@
+@using System.ComponentModel
+@using Medulla.Editor.Client.Library.Utilities.Unique
+<div @ondragstart="UpdateDragMetaData" draggable="true" class="draggable m-1 Box text-center cursor-pointer" style="width: 130px;height: auto;text-align: center;">
+    <span>
+        @((MarkupString)Component.SvgString)
+    </span>
+    <p>@Component.Name</p>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public PaletteComponent Component { get; set; } = default!;
+
+    [CascadingParameter]
+    public EditorPage Editor { get; set; } = default!;
+
+    
+    void UpdateDragMetaData()
+    {
+        Editor.CanHover = true;
+        Editor.CurrentHoveringUniqueId = null;
+        Editor.CurrentComponent = new EditorViewNode()
+        {
+            Type = Component.RenderComponentType,
+            UniqueId = new UniqueId(),
+            IsContainer = Component.IsContainer
+        };
+    }
+    
+    
+
+}
