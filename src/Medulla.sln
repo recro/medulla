@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Identity.Server", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{F297D403-0BD6-4214-90FE-AA3684EBAE0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Frontend.Client", "Medulla\Editor\Client\Medulla.Frontend.Client.csproj", "{8FE20926-13BC-4F6A-9659-FE27AB14D0B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Frontend.Client", "FrontendEditor\Client\Medulla.FrontendEditor.Client.csproj", "{8FE20926-13BC-4F6A-9659-FE27AB14D0B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{F2319A8C-1966-4A6F-B82C-9F3BAE82E23B}"
 EndProject
