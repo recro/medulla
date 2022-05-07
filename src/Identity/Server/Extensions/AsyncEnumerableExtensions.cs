@@ -4,9 +4,6 @@
 
 namespace Medulla.Identity.Server.Extensions;
 
-/// <summary>
-/// Extension methods for <see cref="IAsyncEnumerable{T}"/>.
-/// </summary>
 public static class AsyncEnumerableExtensions
 {
     /// <summary>
