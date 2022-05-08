@@ -20,10 +20,10 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: "6.0.101"
+          dotnet-version: "6.0.x"
 
       - name: Run linters
-        uses: AndrewBabbitt97/lint-action@v1.12.0
+        uses: wearerequired/lint-action@v2
         with:
           continue_on_error: false
           dotnet_format: true
