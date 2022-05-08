@@ -102,8 +102,8 @@ public class AuthorizationController : Controller
 
         var result = await HttpContext.AuthenticateAsync(IdentityConstants.ApplicationScheme);
 
-        if (!result.Succeeded || request.MaxAge != null && result.Properties?.IssuedUtc != null &&
-            DateTimeOffset.UtcNow - result.Properties.IssuedUtc > TimeSpan.FromSeconds(request.MaxAge.Value))
+        if (!result.Succeeded || (request.MaxAge != null && result.Properties?.IssuedUtc != null &&
+            DateTimeOffset.UtcNow - result.Properties.IssuedUtc > TimeSpan.FromSeconds(request.MaxAge.Value)))
         {
             if (request.HasPrompt(Prompts.None))
             {
@@ -257,7 +257,7 @@ public class AuthorizationController : Controller
     /// <param name="claim">The <see cref="Claim"/>.</param>
     /// <param name="principal">The <see cref="ClaimsPrincipal"/>.</param>
     /// <returns>The destination.</returns>
-    private IEnumerable<string> GetDestinations(Claim claim, ClaimsPrincipal principal)
+    private static IEnumerable<string> GetDestinations(Claim claim, ClaimsPrincipal principal)
     {
         switch (claim.Type)
         {
@@ -291,7 +291,8 @@ public class AuthorizationController : Controller
 
                 yield break;
 
-            case "AspNet.Identity.SecurityStamp": yield break;
+            case "AspNet.Identity.SecurityStamp":
+                yield break;
 
             default:
                 yield return Destinations.AccessToken;
