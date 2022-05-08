@@ -9,4 +9,6 @@ namespace Medulla.Identity.Server.Models;
 /// <summary>
 /// Represents an application user.
 /// </summary>
-public class ApplicationUser : IdentityUser { }
+public class ApplicationUser : IdentityUser
+{
+}
