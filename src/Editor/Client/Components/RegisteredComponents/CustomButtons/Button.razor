@@ -1,0 +1,178 @@
+@inherits BaseComponent
+@using Medulla.Editor.Client.Library.Utilities.Unique
+
+<button
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
+    @onclick="Clicked"
+    class="btn @GetBtnSize() @GetBtnType() @GetBtnLink() @GetMargin() @GetPadding()" type="button" style="position: relative;">
+        
+    @if (!Editor.PreviewMode)
+                {
+                    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+                    {
+                        <svg @onclick="Unselect" style="height: 20px;
+                                    cursor: pointer;
+                                    background: green;
+                                    border-radius: 50px;
+                                    position: absolute;
+                                    top: 0px;
+                                    left: 3px;
+                                    color: lightgray;
+                                }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    }
+                    else
+                    {
+                        <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="height: 20px;
+                                    cursor: pointer;
+                                    background: gray;
+                                    border-radius: 50px;
+                                    position: absolute;
+                                    top: 0px;
+                                    left: 3px;
+                                    color: lightgray;
+                                }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    }
+                }
+
+
+
+    @Content
+    @ChildContent
+    
+</button>
+
+@code {
+
+    /*
+     * These parameters need to be modifiable in Properties window
+     */
+    [Parameter]
+    public string Content { get; set; } = "{No Button Content}";
+
+    [Parameter]
+    public string Size { get; set; } = "";
+
+    [Parameter]
+    public string IsBlock { get; set; } = "";
+
+    [Parameter]
+    public string IsLink { get; set; } = "";
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+        throw new NotImplementedException();
+    }
+
+    private string GetBtnSize()
+    {
+        if (Size != "sm" && Size != "large")
+            return "";
+        return "btn-" + Size;
+    }
+
+    private string GetBtnLink()
+    {
+        if (IsLink == "True")
+            return "btn-link";
+        return "";
+    }
+
+    private string GetBtnType()
+    {
+        if (IsBlock == "True") return "btn-block";
+        return "";
+    }
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        // properties.PropertyList.Add(new() { Name = "Content", InputDescription = "Content", DefaultValue = "", InputType = "input" });
+        // properties.PropertyList.Add(new() { Name = "Size", InputDescription = "Size", DefaultValue = "", InputType = "input" });
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Content", 
+            InputDescription = "Content", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Content"
+                },
+                { "PropertyName", "Content" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.TextInput" }
+            );
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Size", 
+            InputDescription = "Size", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+            {
+                "DropdownItems", new Dictionary<string, string>() {
+                    { "Default", "" },
+                    { "Large", "large" },
+                    { "Small", "sm" }
+                }
+            },
+            {
+                "Title", "Size"
+            },
+            { "PropertyName", "Size" }
+        }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Dropdown" }
+            );
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "IsLink", 
+            InputDescription = "Is Link", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                { "PropertyName", "IsLink" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Checkbox" }
+            );
+        
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "IsBlock", 
+            InputDescription = "Is Block", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                { "PropertyName", "IsBlock" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Checkbox" }
+            );
+        // properties.PropertyList.Add(new() { Name = "IsLink", InputDescription = "IsLink", DefaultValue = "", InputType = "input" });
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return true;
+    }
+    
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+    
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+
+
+
+}

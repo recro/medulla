@@ -1,0 +1,66 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<aside class="color-bg-subtle border p-3" style="max-width: 360px">
+  <h5 class="color-fg-muted mb-2 pb-1 border-bottom">Menu</h5>
+  <nav class="SideNav">
+    <a class="SideNav-subItem" href="#url">Account</a>
+    <a class="SideNav-subItem" href="#url" aria-current="page">Profile</a>
+    <a class="SideNav-subItem" href="#url">Emails</a>
+    <a class="SideNav-subItem" href="#url">Notifications</a>
+  </nav>
+</aside>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

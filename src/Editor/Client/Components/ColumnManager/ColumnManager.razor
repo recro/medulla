@@ -1,0 +1,38 @@
+<Window WindowTitle="Column Manager">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8" style="margin-bottom: 0!important;
+                                                                                          margin: 2em;">
+            <div>
+                <label> <input @oninput="ChangeDeleteColumns" type="checkbox"/> Delete Columns </label>
+            </div>
+            <div>
+                <label> <input @oninput="ChangePreviewMode" type="checkbox"/> Preview Mode </label>
+            </div>
+        </div>
+    </div>
+</Window>
+
+@code {
+
+    [Parameter]
+    public EditorPage? Editor { get; set; }
+
+    private void ChangeDeleteColumns()
+    {
+        if (Editor != null)
+        {
+            Editor.DeleteColumns = !Editor.DeleteColumns;
+            Editor.StateChanged();
+        }
+    }
+    
+    private void ChangePreviewMode()
+    {
+        if (Editor != null)
+        {
+            Editor.PreviewMode = !Editor.PreviewMode;
+            Editor.StateChanged();
+        }
+    }
+
+}

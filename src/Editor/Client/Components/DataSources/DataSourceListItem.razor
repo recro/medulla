@@ -1,0 +1,208 @@
+﻿@using Medulla.Editor.Client.Components.RegisteredComponents.BranchName
+
+<li class="ActionList-item p-1 Box flex flex-content-around" role="menuitem" style="display: flex;
+                                                                                        flex-direction: row;justify-content: space-between; align-items:  center;background:  #1d1d20a8">
+    
+    @{
+        var name = @dataSource.DataSourceName;
+        if (name == null || name.Length == 0)
+        {
+            name = "{No DataSource Name}";
+        }
+    }
+    
+    @if (!_isEditing) {
+        <span class="ActionList-content">
+            <span class="ActionList-item-label">@name</span>
+        </span>
+    
+    
+        <div style="display: inline-block">
+            <button @onclick="() => { _isEditing = true; }" class="btn btn-primary mr-2" type="button">
+                Edit <span class="Counter"><svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg></span>
+            </button>
+        
+            <button @onclick="delete" class="btn btn-danger mr-2" type="button">
+                Delete <span class="Counter"><svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path></svg></span>
+            </button>
+        </div>
+      
+    }
+    else
+    {
+        <Window WindowTitle="@name">
+            <div class="p-4">
+                <span class="ActionList-content">
+                    <span class="ActionList-item-label">DataSource Name</span>
+                </span>
+        
+                    
+                <form>
+                    <input
+                        value="@dataSource.DataSourceName"
+                        @oninput="(e) => { updateDataSourceName(e.Value?.ToString()); }"
+                        class="form-control input-hide-webkit-autofill mb-1"
+                        placeholder="Data Source Name"
+                        type="text"
+                        aria-label="Hide Webkit's contact autofill on this input"
+                    />
+                    <br />
+                    <span class="ActionList-content">
+                        <span class="ActionList-item-label">DataSource Source Type</span>
+                    </span>
+                    <br />
+                    
+                    <select
+                        value="@dataSource.DataSourceType"
+                        @oninput="(e) => { updateDataSourceType(e.Value?.ToString()); }"
+                        class="form-select" aria-label="Preference">
+                        <option>Choose an option</option>
+                        <option>Static</option>
+                        <option>Grpc</option>
+                        <option>External Rest Api</option>
+                    </select>
+                    <br />
+                    @if (@dataSource.IsGrpcDataSource)
+                    {
+                        <span class="ActionList-content">
+                            <span class="ActionList-item-label">Grpc Source</span>
+                        </span>
+                        <br />
+                        <select
+                            value="@dataSource.GrpcSource"
+                            @oninput="(e) => { updateGrpcSource(e.Value?.ToString()); }"
+                            class="form-select" aria-label="Preference">
+                            <option>Choose an option</option>
+                            <option>WeatherData</option>
+                        </select>
+                    } else if (@dataSource.IsExternApiRestSource)
+                    {
+                        <span class="ActionList-content">
+                            <span class="ActionList-item-label">External Rest Api Source</span>
+                        </span>
+                        <br />
+                        <input
+                            value="@dataSource.ExternalRestApiSource"
+                            @oninput="(e) => { updateExternalRestApiSource(e.Value?.ToString()); }"
+                            class="form-control input-hide-webkit-autofill mb-1"
+                            placeholder="External Rest Api Url"
+                            type="text"
+                            aria-label="Hide Webkit's contact autofill on this input"
+                        />
+                    } else if (@dataSource.IsStaticData)
+                    {
+                        <span class="ActionList-content">
+                            <span class="ActionList-item-label">Static Source</span>
+                        </span>
+                        <br />
+                        <textarea
+                            value="@dataSource.StaticData"
+                            @oninput="(e) => { updateStaticData(e.Value?.ToString()); }"
+                            class="form-control input-hide-webkit-autofill mb-1"
+                            placeholder="#800080"
+                            type="text"
+                            aria-label="Hide Webkit's contact autofill on this input"
+                        ></textarea>
+                        <br />
+                        <span class="ActionList-content">
+                            <span class="ActionList-item-label">Cast Data to Type</span>
+                        </span>
+                        <br />
+                        <input
+                            value="@dataSource.CastDataToType"
+                            @oninput="(e) => { castDataToType(e.Value?.ToString()); }"
+                            class="form-control input-hide-webkit-autofill mb-1"
+                            placeholder="string"
+                            type="text"
+                            aria-label="Hide Webkit's contact autofill on this input"
+                        />
+                    }
+                    
+                    <br />
+                    
+                    <button @onclick="() => { _isEditing = false; }" class="btn btn-primary mr-2 mt-4" type="button">
+                        Save
+                    </button>
+                </form>
+            </div>
+            
+        </Window>
+    }   
+    
+    
+
+</li>
+
+
+@code {
+
+    private bool _isEditing = false;
+    private string _dataSourceName = "{No DataSource Name}";
+
+    [Parameter]
+    public DataSource dataSource { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<DataSource> onDelete { get; set; }
+
+    private async void delete()
+    {
+        Console.WriteLine("deleting id " + dataSource.Uuid + " with name " + _dataSourceName);
+        await onDelete.InvokeAsync(dataSource);
+    }
+
+    private void updateDataSourceName(string? name)
+    {
+        dataSource.DataSourceName = name;
+    }
+
+    private void updateDataSourceType(string? type)
+    {
+        Console.WriteLine(type);
+        if (type == "Static")
+        {
+            dataSource.IsStaticData = true;
+            dataSource.IsGrpcDataSource = false;
+            dataSource.IsExternApiRestSource = false;
+            dataSource.DataSourceType = type;
+        } else if (type == "Grpc")
+        {
+            dataSource.IsStaticData = false;
+            dataSource.IsGrpcDataSource = true;
+            dataSource.IsExternApiRestSource = false;
+            dataSource.DataSourceType = type;
+        } else if (type == "External Rest Api")
+        {
+            dataSource.IsStaticData = false;
+            dataSource.IsGrpcDataSource = false;
+            dataSource.IsExternApiRestSource = true;
+            dataSource.DataSourceType = type;
+        }
+        else
+        {
+            throw new Exception("unhandled updateDataSourceType " + type);
+        }
+    }
+
+    private void updateStaticData(string? data)
+    {
+        dataSource.StaticData = data;
+    }
+
+    private void castDataToType(string? type)
+    {
+        dataSource.CastDataToType = type;
+    }
+
+    public void updateGrpcSource(string? source)
+    {
+        dataSource.GrpcSource = source;
+    }
+
+    public void updateExternalRestApiSource(string? source)
+    {
+        dataSource.ExternalRestApiSource = source;
+    }
+
+
+}

@@ -1,0 +1,189 @@
+﻿@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponentContainer
+
+@if (Editor.PreviewMode)
+{
+    <style>
+        .dropzone {
+            border: none!important;
+        }
+    </style>
+}
+
+<div class="Box p-2" style="resize: horizontal;overflow: scroll;width: 100%">
+    <span class="Truncate" style="width: 100%">
+        <div
+            class="dropzone @_hoverClass"
+            ondragover="event.preventDefault();"
+            ondragstart="event.dataTransfer.setData('', event.target.id);"
+            @ondrop="HandleDrop"
+            @ondragenter="HandleDragEnter"
+            @ondragleave="HandleDragLeave"
+            style="cursor:auto; background: transparent;position: relative;display: inline-block;
+                        border: thin dashed gray;
+                        text-align: center;
+                        text-transform: uppercase;
+                        color: gray;
+                        justify-content: center;
+                        
+                        align-items: center;width: 100%">
+                        @ChildContent
+                        
+                        @if (!Editor.PreviewMode)
+                        {
+                            @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+                            {
+                                <svg @onclick="Unselect" style="height: 20px;
+                                            cursor: pointer;
+                                            background: green;
+                                            border-radius: 50px;
+                                            z-index: 100000;
+                                            position: absolute;
+                                            top: 1px;
+                                            right: 25px;
+                                            color: lightgray;
+                                        }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            }
+                            else
+                            {
+                                <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="height: 20px;
+                                            cursor: pointer;
+                                            background: gray;
+                                            border-radius: 50px;
+                                            z-index: 100000;
+                                            position: absolute;
+                                            top: 1px;
+                                            right: 25px;
+                                            color: lightgray;
+                                        }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            }
+                        }
+        
+                            @{
+                var evn = Editor.GetEditorViewNodeIfUniqueIdEquals(Editor.EditorViewNode, this.UniqueId);
+                if (evn != null && evn.Children.Count > 0)
+                {
+                }
+                else
+                {
+                    <span style="margin: 1em;">Column</span>
+                }
+            }
+            @if (!Editor.PreviewMode)
+            {
+                @if (!Editor.DeleteColumns)
+                {
+                    <svg @onclick="AddColumnAfter" style="height: 20px;cursor: pointer;right:1px;top: 1px;z-index: 1000;
+                            color: green;
+                            position: absolute;
+                            background: purple;
+                            color: white;
+                            border-radius: 21px;
+                            box-shadow: 1px 1px 3px grey;
+                                    }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                }
+                else
+                {
+                    <svg @onclick="DeleteColumn" style="height: 20px;cursor: pointer;right:1px;top: 1px;z-index: 1000;
+                                         color: green;
+                                         position: absolute;
+                                         background: red;
+                                         color: white;
+                                         border-radius: 21px;
+                                         box-shadow: 1px 1px 3px grey;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                }
+            }
+        </div>
+    </span>
+</div>
+
+@code {
+    protected override void AfterAddComponent(EditorPage editor, Library.Utilities.Unique.UniqueId uniqueId)
+    {
+
+    }
+
+    private void AddColumnAfter()
+    {
+        Editor.CurrentComponent = new EditorViewNode()
+        {
+            Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+            UniqueId = new UniqueId(),
+            IsContainer = false,
+            Parameters = new()
+        };
+        Editor.PlaceAfter = true;
+        Editor.PlaceInUniqueId = this.UniqueId;
+        Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+        Editor.StateChanged();
+    }
+
+    private void DeleteColumn()
+    {
+        Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, this.UniqueId);
+        Editor.StateChanged();
+    }
+
+    protected override List<EditorViewNode?> GetChildrenToAddOnAdd()
+    {
+        var list = new List<EditorViewNode?>();
+        list.Add(new EditorViewNode() {
+            Type = "",
+            UniqueId = new Library.Utilities.Unique.UniqueId(),
+            IsContainer = true
+        });
+        return list;
+    }
+
+    protected override Properties GetProperties()
+    {
+        return new Properties();
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return true;
+    }
+
+}
+
+
+<style>
+    
+    .hovering {
+        background: #6f2fe47b!important;
+    }
+    
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
+    
+</style>

@@ -1,0 +1,71 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<div class="Box">
+  <div class="Box-row Box-row--focus-gray navigation-focus">
+    .Box-row--focus-gray and .navigation-focus
+  </div>
+  <div class="Box-row Box-row--focus-gray">
+    .Box-row--focus-gray
+  </div>
+  <div class="Box-row Box-row--focus-blue navigation-focus">
+    .Box-row--focus-blue and .navigation-focus
+  </div>
+  <div class="Box-row Box-row--focus-blue">
+    .Box-row--focus-blue
+  </div>
+</div>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

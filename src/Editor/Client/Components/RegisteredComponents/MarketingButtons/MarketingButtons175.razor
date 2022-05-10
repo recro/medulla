@@ -1,0 +1,71 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<button class="btn-mktg btn-sm-mktg mr-2" type="button">Learn more</button>
+<button class="btn-mktg btn-primary-mktg btn-sm-mktg mr-2" type="button">Sign up</button>
+<button class="btn-mktg btn-enterprise-mktg btn-sm-mktg mr-3" type="button">Contact sales</button>
+<button class="btn-mktg btn-outline-mktg btn-sm-mktg mr-2" type="button">Learn more</button>
+<hr>
+<button class="btn-mktg mr-2" type="button">Learn more</button>
+<button class="btn-mktg btn-primary-mktg mr-2" type="button">Sign up</button>
+<button class="btn-mktg btn-enterprise-mktg mr-3" type="button">Contact sales</button>
+<button class="btn-mktg btn-outline-mktg mr-2" type="button">Learn more</button>
+<hr>
+<button class="btn-mktg btn-lg-mktg mr-2" type="button">Learn more</button>
+<button class="btn-mktg btn-primary-mktg btn-lg-mktg mr-2" type="button">Sign up</button>
+<button class="btn-mktg btn-enterprise-mktg btn-lg-mktg mr-3" type="button">Contact sales</button>
+<button class="btn-mktg btn-outline-mktg btn-lg-mktg mr-2" type="button">Learn more</button>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

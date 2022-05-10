@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Editor\Client\Medulla.Editor.Client.csproj" />
     <ProjectReference Include="..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,87 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<div class="Layout">
+  <div class="Layout-main border">
+    <div class="Layout-main-centered-md">
+      <div class="container-md border color-border-accent">
+        centered md
+      </div>
+    </div>
+  </div>
+  <div class="Layout-sidebar border">sidebar</div>
+</div>
+<div class="Layout">
+  <div class="Layout-main border">
+    <div class="Layout-main-centered-lg">
+      <div class="container-lg border color-border-accent">
+        centered lg
+      </div>
+    </div>
+  </div>
+  <div class="Layout-sidebar border">sidebar</div>
+</div>
+<div class="Layout">
+  <div class="Layout-main border">
+    <div class="Layout-main-centered-xl">
+      <div class="container-xl border color-border-accent">
+        centered xl
+      </div>
+    </div>
+  </div>
+  <div class="Layout-sidebar border">sidebar</div>
+</div>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

@@ -1,0 +1,62 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<span class="IssueLabel IssueLabel--big color-bg-accent-emphasis color-fg-on-emphasis mr-1">Primer</span>
+<span class="IssueLabel IssueLabel--big color-bg-danger-emphasis color-fg-on-emphasis mr-1">bug 🐛</span>
+<span class="IssueLabel IssueLabel--big color-bg-success-emphasis color-fg-on-emphasis mr-1">help wanted</span>
+<span class="IssueLabel IssueLabel--big color-bg-attention-emphasis color-fg-on-emphasis mr-1">🚂 deploy: train</span>
+
+</ComponentContainer>
+
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

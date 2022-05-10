@@ -1,0 +1,212 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<div class="menu-container" style="position: relative">
+    
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+    @if (@HasLogo == "True")
+    {
+        <div>
+            <h1>Logo</h1>
+        </div>
+    }
+    <div>
+        <ul class="menu">
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a></li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a></li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu
+                    <svg xmlns="http://www.w3.org/2000/svg" class="sub-menu-link-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                    <li>
+                        <a class="menu-link" href="#">Menu</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Menu</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "{No Title}";
+    
+    [Parameter]
+    public string HasLogo { get; set; } = "";
+
+    
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Has Logo", 
+            InputDescription = "HasLogo", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                { "PropertyName", "HasLogo" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Checkbox" }
+            );
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+        
+    }
+
+}
+
+
+<style>
+.menu-container {
+    display:  flex;
+    background: transparent;
+}
+
+.menu {
+    list-style-type: none;
+    display:  flex;
+    border:  none;
+    background: transparent;
+}
+
+.menu-item {
+    padding: 1em 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width:  110px;
+    padding-top: 0;
+}
+
+.sub-menu {
+    list-style-type: none;
+    flex-direction: column;
+    z-index: 1000;
+    position: relative;
+    color: white;
+    padding: 0;
+    width: 230px;
+    background: lightgray;
+    justify-content: start;
+    align-items: start;
+    padding-left: 15px;
+    padding-bottom: 12px;
+    display: none;
+}
+
+.menu-item:hover .sub-menu {
+    display: flex;
+}
+
+.menu-link {
+    background: lightgray;
+    padding: 1em;
+    width: 110px;
+    display: inline-block;
+}
+ 
+ .sub-menu li {
+     height: 47px;
+ }
+ 
+ .sub-menu-link-icon {
+    width: 15px;
+    display: inline;
+ }
+</style>
+

@@ -1,0 +1,70 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<nav class="UnderlineNav UnderlineNav--full" aria-label="Foo bar">
+  <div class="container-lg UnderlineNav-container">
+    <div class="UnderlineNav-body">
+      <a class="UnderlineNav-item" href="#url" aria-current="page">Item 1</a>
+      <a class="UnderlineNav-item" href="#url">Item 2<span class="Counter">10</span></a>
+      <a class="UnderlineNav-item" href="#url">Item 3</a>
+      <a class="UnderlineNav-item" href="#url">Item 4</a>
+    </div>
+    <div class="UnderlineNav-actions">
+      <a class="btn btn-sm">Button</a>
+    </div>
+  </div>
+</nav>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+
