@@ -9,7 +9,7 @@
         
     @if (!Editor.PreviewMode)
                 {
-                    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+                    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
                     {
                         <svg @onclick="Unselect" style="height: 20px;
                                     cursor: pointer;

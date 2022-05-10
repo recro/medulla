@@ -2,8 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
+using Medulla.Editor.Client.Components.EditorView;
 using Medulla.Editor.Client.Components.PropertiesWindow;
 using Medulla.Editor.Client.Library.Abstractions.Environment.EnvironmentAbstractionHandler;
 using Medulla.Editor.Client.Library.Utilities.Unique;
@@ -114,16 +113,16 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
         /// </summary>
         protected void MouseOver(MouseEventArgs e)
         {
-
+            Console.WriteLine(e.Type);
             Editor.StateChanged();
         }
 
         /// <summary>
         /// Mouse Leave
         /// </summary>
-        protected void MouseLeave(MouseEventArgs e)
+        protected static void MouseLeave(MouseEventArgs e)
         {
-
+            Console.WriteLine(e.Type);
         }
 
         /// <summary>
@@ -145,7 +144,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
         /// </summary>
         private static string GetNumber(string prepend, string input)
         {
-            var number = 0;
+            int number;
             try
             {
                 number = int.Parse(input);
@@ -204,7 +203,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
                 Console.WriteLine("Editor.CurrentComponent.UniqueId was null");
                 return new Dictionary<string, object>();
             }
-            return Editor.CurrentComponent.UniqueId.Equals(this.UniqueId) ? new Dictionary<string, object> { { "checked", "true" } } : new Dictionary<string, object>();
+            return Editor.CurrentComponent.UniqueId.Equals(UniqueId) ? new Dictionary<string, object> { { "checked", "true" } } : new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -212,7 +211,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
         /// </summary>
         protected void MakeActive()
         {
-            UpdatePropertiesWindow(Editor, this.EditorViewNode.UniqueId);
+            UpdatePropertiesWindow(Editor, EditorViewNode.UniqueId);
         }
 
         /// <summary>
@@ -250,8 +249,8 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
         /// </summary>
         public void UpdatePropertiesWindow(EditorPage editor, UniqueId? uniqueId)
         {
-            var properties = this.GetProperties();
-            if (this.DoesImplementFonts())
+            var properties = GetProperties();
+            if (DoesImplementFonts())
             {
                 properties.PropertyList.Add(new Property
                 {
@@ -265,7 +264,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
                 }
                 );
             }
-            if (this.DoesImplementMargin())
+            if (DoesImplementMargin())
             {
                 properties.PropertyList.Add(new()
                 {
@@ -368,7 +367,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
                 }
                 );
             }
-            if (this.DoesImplementPadding())
+            if (DoesImplementPadding())
             {
                 properties.PropertyList.Add(new()
                 {
@@ -472,7 +471,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
                 );
             }
             editor.SetCurrentComponentToEditorViewNodeWithUniqueId(uniqueId);
-            properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
+            //properties.SetPropertyValuesFromEditorViewNode(editor, uniqueId);
             editor.SetProperties(properties, uniqueId);
             Editor.StateChanged();
         }
@@ -513,7 +512,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
         protected void Clicked()
         {
             var click = new ClickHandler();
-            click.Handle(Editor, this.UniqueId, this, IsClickable());
+            click.Handle(Editor, UniqueId, this, IsClickable());
         }
 
 

@@ -2,6 +2,8 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Medulla.Editor.Client.Components.EditorView;
+
 namespace Medulla.Editor.Client.Library.Abstractions.Environment
 {
     /// <summary>
@@ -25,11 +27,11 @@ namespace Medulla.Editor.Client.Library.Abstractions.Environment
         /// </summary>
         public static Page GetInstance()
         {
-            if (Page.s_instance == null)
+            if (s_instance == null)
             {
-                Page.s_instance = new Page();
+                s_instance = new Page();
             }
-            return Page.s_instance;
+            return s_instance;
         }
 
         /// <summary>
@@ -37,7 +39,7 @@ namespace Medulla.Editor.Client.Library.Abstractions.Environment
         /// </summary>
         public static void UpdateInstance(Page page)
         {
-            Page.s_instance = page;
+            s_instance = page;
         }
 
     }

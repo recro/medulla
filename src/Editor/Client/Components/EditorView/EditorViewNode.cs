@@ -2,11 +2,10 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using Medulla.Editor.Client.Library.Utilities.Unique;
+
+namespace Medulla.Editor.Client.Components.EditorView;
 
 /// <summary>
 /// Editor View Node
@@ -44,10 +43,10 @@ public class EditorViewNode
     /// </summary>
     public string GetJson()
     {
-        var childrenJson = new List<string>();
-        for (var i = 0; i < Children.Count; i++)
+        var childrenJson = new List<string?>();
+        for (var i = 0; i < Children?.Count; i++)
         {
-            var childJson = Children[i].GetJson();
+            var childJson = Children?[i]?.GetJson();
             childrenJson.Add(childJson);
         }
 
@@ -59,7 +58,7 @@ public class EditorViewNode
                $"\"Type\": \"{Type}\", " +
                $"\"Children\": {childrenJsonArray}, " +
                $"\"Parameters\": {json}, " +
-               $"\"UniqueId\": \"{UniqueId.Id}\", " +
+               $"\"UniqueId\": \"{UniqueId?.Id}\", " +
                $"\"IsContainer\": {IsContainer.ToString().ToLower()} " +
                $" }}";
 

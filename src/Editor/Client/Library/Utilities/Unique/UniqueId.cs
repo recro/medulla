@@ -19,7 +19,7 @@ namespace Medulla.Editor.Client.Library.Utilities.Unique
         /// </summary>
         public UniqueId()
         {
-            var guid = System.Guid.NewGuid().ToString();
+            var guid = Guid.NewGuid().ToString();
             Id = guid;
         }
 
@@ -28,12 +28,12 @@ namespace Medulla.Editor.Client.Library.Utilities.Unique
         /// </summary>
         public override bool Equals(object? obj)
         {
-            if (obj == null || !(this.GetType() == obj.GetType()))
+            if (obj == null || !(GetType() == obj.GetType()))
             {
                 return false;
             }
             var otherUniqueId = (UniqueId)obj;
-            return otherUniqueId.Id == this.Id;
+            return otherUniqueId.Id == Id;
         }
 
         /// <summary>

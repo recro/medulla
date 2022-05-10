@@ -1,4 +1,4 @@
-@using System.IO
+﻿@using System.IO
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Linq
 
@@ -23,14 +23,13 @@
 </Window>
 
 @code {
-    
     [Parameter]
-    public EditorPage? Editor { get; set; }
-    
+    public EditorPage? Editor { get; set; } = new();
+
     static object ConvertJTokenToObject(JToken? token)
     {
         if (token is JValue)
-            return ((JValue)token).Value;
+            return token;
         if (token is JArray)
             return token.AsEnumerable().Select(ConvertJTokenToObject).ToList();
         if (token is JObject)
@@ -41,8 +40,8 @@
 
     private string GetYaml()
     {
-        var json = Editor.EditorViewNode.GetJson();
-        var swaggerDocument = ConvertJTokenToObject(JsonConvert.DeserializeObject<JToken>(json));
+        var json = Editor?.EditorViewNode?.GetJson();
+        var swaggerDocument = ConvertJTokenToObject(JsonConvert.DeserializeObject<JToken>(json ?? string.Empty));
 
         var serializer = new YamlDotNet.Serialization.Serializer();
 

@@ -19,9 +19,9 @@
 
 @code {
     public List<DataSource> dataSources { get; set; } = new List<DataSource>();
-    
+
     [Parameter]
-    public EditorPage Editor { get; set; }
+    public EditorPage Editor { get; set; } = new();
 
     private string createUuid()
     {

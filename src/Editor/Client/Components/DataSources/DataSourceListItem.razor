@@ -5,7 +5,7 @@
     
     @{
         var name = @dataSource.DataSourceName;
-        if (name.Length == 0)
+        if (name == null || name.Length == 0)
         {
             name = "{No DataSource Name}";
         }
@@ -40,7 +40,7 @@
                 <form>
                     <input
                         value="@dataSource.DataSourceName"
-                        @oninput="(e) => { updateDataSourceName(e.Value.ToString()); }"
+                        @oninput="(e) => { updateDataSourceName(e.Value?.ToString()); }"
                         class="form-control input-hide-webkit-autofill mb-1"
                         placeholder="Data Source Name"
                         type="text"
@@ -54,7 +54,7 @@
                     
                     <select
                         value="@dataSource.DataSourceType"
-                        @oninput="(e) => { updateDataSourceType(e.Value.ToString()); }"
+                        @oninput="(e) => { updateDataSourceType(e.Value?.ToString()); }"
                         class="form-select" aria-label="Preference">
                         <option>Choose an option</option>
                         <option>Static</option>
@@ -70,7 +70,7 @@
                         <br />
                         <select
                             value="@dataSource.GrpcSource"
-                            @oninput="(e) => { updateGrpcSource(e.Value.ToString()); }"
+                            @oninput="(e) => { updateGrpcSource(e.Value?.ToString()); }"
                             class="form-select" aria-label="Preference">
                             <option>Choose an option</option>
                             <option>WeatherData</option>
@@ -83,7 +83,7 @@
                         <br />
                         <input
                             value="@dataSource.ExternalRestApiSource"
-                            @oninput="(e) => { updateExternalRestApiSource(e.Value.ToString()); }"
+                            @oninput="(e) => { updateExternalRestApiSource(e.Value?.ToString()); }"
                             class="form-control input-hide-webkit-autofill mb-1"
                             placeholder="External Rest Api Url"
                             type="text"
@@ -97,7 +97,7 @@
                         <br />
                         <textarea
                             value="@dataSource.StaticData"
-                            @oninput="(e) => { updateStaticData(e.Value.ToString()); }"
+                            @oninput="(e) => { updateStaticData(e.Value?.ToString()); }"
                             class="form-control input-hide-webkit-autofill mb-1"
                             placeholder="#800080"
                             type="text"
@@ -110,7 +110,7 @@
                         <br />
                         <input
                             value="@dataSource.CastDataToType"
-                            @oninput="(e) => { castDataToType(e.Value.ToString()); }"
+                            @oninput="(e) => { castDataToType(e.Value?.ToString()); }"
                             class="form-control input-hide-webkit-autofill mb-1"
                             placeholder="string"
                             type="text"
@@ -138,9 +138,9 @@
 
     private bool _isEditing = false;
     private string _dataSourceName = "{No DataSource Name}";
-    
+
     [Parameter]
-    public DataSource dataSource { get; set; }
+    public DataSource dataSource { get; set; } = new();
 
     [Parameter]
     public EventCallback<DataSource> onDelete { get; set; }
@@ -151,12 +151,12 @@
         await onDelete.InvokeAsync(dataSource);
     }
 
-    private void updateDataSourceName(string name)
+    private void updateDataSourceName(string? name)
     {
         dataSource.DataSourceName = name;
     }
 
-    private void updateDataSourceType(string type)
+    private void updateDataSourceType(string? type)
     {
         Console.WriteLine(type);
         if (type == "Static")
@@ -184,22 +184,22 @@
         }
     }
 
-    private void updateStaticData(string data)
+    private void updateStaticData(string? data)
     {
         dataSource.StaticData = data;
     }
 
-    private void castDataToType(string type)
+    private void castDataToType(string? type)
     {
         dataSource.CastDataToType = type;
     }
 
-    public void updateGrpcSource(string source)
+    public void updateGrpcSource(string? source)
     {
         dataSource.GrpcSource = source;
     }
 
-    public void updateExternalRestApiSource(string source)
+    public void updateExternalRestApiSource(string? source)
     {
         dataSource.ExternalRestApiSource = source;
     }

@@ -2,9 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using YamlDotNet.Core.Tokens;
+using Medulla.Editor.Client.Components.EditorView;
 
 namespace Medulla.Editor.Client.Components.RegisteredComponents
 {
@@ -51,11 +49,11 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
         {
             _hoverClass = "";
             Console.WriteLine("handling drop");
-            Editor.PlaceInUniqueId = this.UniqueId;
+            Editor.PlaceInUniqueId = UniqueId;
             Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
             foreach (var child in GetChildrenToAddOnAdd())
             {
-                Editor.PlaceInUniqueId = this.UniqueId;
+                Editor.PlaceInUniqueId = UniqueId;
                 Editor.CurrentComponent = child;
                 Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
             }

@@ -1,4 +1,4 @@
-@using Medulla.Editor.Client.Library.Utilities.Unique
+﻿@using Medulla.Editor.Client.Library.Utilities.Unique
 @inherits BaseComponentContainer
 
 @if (Editor.PreviewMode)
@@ -31,7 +31,7 @@
                         
                         @if (!Editor.PreviewMode)
                         {
-                            @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+                            @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
                             {
                                 <svg @onclick="Unselect" style="height: 20px;
                                             cursor: pointer;
@@ -106,9 +106,6 @@
 </div>
 
 @code {
-
-    private bool isActive = false;
-
     protected override void AfterAddComponent(EditorPage editor, Library.Utilities.Unique.UniqueId uniqueId)
     {
 

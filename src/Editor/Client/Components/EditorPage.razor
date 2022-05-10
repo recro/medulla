@@ -1,4 +1,4 @@
-@using Medulla.Editor.Client.Components.PropertiesWindow
+﻿@using Medulla.Editor.Client.Components.PropertiesWindow
 @using Medulla.Editor.Client.Library.Utilities.Unique
 @using Medulla.Editor.Client.Components.PaletteWindow
 @using Medulla.Editor.Client.Components.TreeView
@@ -37,7 +37,7 @@
     public EditorViewNode? WrapElementWithEditorViewNode = null;
     public bool DeleteColumns { get; set; } = false;
     public bool PreviewMode { get; set; } = false;
-    public List<DataSource> dataSources { get; set; }
+    public List<DataSource> dataSources { get; set; } = new();
 
     public void dataSourcesUpdated(List<DataSource> _dataSources)
     {
