@@ -72,6 +72,11 @@ namespace DatabaseDesigner.Wasm.Pages
             Diagram.Links.Removed += Diagram_LinkRemoved;
         }
 
+        public void AddDatabase()
+        {
+            Diagram.Nodes.Add(new Database());
+        }
+
         private void OnLinkAdded(BaseLinkModel link)
         {
             link.TargetPortChanged += OnLinkTargetPortChanged;

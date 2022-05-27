@@ -5,6 +5,13 @@
         <div class="diagram-container">
             <DiagramCanvas></DiagramCanvas>
         </div>
-        <Sidebar />
+        <div class="color-bg-default Box p-6 blankslate blankslate-spacious">
+            <div class="p-3 border-lg-top color-border-accent border-lg-bottom">
+                <h3 class="h3 blankslate-heading text-left">Database Designer</h3>
+                            <p class="text-left">Create database tables in the database designer.</p>
+                            <h4 class="h4 text-left">Create Database Table</h4>
+                            <button @onclick="AddDatabase" style="display: inherit" class="mt-3 btn-mktg mr-3 text-left" type="button">Create Table</button>
+            </div>
+        </div>
     </CascadingValue>
 </div>
