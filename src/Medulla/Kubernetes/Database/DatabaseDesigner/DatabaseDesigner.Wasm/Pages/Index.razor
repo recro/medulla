@@ -8,10 +8,22 @@
         <div class="color-bg-default Box p-6 blankslate blankslate-spacious">
             <div class="p-3 border-lg-top color-border-accent border-lg-bottom">
                 <h3 class="h3 blankslate-heading text-left">Database Designer</h3>
-                            <p class="text-left">Create database tables in the database designer.</p>
-                            <h4 class="h4 text-left">Create Database Table</h4>
-                            <button @onclick="AddDatabase" style="display: inherit" class="mt-3 btn-mktg mr-3 text-left" type="button">Create Table</button>
+                <p class="text-left">Create database tables in the database designer.</p>
+                <h4 class="h4 text-left">Create Database Table</h4>
             </div>
         </div>
     </CascadingValue>
+    <button @onclick="AddDatabase" style="position: fixed;
+                       left: 48px;
+                       bottom: 48px;
+                       background: purple;
+                       border-radius: 101px;
+                       width: 40px;
+                       height: 40px;
+                       transform: scale(1.0) rotate(45deg);
+                       z-index: 10000;
+                       color: white;" class="close-button" type="button">
+              <!-- <%= octicon "x" %> -->
+              <svg style="position: relative;bottom: 1px;" class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+            </button>
 </div>
