@@ -1,7 +1,8 @@
 name: 💡 Feature Request
 description: Suggest an idea for this project
 labels:
-  - enhancement
+  - Enhancement
+  - User Story
 body:
   - type: checkboxes
     attributes:
