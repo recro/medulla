@@ -2,7 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-namespace Properties.Interfaces;
+namespace Medulla.Editor.Client.Abstractions;
 
 /// <summary>
 /// This interface defines an implementation for how a Properties Menu will work, and how other components will interact
