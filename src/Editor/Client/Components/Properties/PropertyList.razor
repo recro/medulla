@@ -1,6 +1,6 @@
 ﻿
 <div class="Box width-full">
-    <p>@PropertyMenuStructure?.Nameable.Title</p>
+    <p class="pl-1">@PropertyMenuStructure?.Nameable.Title</p>
 
     @if (PropertyMenuStructure is { PropertyMenuStructureNodes: {} })
     {
@@ -8,10 +8,6 @@
         {
             <PropertyListItem PropertiesMenu="PropertiesMenu" PropertyMenuStructureNode="item" />
         }
-    }
-    else
-    {
-        Console.WriteLine("PropertyMenuStructure was null");
     }
 
 

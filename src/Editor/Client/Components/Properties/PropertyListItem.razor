@@ -4,16 +4,25 @@
     }
     <PropertyListItemIcon PropertyMenuStructureNode="PropertyMenuStructureNode" PropertiesMenu="PropertiesMenu" />
     <div class="TimelineItem-body">
-        @PropertyMenuStructureNode.Nameable.Title
+        @if (hasNoChildren)
+        {
+            <p class="pb-1">@PropertyMenuStructureNode.Nameable.Title</p>
+        }
+        else
+        {
+            <p @onclick="OpenClose" class="pb-1" style="cursor:pointer;">@PropertyMenuStructureNode.Nameable.Title</p>
+        }
+
 
         @if (hasNoChildren)
         {
             @if (@PropertyMenuStructureNode.InputType == InputType.TextInput)
             {
                 <p>
-                    <input class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
+                    <input class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description"/>
                 </p>
-            } else if (@PropertyMenuStructureNode.InputType == InputType.TextArea)
+            }
+            else if (@PropertyMenuStructureNode.InputType == InputType.TextArea)
             {
                 <p>
                     <textarea class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
@@ -27,10 +36,6 @@
             {
                 <PropertyList PropertiesMenu="PropertiesMenu" PropertyMenuStructure="PropertyMenuStructureNode.PropertyMenuStructure"/>
             }
-            else
-            {
-                Console.WriteLine("PropertyMenuStructureNode.PropertyMenuStructure was closed");
-            }
         }
 
     </div>
@@ -43,6 +48,12 @@
 
     [Parameter]
     public PropertiesMenu? PropertiesMenu { get; set; }
+
+    void OpenClose()
+    {
+        PropertyMenuStructureNode.IsOpen = !PropertyMenuStructureNode.IsOpen;
+        PropertiesMenu?.ShouldRender();
+    }
 
 
 }
