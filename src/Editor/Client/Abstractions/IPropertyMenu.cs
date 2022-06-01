@@ -2,6 +2,8 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Medulla.Editor.Client.Abstractions.ObjectComposition;
+
 namespace Medulla.Editor.Client.Abstractions;
 
 /// <summary>
@@ -10,12 +12,6 @@ namespace Medulla.Editor.Client.Abstractions;
 /// </summary>
 public interface IPropertyMenu
 {
-
-    /// <summary>
-    /// Title of Properties window
-    /// </summary>
-    /// <param name="title">Title of properties window</param>
-    public void SetTitle(string title);
 
     /// <summary>
     /// Opens tree of properties to see all properties in sub trees.

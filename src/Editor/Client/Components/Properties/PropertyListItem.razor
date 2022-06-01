@@ -1,0 +1,33 @@
+﻿<div class="TimelineItem TimelineItem--condensed">
+    @{
+        var hasNoChildren = PropertyMenuStructureNode.HasNoChildren();
+    }
+    <PropertyListItemIcon PropertyMenuStructureNode="PropertyMenuStructureNode" PropertiesMenu="PropertiesMenu" />
+    <div class="TimelineItem-body">
+        @PropertyMenuStructureNode.Nameable.Title
+
+        @if (hasNoChildren)
+        {
+            <p>Property</p>
+        }
+        else
+        {
+            @if (PropertyMenuStructureNode.IsOpen)
+            {
+                <PropertyList PropertyMenuStructure="PropertyMenuStructureNode.PropertyMenuStructure"/>
+            }
+        }
+
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public PropertyMenuStructureNode PropertyMenuStructureNode { get; set; } = new();
+
+    [Parameter]
+    public PropertiesMenu? PropertiesMenu { get; set; }
+
+
+}

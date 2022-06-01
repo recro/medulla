@@ -1,0 +1,76 @@
+﻿@using Medulla.Editor.Client.Abstractions.ObjectComposition
+<div>
+
+    <PropertyList PropertiesMenu="this" PropertyMenuStructure="PropertyMenuStructure"/>
+
+</div>
+
+
+@code {
+
+    public void ShouldRender()
+    {
+        StateHasChanged();
+    }
+
+    ///
+    ///
+    ///
+    [Parameter]
+    public PropertyMenuStructure PropertyMenuStructure { get; set; } = new()
+    {
+        Nameable = new Nameable()
+        {
+            Title = "Test Properties Menu",
+            Description = "Test description"
+        },
+        PropertyMenuStructureNodes = new List<PropertyMenuStructureNode>()
+        {
+            new PropertyMenuStructureNode()
+            {
+                Nameable = new()
+                {
+                    Title = "Test test",
+                    Description = "Test Description"
+                },
+                PropertyMenuStructure = new()
+                {
+                    Nameable = new()
+                    {
+                        Title = "Test Children",
+                        Description = "Test"
+                    },
+                    PropertyMenuStructureNodes = new()
+                    {
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "First Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Last Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Email"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+
+
+
+
+}

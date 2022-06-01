@@ -2,6 +2,8 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Medulla.Editor.Client.Abstractions.ObjectComposition;
+
 namespace Medulla.Editor.Client.Abstractions;
 
 /// <summary>
@@ -10,12 +12,11 @@ namespace Medulla.Editor.Client.Abstractions;
 /// <typeparam name="T"></typeparam>
 public interface IProperty<T>
 {
-
     /// <summary>
     /// Sets name of property.
     /// </summary>
-    /// <param name="name"></param>
-    public void SetName(string name);
+    /// <param name="nameable">Gives title, and description</param>
+    public void SetNameable(Nameable nameable);
 
     /// <summary>
     /// Locks property

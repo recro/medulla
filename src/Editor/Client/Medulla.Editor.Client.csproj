@@ -16,5 +16,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
   </ItemGroup>
-
+  
 </Project>

@@ -1,0 +1,26 @@
+﻿
+<div class="Box width-full">
+    <p>@PropertyMenuStructure?.Nameable.Title</p>
+
+    @if (PropertyMenuStructure is { PropertyMenuStructureNodes: {} })
+    {
+        @foreach (var item in PropertyMenuStructure.PropertyMenuStructureNodes)
+        {
+            <PropertyListItem PropertiesMenu="PropertiesMenu" PropertyMenuStructureNode="item" />
+        }
+    }
+
+
+
+
+</div>
+
+@code {
+
+    [Parameter]
+    public PropertyMenuStructure? PropertyMenuStructure { get; set; }
+
+    [Parameter]
+    public PropertiesMenu? PropertiesMenu { get; set; }
+
+}

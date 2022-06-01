@@ -10,13 +10,14 @@
             <EditorView EditorViewNode="EditorViewNode" />
         </div>
         <div style="width: 40vw;max-height:100vh;overflow: scroll;">
-            <ColumnManager Editor="this" />
-            <DataSources Editor="this" />
-            <PagesWindow />
-            <TranslateComponentWindow Editor="this" />
-            <PaletteWindow ComponentCategories="_paletteComponentCategories" />
-            <PropertiesWindow DataSources="@dataSources" Editor="this" PropertyList="_properties" />
-            <YamlViewerWindow Editor="this" />
+            <PropertiesMenu />
+            <ColumnManager Editor="this"/>
+            <DataSources Editor="this"/>
+            <PagesWindow/>
+            <TranslateComponentWindow Editor="this"/>
+            <PaletteWindow ComponentCategories="_paletteComponentCategories"/>
+            <PropertiesWindow DataSources="@dataSources" Editor="this" PropertyList="_properties"/>
+            <YamlViewerWindow Editor="this"/>
         </div>
     </CascadingValue>
 </div>
@@ -136,7 +137,7 @@
                     IsContainer = false
 		        }
             }
-		}	
+		}
 	},
         UniqueId = new UniqueId()
     };
@@ -153,7 +154,7 @@
             else
             {
                 editorViewNode.Children.Add(CurrentComponent);
-            } 
+            }
             return true;
         }
         else
@@ -173,11 +174,11 @@
                     if (WrapElementWithEditorViewNode != null)
                     {
                         WrapElementWithEditorViewNode.Children.Add(CurrentComponent);
-                        editorViewNode.Children.Insert(foundIndex + 1, WrapElementWithEditorViewNode);    
+                        editorViewNode.Children.Insert(foundIndex + 1, WrapElementWithEditorViewNode);
                     }
                     else
                     {
-                        editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);    
+                        editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);
                     }
                     PlaceAfter = false;
                 }
@@ -190,7 +191,7 @@
                     }
                     else
                     {
-                        editorViewNode!.Children[foundIndex]!.Children.Add(CurrentComponent);    
+                        editorViewNode!.Children[foundIndex]!.Children.Add(CurrentComponent);
                     }
                 }
                 return true;
@@ -334,7 +335,7 @@
         CurrentComponent = editorViewNode;
     }
 
-    public void SetProperties(Properties properties, UniqueId? uniqueId)
+    public void SetProperties(PropertiesWindow.Properties properties, UniqueId? uniqueId)
     {
         CurrentPropertiesForComponentUniqueId = uniqueId;
         _properties = properties;
@@ -352,7 +353,7 @@
     }
 
     //Properties
-    Properties _properties = new()
+    PropertiesWindow.Properties _properties = new()
     {
         PropertyList = new List<Property>
         {
@@ -464,11 +465,11 @@
                 },
             }
         },
-    
-    
-    
-    
-    
+
+
+
+
+
         new() {
     Name = "ActionList",
     PaletteWindowComponents = new PaletteWindowComponents()
@@ -1532,12 +1533,12 @@
         },
     }
 },
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
         new() {
             Name = "Text",
             PaletteWindowComponents = new PaletteWindowComponents()
