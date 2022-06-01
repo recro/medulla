@@ -10,7 +10,9 @@
 
     public void ShouldRender()
     {
+        Console.WriteLine("ShouldRender()");
         StateHasChanged();
+        Console.WriteLine(string.Join(", ", PropertyMenuStructure));
     }
 
     ///
@@ -47,6 +49,179 @@
                             Nameable = new Nameable()
                             {
                                 Title = "First Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Last Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Email"
+                            }
+                        }
+                    }
+                }
+            },
+            new PropertyMenuStructureNode()
+            {
+                Nameable = new()
+                {
+                    Title = "Test test",
+                    Description = "Test Description"
+                },
+                PropertyMenuStructure = new()
+                {
+                    Nameable = new()
+                    {
+                        Title = "Test Children",
+                        Description = "Test"
+                    },
+                    PropertyMenuStructureNodes = new()
+                    {
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "First Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Last Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Email"
+                            }
+                        }
+                    }
+                }
+            },
+            new PropertyMenuStructureNode()
+            {
+                Nameable = new()
+                {
+                    Title = "Test test",
+                    Description = "Test Description"
+                },
+                PropertyMenuStructure = new()
+                {
+                    Nameable = new()
+                    {
+                        Title = "Test Children",
+                        Description = "Test"
+                    },
+                    PropertyMenuStructureNodes = new()
+                    {
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "First Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Last Name"
+                            }
+                        },
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "Email"
+                            }
+                        }
+                    }
+                }
+            },
+            new PropertyMenuStructureNode()
+            {
+                Nameable = new()
+                {
+                    Title = "Test test",
+                    Description = "Test Description"
+                },
+                PropertyMenuStructure = new()
+                {
+                    Nameable = new()
+                    {
+                        Title = "Test Children",
+                        Description = "Test"
+                    },
+                    PropertyMenuStructureNodes = new()
+                    {
+                        new PropertyMenuStructureNode()
+                        {
+                            Nameable = new Nameable()
+                            {
+                                Title = "First Name"
+                            },
+                            PropertyMenuStructure = new()
+                            {
+                                Nameable = new()
+                                {
+                                    Title = "Test"
+                                },
+                                PropertyMenuStructureNodes = new()
+                                {
+                                    new PropertyMenuStructureNode()
+                                    {
+                                        Nameable = new()
+                                        {
+                                            Title = "Test test",
+                                            Description = "Test Description"
+                                        },
+                                        PropertyMenuStructure = new()
+                                        {
+                                            Nameable = new()
+                                            {
+                                                Title = "Test Children",
+                                                Description = "Test"
+                                            },
+                                            PropertyMenuStructureNodes = new()
+                                            {
+                                                new PropertyMenuStructureNode()
+                                                {
+                                                    Nameable = new Nameable()
+                                                    {
+                                                        Title = "First Name",
+                                                        Description = "Test"
+                                                    }
+                                                },
+                                                new PropertyMenuStructureNode()
+                                                {
+                                                    Nameable = new Nameable()
+                                                    {
+                                                        Title = "Last Name",
+                                                        Description = "Test"
+                                                    }
+                                                },
+                                                new PropertyMenuStructureNode()
+                                                {
+                                                    Nameable = new Nameable()
+                                                    {
+                                                        Title = "Email",
+                                                        Description = "Test"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         },
                         new PropertyMenuStructureNode()

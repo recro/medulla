@@ -8,13 +8,28 @@
 
         @if (hasNoChildren)
         {
-            <p>Property</p>
+            @if (@PropertyMenuStructureNode.InputType == InputType.TextInput)
+            {
+                <p>
+                    <input class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
+                </p>
+            } else if (@PropertyMenuStructureNode.InputType == InputType.TextArea)
+            {
+                <p>
+                    <textarea class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
+                </p>
+            }
+
         }
         else
         {
             @if (PropertyMenuStructureNode.IsOpen)
             {
-                <PropertyList PropertyMenuStructure="PropertyMenuStructureNode.PropertyMenuStructure"/>
+                <PropertyList PropertiesMenu="PropertiesMenu" PropertyMenuStructure="PropertyMenuStructureNode.PropertyMenuStructure"/>
+            }
+            else
+            {
+                Console.WriteLine("PropertyMenuStructureNode.PropertyMenuStructure was closed");
             }
         }
 

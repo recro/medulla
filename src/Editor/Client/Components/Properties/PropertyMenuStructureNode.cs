@@ -6,6 +6,12 @@ using Medulla.Editor.Client.Abstractions.ObjectComposition;
 
 namespace Medulla.Editor.Client.Components.Properties;
 
+public enum InputType
+{
+    TextInput,
+    TextArea
+}
+
 public class PropertyMenuStructureNode
 {
 
@@ -13,6 +19,8 @@ public class PropertyMenuStructureNode
     public PropertyMenuStructure PropertyMenuStructure { get; set; } = new();
 
     public bool IsOpen { get; set; } = false;
+
+    public InputType InputType { get; set; } = InputType.TextInput;
 
     public bool HasNoChildren()
     {
