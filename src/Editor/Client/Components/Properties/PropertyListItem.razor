@@ -28,6 +28,22 @@
                     <textarea class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
                 </p>
             }
+            else if (@PropertyMenuStructureNode.InputType == InputType.AddMultiple)
+            {
+                <p>
+                    <div class="Box">
+                        <details class="details-reset details-overlay" open>
+                          <div class="SelectMenu p-4" style="position: relative;">
+                            <div class="SelectMenu-modal">
+                              <div class="SelectMenu-list">
+                                <button class="SelectMenu-item" role="menuitem">Item 1</button>
+                              </div>
+                            </div>
+                          </div>
+                        </details>
+                    </div>
+                </p>
+            }
 
         }
         else

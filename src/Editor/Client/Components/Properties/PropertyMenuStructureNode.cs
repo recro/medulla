@@ -9,7 +9,9 @@ namespace Medulla.Editor.Client.Components.Properties;
 public enum InputType
 {
     TextInput,
-    TextArea
+    TextArea,
+    Select,
+    AddMultiple,
 }
 
 public class PropertyMenuStructureNode
@@ -21,6 +23,8 @@ public class PropertyMenuStructureNode
     public bool IsOpen { get; set; } = false;
 
     public InputType InputType { get; set; } = InputType.TextInput;
+
+    public string Value { get; set; } = "";
 
     public bool HasNoChildren()
     {
