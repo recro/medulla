@@ -13,27 +13,56 @@ namespace Medulla.Editor.Client.Components.DatabaseDesigner;
 public partial class DatabaseDesigner : IDisposable
 {
 
-    public void SetDatabaseProperties()
+    public void SetDatabaseProperties(List<string>? databaseTables)
     {
+
+        var tables = new PropertyMenuStructureNode();
+        tables.Nameable = new() {Title = "Table Columns", Description = "tables"};
+        tables.PropertyMenuStructure = new() {Nameable = new() {Title = "Tables", Description = "tables"}, PropertyMenuStructureNodes = new() {}};
+        tables.PropertyMenuStructure.Nameable = new() {Title = "Table Columns", Description = "tables"};
+        tables.IsOpen = true;
+        if (databaseTables != null)
+        {
+            foreach (var table in databaseTables)
+            {
+                tables.PropertyMenuStructure.PropertyMenuStructureNodes.Add(new()
+                {
+                    Nameable = new()
+                    {
+                        Title = table,
+                        Description = table + " Columns"
+                    },
+                    InputType = InputType.AddMultiple,
+                    IsOpen = true
+                });
+            }
+        }
+
+
         EditorPage!.SetPropertyMenuStructure(new PropertyMenuStructure()
         {
             Nameable = new Nameable()
             {
-                Title = "Databases",
-                Description = "Databases"
+                Title = "Database Tables",
+                Description = "Database Tables"
             },
             PropertyMenuStructureNodes = new()
             {
-                new ()
+                new PropertyMenuStructureNode()
                 {
                     InputType = InputType.AddMultiple,
                     IsOpen = true,
                     Nameable = new ()
                     {
-                        Title = "Databases",
-                        Description = "Databases"
+                        Title = "Database Tables",
+                        Description = "Database Tables"
+                    },
+                    OnValueChange = (AnyTypeValue value) =>
+                    {
+                        SetDatabaseProperties(value.listOfStrings);
                     }
-                }
+                },
+                tables
             }
 
         });
@@ -42,7 +71,7 @@ public partial class DatabaseDesigner : IDisposable
 
     void OnOpen(bool isOpen)
     {
-            SetDatabaseProperties();
+            SetDatabaseProperties(null);
     }
 
 

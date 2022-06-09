@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
+using YamlDotNet.Core.Tokens;
 
 namespace Medulla.Editor.Client.Components.Properties;
 
@@ -12,6 +13,12 @@ public enum InputType
     TextArea,
     Select,
     AddMultiple,
+}
+
+public class AnyTypeValue
+{
+    public List<string>? listOfStrings { get; set; }
+
 }
 
 public class PropertyMenuStructureNode
@@ -24,7 +31,7 @@ public class PropertyMenuStructureNode
 
     public InputType InputType { get; set; } = InputType.TextInput;
 
-    public string Value { get; set; } = "";
+    public Action<AnyTypeValue>? OnValueChange { get; set; }
 
     public bool HasNoChildren()
     {
