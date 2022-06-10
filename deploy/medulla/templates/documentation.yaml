@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: documentation
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: documentation
+  labels:
+    app: documentation
+    service: documentation
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 80
+  selector:
+    app: documentation
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: documentation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: documentation
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: documentation
+        version: v1
+    spec:
+      serviceAccountName: documentation
+      containers:
+      - image: documentation:1.0.0
+        imagePullPolicy: IfNotPresent
+        name: documentation
+        ports:
+        - containerPort: 80

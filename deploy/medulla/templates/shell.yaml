@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: shell
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shell
+  labels:
+    app: shell
+    service: shell
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 80
+  selector:
+    app: shell
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shell
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shell
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: shell
+        version: v1
+    spec:
+      serviceAccountName: shell
+      containers:
+      - image: shell:1.0.0
+        imagePullPolicy: IfNotPresent
+        name: shell
+        ports:
+        - containerPort: 80

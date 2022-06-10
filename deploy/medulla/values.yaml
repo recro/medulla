@@ -1,0 +1,20 @@
+
+replicaCount: 1
+
+shell:
+  image:
+    repository: shell
+    pullPolicy: Always
+    tag: ""
+
+identity:
+  image:
+    repository: identity
+    pullPolicy: Always
+    tag: ""
+
+documentation:
+  image:
+    repository: documentation
+    pullPolicy: Always
+    tag: ""

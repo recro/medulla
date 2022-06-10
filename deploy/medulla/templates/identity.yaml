@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: identity
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity
+  labels:
+    app: identity
+    service: identity
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 80
+  selector:
+    app: identity
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identity
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: identity
+        version: v1
+    spec:
+      serviceAccountName: identity
+      containers:
+      - image: identity:1.0.0
+        imagePullPolicy: IfNotPresent
+        name: identity
+        ports:
+        - containerPort: 80

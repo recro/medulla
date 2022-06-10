@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: istio
+  name: medulla-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /shell/*
+        pathType: Prefix
+        backend:
+          service:
+            name: shell
+            port:
+              number: 80
+      - path: /identity/*
+        pathType: Prefix
+        backend:
+          service:
+            name: identity
+            port:
+              number: 80
+      - path: /documentation/*
+        pathType: Prefix
+        backend:
+          service:
+            name: documentation
+            port:
+              number: 80
