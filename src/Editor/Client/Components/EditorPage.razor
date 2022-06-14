@@ -1,0 +1,1577 @@
+﻿@using Medulla.Editor.Client.Components.PropertiesWindow
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@using Medulla.Editor.Client.Components.PaletteWindow
+@using Medulla.Editor.Client.Components.TreeView
+@using Medulla.Editor.Client.Library.Abstractions.Environment
+
+<div class="d-flex flex-row">
+    <CascadingValue Value="this">
+        <div class="width-full" style="max-width: 70vw">
+            <EditorView EditorViewNode="EditorViewNode" />
+        </div>
+        <div style="width: 40vw;max-height:100vh;overflow: scroll;">
+            <ColumnManager Editor="this" />
+            <DataSources Editor="this" />
+            <PagesWindow />
+            <TranslateComponentWindow Editor="this" />
+            <PaletteWindow ComponentCategories="_paletteComponentCategories" />
+            <PropertiesWindow DataSources="@dataSources" Editor="this" PropertyList="_properties" />
+            <YamlViewerWindow Editor="this" />
+        </div>
+    </CascadingValue>
+</div>
+
+
+@code {
+
+    public EditorViewNode? CurrentComponent { get; set; } = default!;
+    public UniqueId? CurrentPropertiesForComponentUniqueId;
+    public UniqueId? PlaceInUniqueId { get; set; }
+    public UniqueId? RemoveComponentOnHoverLeaveWithUniqueId { get; set; }
+    public bool IsHoverComponentContainer = false;
+    public UniqueId? LastActiveContainer { get; set; }
+    public List<UniqueId> ActiveContainers { get; set; } = new();
+    public bool CanHover { get; set; } = false;
+    public UniqueId? CurrentHoveringUniqueId { get; set; }
+    public bool PlaceAfter { get; set; } = false;
+    public EditorViewNode? WrapElementWithEditorViewNode = null;
+    public bool DeleteColumns { get; set; } = false;
+    public bool PreviewMode { get; set; } = false;
+    public List<DataSource> dataSources { get; set; } = new();
+
+    public void dataSourcesUpdated(List<DataSource> _dataSources)
+    {
+        dataSources = _dataSources;
+        StateChanged();
+    }
+
+
+    public bool DoesEditorViewNodeHaveChildrenWithUniqueId(EditorViewNode? editorViewNode, UniqueId uniqueId, ref bool found)
+    {
+        found = false;
+        if (editorViewNode?.UniqueId != null && editorViewNode.UniqueId.Equals(uniqueId))
+        {
+            found = true;
+            if (editorViewNode.Children.Count > 0) return true;
+            else return false;
+        }
+        if (editorViewNode != null)
+            for (int i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                var id = editorViewNode.Children[i]!.UniqueId;
+                if (id != null && id.Equals(uniqueId))
+                {
+                    found = true;
+                    if (editorViewNode.Children[i]!.Children.Count > 0)
+                        return true;
+                    else return false;
+                }
+                bool wasFound = false;
+                bool hasChildren = DoesEditorViewNodeHaveChildrenWithUniqueId(editorViewNode.Children[i], uniqueId, ref wasFound);
+                if (wasFound)
+                {
+                    return hasChildren;
+                }
+            }
+        return false;
+    }
+
+
+    public List<EditorViewNode?> FindAllEditorViewNodesWithType(EditorViewNode? editorViewNode, string Type, List<EditorViewNode?> listOfEditorViewNodes)
+    {
+        if (editorViewNode!.Type.Equals(Type))
+        {
+            listOfEditorViewNodes.Add(editorViewNode);
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            if (editorViewNode.Children[i]!.Type.Equals(Type))
+            {
+                listOfEditorViewNodes.Add(editorViewNode.Children[i]);
+            }
+            FindAllEditorViewNodesWithType(editorViewNode.Children[i], Type, listOfEditorViewNodes);
+        }
+        return listOfEditorViewNodes;
+    }
+
+    public void RemoveAllEditorViewNodesWithType(EditorViewNode? editorViewNode, string Type)
+    {
+        var nodes = FindAllEditorViewNodesWithType(editorViewNode, Type, new List<EditorViewNode?>());
+        foreach (var node in nodes)
+        {
+            RemoveComponentWithUniqueId(EditorViewNode, node!.UniqueId);
+        }
+        StateChanged();
+    }
+
+    public int GetDepthOfEditorViewNodeWithUniqueId(EditorViewNode? editorViewNode, UniqueId? uniqueId, int count)
+    {
+        if (editorViewNode!.UniqueId!.Equals(uniqueId))
+        {
+            return count;
+        }
+        for (int i = 0; i < editorViewNode.Children.Count; i++)
+        {
+            int foundCount = GetDepthOfEditorViewNodeWithUniqueId(editorViewNode.Children[i], uniqueId, count + 1);
+            if (foundCount != -1)
+            {
+                return foundCount;
+            }
+        }
+        return -1;
+    }
+
+    public EditorViewNode? EditorViewNode { get; set; } = new()
+    {
+        Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Grids.Columns.OneColumnGrid",
+        Children = {
+		new EditorViewNode() {
+		  Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Flex",
+		  UniqueId = new (),
+          Children = {
+                new EditorViewNode() {
+		            Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+		            UniqueId = new (),
+                    Children = {},
+                    IsContainer = false
+		        }
+            }
+		}	
+	},
+        UniqueId = new UniqueId()
+    };
+
+    public bool AddComponentToEditorViewNode(EditorViewNode? editorViewNode)
+    {
+        if (editorViewNode!.UniqueId!.Equals(PlaceInUniqueId))
+        {
+            if (WrapElementWithEditorViewNode != null)
+            {
+                WrapElementWithEditorViewNode.Children.Add(CurrentComponent);
+                editorViewNode.Children.Add(WrapElementWithEditorViewNode);
+            }
+            else
+            {
+                editorViewNode.Children.Add(CurrentComponent);
+            } 
+            return true;
+        }
+        else
+        {
+            var foundIndex = -1;
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                if (editorViewNode!.Children[i]!.UniqueId!.Equals(PlaceInUniqueId))
+                {
+                    foundIndex = i;
+                }
+            }
+            if (foundIndex != -1)
+            {
+                if (PlaceAfter)
+                {
+                    if (WrapElementWithEditorViewNode != null)
+                    {
+                        WrapElementWithEditorViewNode.Children.Add(CurrentComponent);
+                        editorViewNode.Children.Insert(foundIndex + 1, WrapElementWithEditorViewNode);    
+                    }
+                    else
+                    {
+                        editorViewNode.Children.Insert(foundIndex + 1, CurrentComponent);    
+                    }
+                    PlaceAfter = false;
+                }
+                else
+                {
+                    if (WrapElementWithEditorViewNode != null)
+                    {
+                        WrapElementWithEditorViewNode.Children.Add(CurrentComponent);
+                        editorViewNode!.Children[foundIndex]!.Children.Add(WrapElementWithEditorViewNode);
+                    }
+                    else
+                    {
+                        editorViewNode!.Children[foundIndex]!.Children.Add(CurrentComponent);    
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                for (var i = 0; i < editorViewNode.Children.Count; i++)
+                {
+                    bool wasAdded = AddComponentToEditorViewNode(editorViewNode.Children[i]);
+                    if (wasAdded)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+    }
+
+    public bool RemoveComponentWithUniqueId(EditorViewNode? editorViewNode, UniqueId? uniqueId)
+    {
+        for (var i = 0; i < editorViewNode!.Children.Count; i++)
+        {
+            if (editorViewNode!.Children[i]!.UniqueId!.Equals(uniqueId))
+            {
+                editorViewNode.Children.RemoveAt(i);
+            }
+            else
+            {
+                RemoveComponentWithUniqueId(editorViewNode.Children[i], uniqueId);
+            }
+        }
+        return true;
+    }
+
+    public void SetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode? editorViewNode, string name, string value)
+    {
+        if (editorViewNode!.UniqueId!.Equals(CurrentPropertiesForComponentUniqueId))
+        {
+            editorViewNode.Parameters[name] = value;
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                SetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name, value);
+            }
+        }
+
+    }
+
+    public string? GetEditorViewNodeParameterIfUniqueIdEquals(EditorViewNode? editorViewNode, string name)
+    {
+        if (editorViewNode!.UniqueId!.Equals(CurrentPropertiesForComponentUniqueId))
+        {
+            string? paramValue = editorViewNode!.Parameters[name]!.ToString();
+            if (paramValue == null)
+            {
+                return "";
+            }
+            else
+            {
+                return paramValue;
+            }
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; )
+            {
+                return GetEditorViewNodeParameterIfUniqueIdEquals(editorViewNode.Children[i], name);
+            }
+        }
+        return "";
+    }
+
+    public EditorViewNode? GetEditorViewNodeIfUniqueIdEquals(EditorViewNode? editorViewNode, UniqueId? uniqueId)
+    {
+        if (editorViewNode!.UniqueId!.Equals(uniqueId))
+        {
+            return editorViewNode;
+        }
+        else
+        {
+            for (var i = 0; i < editorViewNode.Children.Count; i++)
+            {
+                EditorViewNode? checkEditorViewNode = GetEditorViewNodeIfUniqueIdEquals(editorViewNode.Children[i], uniqueId);
+                if (checkEditorViewNode != null)
+                {
+                    return checkEditorViewNode;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public void UpdateCurrentComponentProperty(string name, string value)
+    {
+        SetEditorViewNodeParameterIfUniqueIdEquals(CurrentComponent, name, value);
+        StateChanged();
+    }
+
+
+    public string? GetComponentPropertyValue(UniqueId? uniqueId, string name)
+    {
+        EditorViewNode? activeEditorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
+        Dictionary<string, object> parameters = activeEditorViewNode!.Parameters;
+        if (parameters.Count > 0)
+        {
+            {
+                try
+                {
+                    var param = parameters[name];
+                    return param!.ToString();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return "";
+                }
+            }
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    public EditorViewNode? GetEditorViewNodeWithUniqueId(UniqueId? uniqueId)
+    {
+        return GetEditorViewNodeIfUniqueIdEquals(EditorViewNode, uniqueId);
+    }
+
+    public void SetCurrentComponentToEditorViewNodeWithUniqueId(UniqueId? uniqueId)
+    {
+        EditorViewNode? editorViewNode = GetEditorViewNodeWithUniqueId(uniqueId);
+        if (editorViewNode == null)
+        {
+            throw new Exception("GetEditorViewNodeWithUniqueId returned null");
+        }
+        CurrentComponent = editorViewNode;
+    }
+
+    public void SetProperties(Properties properties, UniqueId? uniqueId)
+    {
+        CurrentPropertiesForComponentUniqueId = uniqueId;
+        _properties = properties;
+        StateChanged();
+    }
+
+
+    public void StateChanged()
+    {
+        // Page page = Page.GetInstance();
+        // if (EditorViewNode != null)
+        //     page.EditorViewNode = EditorViewNode;
+        // Page.UpdateInstance(page);
+        StateHasChanged();
+    }
+
+    //Properties
+    Properties _properties = new()
+    {
+        PropertyList = new List<Property>
+        {
+        }
+    };
+
+    static string _iconStr1 = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"" style=""width: 48px;"">
+<path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z""></path>
+    </svg>";
+
+    static string _buttonIcon = @"<svg style=""width:50px"" xmlns=""http://www.w3.org/2000/svg"" class=""h-6 w-6"" fill=""none"" viewBox=""0 0 24 24"" stroke=""currentColor"">
+<path stroke-linecap=""round"" stroke-linejoin=""round"" stroke-width=""2"" d=""M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"" />
+    </svg>";
+
+    PaletteComponentCategories _paletteComponentCategories = new()
+    {
+        ComponentCategories = new List<PaletteComponentCategory>
+{
+    new()
+        {
+            Name = "Kanban",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent()
+                    {
+                        Name = "Kanban Board", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Kanban.BasicKanban"
+                    },
+                }
+            }
+        },
+        new() {
+            Name = "CustomButtons",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "Small Button", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Button"
+                    },
+                }
+            }
+        },
+        new() {
+            Name = "Lists",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "List", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Lists.List"
+                    },
+                },
+            }
+        },
+        new() {
+            Name = "CustomAlerts",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "FlashAlert", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.FlashAlert"
+                    },
+                },
+            }
+        },
+        new() {
+            Name = "CustomLayouts",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "Header", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layouts.Header"
+                    },
+                },
+            }
+        },
+        new() {
+            Name = "Inputs",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "TextInput", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Inputs.TextInput"
+                    },
+                },
+            }
+        },
+        new() {
+            Name = "Menus",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent() {
+                        Name = "Navbar Menu", SvgString = _buttonIcon,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Menus.Nav.NavMenu1"
+                    },
+                },
+            }
+        },
+    
+    
+    
+    
+    
+        new() {
+    Name = "ActionList",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList0"
+},new PaletteComponent() {
+    Name = "Item dividers", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList1"
+},new PaletteComponent() {
+    Name = "Nested sub list", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList2"
+},new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList3"
+},new PaletteComponent() {
+    Name = "Filled", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList4"
+},new PaletteComponent() {
+    Name = "Filled with section label", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList5"
+},new PaletteComponent() {
+    Name = "Default with section label", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList6"
+},new PaletteComponent() {
+    Name = "Default with section label + description", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList7"
+},new PaletteComponent() {
+    Name = "Arguments", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList8"
+},new PaletteComponent() {
+    Name = "Basic text only item", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList9"
+},new PaletteComponent() {
+    Name = "Size (all options)", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList10"
+},new PaletteComponent() {
+    Name = "Visuals (all options- leading &amp; trailing)", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList11"
+},new PaletteComponent() {
+    Name = "Trailing visual as text", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList12"
+},new PaletteComponent() {
+    Name = "Inline description", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList13"
+},new PaletteComponent() {
+    Name = "Active navigational item", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList14"
+},new PaletteComponent() {
+    Name = "Danger item", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList15"
+},new PaletteComponent() {
+    Name = "Leading action: single select", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList16"
+},new PaletteComponent() {
+    Name = "Leading action: multi select", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList17"
+},new PaletteComponent() {
+    Name = "Trailing action: collapse", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.ActionList.ActionList18"
+},
+        },
+    }
+},new() {
+    Name = "Alerts",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts19"
+},new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts20"
+},new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts21"
+},new PaletteComponent() {
+    Name = "Colors", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts22"
+},new PaletteComponent() {
+    Name = "With icon", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts23"
+},new PaletteComponent() {
+    Name = "With icon", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts24"
+},new PaletteComponent() {
+    Name = "With dismiss", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts25"
+},new PaletteComponent() {
+    Name = "With action button", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts26"
+},new PaletteComponent() {
+    Name = "Full width flash", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts27"
+},new PaletteComponent() {
+    Name = "Flash banner", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Alerts.Alerts28"
+},
+        },
+    }
+},new() {
+    Name = "Autocomplete",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Autocomplete", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Autocomplete.Autocomplete29"
+},new PaletteComponent() {
+    Name = "Autocomplete", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Autocomplete.Autocomplete30"
+},new PaletteComponent() {
+    Name = "Suggester", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Autocomplete.Autocomplete31"
+},
+        },
+    }
+},new() {
+    Name = "Avatars",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Basic example", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars32"
+},new PaletteComponent() {
+    Name = "Small avatars", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars33"
+},new PaletteComponent() {
+    Name = "Avatar sizes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars34"
+},new PaletteComponent() {
+    Name = "Parent-child avatars", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars35"
+},new PaletteComponent() {
+    Name = "Avatar stack", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars36"
+},new PaletteComponent() {
+    Name = "Avatar stack", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars37"
+},new PaletteComponent() {
+    Name = "Avatar stack", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars38"
+},new PaletteComponent() {
+    Name = "Avatar stack", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars39"
+},new PaletteComponent() {
+    Name = "Small", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars40"
+},new PaletteComponent() {
+    Name = "Medium", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars41"
+},new PaletteComponent() {
+    Name = "Large", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars42"
+},new PaletteComponent() {
+    Name = "Dashed connection", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Avatars.Avatars43"
+},
+        },
+    }
+},new() {
+    Name = "Blankslate",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Basic example", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate44"
+},new PaletteComponent() {
+    Name = "With Octicons", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate45"
+},new PaletteComponent() {
+    Name = "With graphic, button and link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate46"
+},new PaletteComponent() {
+    Name = "Narrow", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate47"
+},new PaletteComponent() {
+    Name = "Large", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate48"
+},new PaletteComponent() {
+    Name = "Spacious", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate49"
+},new PaletteComponent() {
+    Name = "Add border", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate50"
+},new PaletteComponent() {
+    Name = "Capped", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Blankslate.Blankslate51"
+},
+        },
+    }
+},new() {
+    Name = "BoxOverlay",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Capped", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.BoxOverlay.BoxOverlay52"
+},
+        },
+    }
+},new() {
+    Name = "Box",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Box", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box53"
+},new PaletteComponent() {
+    Name = "Box elements", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box54"
+},new PaletteComponent() {
+    Name = "Box row", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box55"
+},new PaletteComponent() {
+    Name = "Box row", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box56"
+},new PaletteComponent() {
+    Name = "Box row markup structure", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box57"
+},new PaletteComponent() {
+    Name = "Box padding density", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box58"
+},new PaletteComponent() {
+    Name = "Box padding density", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box59"
+},new PaletteComponent() {
+    Name = "Blue box theme", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box60"
+},new PaletteComponent() {
+    Name = "Blue box header theme", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box61"
+},new PaletteComponent() {
+    Name = "Box danger theme", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box62"
+},new PaletteComponent() {
+    Name = "Box danger theme", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box63"
+},new PaletteComponent() {
+    Name = "Row themes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box64"
+},new PaletteComponent() {
+    Name = "Row themes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box65"
+},new PaletteComponent() {
+    Name = "Box row unread", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box66"
+},new PaletteComponent() {
+    Name = "Box row link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box67"
+},new PaletteComponent() {
+    Name = "Dashed border", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box68"
+},new PaletteComponent() {
+    Name = "Boxes with flash alerts", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box69"
+},new PaletteComponent() {
+    Name = "Boxes with icons", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box70"
+},new PaletteComponent() {
+    Name = "Boxes with icons", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box71"
+},new PaletteComponent() {
+    Name = "Boxes with icons", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box72"
+},new PaletteComponent() {
+    Name = "Box headers with counters", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box73"
+},new PaletteComponent() {
+    Name = "Box headers with counters", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box74"
+},new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box75"
+},new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box76"
+},new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box77"
+},new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box78"
+},new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Box.Box79"
+},
+        },
+    }
+},new() {
+    Name = "BranchName",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.BranchName.BranchName80"
+},new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.BranchName.BranchName81"
+},new PaletteComponent() {
+    Name = "Form elements and buttons in boxes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.BranchName.BranchName82"
+},
+        },
+    }
+},new() {
+    Name = "Breadcrumb",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Breadcrumb.Breadcrumb83"
+},
+        },
+    }
+},new() {
+    Name = "Buttons",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons84"
+},new PaletteComponent() {
+    Name = "Usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons85"
+},new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons86"
+},new PaletteComponent() {
+    Name = "Primary", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons87"
+},new PaletteComponent() {
+    Name = "Outline", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons88"
+},new PaletteComponent() {
+    Name = "Danger", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons89"
+},new PaletteComponent() {
+    Name = "Selected", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons90"
+},new PaletteComponent() {
+    Name = "Disabled", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons91"
+},new PaletteComponent() {
+    Name = "Sizes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons92"
+},new PaletteComponent() {
+    Name = "Sizes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons93"
+},new PaletteComponent() {
+    Name = "Block button", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons94"
+},new PaletteComponent() {
+    Name = "Link button", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons95"
+},new PaletteComponent() {
+    Name = "Invisible button", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons96"
+},new PaletteComponent() {
+    Name = "Hidden text button", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons97"
+},new PaletteComponent() {
+    Name = "Button with icons", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons98"
+},new PaletteComponent() {
+    Name = "Icon-only button", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons99"
+},new PaletteComponent() {
+    Name = "Close button", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons100"
+},new PaletteComponent() {
+    Name = "Button with counts", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons101"
+},new PaletteComponent() {
+    Name = "Button with counts", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons102"
+},new PaletteComponent() {
+    Name = "Button groups", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons103"
+},new PaletteComponent() {
+    Name = "Button groups", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons104"
+},new PaletteComponent() {
+    Name = "Button groups", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Buttons.Buttons105"
+},
+        },
+    }
+},new() {
+    Name = "Dropdown",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Basic examples", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown106"
+},new PaletteComponent() {
+    Name = "Basic examples", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown107"
+},new PaletteComponent() {
+    Name = "Alignment", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown108"
+},new PaletteComponent() {
+    Name = "Alignment", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown109"
+},new PaletteComponent() {
+    Name = "Alignment", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown110"
+},new PaletteComponent() {
+    Name = "Alignment", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown111"
+},new PaletteComponent() {
+    Name = "Alignment", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown112"
+},new PaletteComponent() {
+    Name = "Alignment", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown113"
+},new PaletteComponent() {
+    Name = "Dividers", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown114"
+},new PaletteComponent() {
+    Name = "Headers", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Dropdown.Dropdown115"
+},
+        },
+    }
+},new() {
+    Name = "Forms",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Kitchen sink", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms116"
+},new PaletteComponent() {
+    Name = "Example form", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms117"
+},new PaletteComponent() {
+    Name = "Small", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms118"
+},new PaletteComponent() {
+    Name = "Large", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms119"
+},new PaletteComponent() {
+    Name = "Block", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms120"
+},new PaletteComponent() {
+    Name = "Input group", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms121"
+},new PaletteComponent() {
+    Name = "Form contrast", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms122"
+},new PaletteComponent() {
+    Name = "Disabled state", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms123"
+},new PaletteComponent() {
+    Name = "Hide WebKit&#x27;s contact info autofill icon", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms124"
+},new PaletteComponent() {
+    Name = "Selects", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms125"
+},new PaletteComponent() {
+    Name = "Small", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms126"
+},new PaletteComponent() {
+    Name = "Form groups", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms127"
+},new PaletteComponent() {
+    Name = "Success", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms128"
+},new PaletteComponent() {
+    Name = "Error", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms129"
+},new PaletteComponent() {
+    Name = "Warning", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms130"
+},new PaletteComponent() {
+    Name = "Form actions", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms131"
+},new PaletteComponent() {
+    Name = "Checkboxes and radios", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms132"
+},new PaletteComponent() {
+    Name = "Checkboxes and radios", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms133"
+},new PaletteComponent() {
+    Name = "Toggle content visibility based on a checkbox or radio button state", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms134"
+},new PaletteComponent() {
+    Name = "Radio group", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms135"
+},new PaletteComponent() {
+    Name = "Radio group", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Forms.Forms136"
+},
+        },
+    }
+},new() {
+    Name = "Header",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Header", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Header.Header137"
+},new PaletteComponent() {
+    Name = "Header-item", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Header.Header138"
+},new PaletteComponent() {
+    Name = "Header-item--full", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Header.Header139"
+},new PaletteComponent() {
+    Name = "Header-link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Header.Header140"
+},
+        },
+    }
+},new() {
+    Name = "Labels",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Labels", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels141"
+},new PaletteComponent() {
+    Name = "Label contrast", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels142"
+},new PaletteComponent() {
+    Name = "Colored labels", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels143"
+},new PaletteComponent() {
+    Name = "Label sizes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels144"
+},new PaletteComponent() {
+    Name = "Inline labels", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels145"
+},new PaletteComponent() {
+    Name = "Issue labels", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels146"
+},new PaletteComponent() {
+    Name = "Issue labels", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels147"
+},new PaletteComponent() {
+    Name = "States", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels148"
+},new PaletteComponent() {
+    Name = "Small states", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels149"
+},new PaletteComponent() {
+    Name = "Counters", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels150"
+},new PaletteComponent() {
+    Name = "Counters", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels151"
+},new PaletteComponent() {
+    Name = "Counters", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels152"
+},new PaletteComponent() {
+    Name = "Diffstat", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels153"
+},new PaletteComponent() {
+    Name = "Diffstat", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Labels.Labels154"
+},
+        },
+    }
+},new() {
+    Name = "Layout",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout155"
+},new PaletteComponent() {
+    Name = "Dividers", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout156"
+},new PaletteComponent() {
+    Name = "Centered content", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout157"
+},new PaletteComponent() {
+    Name = "Sidebar sizing", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout158"
+},new PaletteComponent() {
+    Name = "Column gutter", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout159"
+},new PaletteComponent() {
+    Name = "Sidebar positioning", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout160"
+},new PaletteComponent() {
+    Name = "Sidebar positioning as rows", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout161"
+},new PaletteComponent() {
+    Name = "Layout stacking", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout162"
+},new PaletteComponent() {
+    Name = "Nesting Layouts", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Layout.Layout163"
+},
+        },
+    }
+},new() {
+    Name = "Links",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Accessibility and keyboard navigation", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Links.Links164"
+},new PaletteComponent() {
+    Name = "Primary link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Links.Links165"
+},new PaletteComponent() {
+    Name = "Secondary link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Links.Links166"
+},new PaletteComponent() {
+    Name = "Muted link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Links.Links167"
+},new PaletteComponent() {
+    Name = "On hover link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Links.Links168"
+},new PaletteComponent() {
+    Name = "Nested link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Links.Links169"
+},new PaletteComponent() {
+    Name = "Link and color utilities", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Links.Links170"
+},
+        },
+    }
+},new() {
+    Name = "Loaders",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Animated ellipsis", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Loaders.Loaders171"
+},new PaletteComponent() {
+    Name = "Animated ellipsis", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Loaders.Loaders172"
+},
+        },
+    }
+},new() {
+    Name = "Markdown",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Animated ellipsis", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Markdown.Markdown173"
+},
+        },
+    }
+},new() {
+    Name = "MarketingButtons",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Colors, outlined and transparent", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.MarketingButtons.MarketingButtons174"
+},new PaletteComponent() {
+    Name = "Sizes", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.MarketingButtons.MarketingButtons175"
+},
+        },
+    }
+},new() {
+    Name = "Navigation",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Menu", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation176"
+},new PaletteComponent() {
+    Name = "Menu", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation177"
+},new PaletteComponent() {
+    Name = "Menu", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation178"
+},new PaletteComponent() {
+    Name = "Underline Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation179"
+},new PaletteComponent() {
+    Name = "Underline Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation180"
+},new PaletteComponent() {
+    Name = "Underline Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation181"
+},new PaletteComponent() {
+    Name = "Underline Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation182"
+},new PaletteComponent() {
+    Name = "Underline Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation183"
+},new PaletteComponent() {
+    Name = "Underline Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation184"
+},new PaletteComponent() {
+    Name = "Side Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation185"
+},new PaletteComponent() {
+    Name = "Side Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation186"
+},new PaletteComponent() {
+    Name = "Side Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation187"
+},new PaletteComponent() {
+    Name = "Side Nav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation188"
+},new PaletteComponent() {
+    Name = "Tabnav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation189"
+},new PaletteComponent() {
+    Name = "Tabnav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation190"
+},new PaletteComponent() {
+    Name = "Tabnav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation191"
+},new PaletteComponent() {
+    Name = "Tabnav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation192"
+},new PaletteComponent() {
+    Name = "Tabnav", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation193"
+},new PaletteComponent() {
+    Name = "Filter list", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation194"
+},new PaletteComponent() {
+    Name = "Sub navigation", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation195"
+},new PaletteComponent() {
+    Name = "Sub navigation", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation196"
+},new PaletteComponent() {
+    Name = "Sub navigation", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Navigation.Navigation197"
+},
+        },
+    }
+},new() {
+    Name = "Pagination",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Previous/next pagination", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Pagination.Pagination198"
+},new PaletteComponent() {
+    Name = "Numbered pagination", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Pagination.Pagination199"
+},
+        },
+    }
+},new() {
+    Name = "Popover",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Basic example", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover200"
+},new PaletteComponent() {
+    Name = "Large example", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover201"
+},new PaletteComponent() {
+    Name = "Bottom", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover202"
+},new PaletteComponent() {
+    Name = "Bottom-right", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover203"
+},new PaletteComponent() {
+    Name = "Bottom-left", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover204"
+},new PaletteComponent() {
+    Name = "Left", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover205"
+},new PaletteComponent() {
+    Name = "Left-bottom", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover206"
+},new PaletteComponent() {
+    Name = "Left-top", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover207"
+},new PaletteComponent() {
+    Name = "Right", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover208"
+},new PaletteComponent() {
+    Name = "Right-bottom", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover209"
+},new PaletteComponent() {
+    Name = "Right-top", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover210"
+},new PaletteComponent() {
+    Name = "Top-left", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover211"
+},new PaletteComponent() {
+    Name = "Top-right", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Popover.Popover212"
+},
+        },
+    }
+},new() {
+    Name = "Progress",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Top-right", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Progress.Progress213"
+},new PaletteComponent() {
+    Name = "Large progress", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Progress.Progress214"
+},new PaletteComponent() {
+    Name = "Small progress", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Progress.Progress215"
+},new PaletteComponent() {
+    Name = "Inline progress", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Progress.Progress216"
+},new PaletteComponent() {
+    Name = "Accessibility", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Progress.Progress217"
+},new PaletteComponent() {
+    Name = "Progress with multiple values", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Progress.Progress218"
+},
+        },
+    }
+},new() {
+    Name = "SelectMenu",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Basic example", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu219"
+},new PaletteComponent() {
+    Name = "Right aligned", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu220"
+},new PaletteComponent() {
+    Name = "Selected state", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu221"
+},new PaletteComponent() {
+    Name = "Borderless", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu222"
+},new PaletteComponent() {
+    Name = "Header", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu223"
+},new PaletteComponent() {
+    Name = "List items", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu224"
+},new PaletteComponent() {
+    Name = "Divider", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu225"
+},new PaletteComponent() {
+    Name = "Divider", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu226"
+},new PaletteComponent() {
+    Name = "Footer", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu227"
+},new PaletteComponent() {
+    Name = "Filter", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu228"
+},new PaletteComponent() {
+    Name = "Tabs", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu229"
+},new PaletteComponent() {
+    Name = "Message", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu230"
+},new PaletteComponent() {
+    Name = "Loading", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu231"
+},new PaletteComponent() {
+    Name = "Disabled", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu232"
+},new PaletteComponent() {
+    Name = "Blankslate", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.SelectMenu.SelectMenu233"
+},
+        },
+    }
+},new() {
+    Name = "Subhead",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Subhead.Subhead234"
+},new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Subhead.Subhead235"
+},new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Subhead.Subhead236"
+},new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Subhead.Subhead237"
+},new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Subhead.Subhead238"
+},new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Subhead.Subhead239"
+},new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Subhead.Subhead240"
+},
+        },
+    }
+},new() {
+    Name = "Timeline",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "github.com usage", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Timeline.Timeline241"
+},new PaletteComponent() {
+    Name = "TimelineItem-badge", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Timeline.Timeline242"
+},new PaletteComponent() {
+    Name = "Adding color to TimelineItem-badge", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Timeline.Timeline243"
+},new PaletteComponent() {
+    Name = "TimelineItem--condensed", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Timeline.Timeline244"
+},new PaletteComponent() {
+    Name = "TimelineItem-avatar", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Timeline.Timeline245"
+},new PaletteComponent() {
+    Name = "TimelineItem-break", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Timeline.Timeline246"
+},new PaletteComponent() {
+    Name = "Target TimelineItem", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Timeline.Timeline247"
+},
+        },
+    }
+},new() {
+    Name = "Toasts",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts248"
+},new PaletteComponent() {
+    Name = "Default", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts249"
+},new PaletteComponent() {
+    Name = "Variations", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts250"
+},new PaletteComponent() {
+    Name = "Variations", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts251"
+},new PaletteComponent() {
+    Name = "Variations", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts252"
+},new PaletteComponent() {
+    Name = "Toast with dismiss", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts253"
+},new PaletteComponent() {
+    Name = "Toast with link", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts254"
+},new PaletteComponent() {
+    Name = "Toast animation in", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts255"
+},new PaletteComponent() {
+    Name = "Toast with loading animation", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts256"
+},new PaletteComponent() {
+    Name = "Toast position", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Toasts.Toasts257"
+},
+        },
+    }
+},new() {
+    Name = "Tooltips",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Tooltip direction", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Tooltips.Tooltips258"
+},new PaletteComponent() {
+    Name = "Tooltip alignment", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Tooltips.Tooltips259"
+},new PaletteComponent() {
+    Name = "Tooltips with multiple lines", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Tooltips.Tooltips260"
+},new PaletteComponent() {
+    Name = "Tooltips with no delay", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Tooltips.Tooltips261"
+},
+        },
+    }
+},new() {
+    Name = "Truncate",
+    PaletteWindowComponents = new PaletteWindowComponents()
+    {
+        ComponentList = new()
+    {
+            new PaletteComponent() {
+    Name = "Truncate", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Truncate.Truncate262"
+},new PaletteComponent() {
+    Name = "Truncate multiple items", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Truncate.Truncate263"
+},new PaletteComponent() {
+    Name = "Truncate multiple items", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Truncate.Truncate264"
+},new PaletteComponent() {
+    Name = "Expand on hover or focus", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Truncate.Truncate265"
+},new PaletteComponent() {
+    Name = "Custom max widths", SvgString = _buttonIcon,
+    RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Truncate.Truncate266"
+},
+        },
+    }
+},
+    
+    
+    
+    
+    
+    
+        new() {
+            Name = "Text",
+            PaletteWindowComponents = new PaletteWindowComponents()
+            {
+                ComponentList = new()
+            {
+                    new PaletteComponent()
+                    {
+                        Name = "Paragragh", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Text.Paragragh"
+                    },
+                    new PaletteComponent(){ Name = "H1", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Text.H1Text"
+                    },
+                    new PaletteComponent(){ Name = "H2", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Text.H2Text"
+                    },
+                    new PaletteComponent(){ Name = "H3", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Text.H3Text"
+                    },
+                    new PaletteComponent(){ Name = "H4", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Text.H4Text"
+                    },
+                    new PaletteComponent(){ Name = "H5", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Text.H5Text"
+                    },
+                    new PaletteComponent(){ Name = "H6", SvgString = _iconStr1,
+                        RenderComponentType = "Medulla.Editor.Client.Components.RegisteredComponents.Text.H6Text"
+                    },
+                }
+            }
+        }
+    }
+    };
+
+
+}

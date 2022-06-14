@@ -1,0 +1,15 @@
+@page "/preview"
+@using Medulla.Editor.Client.Library.Abstractions.Environment
+
+<EditorView EditorViewNode="GetPageEditorViewNode()" />
+
+
+@code {
+
+    private EditorViewNode GetPageEditorViewNode()
+    {
+        Page page = Page.GetInstance();
+        return page.EditorViewNode;
+    }
+    
+}

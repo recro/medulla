@@ -1,0 +1,191 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponentContainer
+
+
+<div 
+class="editor-border "
+    @onclick="Clicked"
+style="min-width: 100px;">
+    <div class="medulla-flex-container d-flex @FlexDirection @JustifyContent @GetMargin() @GetPadding()" style="width:100%;position: relative;">
+        @ChildContent
+        
+        @if (!Editor.PreviewMode)
+        {
+            @if (!Editor.DeleteColumns)
+            {
+                <svg @onclick="AddColumnAfter" style="height: 20px;
+                                    cursor: pointer;
+                                    z-index: 1000;
+                                    background: purple;
+                                    color: white;
+                                    border-radius: 21px;
+                                    box-shadow: 1px 1px 3px grey;
+                                    margin: 0 auto;
+                                    display: inherit;
+                                    position:  absolute;margin-top: 3px;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+                </svg>
+            }
+            else
+            {
+                <svg @onclick="DeleteColumn" style="height: 20px;
+                                                                                    cursor: pointer;
+                                                                                    z-index: 1000;
+                                                                                    background: red;
+                                                                                    color: white;
+                                                                                    border-radius: 21px;
+                                                                                    box-shadow: 1px 1px 3px grey;
+                                                                                    margin: 0 auto;
+                                                                                    display: inherit;
+                                                                                    position:  absolute;margin-top: 3px;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            }
+        }
+    </div>
+    
+    
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string FlexDirection { get; set; } = "flex-row";
+
+    [Parameter]
+    public string JustifyContent { get; set; } = "flex-justify-start";
+
+    private void DeleteColumn()
+    {
+        Editor.RemoveComponentWithUniqueId(Editor.EditorViewNode, this.UniqueId);
+        Editor.StateChanged();
+    }
+
+    private void AddColumnAfter()
+    {
+        Editor.CurrentComponent = new EditorViewNode()
+        {
+            Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Flex",
+            UniqueId = new UniqueId(),
+            IsContainer = false,
+            Parameters = new(),
+            Children =
+            {
+                new EditorViewNode()
+                {
+                    Type = "Medulla.Editor.Client.Components.RegisteredComponents.Containers.Grids.Columns.Column",
+                    UniqueId = new UniqueId(),
+                    IsContainer = false,
+                    Parameters = new(),
+                    Children =
+                    {
+                    }
+                }
+            }
+        };
+        Editor.PlaceAfter = true;
+        Editor.PlaceInUniqueId = this.UniqueId;
+        Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+        Editor.StateChanged();
+    }
+    
+
+    protected override List<EditorViewNode?> GetChildrenToAddOnAdd()
+    {
+        return new();
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, Medulla.Editor.Client.Library.Utilities.Unique.UniqueId uniqueId)
+    {
+
+        return;
+    }
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+
+        properties.PropertyList.Add(new()
+        {
+            Name = "FlexDirection",
+            InputDescription = "Flex Direction",
+            DefaultValue = new Dictionary<string, object>()
+{
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "Row", "flex-row" },
+                        { "Column", "flex-column" }
+                    }
+                },
+                {
+                    "Title", "Flex Direction"
+                },
+                { "PropertyName", "FlexDirection" }
+            },
+            InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Dropdown"
+        }
+            );
+
+        properties.PropertyList.Add(new()
+        {
+            Name = "JustifyContent",
+            InputDescription = "Justify Content",
+            DefaultValue = new Dictionary<string, object>()
+{
+                {
+                    "DropdownItems", new Dictionary<string, string>() {
+                        { "Start", "flex-justify-start" },
+                        { "End", "flex-justify-end" },
+                        { "Center", "flex-justify-center" },
+                        { "Between", "flex-justify-between" },
+                        { "Around", "flex-justify-around" },
+                    }
+                },
+                {
+                    "Title", "Justify Content"
+                },
+                { "PropertyName", "JustifyContent" }
+            },
+            InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.Dropdown"
+        }
+            );
+
+
+        return properties;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return true;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+}
+
+
+<style>
+
+    .medulla-flex-container {
+    }
+
+</style>

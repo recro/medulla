@@ -1,0 +1,99 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+
+<h2
+    @ondragenter="MouseOver"
+    @ondragleave="MouseLeave"
+    style=" @GetFontStyle() position: relative;" class=" @GetMargin() @GetPadding()" @onclick="Clicked">
+    @if (!Editor.PreviewMode)
+            {
+                @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+                {
+                    <svg @onclick="Unselect" style="height: 20px;
+                                cursor: pointer;
+                                background: green;
+                                border-radius: 50px;
+                                position: absolute;
+                                top: 0px;
+                                right: 49px;
+                                color: lightgray;
+                            }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                }
+                else
+                {
+                    <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="height: 20px;
+                                cursor: pointer;
+                                background: gray;
+                                border-radius: 50px;
+                                position: absolute;
+                                top: 0px;
+                                right: 49px;
+                                color: lightgray;
+                            }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                }
+            }
+    
+    @Text
+</h2>
+
+@code {
+
+    [Parameter]
+    public string Text { get; set; } = "{Update this H1 Text}";
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Text", 
+            InputDescription = "Text", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Text"
+                },
+                { "PropertyName", "Text" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.TextInput" }
+            );
+        // properties.PropertyList.Add(new() { Name = "Text", InputDescription = "Text", DefaultValue = "", InputType = "input" });
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+    
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+        return;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+    
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+}

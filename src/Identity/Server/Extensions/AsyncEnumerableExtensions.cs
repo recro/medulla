@@ -15,7 +15,7 @@ public static class AsyncEnumerableExtensions
     /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
     /// <param name="source">The <see cref="IAsyncEnumerable{T}"/> to create a <see cref="List{T}"/> from.</param>
     /// <returns>A <see cref="List{T}"/> that contains the elements from the input sequence.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="source"/> is <see cref="null"/>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
     public static Task<List<TSource>> ToListAsync<TSource>(this IAsyncEnumerable<TSource> source)
     {
         if (source == null)

@@ -1,0 +1,89 @@
+@using System.ComponentModel.DataAnnotations
+
+<Window WindowTitle="Component Window">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        <nav class="UnderlineNav" aria-label="Foo bar">
+                            <div class="UnderlineNav-body flex-column" style="width: 100%;">
+                                @if (ComponentCategories.ComponentCategories != null)
+                                {
+                                    @foreach (var category in ComponentCategories.ComponentCategories)
+                                    {
+                                        <a @onclick="() => UpdateActiveCategory(category)" @attributes="@IsCategoryActive(category)" class=" UnderlineNav-item color-bg-canvas" style="justify-content: space-between;cursor:pointer;
+                                                                                                                                                                                           display: flex;">
+                                            @category.Name
+                                            
+                                            @if (ActiveCategory == null || !ActiveCategory.Name.Equals(category.Name))
+                                            {
+                                                <div style="width:20px;margin-right:10px;padding-top: 5px;display:  inline-block;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                                                    </svg>
+                                                </div>    
+                                            }
+                                            else
+                                            {
+                                                <div  style="width:20px;margin-right:10px;padding-top: 5px;display:  inline-block;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                                    </svg>
+                                                </div>    
+                                            }
+                                        </a>
+                                        @if (ActiveCategory != null && ActiveCategory.Name.Equals(category.Name))
+                                        {
+                                            @if (ActiveCategory != null &&
+                                                 ActiveCategory.PaletteWindowComponents != null &&
+                                                 ActiveCategory.PaletteWindowComponents.ComponentList.Count > 0
+                                                )
+                                            {
+                                                <div style="display:flex;flex-wrap:wrap" class="flex shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-3">
+                                                    @foreach (var component in ActiveCategory.PaletteWindowComponents.ComponentList)
+                                                    {
+                                                        <PaletteWindowComponent Component="component"/>
+                                                    }
+                                                </div>    
+                                            }
+                                        }
+                                    }    
+                                }
+                            </div>
+                            <div class="UnderlineNav-actions">
+                            </div>
+                        </nav>
+                        
+                    </div>
+                </div>
+</Window>
+
+@code {
+
+    [Parameter]
+    [Required]
+    public PaletteComponentCategories ComponentCategories { get; set; } = default!;
+    
+    public PaletteComponentCategory? ActiveCategory { get; set; } = null;
+
+    [CascadingParameter]
+    [Required]
+    public EditorPage Editor { get; set; } = new();
+   
+    [Parameter] 
+    public string WindowTitle { get; set; } = "Component Window";
+
+    public void UpdateActiveCategory(PaletteComponentCategory category)
+    {
+        ActiveCategory = category;
+    }
+
+    public Dictionary<string, object> IsCategoryActive(PaletteComponentCategory category)
+    {
+        var dict = new Dictionary<string, object>();
+        if (ActiveCategory != null && category.Name == ActiveCategory.Name)
+        {
+            dict.Add("aria-current","page");
+        }
+        return dict;
+    }
+
+}

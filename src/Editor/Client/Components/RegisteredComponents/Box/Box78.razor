@@ -1,0 +1,86 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<div class="Box">
+  <div class="Box-header">
+    <h3 class="Box-title">
+      Example form title
+    </h3>
+  </div>
+  <form>
+    <div class="Box-body">
+      <div class="form-group">
+        <div class="form-group-header"><label>Example label</label></div>
+        <div class="form-group-body"><input class="form-control" type="text"></div>
+      </div>
+      <div class="form-checkbox">
+        <label>
+          <input type="checkbox" checked="checked" />
+          Yes please
+        </label>
+      </div>
+    </div>
+    <div class="Box-footer text-right">
+      <button class="btn btn-secondary mr-1">
+        Cancel
+      </button>
+      <button class="btn btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

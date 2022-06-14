@@ -1,0 +1,79 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<div class="position-relative">
+  <input class="form-control input-block" type="text" aria-label="Search by user" placeholder="Search by user">
+  <ul class="autocomplete-results">
+    <li class="autocomplete-item" aria-selected="true">
+      <img src="https://github.com/github.png" width="20" class="avatar mr-1" alt="">
+      <span>GitHub Inc.</span>
+      <span class="text-normal">github</span>
+    </li>
+    <li class="autocomplete-item">
+      <img src="https://github.com/hubot.png" width="20" class="avatar mr-1" alt="">
+      <span>Hubot</span>
+      <span class="text-normal">hubot</span>
+    </li>
+    <li class="autocomplete-item">
+      <img src="https://github.com/octocat.png" width="20" class="avatar mr-1" alt="">
+      <span>Monalisa Octocat</span>
+      <span class="text-normal">octocat</span>
+    </li>
+  </ul>
+</div>
+
+<style>.frame-example {width:300px;height:160px;}</style>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

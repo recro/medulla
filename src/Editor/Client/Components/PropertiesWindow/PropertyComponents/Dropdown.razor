@@ -1,0 +1,76 @@
+<div>
+    @if (!isActive)
+    {
+        <details @onclick="() => isActive = true" class="dropdown details-overlay d-inline-block" @attributes="@GetAttributes()">
+            <summary class="btn">
+                @Title: @ActiveValue
+                <div class="dropdown-caret"></div>
+            </summary>
+        </details>
+    }
+    else
+    {
+        <details @onclick="() => isActive = false" class="dropdown details-overlay d-inline-block" @attributes="@GetAttributes()">
+            <summary class="btn">
+                @Title: @ActiveValue
+                <div class="dropdown-caret"></div>
+            </summary>
+
+            @if (isActive)
+            {
+                <ul class="dropdown-menu dropdown-menu-se">
+                    @foreach (var item in DropdownItems)
+                    {
+                        <li @onclick="() => { isActive = false; SetActiveValue(item.Key, item.Value); }"><span class="dropdown-item" style="cursor: pointer">@item.Key</span></li>
+                    }
+                </ul>
+            }
+        </details>
+    }
+    
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string PropertyName { get; set; } = "";
+    
+    [Parameter]
+    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; } = null!;
+
+
+    [Parameter]
+    public Dictionary<string, string> DropdownItems { get; set; } = new();
+
+    [Parameter]
+    public string Title { get; set; } = "{No Title Set}";
+    
+    private bool isActive { get; set; } = false;
+
+    private Dictionary<string, object> GetAttributes()
+    {
+        var dict = new Dictionary<string, object>()
+        {
+        };  
+        if (isActive)
+        {
+            dict.Add("open",true);
+        }
+        return dict;
+    }
+
+    public string ActiveValue { get; set; } = "";
+
+    private void SetActiveValue(string Key, string value)
+    {
+        isActive = false;
+        ActiveValue = Key;
+        OnChange["EventCallback"](new Dictionary<string, string>()
+        {
+            { "PropertyName", PropertyName },
+            { "Value", value }
+        });
+    }
+
+}

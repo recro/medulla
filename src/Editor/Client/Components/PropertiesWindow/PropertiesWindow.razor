@@ -1,0 +1,148 @@
+﻿@using System.ComponentModel.DataAnnotations
+<Window WindowTitle="@WindowTitle">
+    @if (Editor.CurrentComponent != null) {
+        <table class="width-full">
+        <thead class="bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Property
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Value
+                </th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200 width-fit">
+           
+            @for (int i = 0; i < PropertyList.PropertyList.Count; i++)
+            {
+                int inputId = i;
+                
+                <tr class="Box @(i + 1 == PropertyList.PropertyList.Count ? "border-bottom-0" : "") ">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">
+                                    @PropertyList.PropertyList[i].InputDescription
+                                </div>
+                            </div>
+                        </div>
+                        <form>
+                            <div class="form-checkbox">
+                                <label>
+                                    <input @onclick="(e) => { updateIsPropertyFromDataSource(inputId, !IsPropertyFromDataSource(inputId)); }" type="checkbox" aria-describedby="help-text-for-checkbox"/>
+                                    From DataSource
+                                </label>
+                            </div>
+                        </form>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap" style="position: relative">
+
+                        @{
+                            var items = new Dictionary<string, string>()
+                            {
+                                {"DataSource1", "DataSource1"}
+                            };
+
+                            Dictionary<string, Action<Dictionary<string, string>>> onChangeHandler = new Dictionary<string, Action<Dictionary<string, string>>>()
+                            {
+                                {
+                                    "test", (Dictionary<string, string> test) => {
+                                        Console.WriteLine("Test");
+                                    }
+                                }
+                            };
+                            
+                        }
+
+                        @if (isFromDataSource[i])
+                        {
+                            <Dropdown PropertyName="DataSource" DropdownItems="@GetDropdownListDataSources(inputId)" OnChange="onChangeHandler" Title="DataSource" />
+                        }
+                        else
+                        {
+                            <DynamicComponent
+                                Type="Type.GetType(PropertyList.PropertyList[inputId].InputType)"
+                                Parameters="GetParametersForProperty(PropertyList.PropertyList[inputId])"/>
+                        }
+
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    else
+    {
+        <p class="m-4 mt-4">No active component. Select a component to modify its properties.</p>
+    }
+</Window>
+
+@code {
+
+    [Parameter]
+    [Required]
+    public Properties PropertyList { get; set; } = new();
+
+    [Parameter]
+    [Required]
+    public string WindowTitle { get; set; } = "Properties Window";
+
+    [Parameter]
+    public EditorPage Editor { get; set; } = new();
+
+    [Parameter]
+    public List<DataSource> DataSources { get; set; } = new();
+
+    private bool[] isFromDataSource = new bool[100];
+
+    private Dictionary<string, string> GetDropdownListDataSources(int index)
+    {
+        Console.WriteLine("index is " + index);
+
+        var list = new Dictionary<string, string>();
+        if (Editor.dataSources != null)
+        {
+            foreach (var source in Editor.dataSources)
+            {
+                list.Add(source.DataSourceName ?? string.Empty, source.DataSourceName ?? string.Empty);
+            }
+        }
+
+        return list;
+    }
+
+    private bool IsPropertyFromDataSource(int index)
+    {
+        return isFromDataSource[index];
+    }
+
+    private void updateIsPropertyFromDataSource(int index, bool _isFromDataSource)
+    {
+        Console.WriteLine("updating index " + index + " to " + _isFromDataSource);
+        Console.WriteLine(String.Join(", ", isFromDataSource));
+        isFromDataSource[index] = _isFromDataSource;
+        Console.WriteLine(String.Join(", ", isFromDataSource));
+    }
+
+    private Dictionary<string, object> GetParametersForProperty(Property property)
+    {
+        const string onChangeKey = "OnChange";
+        if (!property.DefaultValue.ContainsKey(onChangeKey))
+        {
+            property.DefaultValue.Add(onChangeKey, new Dictionary<string, Action<Dictionary<string,string>>>()
+            {
+                {"EventCallback", UpdatePropertyValue}
+            });
+        }
+        return property.DefaultValue;
+    }
+
+    void UpdatePropertyValue(Dictionary<string, string> updateValues) {
+        Editor!.UpdateCurrentComponentProperty(updateValues["PropertyName"], updateValues["Value"]);
+    }
+
+
+}

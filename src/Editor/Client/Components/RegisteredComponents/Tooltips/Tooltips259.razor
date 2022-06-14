@@ -1,0 +1,89 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<div class="d-flex flex-justify-center pt-4">
+  <span class="tooltipped tooltipped-nw tooltipped-align-right-1 m-2 p-2 border" aria-label="Tooltipped NW and aligned right.">
+    .tooltipped-nw .tooltipped-align-right-1
+  </span>
+  <span class="tooltipped tooltipped-ne tooltipped-align-left-1 m-2 p-2 border" aria-label="Tooltipped NE and aligned left.">
+    .tooltipped-ne .tooltipped-align-left-1
+  </span>
+</div>
+<div class="d-flex flex-justify-center">
+  <span class="tooltipped tooltipped-nw tooltipped-align-right-2 m-2 p-2 border" aria-label="Tooltipped NW and aligned right.">
+    .tooltipped-nw .tooltipped-align-right-2
+  </span>
+  <span class="tooltipped tooltipped-ne tooltipped-align-left-2 m-2 p-2 border" aria-label="Tooltipped NE and aligned left.">
+    .tooltipped-ne .tooltipped-align-left-2
+  </span>
+</div>
+<div class="d-flex flex-justify-center">
+  <span class="tooltipped tooltipped-sw tooltipped-align-right-1 m-2 p-2 border" aria-label="Tooltipped SE and aligned right.">
+    .tooltipped-sw .tooltipped-align-right-1
+  </span>
+  <span class="tooltipped tooltipped-se tooltipped-align-left-1 m-2 p-2 border" aria-label="Tooltipped SW and aligned left.">
+    .tooltipped-se .tooltipped-align-left-1
+  </span>
+</div>
+<div class="d-flex flex-justify-center pb-4">
+  <span class="tooltipped tooltipped-sw tooltipped-align-right-2 m-2 p-2 border" aria-label="Tooltipped SE and aligned right.">
+    .tooltipped-sw .tooltipped-align-right-2
+  </span>
+  <span class="tooltipped tooltipped-se tooltipped-align-left-2 m-2 p-2 border" aria-label="Tooltipped SW and aligned left.">
+    .tooltipped-se .tooltipped-align-left-2
+  </span>
+</div>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

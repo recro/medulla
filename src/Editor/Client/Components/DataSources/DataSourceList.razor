@@ -1,0 +1,57 @@
+﻿
+
+<ul class="ActionList list-style-none mt-4" role="menu" aria-label="Menu description" style="margin-bottom: 15px">
+    @for (int i = 0; i < dataSources.Count; i++)
+    {
+        <DataSourceListItem dataSource="@dataSources[i]" onDelete="(id) => { deleteDataSource(id); }" />
+    }
+</ul>
+
+<svg @onclick="createDataSource" style="height: 20px;cursor: pointer;right:1px;top: 1px;z-index: 1000;
+                            color: green;
+                            background: purple;
+                            color: white;
+                            border-radius: 21px;
+                            box-shadow: 1px 1px 3px grey;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+</svg>
+
+
+@code {
+    public List<DataSource> dataSources { get; set; } = new List<DataSource>();
+
+    [Parameter]
+    public EditorPage Editor { get; set; } = new();
+
+    private string createUuid()
+    {
+        Guid myuuid = Guid.NewGuid();
+        return myuuid.ToString();
+    }
+
+    private void createDataSource()
+    {
+        dataSources.Add(new DataSource()
+        {
+            Uuid = createUuid(),
+            DataSourceName = "",
+            DataSourceType = "string",
+            IsExternApiRestSource = false,
+            IsStaticData = false,
+            IsGrpcDataSource = true
+        });
+        Editor.dataSourcesUpdated(dataSources);
+    }
+
+    private void deleteDataSource(DataSource dataSource)
+    {
+        Console.WriteLine("deleting " + dataSource.Uuid);
+        dataSources.RemoveAll((indexId) =>
+        {
+            return indexId.Uuid == dataSource.Uuid;
+        });
+        StateHasChanged();
+    }
+
+
+}

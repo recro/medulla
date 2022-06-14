@@ -1,0 +1,67 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<form>
+  <div class="radio-group">
+    <input class="radio-input" id="option-a" type="radio" name="options">
+    <label class="radio-label" for="option-a">Option A</label>
+    <input class="radio-input" id="option-b" type="radio" name="options">
+    <label class="radio-label" for="option-b">Option B</label>
+    <input class="radio-input" id="option-c" type="radio" name="options">
+    <label class="radio-label" for="option-c">Option C</label>
+  </div>
+</form>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

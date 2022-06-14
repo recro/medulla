@@ -1,0 +1,104 @@
+﻿@inherits BaseComponent
+@using Medulla.Editor.Client.Library.Utilities.Unique
+
+
+<div style="position: relative;display:  inline-block;">
+    @if (!Editor.PreviewMode)
+    {
+        @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+        {
+            <svg @onclick="Unselect" style="height: 20px;
+                        cursor: pointer;
+                        background: green;
+                        border-radius: 50px;
+                        position: absolute;
+                        top: 0px;
+                        right: 3px;
+                        color: lightgray;
+                    }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        }
+        else
+        {
+            <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="height: 20px;
+                        cursor: pointer;
+                        background: gray;
+                        border-radius: 50px;
+                        position: absolute;
+                        top: 0px;
+                        right: 3px;
+                        color: lightgray;
+                    }" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        }
+    }
+    
+    <input
+        @ondragenter="MouseOver"
+        @ondragleave="MouseLeave"
+        @onclick="Clicked" class="form-control input-sm @GetPadding() @GetMargin()" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
+
+</div>
+
+@code {
+
+
+
+
+    [Parameter]
+    public string Placeholder { get; set; } = "{No Placeholder}";
+    
+
+    protected override void AfterAddComponent(Medulla.Editor.Client.Components.EditorPage editor, UniqueId uniqueId)
+    {
+
+        return;
+    }
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Placeholder", 
+            InputDescription = "Placeholder", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Placeholder"
+                },
+                { "PropertyName", "Placeholder" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.TextInput" }
+            );
+        // properties.PropertyList.Add(new() { Name = "Placeholder", InputDescription = "Placeholder", DefaultValue = "", InputType = "input" });
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+    
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+}

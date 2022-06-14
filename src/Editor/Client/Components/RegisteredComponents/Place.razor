@@ -1,0 +1,62 @@
+@inherits BaseComponent
+
+<div @ondrop="HandleDrop" ondragover="event.preventDefault();" class="editor-place border-3" style="display: inline-flex;
+                                 width: 100px;
+                                 height: 40px;
+                                 border: thin solid;
+                                 align-items: center;
+                                 justify-content: center; cursor: copy;">
+    Add After
+    <svg style="height: 20px;"
+             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+
+</div>
+
+@code {
+
+    protected override void AfterAddComponent(EditorPage editor, Library.Utilities.Unique.UniqueId uniqueId)
+    {
+
+    }
+
+    private void HandleDrop()
+    {
+        Editor.PlaceInUniqueId = UniqueId;
+        Editor.PlaceAfter = true;
+        Editor.AddComponentToEditorViewNode(Editor.EditorViewNode);
+        Editor.StateChanged();
+    }
+
+    protected override Properties GetProperties()
+    {
+        return new Properties();
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return false;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+}

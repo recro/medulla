@@ -1,0 +1,32 @@
+<div>
+    <input @oninput="(value) => Update(value.Value?.ToString())" class="form-control input-sm" type="text" placeholder="@Placeholder" aria-label="@Placeholder" />
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string PropertyName { get; set; } = "";
+    
+    [Parameter]
+    public Dictionary<string,Action<Dictionary<string,string>>>  OnChange { get; set; } = null!;
+
+    [Parameter]
+    public string Placeholder { get; set; } = "{No Placeholder}";
+    
+    private void Update(string? value)
+    {
+        SetActiveValue(value);
+    }
+
+    private void SetActiveValue(string? value)
+    {
+        if (value != null)
+            OnChange["EventCallback"](new Dictionary<string, string>()
+            {
+                {"PropertyName", PropertyName},
+                {"Value", value}
+            });
+    }
+
+}

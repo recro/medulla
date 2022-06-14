@@ -1,0 +1,11 @@
+name: 📕 Epic
+description: Track multiple smaller issues.
+labels:
+  - Epic
+body:
+  - type: textarea
+    attributes:
+      label: Issues
+      description: List out the issues that are a part of the epic.
+    validations:
+      required: true

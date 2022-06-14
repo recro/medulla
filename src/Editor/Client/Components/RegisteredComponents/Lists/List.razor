@@ -1,0 +1,71 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<div class="Box">
+    <div class="Box-header">
+        <h3 class="Box-title">
+            @Title
+        </h3>
+    </div>
+    <div class="Box-body">
+        Box body
+    </div>
+    <div class="Box-footer">
+        Box footer
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "{No Title}";
+    
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        properties.PropertyList.Add(new() 
+        { 
+            Name = "Title", 
+            InputDescription = "Title", 
+            DefaultValue = new Dictionary<string, object>()
+            {
+                {
+                    "Placeholder", "Title"
+                },
+                { "PropertyName", "Title" }
+            }, InputType = "Medulla.Editor.Client.Components.PropertiesWindow.PropertyComponents.TextInput" }
+            );
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+        
+    }
+
+}
