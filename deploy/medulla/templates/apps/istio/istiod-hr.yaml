@@ -15,12 +15,5 @@ spec:
         name: istiod
         namespace: istio-system
       interval: 1m
-  dependsOn:
-    - name: base
-  upgrade:
-    remediation:
-      remediateLastFailure: true
-  test:
-    enable: true
   values:
   

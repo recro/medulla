@@ -15,4 +15,11 @@ spec:
         name: gateway
         namespace: istio-ingress
       interval: 1m
+  dependsOn:
+    - name: istiod
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  test:
+    enable: true
   values:
