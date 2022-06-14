@@ -1,0 +1,121 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<nav>
+  <ul class="ActionList" role="menu" aria-label="Main menu description">
+    <li class="ActionList-item" role="none">
+      <a href="/" role="menuitem" class="ActionList-content">
+        <span class="ActionList-item-label">Nav Item</span>
+      </a>
+    </li>
+    <li class="ActionList-item" role="none">
+      <a href="/" role="menuitem" class="ActionList-content">
+        <span class="ActionList-item-label">Nav Item</span>
+      </a>
+    </li>
+    <li class="ActionList-item" role="none">
+      <a href="/" role="menuitem" class="ActionList-content">
+        <span class="ActionList-item-label">Nav Item</span>
+      </a>
+    </li>
+    <li class="ActionList-sectionDivider" role="presentation" id="some-unique-id" aria-hidden="true">Section Divider</li>
+    <li class="ActionList-item ActionList-item--hasSubItem" role="menuitem">
+      <ul class="ActionList" role="menu" aria-labelledby="some-unique-id">
+        <li class="ActionList-item" role="none">
+          <a href="/" role="menuitem" class="ActionList-content">
+            <span class="ActionList-item-label">Nav Item</span>
+          </a>
+        </li>
+        <li aria-disabled="true" class="ActionList-item" role="none">
+          <a href="/" role="menuitem" class="ActionList-content">
+            <span class="ActionList-item-label">Disabled Item</span>
+          </a>
+        </li>
+        <li class="ActionList-item ActionList-item--navActive" role="none">
+            <a href="#" role="menuitem" aria-current="location" class="ActionList-content">
+            <span class="ActionList-item-label">Nav Item</span>
+          </a>
+        </li>
+        <li class="ActionList-item ActionList-item--danger" role="none">
+          <a href="/" role="menuitem" class="ActionList-content">
+            <span class="ActionList-item-label">Danger Item</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="ActionList-sectionDivider" role="presentation" id="some-unique-id" aria-hidden="true">Section Divider</li>
+    <li class="ActionList-item ActionList-item--hasSubItem" role="menuitem">
+      <ul class="ActionList ActionList--subGroup" role="menu" aria-labelledby="some-unique-id">
+        <li class="ActionList-item ActionList-item--subItem" role="none">
+          <a href="/" role="menuitem" class="ActionList-content">
+            <span class="ActionList-item-label">Nav Item</span>
+          </a>
+        </li>
+        <li class="ActionList-item ActionList-item--subItem" role="none">
+            <a href="#" role="menuitem" class="ActionList-content">
+            <span class="ActionList-item-label">Nav Item</span>
+          </a>
+        </li>
+        <li class="ActionList-item ActionList-item--subItem" role="none">
+          <a href="/" role="menuitem" class="ActionList-content">
+            <span class="ActionList-item-label">Nav Item</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

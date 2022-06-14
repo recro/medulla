@@ -1,0 +1,24 @@
+@using System.ComponentModel.DataAnnotations
+
+
+<Window WindowTitle="Editor View" maxCalc="@true">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8" style="height: calc(100vh - 65px);">
+        <div class="inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <EditorRenderer EditorViewNode="@EditorViewNode"/>
+            </div>
+        </div>
+    </div>
+</Window>
+
+@code {
+
+    [Parameter]
+    [Required]
+    public EditorViewNode EditorViewNode { get; set; } = default!;
+
+    [CascadingParameter]
+    [Required]
+    public EditorPage Editor { get; set; } = default!;
+
+}

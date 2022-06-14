@@ -1,7 +1,8 @@
 name: 🤔 Design Proposal
 description: Collaborate on a design for a feature/fix or other change
 labels:
-  - enhancement
+  - Enhancement
+  - Design Proposal
 body:
   - type: textarea
     attributes:

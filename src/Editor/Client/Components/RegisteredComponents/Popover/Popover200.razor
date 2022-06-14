@@ -1,0 +1,97 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+@if (!Editor.PreviewMode)
+{
+    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+    {
+        <svg @onclick="Unselect" style="    height: 20px;
+                                            cursor: pointer;
+                                            background: green;
+                                            border-radius: 50px;
+                                            position: absolute;
+                                            top: 1.5px;
+                                            left: 23px;
+                                            color: lightgray;
+                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+    else
+    {
+        <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="    height: 20px;
+                                                                                            cursor: pointer;
+                                                                                            background: gray;
+                                                                                            border-radius: 50px;
+                                                                                            position: absolute;
+                                                                                            top: 1.5px;
+                                                                                            left: 23px;
+                                                                                            color: lightgray;
+                                                                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+}
+
+<div class="position-relative text-center">
+  <button class="btn btn-primary">UI</button>
+  <div class="Popover right-0 left-0 position-relative">
+    <div class="Popover-message text-left p-4 mt-2 mx-auto Box color-shadow-large">
+      <h4 class="mb-2">Popover heading</h4>
+      <p>Message about this particular piece of UI.</p>
+      <button type="submit" class="btn btn-outline mt-2 text-bold">Got it!</button>
+    </div>
+  </div>
+</div>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

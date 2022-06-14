@@ -1,0 +1,106 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+@if (!Editor.PreviewMode)
+{
+    @if (Editor.CurrentComponent != null && Editor.CurrentComponent.UniqueId != null && Editor.CurrentComponent.UniqueId.Equals(this.UniqueId))
+    {
+        <svg @onclick="Unselect" style="    height: 20px;
+                                            cursor: pointer;
+                                            background: green;
+                                            border-radius: 50px;
+                                            position: absolute;
+                                            top: 1.5px;
+                                            left: 23px;
+                                            color: lightgray;
+                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+    else
+    {
+        <svg @onclick="() => this.UpdatePropertiesWindow(Editor, this.UniqueId)" style="    height: 20px;
+                                                                                            cursor: pointer;
+                                                                                            background: gray;
+                                                                                            border-radius: 50px;
+                                                                                            position: absolute;
+                                                                                            top: 1.5px;
+                                                                                            left: 23px;
+                                                                                            color: lightgray;
+                                                                                            z-index: 1000;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    }
+}
+
+<form>
+  <div class="form-checkbox">
+    <label>
+      <input type="radio" name="hireme" />
+      Not available for hire
+    </label>
+  </div>
+  <div class="form-checkbox">
+    <label aria-live="polite">
+      <input type="radio" class="form-checkbox-details-trigger" name="hireme" />
+      Available for hire
+      <span class="form-checkbox-details text-normal">
+        <span class="d-block mb-1">Available hours per week</span>
+        <input type="text" name="" class="form-control input-contrast" size="3" />
+        <span class="text-small color-fg-muted pl-2">hours per week</span>
+      </span>
+    </label>
+  </div>
+</form>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

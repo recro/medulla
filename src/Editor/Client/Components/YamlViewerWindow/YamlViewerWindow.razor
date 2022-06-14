@@ -1,0 +1,56 @@
+﻿@using System.IO
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+
+<Window WindowTitle="YAML">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8" style="margin-bottom: 0!important;
+                                                                                          margin: 2em;">
+            <div>
+                <div class="form-group">
+                    <div class="form-group-header">
+                      <label for="example-textarea">EditorViewNode Yaml</label>
+                    </div>
+                    <div class="form-group-body">
+                        <textarea class="form-control" id="example-textarea">
+                            @GetYaml()
+                        </textarea>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</Window>
+
+@code {
+    [Parameter]
+    public EditorPage? Editor { get; set; } = new();
+
+    static object ConvertJTokenToObject(JToken? token)
+    {
+        if (token is JValue)
+            return token;
+        if (token is JArray)
+            return token.AsEnumerable().Select(ConvertJTokenToObject).ToList();
+        if (token is JObject)
+            return token.AsEnumerable().Cast<JProperty>().ToDictionary(x => x.Name, x => ConvertJTokenToObject(x.Value));
+        throw new InvalidOperationException("Unexpected token: " + token);
+    }
+
+
+    private string GetYaml()
+    {
+        var json = Editor?.EditorViewNode?.GetJson();
+        var swaggerDocument = ConvertJTokenToObject(JsonConvert.DeserializeObject<JToken>(json ?? string.Empty));
+
+        var serializer = new YamlDotNet.Serialization.Serializer();
+
+        using (var writer = new StringWriter())
+        {
+            serializer.Serialize(writer, swaggerDocument);
+            var yaml = writer.ToString();
+            return yaml;
+        }
+    }
+    
+}

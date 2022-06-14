@@ -1,0 +1,63 @@
+@using Medulla.Editor.Client.Library.Utilities.Unique
+@inherits BaseComponent
+
+<ComponentContainer>
+
+<SelectUnselect Editor="Editor" UniqueId="this.UniqueId" Component="this" />
+
+<nav class="paginate-container" aria-label="Pagination">
+  <div class="pagination">
+    <span class="previous_page" aria-disabled="true">Previous</span>
+    <a class="next_page" rel="next" href="#url" aria-label="Next Page">Next</a>
+  </div>
+</nav>
+
+</ComponentContainer>
+
+@code {
+
+
+
+    protected override Properties GetProperties()
+    {
+        Properties properties = new();
+        return properties;
+    }
+
+    protected override bool IsClickable()
+    {
+        return false;
+    }
+
+    protected override bool DoesImplementPadding()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementMargin()
+    {
+        return true;
+    }
+
+    protected override bool DoesImplementFonts()
+    {
+        return true;
+    }
+
+    protected override bool IsHoverComponentContainer()
+    {
+        return false;
+    }
+
+    protected override void AfterAddComponent(EditorPage editor, UniqueId uniqueId)
+    {
+
+    }
+
+}
+
+
+<style>
+
+</style>
+

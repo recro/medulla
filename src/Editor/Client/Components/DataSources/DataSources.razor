@@ -1,0 +1,12 @@
+﻿<Window WindowTitle="Data Sources">
+    <div class="m-4">
+        <h3>DataSources</h3>
+        <DataSourceList Editor="@Editor" />    
+    </div>
+</Window>
+
+@code {
+    [Parameter]
+    public EditorPage Editor { get; set; } = new();
+
+}
