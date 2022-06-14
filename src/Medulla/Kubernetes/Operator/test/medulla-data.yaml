@@ -5,8 +5,8 @@
 apiVersion: medulla.recro.com/v1alpha1
 kind: Data
 metadata:
-  name: test-1
-databases:
+  name: test
+spec:
   - name: medulla
     host: mysql-service
     dialect: mysql
