@@ -12,17 +12,19 @@
             <PropertyListItem PropertiesMenu="PropertiesMenu" PropertyMenuStructureNode="item" />
         }
     }
-
-
-
-
 </div>
 
 @code {
 
+    /// <summary>
+    /// The menu structure to be rendered.
+    /// </summary>
     [Parameter]
     public PropertyMenuStructure? PropertyMenuStructure { get; set; }
 
+    /// <summary>
+    /// Provide a reference to the parent PropertiesMenu component so that child component can call ShouldRender.
+    /// </summary>
     [Parameter]
     public PropertiesMenu? PropertiesMenu { get; set; }
 
