@@ -25,20 +25,26 @@
 
 @code {
 
+    /// <summary>
+    /// The menu structure to be rendered.
+    /// </summary>
     [Parameter]
     public PropertyMenuStructureNode PropertyMenuStructureNode { get; set; } = new();
 
+    /// <summary>
+    /// Provide a reference to the parent PropertiesMenu component so that child component can call ShouldRender.
+    /// </summary>
     [Parameter]
     public PropertiesMenu? PropertiesMenu { get; set; }
 
-    void Open()
+    private void Open()
     {
         Console.WriteLine("Open");
         PropertyMenuStructureNode.IsOpen = true;
         PropertiesMenu?.ShouldRender();
     }
 
-    void Close()
+    private void Close()
     {
         Console.WriteLine("Close");
         PropertyMenuStructureNode.IsOpen = false;
