@@ -8,6 +8,7 @@ rules:
   - coordination.k8s.io
   resources:
   - data
+  - application
   - leases
   verbs:
   - '*'

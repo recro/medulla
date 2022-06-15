@@ -2,7 +2,13 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-
+using k8s;
+using k8s.Models;
+using KubeOps.Operator.Controller;
+using KubeOps.Operator.Controller.Results;
+using KubeOps.Operator.Rbac;
+using System.IO;
+using Operator;
 using ApplicationControllerKubeOps.Controller.Entities;
 
 
@@ -12,7 +18,7 @@ namespace ApplicationControllerKubeOps.Controller.Controllers;
 /// <summary>
 /// ApplicationCtrl class for KubeOps Application CRD
 /// </summary>
-[EntityRbac(typeof(V1Alpha1ApplicationEntity), Verbs = RbacVerb.All)
+[EntityRbac(typeof(V1Alpha1ApplicationEntity), Verbs = RbacVerb.All)]
 public class ApplicationCtrl : IResourceController<V1Alpha1ApplicationEntity>
 {
     /// <summary>

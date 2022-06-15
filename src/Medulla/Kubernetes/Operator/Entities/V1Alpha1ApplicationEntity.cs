@@ -18,7 +18,6 @@ public struct ApplicationSpec
     public string? Name { get; set; }
     [Required]
     public string? Description { get; set; }
-    [Required]
 }
 
 /// <summary>
@@ -27,10 +26,10 @@ public struct ApplicationSpec
 [Description("A CustomResourceDefinition which allows building with data in Medulla.")]
 [KubernetesEntity(
     ApiVersion = "v1alpha1",
-    Kind = "Data",
+    Kind = "Application",
     Group = "medulla.recro.com",
-    PluralName = "data")]
-public class V1Alpha1ApplicationEntity
+    PluralName = "application")]
+public class V1Alpha1ApplicationEntity : CustomKubernetesEntity
 {
     public List<ApplicationSpec>? Spec { get; set; }
 }
