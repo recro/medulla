@@ -4,6 +4,9 @@ kind: HelmRelease
 metadata:
   name: istio-ingress
   namespace: istio-ingress
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "5"
 spec:
   interval: 5m
   chart:
