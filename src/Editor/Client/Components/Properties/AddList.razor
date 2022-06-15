@@ -23,9 +23,15 @@
 
 @code {
 
+    /// <summary>
+    /// When this list is added to or removed from it calls this function.
+    /// </summary>
     [Parameter]
     public Action<List<string?>>? OnChange { get; set; }
 
+    /// <summary>
+    /// Description for the input field.
+    /// </summary>
     [Parameter]
     public string? Description { get; set; }
 

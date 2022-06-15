@@ -12,11 +12,12 @@
 
 @code {
 
-    public void ShouldRender()
+    /// <summary>
+    /// Forces render of component.
+    /// </summary>
+    public new void ShouldRender()
     {
-        Console.WriteLine("ShouldRender()");
         StateHasChanged();
-        Console.WriteLine(string.Join(", ", PropertyMenuStructure));
     }
 
     ///
