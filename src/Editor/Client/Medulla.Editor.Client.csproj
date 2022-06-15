@@ -32,4 +32,9 @@
     <PackageReference Include="Z.Blazor.Diagrams" Version="2.0.0-rc.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\DatabaseDesigner\DatabaseDesigner.razor" />
+    <_ContentIncludedByDefault Remove="Components\DatabaseDesigner\TableNode.razor" />
+  </ItemGroup>
+
 </Project>
