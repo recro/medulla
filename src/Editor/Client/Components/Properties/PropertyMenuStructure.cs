@@ -11,12 +11,14 @@ namespace Medulla.Editor.Client.Components.Properties;
 /// </summary>
 public class PropertyMenuStructure
 {
-
+    /// <summary>
+    /// Title and description of menu structure which is placed in html in the Property Menu.
+    /// </summary>
     public Nameable Nameable { get; set; } = new();
 
+    /// <summary>
+    /// The menu structure to be rendered. List of PropertyMenuStructureNode.
+    /// </summary>
     public List<PropertyMenuStructureNode>? PropertyMenuStructureNodes { get; set; } = new();
-
-
-
 
 }
