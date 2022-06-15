@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
-using YamlDotNet.Core.Tokens;
 
 namespace Medulla.Editor.Client.Components.Properties;
 
@@ -36,9 +35,15 @@ public class PropertyMenuStructureNode
     public bool HasNoChildren()
     {
         if (PropertyMenuStructure.PropertyMenuStructureNodes == null)
+        {
             return true;
+        }
+
         if (PropertyMenuStructure.PropertyMenuStructureNodes.Count > 0)
+        {
             return false;
+        }
+
         return true;
     }
 
