@@ -3,7 +3,6 @@
 @using Medulla.Editor.Client.Components.PaletteWindow
 @using Medulla.Editor.Client.Components.TreeView
 @using Medulla.Editor.Client.Library.Abstractions.Environment
-@using Medulla.Editor.Client.Abstractions.ObjectComposition
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -11,14 +10,13 @@
             <EditorView EditorViewNode="EditorViewNode" />
         </div>
         <div style="width: 40vw;max-height:100vh;overflow: scroll;">
-            <PropertiesMenu PropertyMenuStructure="PropertyMenuStructure" />
-            <ColumnManager Editor="this"/>
-            <DataSources Editor="this"/>
-            <PagesWindow/>
-            <TranslateComponentWindow Editor="this"/>
-            <PaletteWindow ComponentCategories="_paletteComponentCategories"/>
-            <PropertiesWindow DataSources="@dataSources" Editor="this" PropertyList="_properties"/>
-            <YamlViewerWindow Editor="this"/>
+            <ColumnManager Editor="this" />
+            <DataSources Editor="this" />
+            <PagesWindow />
+            <TranslateComponentWindow Editor="this" />
+            <PaletteWindow ComponentCategories="_paletteComponentCategories" />
+            <PropertiesWindow DataSources="@dataSources" Editor="this" PropertyList="_properties" />
+            <YamlViewerWindow Editor="this" />
         </div>
     </CascadingValue>
 </div>
@@ -40,14 +38,6 @@
     public bool DeleteColumns { get; set; } = false;
     public bool PreviewMode { get; set; } = false;
     public List<DataSource> dataSources { get; set; } = new();
-    public PropertyMenuStructure PropertyMenuStructure { get; private set; } = new();
-
-
-    public void SetPropertyMenuStructure(PropertyMenuStructure propertyMenuStructure)
-    {
-        PropertyMenuStructure = propertyMenuStructure;
-        StateHasChanged();
-    }
 
     public void dataSourcesUpdated(List<DataSource> _dataSources)
     {
@@ -344,7 +334,7 @@
         CurrentComponent = editorViewNode;
     }
 
-    public void SetProperties(PropertiesWindow.Properties properties, UniqueId? uniqueId)
+    public void SetProperties(Properties properties, UniqueId? uniqueId)
     {
         CurrentPropertiesForComponentUniqueId = uniqueId;
         _properties = properties;
@@ -362,7 +352,7 @@
     }
 
     //Properties
-    PropertiesWindow.Properties _properties = new()
+    Properties _properties = new()
     {
         PropertyList = new List<Property>
         {
