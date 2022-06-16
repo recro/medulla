@@ -1,0 +1,72 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+<p>
+    <div class="Box">
+        <p class="details-reset details-overlay" open>
+            <div class="SelectMenu p-4" style="position: relative;">
+                <div class="SelectMenu-modal">
+                    <div class="SelectMenu-list">
+                        @for (var i = 0; i < _list.Count+1; i++)
+                        {
+                            var currIndex = (int)i;
+                            var index = i + 1;
+                            <span>@Description @index</span><input @oninput="(ChangeEventArgs e) => ValueChanged(currIndex, e.Value?.ToString())" class="SelectMenu-item" role="menuitem" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </p>
+    </div>
+</p>
+
+@code {
+
+    /// <summary>
+    /// When this list is added to or removed from it calls this function.
+    /// </summary>
+    [Parameter]
+    public Action<List<string?>>? OnChange { get; set; }
+
+    /// <summary>
+    /// Description for the input field.
+    /// </summary>
+    [Parameter]
+    public string? Description { get; set; }
+
+    private List<string?> _list = new(100){ };
+
+    private void AddItem()
+    {
+        _list.Add("New Item");
+    }
+
+    private void ValueChanged(int index, string? value)
+    {
+        while (_list.Count <= index)
+        {
+            _list.Add("");
+        }
+        if (value != null)
+        {
+            _list[index] = value;
+        }
+
+        for (var i = 0; i < _list.Count; i++)
+        {
+            if (_list[i] == "")
+            {
+                _list.RemoveAt(i);
+            }
+        }
+        StateHasChanged();
+
+        if (OnChange != null)
+        {
+            OnChange(_list);
+        }
+
+    }
+
+}
