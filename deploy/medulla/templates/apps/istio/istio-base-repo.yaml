@@ -6,7 +6,7 @@ metadata:
   namespace: istio-system
   annotations:
     "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "5"
+    "helm.sh/hook-weight": "-5"
 spec:
   interval: 10m0s
   url: https://istio-release.storage.googleapis.com/charts
