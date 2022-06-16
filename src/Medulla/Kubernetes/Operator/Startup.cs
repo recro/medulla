@@ -8,6 +8,13 @@ namespace Controller;
 
 public class Startup
 {
-    public void ConfigureServices(IServiceCollection services) => services.AddKubernetesOperator();
-    public void Configure(IApplicationBuilder app) => app.UseKubernetesOperator();
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddKubernetesOperator();
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseKubernetesOperator();
+    }
 }

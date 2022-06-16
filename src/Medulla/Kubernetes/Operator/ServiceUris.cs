@@ -2,7 +2,6 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Operator;
@@ -19,7 +18,10 @@ internal abstract class ServiceUris
 
         var value = Environment.GetEnvironmentVariable(key);
         if (value.IsNullOrEmpty())
+        {
             Console.WriteLine($"{key} is null or empty");
+        }
+
         return value!;
     }
 
