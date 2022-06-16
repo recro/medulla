@@ -39,14 +39,12 @@
 
     private void Open()
     {
-        Console.WriteLine("Open");
         PropertyMenuStructureNode.IsOpen = true;
         PropertiesMenu?.ShouldRender();
     }
 
     private void Close()
     {
-        Console.WriteLine("Close");
         PropertyMenuStructureNode.IsOpen = false;
         PropertiesMenu?.ShouldRender();
     }
