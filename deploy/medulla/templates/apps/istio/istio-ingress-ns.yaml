@@ -5,4 +5,3 @@ metadata:
     istio-injection: enabled
     kubernetes.io/metadata.name: istio-ingress
   name: istio-ingress
- 
