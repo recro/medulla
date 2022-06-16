@@ -1,7 +1,7 @@
 commonLabels:
   operator-element: crd
 resources:
-- data_medulla_recro_com.yaml
 - application_medulla_recro_com.yaml
+- data_medulla_recro_com.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
