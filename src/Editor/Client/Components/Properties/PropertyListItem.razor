@@ -1,0 +1,81 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+<div class="TimelineItem TimelineItem--condensed">
+    @{
+        var hasNoChildren = PropertyMenuStructureNode.HasNoChildren();
+    }
+    <PropertyListItemIcon PropertyMenuStructureNode="PropertyMenuStructureNode" PropertiesMenu="PropertiesMenu" />
+    <div class="TimelineItem-body">
+        @if (hasNoChildren)
+        {
+            <p class="pb-1">@PropertyMenuStructureNode.Nameable.Title</p>
+        }
+        else
+        {
+            <p @onclick="OpenClose" class="pb-1" style="cursor:pointer;">@PropertyMenuStructureNode.Nameable.Title</p>
+        }
+
+
+        @if (hasNoChildren)
+        {
+            @if (@PropertyMenuStructureNode.InputType == InputType.TextInput)
+            {
+                <p>
+                    <input class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description"/>
+                </p>
+            }
+            else if (@PropertyMenuStructureNode.InputType == InputType.TextArea)
+            {
+                <p>
+                    <textarea class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
+                </p>
+            }
+            else if (@PropertyMenuStructureNode.InputType == InputType.AddMultiple)
+            {
+                <AddList Description="@PropertyMenuStructureNode.Nameable.Description" OnChange="SetValueDatabaseTables" />
+            }
+
+        }
+        else
+        {
+            @if (PropertyMenuStructureNode.IsOpen)
+            {
+                <PropertyList PropertiesMenu="PropertiesMenu" PropertyMenuStructure="PropertyMenuStructureNode.PropertyMenuStructure"/>
+            }
+        }
+
+    </div>
+</div>
+
+@code {
+
+    /// <summary>
+    /// The menu structure to be rendered.
+    /// </summary>
+    [Parameter]
+    public PropertyMenuStructureNode PropertyMenuStructureNode { get; set; } = new();
+
+    /// <summary>
+    /// Provide a reference to the parent PropertiesMenu component so that child component can call ShouldRender.
+    /// </summary>
+    [Parameter]
+    public PropertiesMenu? PropertiesMenu { get; set; }
+
+    private void OpenClose()
+    {
+        PropertyMenuStructureNode.IsOpen = !PropertyMenuStructureNode.IsOpen;
+        PropertiesMenu?.ShouldRender();
+    }
+
+    private void SetValueDatabaseTables(List<string> tables)
+    {
+        if (PropertyMenuStructureNode.OnValueChange != null)
+        {
+            PropertyMenuStructureNode.OnValueChange(new() { ListOfStrings = tables });
+        }
+    }
+
+
+}
