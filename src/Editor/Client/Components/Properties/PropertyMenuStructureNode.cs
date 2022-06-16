@@ -35,7 +35,7 @@ public class AnyTypeValue
     /// <summary>
     /// Type which is for any property that needs list of strings
     /// </summary>
-    public List<string>? listOfStrings { get; set; }
+    public List<string>? ListOfStrings { get; set; }
 
 }
 
