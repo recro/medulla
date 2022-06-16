@@ -1,0 +1,31 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+<div class="Box width-full">
+    <p class="pl-1">@PropertyMenuStructure?.Nameable.Title</p>
+
+    @if (PropertyMenuStructure is { PropertyMenuStructureNodes: {} })
+    {
+        @foreach (var item in PropertyMenuStructure.PropertyMenuStructureNodes)
+        {
+            <PropertyListItem PropertiesMenu="PropertiesMenu" PropertyMenuStructureNode="item" />
+        }
+    }
+</div>
+
+@code {
+
+    /// <summary>
+    /// The menu structure to be rendered.
+    /// </summary>
+    [Parameter]
+    public PropertyMenuStructure? PropertyMenuStructure { get; set; }
+
+    /// <summary>
+    /// Provide a reference to the parent PropertiesMenu component so that child component can call ShouldRender.
+    /// </summary>
+    [Parameter]
+    public PropertiesMenu? PropertiesMenu { get; set; }
+
+}
