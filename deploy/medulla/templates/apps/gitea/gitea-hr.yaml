@@ -19,4 +19,3 @@ spec:
         namespace: default
       interval: 1m
   values:
-  
