@@ -217,7 +217,7 @@ namespace Medulla.Editor.Client.Components.RegisteredComponents
         /// <summary>
         /// Get Properties
         /// </summary>
-        protected abstract Properties GetProperties();
+        protected abstract PropertiesWindow.Properties GetProperties();
 
         /// <summary>
         /// Is Clickable
