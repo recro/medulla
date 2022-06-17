@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <None Remove="Dockerfile" />
+    <None Remove="Operator.csproj.DotSettings" />
   </ItemGroup>
 
 </Project>
