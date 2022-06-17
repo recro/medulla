@@ -2,12 +2,21 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections;
+using System.Threading.Tasks;
 using Controller;
 using KubeOps.Operator;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Operator;
 
+
 namespace DatabaseControllerKubeOps;
+
+
 
 public static class Program
 {
@@ -18,16 +27,6 @@ public static class Program
     /// <returns></returns>
     public static Task<int> Main(string[] args)
     {
-        Console.WriteLine("Trying to get uri for database service");
-        Console.WriteLine("List Service Uris: ");
-        Console.WriteLine("Service Uri {0} is {1}", "database service", ServiceUris.GetDatabaseServiceUri());
-        Console.WriteLine("Service Uri {0} is {1}", "sync service", ServiceUris.GetDatabaseSyncUri());
-
-        Console.WriteLine("GetEnvironmentVariables: ");
-        foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
-        {
-            Console.WriteLine("  {0} = {1}", de.Key, de.Value);
-        }
 
         return CreateHostBuilder(args)
             .Build()
