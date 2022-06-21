@@ -23,8 +23,8 @@ message GetRecords {
 
 message AddRecord {
     Item itemID = 1;
-    bool success = 1;
-    int32 insertCount = 2;   
+    bool success = 2;
+    int32 insertCount = 3;   
 }
 
 message UpdateRecord {
