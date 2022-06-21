@@ -14,8 +14,14 @@ namespace ApplicationControllerKubeOps.Controller.Entities;
 /// </summary>
 public struct ApplicationSpec
 {
+    /// <summary>
+    /// Name is is an element of the ApplicationSpec which is the name of the Application created by Medulla
+    /// </summary>
     [Required]
     public string? Name { get; set; }
+    /// <summary>
+    /// Description is is an element of the ApplicationSpec which is the name of the Application created by Medulla
+    /// </summary>
     [Required]
     public string? Description { get; set; }
 }
