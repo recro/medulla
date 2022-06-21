@@ -10,4 +10,3 @@ builder.Services.AddKubernetesOperator();
 var app = builder.Build();
 app.UseKubernetesOperator();
 app.RunOperatorAsync(args);
-
