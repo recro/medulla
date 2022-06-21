@@ -4,7 +4,7 @@
 
 using KubeOps.Operator.Entities.Annotations;
 
-namespace Operator.model
+namespace Operator.Model
 {
     /// <summary>
     /// Spec of CRD for model/table within Database
