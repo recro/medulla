@@ -27,7 +27,7 @@ public struct ApplicationSpec
 [KubernetesEntity(
     ApiVersion = "v1alpha1",
     Kind = "Application",
-    Group = "medulla.recro.com",
+    Group = "medulla.io",
     PluralName = "application")]
 public class V1Alpha1ApplicationEntity : CustomKubernetesEntity
 {

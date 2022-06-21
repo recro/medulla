@@ -2,7 +2,6 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
 using k8s.Models;
 using KubeOps.Operator.Entities;
 using KubeOps.Operator.Entities.Annotations;
@@ -40,7 +39,7 @@ public struct DatabaseSpec
 [KubernetesEntity(
     ApiVersion = "v1alpha1",
     Kind = "Data",
-    Group = "medulla.recro.com",
+    Group = "medulla.io",
     PluralName = "data")]
 public class V1Alpha1DataEntity : CustomKubernetesEntity
 {
