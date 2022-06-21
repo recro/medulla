@@ -3,9 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using KubeOps.Operator;
-using Microsoft.AspNetCore.Builder;
 
-var builder =  WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddKubernetesOperator();
 var app = builder.Build();
 app.UseKubernetesOperator();
