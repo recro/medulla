@@ -25,7 +25,7 @@ public struct DatabaseSpec
     /// Dialect is an element of DatabaseSpec which is the the dialect of the database
     /// </summary>
     [Required]
-    public string? Dialect { get; set; }
+    public string Dialect { get; set; }
     /// <summary>
     /// UsernameSecretName is an element of DatabaseSpec which is the username to connect to the database
     /// </summary>
