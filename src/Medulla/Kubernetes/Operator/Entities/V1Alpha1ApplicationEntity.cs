@@ -5,26 +5,10 @@
 using k8s.Models;
 using KubeOps.Operator.Entities;
 using KubeOps.Operator.Entities.Annotations;
+using Operator.model.Application;
 
 namespace Medulla.Kubernetes.Operator.Entities;
 
-
-/// <summary>
-/// ApplicationSpec is spec of CRD for application
-/// </summary>
-public struct ApplicationSpec
-{
-    /// <summary>
-    /// Name is is an element of the ApplicationSpec which is the name of the Application created by Medulla
-    /// </summary>
-    [Required]
-    public string? Name { get; set; }
-    /// <summary>
-    /// Description is is an element of the ApplicationSpec which is the description of the Application created by Medulla
-    /// </summary>
-    [Required]
-    public string? Description { get; set; }
-}
 
 /// <summary>
 /// V1Alpha1DataEntity is CRD for data
