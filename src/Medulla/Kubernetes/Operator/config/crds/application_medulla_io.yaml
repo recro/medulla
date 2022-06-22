@@ -30,7 +30,6 @@ spec:
               - name
               - description
               type: object
-            nullable: true
             type: array
         type: object
     served: true
