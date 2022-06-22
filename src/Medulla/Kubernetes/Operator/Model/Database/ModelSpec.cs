@@ -12,13 +12,18 @@ namespace Medulla.Kubernetes.Operator.Model.Database;
 public struct ModelSpec
 {
     /// <summary>
+    /// ModelSpec constructor
+    /// </summary>
+    public ModelSpec(){}
+    /// <summary>
     /// Name is an element of ModelSpec which is the name of the model/table
     /// </summary>
     [Required]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
+
     /// <summary>
     /// Columns is an element of ModelSpec which contains a list of ColumnSpec of the model/table
     /// </summary>
     [Required]
-    public List<ColumnSpec> Columns { get; set; }
+    public List<ColumnSpec> Columns { get; set; } = new List<ColumnSpec>();
 }
