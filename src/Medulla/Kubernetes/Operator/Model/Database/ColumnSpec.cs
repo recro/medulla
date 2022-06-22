@@ -12,11 +12,11 @@ namespace Medulla.Kubernetes.Operator.Model.Database
         /// <summary>
         /// ColumnName is an element of ColumnSpec which is the column name
         /// </summary>
-        public string? ColumnName { get; set; }
+        public string ColumnName { get; set; }
         /// <summary>
         /// Type is an element of ColumnSpec which is the column type
         /// </summary>
-        public string? Type { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// AllowNull is an element of ColumnSpec which indicates whether or not null is allowed
         /// </summary>
@@ -37,7 +37,7 @@ namespace Medulla.Kubernetes.Operator.Model.Database
         /// <summary>
         /// Field is an element of ColumnSpec which is the field name
         /// </summary>
-        public string? Field { get; set; }
+        public string Field { get; set; }
         /// <summary>
         /// Unique is an element of ColumnSpec which is indicates whether or not this column is unique
         /// </summary>
