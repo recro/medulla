@@ -2,19 +2,30 @@
 replicaCount: 1
 
 shell:
+  replicaCount: 1
   image:
     repository: shell
     pullPolicy: Always
     tag: ""
 
 identity:
+  replicaCount: 1
   image:
     repository: identity
     pullPolicy: Always
     tag: ""
 
 documentation:
+  replicaCount: 1
   image:
     repository: documentation
     pullPolicy: Always
     tag: ""
+
+dapr:
+
+gitea:
+
+istio:
+
+tidb:
