@@ -12,40 +12,48 @@ namespace Medulla.Kubernetes.Operator.Model.Database
         /// <summary>
         /// ColumnName is an element of ColumnSpec which is the column name
         /// </summary>
-        public string ColumnName { get; set; }
+        public string ColumnName { get; set; } = "defaultColumnName";
+
         /// <summary>
         /// Type is an element of ColumnSpec which is the column type
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; set; } = "TEXT";
+
         /// <summary>
         /// AllowNull is an element of ColumnSpec which indicates whether or not null is allowed
         /// </summary>
-        public bool AllowNull { get; set; }
+        public bool AllowNull { get; set; } = true;
+
         /// <summary>
         /// DefaultValue is an element of ColumnSpec which should be set to what the default value of the column should
         /// be if it exists
         /// </summary>
-        public string? DefaultValue { get; set; }
+        public string? DefaultValue { get; set; } = "";
+
         /// <summary>
         /// AutoIncrement is an element of ColumnSpec which indicates whether auto increment is allowed or not
         /// </summary>
-        public bool AutoIncrement { get; set; }
+        public bool AutoIncrement { get; set; } = false;
+
         /// <summary>
         /// PrimaryKey is an element of ColumnSpec which indicates whether this column is the primary key
         /// </summary>
-        public bool PrimaryKey { get; set; }
+        public bool PrimaryKey { get; set; } = false;
+
         /// <summary>
         /// Field is an element of ColumnSpec which is the field name
         /// </summary>
-        public string Field { get; set; }
+        public string Field { get; set; } = "defaultFieldName";
+
         /// <summary>
         /// Unique is an element of ColumnSpec which is indicates whether or not this column is unique
         /// </summary>
-        public string? Unique { get; set; }
+        public string Unique { get; set; } = "uniqueFieldIndexName";
+
         /// <summary>
         /// Comment is an element of ColumnSpec which is a comment of this column
         /// </summary>
-        public string? Comment { get; set; }
+        public string Comment { get; set; } = "Comment for Column";
         /// <summary>
         /// ValidateSpec? is an element of ColumnSpec which is a type ValidateSpec which validates fields
         /// </summary>
