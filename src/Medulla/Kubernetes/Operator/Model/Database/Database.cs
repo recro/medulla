@@ -14,12 +14,12 @@ public struct DatabaseSpec
     /// <summary>
     /// DatabaseSpec Constructor
     /// </summary>
-    public DatabaseSpec(){}
+    public DatabaseSpec() { }
     /// <summary>
     /// Name is an element of DatabaseSpec which is the name of the database
     /// </summary>
     [Required]
-    public string Name { get; set; } =  string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
     /// Host is an element of DatabaseSpec which is the connection path to the database

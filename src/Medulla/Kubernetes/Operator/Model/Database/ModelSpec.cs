@@ -14,7 +14,7 @@ public struct ModelSpec
     /// <summary>
     /// ModelSpec constructor
     /// </summary>
-    public ModelSpec(){}
+    public ModelSpec() { }
     /// <summary>
     /// Name is an element of ModelSpec which is the name of the model/table
     /// </summary>

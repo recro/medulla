@@ -21,7 +21,7 @@ namespace Medulla.Kubernetes.Operator.Entities;
     PluralName = "data")]
 public class V1Alpha1DataEntity : CustomKubernetesEntity
 {
-    public V1Alpha1DataEntity(){}
+    public V1Alpha1DataEntity() { }
 
     /// <summary>
     /// Spec is a list elements of type DatabaseSpec

@@ -21,7 +21,7 @@ namespace Medulla.Kubernetes.Operator.Entities;
     PluralName = "application")]
 public class V1Alpha1ApplicationEntity : CustomKubernetesEntity
 {
-    public V1Alpha1ApplicationEntity(){}
+    public V1Alpha1ApplicationEntity() { }
     /// <summary>
     /// Spec is is an element of the V1Alpha1ApplicationEntity  which is a list of type ApplicationSpec
     /// </summary>

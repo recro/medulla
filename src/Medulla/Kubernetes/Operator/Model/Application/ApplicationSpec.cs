@@ -15,7 +15,7 @@ public struct ApplicationSpec
     /// <summary>
     /// DatabaseSpec Constructor
     /// </summary>
-    public ApplicationSpec(){}
+    public ApplicationSpec() { }
 
     /// <summary>
     /// Name is is an element of the ApplicationSpec which is the name of the Application created by Medulla
@@ -26,5 +26,5 @@ public struct ApplicationSpec
     /// Description is is an element of the ApplicationSpec which is the description of the Application created by Medulla
     /// </summary>
     [Required]
-    public string Description { get; set; }  = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }
