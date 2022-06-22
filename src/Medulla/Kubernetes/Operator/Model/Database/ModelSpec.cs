@@ -15,12 +15,12 @@ namespace Medulla.Kubernetes.Operator.Model.Database
         /// Name is an element of ModelSpec which is the name of the model/table
         /// </summary>
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Columns is an element of ModelSpec which contains a list of ColumnSpec of the model/table
         /// </summary>
         [Required]
-        public List<ColumnSpec>? Columns { get; set; }
+        public List<ColumnSpec> Columns { get; set; }
     }
 
 }
