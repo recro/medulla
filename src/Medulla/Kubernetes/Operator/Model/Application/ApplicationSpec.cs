@@ -4,23 +4,21 @@
 
 using KubeOps.Operator.Entities.Annotations;
 
-namespace Medulla.Kubernetes.Operator.Model.Application
+namespace Medulla.Kubernetes.Operator.Model.Application;
+
+/// <summary>
+/// ApplicationSpec is spec of CRD for application
+/// </summary>
+public struct ApplicationSpec
 {
     /// <summary>
-    /// ApplicationSpec is spec of CRD for application
+    /// Name is is an element of the ApplicationSpec which is the name of the Application created by Medulla
     /// </summary>
-    public struct ApplicationSpec
-    {
-        /// <summary>
-        /// Name is is an element of the ApplicationSpec which is the name of the Application created by Medulla
-        /// </summary>
-        [Required]
-        public string? Name { get; set; }
-        /// <summary>
-        /// Description is is an element of the ApplicationSpec which is the description of the Application created by Medulla
-        /// </summary>
-        [Required]
-        public string? Description { get; set; }
-    }
-
+    [Required]
+    public string? Name { get; set; }
+    /// <summary>
+    /// Description is is an element of the ApplicationSpec which is the description of the Application created by Medulla
+    /// </summary>
+    [Required]
+    public string? Description { get; set; }
 }
