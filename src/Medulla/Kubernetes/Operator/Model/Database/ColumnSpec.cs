@@ -13,8 +13,9 @@ public struct ColumnSpec
     /// <summary>
     /// ColumnSpec Constructor
     /// </summary>
-    public ColumnSpec()
+    public ColumnSpec(ValidateSpec validateSpec)
     {
+        Validate = validateSpec;
     }
 
     /// <summary>
