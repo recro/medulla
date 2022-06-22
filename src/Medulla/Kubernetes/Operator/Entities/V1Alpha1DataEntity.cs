@@ -5,9 +5,9 @@
 using k8s.Models;
 using KubeOps.Operator.Entities;
 using KubeOps.Operator.Entities.Annotations;
-using Medulla.Kubernetes.Operator.Model.Database;
+using Operator.Model.Database;
 
-namespace Medulla.Kubernetes.Operator.Entities;
+namespace Operator.Entities;
 
 
 

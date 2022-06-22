@@ -4,7 +4,7 @@
 
 using KubeOps.Operator.Entities.Annotations;
 
-namespace Medulla.Kubernetes.Operator.Model.Database;
+namespace Operator.Model.Database;
 
 /// <summary>
 /// DatabaseSpec is spec of CRD for database
