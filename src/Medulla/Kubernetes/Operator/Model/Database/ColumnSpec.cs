@@ -2,7 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-namespace Operator.Model
+namespace Medulla.Kubernetes.Operator.Model.Database
 {
     /// <summary>
     /// Spec of Column within Model as array
