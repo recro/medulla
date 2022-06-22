@@ -9,6 +9,14 @@ namespace Operator.Model.Database;
 /// </summary>
 public struct ValidateSpec
 {
+
+    /// <summary>
+    /// ValidateSpec Constructor
+    /// </summary>
+    public ValidateSpec()
+    {
+    }
+
     /// <summary>
     /// matches this RegExp /^[a-z]+$/i
     /// </summary>

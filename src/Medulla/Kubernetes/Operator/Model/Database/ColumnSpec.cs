@@ -9,6 +9,14 @@ namespace Operator.Model.Database;
 /// </summary>
 public struct ColumnSpec
 {
+
+    /// <summary>
+    /// ColumnSpec Constructor
+    /// </summary>
+    public ColumnSpec()
+    {
+    }
+
     /// <summary>
     /// ColumnName is an element of ColumnSpec which is the column name
     /// </summary>
