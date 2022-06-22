@@ -1,0 +1,163 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: data.medulla.io
+spec:
+  group: medulla.io
+  names:
+    kind: Data
+    listKind: DataList
+    plural: data
+    singular: data
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: A CustomResourceDefinition which allows building with data in Medulla.
+        properties:
+          spec:
+            description: Spec is a list elements of type DatabaseSpec
+            items:
+              properties:
+                name:
+                  description: Name is an element of DatabaseSpec which is the name of the database
+                  type: string
+                host:
+                  description: Host is an element of DatabaseSpec which is the connection path to the database
+                  type: string
+                dialect:
+                  description: Dialect is an element of DatabaseSpec which is the the dialect of the database
+                  type: string
+                usernameSecretName:
+                  description: UsernameSecretName is an element of DatabaseSpec which is the username to connect to the database
+                  type: string
+                passwordSecretName:
+                  description: PasswordSecretName is an element of DatabaseSpec which is the password to connect to the database
+                  type: string
+                models:
+                  description: Models is a list elements of type ModelSpec
+                  items:
+                    properties:
+                      name:
+                        description: Name is an element of ModelSpec which is the name of the model/table
+                        type: string
+                      columns:
+                        description: Columns is an element of ModelSpec which contains a list of ColumnSpec of the model/table
+                        items:
+                          properties:
+                            columnName:
+                              description: ColumnName is an element of ColumnSpec which is the column name
+                              type: string
+                            type:
+                              description: Type is an element of ColumnSpec which is the column type
+                              type: string
+                            allowNull:
+                              description: AllowNull is an element of ColumnSpec which indicates whether or not null is allowed
+                              type: boolean
+                            defaultValue:
+                              description: >-
+                                DefaultValue is an element of ColumnSpec which should be set to what the default value of the column should
+
+                                be if it exists
+                              nullable: true
+                              type: string
+                            autoIncrement:
+                              description: AutoIncrement is an element of ColumnSpec which indicates whether auto increment is allowed or not
+                              type: boolean
+                            primaryKey:
+                              description: PrimaryKey is an element of ColumnSpec which indicates whether this column is the primary key
+                              type: boolean
+                            field:
+                              description: Field is an element of ColumnSpec which is the field name
+                              type: string
+                            unique:
+                              description: Unique is an element of ColumnSpec which is indicates whether or not this column is unique
+                              type: string
+                            comment:
+                              description: Comment is an element of ColumnSpec which is a comment of this column
+                              type: string
+                            validate:
+                              description: ValidateSpec? is an element of ColumnSpec which is a type ValidateSpec which validates fields
+                              nullable: true
+                              properties:
+                                hasValue:
+                                  type: boolean
+                                value:
+                                  properties:
+                                    is:
+                                      description: matches this RegExp /^[a-z]+$/i
+                                      type: string
+                                    not:
+                                      description: matches this RegExp /^[a-z]+$/i
+                                      type: string
+                                    isEmail:
+                                      description: checks for email format (foo@bar.com)
+                                      type: boolean
+                                    isUrl:
+                                      description: "checks for url format (https://foo.com)\n            "
+                                      type: boolean
+                                    isIp:
+                                      description: "checks for IPv4 (129.89.23.1) or IPv6 format\n            "
+                                      type: boolean
+                                    isIpV4:
+                                      description: "checks for IPv4 (129.89.23.1)\n            "
+                                      type: boolean
+                                    isIpV6:
+                                      description: "checks for IPv6 format\n            "
+                                      type: boolean
+                                    isAlpha:
+                                      description: will only allow letters
+                                      type: boolean
+                                    isAlphaNumeric:
+                                      description: will only allow alphanumeric characters, so "_abc" will fail
+                                      type: boolean
+                                    isNumeric:
+                                      description: will only allow numbers
+                                      type: boolean
+                                    isInt:
+                                      description: "checks for valid integers\n            "
+                                      type: boolean
+                                    isFloat:
+                                      description: "checks for valid floating point numbers\n            "
+                                      type: boolean
+                                    isDecimal:
+                                      description: checks for any numbers
+                                      type: boolean
+                                    isLowercase:
+                                      description: "checks for lowercase\n            "
+                                      type: boolean
+                                    isUppercase:
+                                      description: "checks for uppercase\n            "
+                                      type: boolean
+                                    isNull:
+                                      description: won't allow null
+                                      type: boolean
+                                    notNull:
+                                      description: "only allows null\n            "
+                                      type: boolean
+                                    notEmpty:
+                                      description: don't allow empty strings
+                                      type: boolean
+                                  type: object
+                              type: object
+                          type: object
+                        type: array
+                    required:
+                    - name
+                    - columns
+                    type: object
+                  type: array
+              required:
+              - name
+              - host
+              - dialect
+              - usernameSecretName
+              - passwordSecretName
+              - models
+              type: object
+            nullable: true
+            type: array
+        type: object
+    served: true
+    storage: true
