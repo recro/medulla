@@ -4,7 +4,8 @@
 
 using KubeOps.Operator.Entities.Annotations;
 
-namespace Operator.Model.Application;
+namespace Medulla.Kubernetes.Operator.Model.Application;
+
 
 /// <summary>
 /// ApplicationSpec is spec of CRD for application
