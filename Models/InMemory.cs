@@ -1,20 +1,19 @@
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InMemory.Data
+namespace InMemory.Models
 {
-    public class InMemoryData : DataDB
+    public class InMemory
     {
-        public InMemoryData(DataDBOptions<InMemoryData> options)
-            : base(options)
-        {
-        }
-
-
-        public DbSet<InMemory> InMemory { get; set; }
+        public int itemID { get; set; }
+        public string? GetRecord { get; set; }
+        public string? GetRecords { get; set; }
+        public string? AddRecord { get; set; }
+        public string? UpdateRecord { get; set; }
+        public string? DeleteRecord { get; set; }
+        public DateTime CreatedTime { get; set; }
 
     }
 }
