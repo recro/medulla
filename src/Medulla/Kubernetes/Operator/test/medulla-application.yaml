@@ -1,0 +1,10 @@
+﻿apiVersion:  medulla.io/v1alpha1
+kind: Application
+metadata:
+  name: application
+spec:
+  - name: Medulla
+    description: Medulla is a low code platform
+organization:
+  spec:
+    - name: recro

@@ -1,0 +1,6 @@
+﻿apiVersion:  medulla.io/v1alpha1
+kind: Organization
+metadata:
+  name: organizations
+spec:
+  - name: recro

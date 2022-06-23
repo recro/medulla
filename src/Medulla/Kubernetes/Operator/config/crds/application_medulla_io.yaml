@@ -31,6 +31,30 @@ spec:
               - description
               type: object
             type: array
+          organization:
+            description: A CustomResourceDefinition which allows building with organization in Medulla.
+            properties:
+              spec:
+                description: Spec is a list elements of type Organization
+                items:
+                  properties:
+                    name:
+                      description: Name is an element of ModelSpec which is the name of the model/table
+                      type: string
+                  required:
+                  - name
+                  type: object
+                type: array
+              metadata:
+                description: The metadata of the kubernetes object.
+                type: object
+              apiVersion:
+                type: string
+              kind:
+                type: string
+            type: object
+        required:
+        - organization
         type: object
     served: true
     storage: true
