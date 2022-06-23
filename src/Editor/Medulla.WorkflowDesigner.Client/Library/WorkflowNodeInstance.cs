@@ -12,6 +12,10 @@ namespace Medulla.WorkflowDesigner.Client.Library;
 /// </summary>
 public class WorkflowNodeInstance : NodeModel
 {
+    /// <summary>
+    /// Name of workflow node instance
+    /// </summary>
+    public string Name { get; set; } = "Workflow Action";
 
     /// <summary>
     /// Constructor for WorkflowNodeInstance
@@ -20,5 +24,7 @@ public class WorkflowNodeInstance : NodeModel
     public WorkflowNodeInstance(Point? position = null) : base(position, RenderLayer.HTML)
     {
     }
+
+
 
 }

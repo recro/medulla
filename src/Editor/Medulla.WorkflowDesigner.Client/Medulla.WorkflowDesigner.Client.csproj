@@ -24,4 +24,8 @@
     <PackageReference Include="Z.Blazor.Diagrams" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
+  </ItemGroup>
+
 </Project>
