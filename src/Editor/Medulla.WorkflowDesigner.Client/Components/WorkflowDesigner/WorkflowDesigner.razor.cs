@@ -8,9 +8,23 @@ using Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner.Node;
 using Medulla.WorkflowDesigner.Client.Library;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Blazor.Diagrams.Core;
+using Blazor.Diagrams.Core.Geometry;
+using Blazor.Diagrams.Core.Models;
+using Blazor.Diagrams.Core.Models.Base;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner;
 
+/// <summary>
+/// Workflow Designer
+/// </summary>
 public partial class WorkflowDesigner : IDisposable
 {
 
@@ -48,6 +62,7 @@ public partial class WorkflowDesigner : IDisposable
         base.OnInitialized();
 
         Diagram.RegisterModelComponent<WorkflowNodeInstance, NodeComponent>();
+
         /*Diagram.Nodes.Add(new Table());
 
         Diagram.Links.Added += OnLinkAdded;

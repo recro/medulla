@@ -2,19 +2,21 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Medulla.WorkflowDesigner.Client.Library;
+using Microsoft.AspNetCore.Components;
+
 namespace Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner.Node;
 
 /// <summary>
-/// NodeComponent represents the the WorkflowNodeInstance in the Designer.
+/// NodeComponent represents the WorkflowNodeInstance in the Designer.
 /// </summary>
-public partial class NodeComponent : IDisposable
+public partial class NodeComponent
 {
 
     /// <summary>
-    /// Dispose
+    /// The WorkflowNodeInstance
     /// </summary>
-    public void Dispose()
-    {
-        throw new NotImplementedException();
-    }
+    [Parameter]
+    public WorkflowNodeInstance? Node { get; set; }
+
 }
