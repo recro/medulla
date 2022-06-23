@@ -8,7 +8,7 @@ using k8s.Models;
 using KubeOps.Operator.Controller;
 using KubeOps.Operator.Controller.Results;
 using KubeOps.Operator.Rbac;
-using  Medulla.Kubernetes.Operator;
+using  Medulla.Kubernetes.Operator.Entities;
 
 namespace Medulla.Kubernetes.Operator.Controller;
 
