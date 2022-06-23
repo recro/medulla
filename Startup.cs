@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 
-namespace gula
+namespace grpcQueryAPI
 {
     public class Startup
     {
@@ -16,3 +16,5 @@ namespace gula
             services.DataDB<InMemoryData>(options => options.UseInMemoryDatabase("InMemory"));
         }
     }
+    
+}   
