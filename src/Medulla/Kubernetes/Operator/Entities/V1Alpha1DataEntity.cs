@@ -21,6 +21,9 @@ namespace Medulla.Kubernetes.Operator.Entities;
     PluralName = "data")]
 public class V1Alpha1DataEntity : CustomKubernetesEntity
 {
+    /// <summary>
+    /// Empty Constructor for V1Alpha1DataEntity
+    /// </summary>
     public V1Alpha1DataEntity() { }
 
     /// <summary>
