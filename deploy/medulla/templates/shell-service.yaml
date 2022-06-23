@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shell
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: shell
+    service: shell
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 80
+  selector:
+    app: shell

@@ -1,30 +1,11 @@
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: identity
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: identity
-  labels:
-    app: identity
-    service: identity
-spec:
-  ports:
-  - name: http
-    port: 8000
-    targetPort: 80
-  selector:
-    app: identity
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: identity
+  namespace: {{ .Release.Namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.shell.replicaCount }}
   selector:
     matchLabels:
       app: identity
@@ -37,7 +18,7 @@ spec:
     spec:
       serviceAccountName: identity
       containers:
-      - image: identity:1.0.0
+      - image: "{{ .Values.identity.image.repository }}:{{ .Values.identity.image.tag }}"
         imagePullPolicy: IfNotPresent
         name: identity
         ports:

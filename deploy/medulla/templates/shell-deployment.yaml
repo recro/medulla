@@ -1,30 +1,11 @@
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: shell
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: shell
-  labels:
-    app: shell
-    service: shell
-spec:
-  ports:
-  - name: http
-    port: 8000
-    targetPort: 80
-  selector:
-    app: shell
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shell
+  namespace: {{ .Release.Namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.shell.replicaCount }}
   selector:
     matchLabels:
       app: shell
@@ -37,7 +18,7 @@ spec:
     spec:
       serviceAccountName: shell
       containers:
-      - image: shell:1.0.0
+      - image: "{{ .Values.shell.image.repository }}:{{ .Values.shell.image.tag }}"
         imagePullPolicy: IfNotPresent
         name: shell
         ports:

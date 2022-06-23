@@ -1,31 +1,21 @@
 ---
-replicaCount: 1
-
 shell:
   replicaCount: 1
   image:
     repository: shell
     pullPolicy: Always
-    tag: ""
+    tag: "1.0.0"
 
 identity:
   replicaCount: 1
   image:
     repository: identity
     pullPolicy: Always
-    tag: ""
+    tag: "1.0.0"
 
 documentation:
   replicaCount: 1
   image:
     repository: documentation
     pullPolicy: Always
-    tag: ""
-
-dapr:
-
-gitea:
-
-istio:
-
-tidb:
+    tag: "1.0.0"

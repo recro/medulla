@@ -5,6 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: istio
   name: medulla-ingress
+  namespace: {{ .Release.Namespace }}
 spec:
   rules:
   - http:
