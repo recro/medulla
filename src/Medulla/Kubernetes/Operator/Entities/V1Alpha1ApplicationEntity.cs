@@ -29,5 +29,8 @@ public class V1Alpha1ApplicationEntity : CustomKubernetesEntity
     /// Spec is is an element of the V1Alpha1ApplicationEntity  which is a list of type ApplicationSpec
     /// </summary>
     public List<ApplicationSpec> Spec { get; set; } = new List<ApplicationSpec>();
+
+    [Required]
+    public V1Alpha1OrganizationEntity Organization { get; set; } = new V1Alpha1OrganizationEntity();
 }
 
