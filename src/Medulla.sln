@@ -36,6 +36,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KubeOps", "KubeOps", "{4B01
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator", "Medulla\Kubernetes\Operator\Operator.csproj", "{511F12A6-5B54-4FC7-8C7B-BDE76CBD7426}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.WorkflowDesigner.Client", "Editor\Medulla.WorkflowDesigner.Client\Medulla.WorkflowDesigner.Client.csproj", "{1FC69BB9-56A8-4456-9C26-8F5A5F56F740}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.WorkflowDesigner.Client.Test", "Editor\Medulla.WorkflowDesigner.Client.Test\Medulla.WorkflowDesigner.Client.Test.csproj", "{DA023F87-35FA-49DC-8FBF-1588E7321C33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +78,14 @@ Global
 		{511F12A6-5B54-4FC7-8C7B-BDE76CBD7426}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{511F12A6-5B54-4FC7-8C7B-BDE76CBD7426}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{511F12A6-5B54-4FC7-8C7B-BDE76CBD7426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FC69BB9-56A8-4456-9C26-8F5A5F56F740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC69BB9-56A8-4456-9C26-8F5A5F56F740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC69BB9-56A8-4456-9C26-8F5A5F56F740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC69BB9-56A8-4456-9C26-8F5A5F56F740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA023F87-35FA-49DC-8FBF-1588E7321C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA023F87-35FA-49DC-8FBF-1588E7321C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA023F87-35FA-49DC-8FBF-1588E7321C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA023F87-35FA-49DC-8FBF-1588E7321C33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +99,8 @@ Global
 		{9E496632-495A-4D09-BD25-BBCE6CAED4A1} = {F297D403-0BD6-4214-90FE-AA3684EBAE0C}
 		{8FE20926-13BC-4F6A-9659-FE27AB14D0B0} = {F2319A8C-1966-4A6F-B82C-9F3BAE82E23B}
 		{511F12A6-5B54-4FC7-8C7B-BDE76CBD7426} = {4B01F5F4-7EA5-42C9-96B3-E10932B889DB}
+		{1FC69BB9-56A8-4456-9C26-8F5A5F56F740} = {F2319A8C-1966-4A6F-B82C-9F3BAE82E23B}
+		{DA023F87-35FA-49DC-8FBF-1588E7321C33} = {F2319A8C-1966-4A6F-B82C-9F3BAE82E23B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E031215B-9116-4BC0-AA58-A00A8C67440D}
