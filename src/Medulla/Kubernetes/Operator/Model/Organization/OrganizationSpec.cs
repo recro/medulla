@@ -9,12 +9,12 @@ namespace Medulla.Kubernetes.Operator.Model.Organization;
 /// <summary>
 /// Spec of CRD for Organization
 /// </summary>
-public struct Organization
+public struct OrganizationSpec
 {
     /// <summary>
     /// ModelSpec constructor
     /// </summary>
-    public Organization(){}
+    public OrganizationSpec(){}
     /// <summary>
     /// Name is an element of ModelSpec which is the name of the model/table
     /// </summary>

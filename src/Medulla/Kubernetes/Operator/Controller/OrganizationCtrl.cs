@@ -7,6 +7,7 @@ using k8s;
 using k8s.Models;
 using KubeOps.Operator.Controller;
 using KubeOps.Operator.Controller.Results;
+using KubeOps.Operator.Entities.Extensions;
 using KubeOps.Operator.Rbac;
 using  Medulla.Kubernetes.Operator.Entities;
 
@@ -26,6 +27,7 @@ public class Organization : IResourceController<V1Alpha1OrganizationEntity>
     /// <returns></returns>
     public Task<ResourceControllerResult?> CreatedAsync(V1Alpha1OrganizationEntity resource)
     {
+        resource.MakeOwnerReference();
         return Task.FromResult<ResourceControllerResult>(null!)!;
     }
 

@@ -2,6 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using k8s.Models;
 using KubeOps.Operator.Entities;
 using KubeOps.Operator.Entities.Annotations;
@@ -23,8 +24,10 @@ namespace Medulla.Kubernetes.Operator.Entities;
     PluralName = "organization")]
 public class V1Alpha1OrganizationEntity : CustomKubernetesEntity
 {
+    public V1Alpha1OrganizationEntity() { }
+
     /// <summary>
     /// Spec is a list elements of type Organization
     /// </summary>
-    public List<Organization> Spec { get; set; } = new List<Organization>();
+    public List<OrganizationSpec> Spec { get; set; } = new List<OrganizationSpec>();
 }
