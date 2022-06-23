@@ -1,0 +1,32 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: organization.medulla.io
+spec:
+  group: medulla.io
+  names:
+    kind: Organization
+    listKind: OrganizationList
+    plural: organization
+    singular: organization
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: A CustomResourceDefinition which allows building with organization in Medulla.
+        properties:
+          spec:
+            description: Spec is a list elements of type Organization
+            items:
+              properties:
+                name:
+                  description: Name is an element of ModelSpec which is the name of the model/table
+                  type: string
+              required:
+              - name
+              type: object
+            type: array
+        type: object
+    served: true
+    storage: true

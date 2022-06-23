@@ -4,6 +4,14 @@ metadata:
   name: operator-role
 rules:
 - apiGroups:
+  - medulla.io
+  - coordination.k8s.io
+  resources:
+  - organization
+  - leases
+  verbs:
+  - '*'
+- apiGroups:
   - ''
   resources:
   - events
@@ -12,12 +20,6 @@ rules:
   - get
   - list
   - update
-- apiGroups:
-  - coordination.k8s.io
-  resources:
-  - leases
-  verbs:
-  - '*'
 - apiGroups:
   - apps
   resources:
