@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: installer
 description: This chart will deploy flux on the cluster as a prerequisite for medulla
