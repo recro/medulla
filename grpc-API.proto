@@ -55,6 +55,6 @@ message TermItem {
     string name = 2;
     string description = 3;
     itemStatus status = 4;
-    google.protobuf.Timetamp createdTime = 6;
+    google.protobuf.Timetamp createdTime = 5;
     
 }
