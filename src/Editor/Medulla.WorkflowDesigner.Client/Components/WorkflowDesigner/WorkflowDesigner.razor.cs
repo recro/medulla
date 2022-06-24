@@ -19,6 +19,7 @@ using System;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner;
 
@@ -28,6 +29,25 @@ namespace Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner;
 public partial class WorkflowDesigner : IDisposable
 {
 
+    /// <summary>
+    /// Events
+    /// </summary>
+    [Parameter]
+    public WorkflowEventsIn? WorkflowEventsIn { get; set; }
+
+    /// <summary>
+    /// Setworkflow active
+    /// </summary>
+    public event Action<Model, MouseEventArgs>? SetWorkflowActive;
+
+    /// <summary>
+    /// Created node
+    /// </summary>
+    public event Action<WorkflowNodeInstance>? CreatedNode;
+
+    /// <summary>
+    /// Js Runtime
+    /// </summary>
     [Inject]
     public IJSRuntime? JSRuntime { get; set; }
 
@@ -63,6 +83,10 @@ public partial class WorkflowDesigner : IDisposable
 
         Diagram.RegisterModelComponent<WorkflowNodeInstance, NodeComponent>();
 
+        WorkflowEventsIn!.AddWorkflow += NewWorkflowInstance;
+        WorkflowEventsIn?.SetWorkflowEventsOut?.Invoke(this);
+        Diagram.MouseClick += SetWorkflowActive;
+
         /*Diagram.Nodes.Add(new Table());
 
         Diagram.Links.Added += OnLinkAdded;
@@ -73,7 +97,9 @@ public partial class WorkflowDesigner : IDisposable
     private void NewWorkflowInstance()
     {
         Console.WriteLine("new workflow instnace");
-        Diagram.Nodes.Add(new WorkflowNodeInstance());
+        var node = new WorkflowNodeInstance();
+        Diagram.Nodes.Add(node);
+        CreatedNode?.Invoke(node);
     }
     #endregion
 

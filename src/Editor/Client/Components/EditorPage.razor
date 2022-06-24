@@ -5,6 +5,7 @@
 @using Medulla.Editor.Client.Library.Abstractions.Environment
 @using Medulla.Editor.Client.Abstractions.ObjectComposition
 @using Medulla.Editor.Client.Components.Viewer
+@using System.Runtime.CompilerServices
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -24,13 +25,15 @@
                         <EditorView EditorViewNode="EditorViewNode"/>
                         break;
                     case WhichOption.WorkflowDesigner:
-                        <WorkflowDesigner />
+                        <Window WindowTitle="Workflow Designer">
+                            <WorkflowDesigner WorkflowEventsIn="_workflowPropertiesManager.GetWorkflowDesignerEventsIn()" />
+                        </Window>
                         break;
                 }
             </div>
         </div>
         <div style="width: 40vw;max-height:100vh;overflow: scroll;">
-            <PropertiesMenu PropertyMenuStructure="PropertyMenuStructure" />
+            <PropertiesMenu PropertyMenuStructure="_workflowPropertiesManager._propertyMenuStructure" />
             <ColumnManager Editor="this"/>
             <DataSources Editor="this"/>
             <PagesWindow/>
@@ -45,6 +48,7 @@
 
 @code {
 
+    private WorkflowPropertiesManager _workflowPropertiesManager = new WorkflowPropertiesManager();
     private OptionalViews _optionalViews = new();
     public EditorViewNode? CurrentComponent { get; set; } = default!;
     public UniqueId? CurrentPropertiesForComponentUniqueId;
@@ -61,6 +65,11 @@
     public bool PreviewMode { get; set; } = false;
     public List<DataSource> dataSources { get; set; } = new();
     public PropertyMenuStructure PropertyMenuStructure { get; private set; } = new();
+
+    protected override void OnInitialized()
+    {
+        _workflowPropertiesManager._editorPage = this;
+    }
 
 
     public void SetPropertyMenuStructure(PropertyMenuStructure propertyMenuStructure)
