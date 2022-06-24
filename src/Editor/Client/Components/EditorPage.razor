@@ -4,12 +4,30 @@
 @using Medulla.Editor.Client.Components.TreeView
 @using Medulla.Editor.Client.Library.Abstractions.Environment
 @using Medulla.Editor.Client.Abstractions.ObjectComposition
+@using Medulla.Editor.Client.Components.Viewer
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
         <div class="width-full" style="max-width: 70vw">
-            <EditorView EditorViewNode="EditorViewNode" />
-            <WorkflowDesigner />
+            <ViewContainer>
+                <View EditorPage="this" OptionalViews="_optionalViews" OnClickSet="WhichOption.Editor">
+                    Editor
+                </View>
+                <View EditorPage="this" OptionalViews="_optionalViews" OnClickSet="WhichOption.WorkflowDesigner">
+                    Workflow Designer
+                </View>
+            </ViewContainer>
+            <div>
+                @switch (_optionalViews.WhichOption)
+                {
+                    case WhichOption.Editor:
+                        <EditorView EditorViewNode="EditorViewNode"/>
+                        break;
+                    case WhichOption.WorkflowDesigner:
+                        <WorkflowDesigner />
+                        break;
+                }
+            </div>
         </div>
         <div style="width: 40vw;max-height:100vh;overflow: scroll;">
             <PropertiesMenu PropertyMenuStructure="PropertyMenuStructure" />
@@ -27,6 +45,7 @@
 
 @code {
 
+    private OptionalViews _optionalViews = new();
     public EditorViewNode? CurrentComponent { get; set; } = default!;
     public UniqueId? CurrentPropertiesForComponentUniqueId;
     public UniqueId? PlaceInUniqueId { get; set; }
