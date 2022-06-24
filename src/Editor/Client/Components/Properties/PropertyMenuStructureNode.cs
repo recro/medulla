@@ -25,6 +25,16 @@ public enum InputType
     /// Renders an add multiple input field.
     /// </summary>
     AddMultiple,
+
+    /// <summary>
+    /// Renders a button
+    /// </summary>
+    Button,
+
+    /// <summary>
+    /// Workflow Data input
+    /// </summary>
+    WorkflowDataInput,
 }
 
 /// <summary>
@@ -36,6 +46,28 @@ public class AnyTypeValue
     /// Type which is for any property that needs list of strings
     /// </summary>
     public List<string>? ListOfStrings { get; set; }
+
+    /// <summary>
+    /// Number
+    /// </summary>
+    public int Number = 0;
+
+}
+
+/// <summary>
+/// Any type of input
+/// </summary>
+public class AnyTypeInput
+{
+    /// <summary>
+    /// ListOfStrings
+    /// </summary>
+    public List<string> ListOfStrings = new();
+
+    /// <summary>
+    /// Int
+    /// </summary>
+    public int Number = 0;
 
 }
 
@@ -71,6 +103,11 @@ public class PropertyMenuStructureNode
     /// OnValueChange is an action which is an event. When the value is changed then it will be run.
     /// </summary>
     public Action<AnyTypeValue>? OnValueChange { get; set; }
+
+    /// <summary>
+    /// Any type input
+    /// </summary>
+    public AnyTypeInput AnyTypeInput = new();
 
     /// <summary>
     /// Checks if node has sub nodes.

@@ -20,11 +20,6 @@ public class WorkflowEventsIn
     /// <summary>
     /// Add Workflow
     /// </summary>
-    public event Action? AddWorkflow;
-
-    /// <summary>
-    /// Active workflow
-    /// </summary>
-    public event Action<WorkflowNodeInstance>? SetActiveWorkflow;
+    public Action? AddWorkflow;
 
 }

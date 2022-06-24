@@ -104,6 +104,28 @@ public partial class WorkflowDesigner : IDisposable
     #endregion
 
 
+    public void UpdateNodeWithField(WorkflowNodeInstance? node, string? name, string? type)
+    {
+
+    }
+
+    public void SetNodes(List<WorkflowNodeInstance> nodes)
+    {
+        Console.WriteLine("Called SetNodes and have " + nodes.Count + " nodes");
+        Diagram.Nodes.Clear();
+        foreach (var node in nodes)
+        {
+            if (node.InputDataFields.Count > 0)
+            {
+                Console.WriteLine("SetNodes ------ name of field 0" + node.InputDataFields[0]?.Name);
+                Console.WriteLine("SetNodes ------ type of field 0" + node.InputDataFields[0]?.Type);
+            }
+
+            Diagram.Nodes.Add(node);
+        }
+    }
+
+
 
 
 }
