@@ -14,7 +14,7 @@ namespace Medulla.Kubernetes.Operator.Entities;
 
 
 /// <summary>
-/// V1Alpha1DataEntity is CRD for organization
+/// V1Alpha1OrganizationEntity is CRD for organization
 /// </summary>
 [Description("A CustomResourceDefinition which allows building with organization in Medulla.")]
 [KubernetesEntity(

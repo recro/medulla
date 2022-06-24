@@ -11,7 +11,7 @@ namespace Medulla.Kubernetes.Operator.Entities;
 
 
 /// <summary>
-/// V1Alpha1DataEntity is CRD for data
+/// V1Alpha1ApplicationEntity is CRD for application
 /// </summary>
 [Description("A CustomResourceDefinition which allows building with data in Medulla.")]
 [KubernetesEntity(

@@ -13,7 +13,7 @@ namespace Medulla.Kubernetes.Operator.Model.Application;
 public struct ApplicationSpec
 {
     /// <summary>
-    /// DatabaseSpec Constructor
+    /// ApplicationSpec Constructor
     /// </summary>
     public ApplicationSpec() { }
 
