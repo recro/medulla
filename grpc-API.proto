@@ -2,59 +2,49 @@ syntax = "proto3";
 
 option csharp_namespace = "grpcAPI.Protos";
 
+
 service QueryAPI {
 
-    rpc GetTermItem (GetTermItemRequest) returns (TermItem);
-    rpc GetAllTermItems (GetAllTermItemsRequest) returns (stream TermItems);
-
-    rpc AddTermItem (AddTermItemRequest) returns (TermItem);
-    rpc UpdateTermItem (UpdateTermItemRequest) returns (TermItem);
-    rpc DeleteTermItem (DeleteTermItemRequest) returns (DeleteTermItem);
-
-    rpc InsertTermItem (stream TermItem) returns (InsertTermItem);
-    rpc Test (google.protobuf.Empty) returns (google.protobuf.Empty);
+    rpc GetRecord (GetRecord) returns (Item);
+    rpc GetRecords (GetRecords) returns (stream Items);
+    rpc AddRecord (AddRecord) returns (Item);
+    rpc UpdateRecord (UpdateRecord) returns (Item);
+    rpc DeleteRecord (DeleteRecord) returns (DeleteItem);
 
 }
 
-
-message GetTermItemRequest {
+message GetRecord {
     int32 itemID = 1;
 }
 
-
-message GetAllTermItemRequest {
+message GetRecords {
    
 }
 
-message AddTermItemRequest {
-    TermItem item = 1;
+message AddRecord {
+    Item itemID = 1;
+    bool success = 2;
+    int32 insertCount = 3;   
 }
 
-
-message UpdateTermItemRequest {
-    TermItem itemID = 1;
+message UpdateRecord {
+    Item itemID = 1;
 }
 
-
-message DeleteTermItemRequest {
+message DeleteRecord {
     int32 item = 1;
 }
 
-message DeleteTermItemRequest {
+message DeleteRecord {
     bool success = 1;
 }
 
-message InsertTermItemRequest {
-    bool success = 1;
-    int32 insertCount = 2;    
-}
-
-
-message TermItem {
+message Item {
     int32 itemID = 1;
     string name = 2;
     string description = 3;
     itemStatus status = 4;
-    google.protobuf.Timetamp createdTime = 5;
+    google.protobuf.Timetamp createdTime = 5
     
 }
+
