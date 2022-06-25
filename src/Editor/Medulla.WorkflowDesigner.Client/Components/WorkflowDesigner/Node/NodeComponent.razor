@@ -2,16 +2,18 @@
     <div class="card-header">
         <h6 class="mb-0">@Node.Name</h6>
     </div>
-    @*<ul class="list-group list-group-flush">
-        @foreach (var column in Node.Columns.OrderByDescending(c => c.Primary))
+    <ul class="list-group list-group-flush">
+        @foreach (var column in Node?.InputDataFields?.OrderByDescending(c => c?.Id)!)
         {
             <TableColumn @key="column" Table="Node" Column="column">@column.Name (@column.Type)</TableColumn>
             <br />
         }
-    </ul>*@
+    </ul>
 
+    <Blazor.Diagrams.Components.Renderers.PortRenderer Port="@Node.GetPort(PortAlignment.Right)"></Blazor.Diagrams.Components.Renderers.PortRenderer>
+    <Blazor.Diagrams.Components.Renderers.PortRenderer Port="@Node.GetPort(PortAlignment.Left)"></Blazor.Diagrams.Components.Renderers.PortRenderer>
     @*@if (Node.HasPrimaryColumn)
     {
-        <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+
     }*@
 </div>

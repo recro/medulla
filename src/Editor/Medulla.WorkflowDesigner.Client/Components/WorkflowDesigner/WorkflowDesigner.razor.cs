@@ -123,6 +123,7 @@ public partial class WorkflowDesigner : IDisposable
 
             Diagram.Nodes.Add(node);
         }
+        StateHasChanged();
     }
 
 

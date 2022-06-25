@@ -2,6 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Core.Models.Base;
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
 using Medulla.Editor.Client.Components.Properties;
@@ -114,12 +115,13 @@ public class WorkflowPropertiesManager
         Guid myuuid = Guid.NewGuid();
         string myuuidAsString = myuuid.ToString();
         Console.WriteLine("The number of nodes are " + nodes?.Count);
-        nodes?.Add(new WorkflowNodeInstance()
-        {
-            Name = myuuidAsString
-        });
+        var workflowNode = new WorkflowNodeInstance() {Name = myuuidAsString};
+        workflowNode.AddPort(PortAlignment.Left);
+        workflowNode.AddPort(PortAlignment.Right);
+        nodes?.Add(workflowNode);
         if (nodes == null) throw new ArgumentNullException("nodes is null");
         _workflowDesigner?.SetNodes(nodes);
+        _editorPage?.StateChanged();
         //_workflowEventsIn?.AddWorkflow?.Invoke();
     }
 
@@ -131,6 +133,7 @@ public class WorkflowPropertiesManager
         {
             Nameable = new Nameable() {Title = "Field", Description = "Field"},
             InputType = InputType.WorkflowDataInput,
+            OnValueChange = WorkflowFieldUpdated,
             AnyTypeInput = new AnyTypeInput()
             {
                 ListOfStrings = new List<string>()
@@ -150,7 +153,9 @@ public class WorkflowPropertiesManager
         if (type == null) throw new ArgumentNullException("type is null");
         activeNode?.UpdateInputField(id, name, type);
         if (nodes == null) throw new ArgumentNullException("nodes is null");
+        _editorPage?.StateChanged();
         _workflowDesigner?.SetNodes(nodes);
+        _editorPage?.StateChanged();
         //_workflowDesigner.UpdateNodeWithField(activeNode);
     }
 
