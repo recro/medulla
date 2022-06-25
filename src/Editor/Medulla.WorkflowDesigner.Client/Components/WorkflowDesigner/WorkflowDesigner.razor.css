@@ -6,8 +6,10 @@
     flex: 1;
     height: calc(100vh - 56.59px);
     background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgb(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgb(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgb(231 203 203 / 2%) 1px, #0000000d 1px), linear-gradient(to bottom, rgb(143 130 130 / 48%) 1px, #ffffff30 1px);
 }
+
+
 
 .diagram-svc-layer {
     transform: translate(266px, 104px) scale(1);

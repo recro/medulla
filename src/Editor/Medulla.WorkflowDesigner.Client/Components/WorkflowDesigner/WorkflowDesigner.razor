@@ -20,5 +20,63 @@
     </CascadingValue>
 </div>
 
+@if (showContextMenu)
+{
+    <div class="context-menu" style="
+    background: #2a2929;
+    width: 16em;
+    height: 3em;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    /* padding: 1em; */
+"><p style="margin:1em;margin-bottom: 0.5em;">Context Menu</p>
+
+        <div style="
+    background: #3a3838;
+    padding: 1em;
+" class="context-menu-content">
+
+            <input placeholder="Search" type="text" style="
+    height: 20px;
+    margin-bottom: 13px;
+">
+            <ul style="
+    font-size: 10px;
+    list-style-type: disclosure-closed;
+    margin-left: 1.5em;
+">
+                <li>Split</li>
+            </ul>
+            <ul style="
+    font-size: 10px;
+    list-style-type: disclosure-closed;
+    margin-left: 1.5em;
+">
+                <li>Split</li>
+            </ul><ul style="
+    font-size: 10px;
+    list-style-type: disclosure-closed;
+    margin-left: 1.5em;
+">
+                <li>Split</li>
+            </ul><ul style="
+    font-size: 10px;
+    list-style-type: disclosure-closed;
+    margin-left: 1.5em;
+">
+                <li>Split</li>
+            </ul><ul style="
+    font-size: 10px;
+    list-style-type: disclosure-closed;
+    margin-left: 1.5em;
+">
+                <li>Split</li>
+            </ul></div>
+    </div>
+}
+
+
+
 
 

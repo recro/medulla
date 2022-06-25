@@ -51,6 +51,8 @@ public partial class WorkflowDesigner : IDisposable
     [Inject]
     public IJSRuntime? JSRuntime { get; set; }
 
+    private bool showContextMenu = false;
+
     /// <summary>
     /// Diagram of Workflow designer
     /// </summary>
@@ -83,14 +85,23 @@ public partial class WorkflowDesigner : IDisposable
 
         Diagram.RegisterModelComponent<WorkflowNodeInstance, NodeComponent>();
 
-        WorkflowEventsIn!.AddWorkflow += NewWorkflowInstance;
+        //WorkflowEventsIn!.AddWorkflow += NewWorkflowInstance;
         WorkflowEventsIn?.SetWorkflowEventsOut?.Invoke(this);
         Diagram.MouseClick += SetWorkflowActive;
+
+        Diagram.MouseClick += MouseClickDiagram;
 
         /*Diagram.Nodes.Add(new Table());
 
         Diagram.Links.Added += OnLinkAdded;
         Diagram.Links.Removed += Diagram_LinkRemoved;*/
+    }
+
+    private void MouseClickDiagram(Model arg1, MouseEventArgs arg2)
+    {
+        Console.WriteLine("Shwoing context menu");
+        showContextMenu = true;
+        StateHasChanged();
     }
 
     #region WorkwithWorkflows
@@ -125,8 +136,6 @@ public partial class WorkflowDesigner : IDisposable
         }
         StateHasChanged();
     }
-
-
 
 
 }
