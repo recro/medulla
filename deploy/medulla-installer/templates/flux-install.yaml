@@ -1,4 +1,3 @@
----
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -7276,7 +7275,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: fluxcd/image-automation-controller:v0.23.2
+        image: fluxcd/image-automation-controller:v0.23.4
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -7355,7 +7354,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: fluxcd/image-reflector-controller:v0.19.1
+        image: fluxcd/image-reflector-controller:v0.19.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -7605,7 +7604,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: fluxcd/source-controller:v0.25.5
+        image: fluxcd/source-controller:v0.25.8
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:

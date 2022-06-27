@@ -2,24 +2,25 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: istiod
-  namespace: istio-system
+  name: istio-ingress
+  namespace: istio-ingress
   annotations:
     "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-weight": "15"
 spec:
   interval: 5m
   chart:
     spec:
-      chart: istiod
-      version: '1.14.0'
+      chart: gateway
+      version: '1.14.1'
       sourceRef:
         kind: HelmRepository
-        name: istiod
-        namespace: istio-system
+        name: gateway
+        namespace: istio-ingress
       interval: 1m
   dependsOn:
-    - name: base
+    - name: istiod
+      namespace: istio-system
   upgrade:
     remediation:
       remediateLastFailure: true

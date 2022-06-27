@@ -6,7 +6,7 @@ metadata:
   namespace: default
   annotations:
     "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "5"
+    "helm.sh/hook-weight": "15"
 spec:
   interval: 10m0s
   url: https://charts.pingcap.org/

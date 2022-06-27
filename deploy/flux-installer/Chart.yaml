@@ -1,7 +1,0 @@
----
-apiVersion: v2
-name: installer
-description: This chart will deploy flux on the cluster as a prerequisite for medulla
-type: application
-version: 0.1.0
-appVersion: "0.1.0"
