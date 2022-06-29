@@ -25,5 +25,9 @@
         <Generator>MSBuild:Compile</Generator>
       </Protobuf>
     </ItemGroup>
+  
+    <ItemGroup>
+      <ProjectReference Include="..\MedullaObjects\MedullaObjects.csproj" />
+    </ItemGroup>
 
 </Project>

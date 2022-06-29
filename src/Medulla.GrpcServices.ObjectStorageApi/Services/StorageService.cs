@@ -12,7 +12,7 @@ public class StorageService : Storage.StorageBase
 {
     public override Task<SaveResponse> SaveObject(SaveRequest request, ServerCallContext context)
     {
-        return base.SaveObject(request, context);
+        return ObjectManager.SaveObject(request);
     }
 
     public override Task<GetObjectResponse> GetObject(GetObjectRequest request, ServerCallContext context)
