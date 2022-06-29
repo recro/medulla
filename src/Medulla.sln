@@ -50,9 +50,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GrpcServices", "GrpcService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.GrpcServices.ObjectStorageApi", "Medulla.GrpcServices.ObjectStorageApi\Medulla.GrpcServices.ObjectStorageApi.csproj", "{EC5DA89F-AC4A-4FC6-9C52-3FD76390472F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator", "Medulla\Kubernetes\Operator\Operator.csproj", "{52708F76-0B1E-48A3-8E6E-82D913E98E1B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator", "Medulla\Kubernetes\Operator\Operator.csproj", "{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestProjects", "TestProjects", "{0F55BBCF-6879-4C2C-AB06-B6997F52F782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSerializeAndUnserializeClass", "TestSerializeAndUnserializeClass\TestSerializeAndUnserializeClass.csproj", "{C854C785-99B9-47B7-B00E-A87A16FD9400}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,14 +114,14 @@ Global
 		{EC5DA89F-AC4A-4FC6-9C52-3FD76390472F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5DA89F-AC4A-4FC6-9C52-3FD76390472F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5DA89F-AC4A-4FC6-9C52-3FD76390472F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52708F76-0B1E-48A3-8E6E-82D913E98E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52708F76-0B1E-48A3-8E6E-82D913E98E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52708F76-0B1E-48A3-8E6E-82D913E98E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52708F76-0B1E-48A3-8E6E-82D913E98E1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C854C785-99B9-47B7-B00E-A87A16FD9400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C854C785-99B9-47B7-B00E-A87A16FD9400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C854C785-99B9-47B7-B00E-A87A16FD9400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C854C785-99B9-47B7-B00E-A87A16FD9400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +148,7 @@ Global
 		{B9AC6A43-65A7-41BF-8E33-224D0C3CE04E} = {DC209F3A-6AAD-40E1-9FFB-ABC93C32049F}
 		{DC4CAAFC-96DF-494B-8596-BFC96C6185B4} = {DC209F3A-6AAD-40E1-9FFB-ABC93C32049F}
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301} = {21326846-56A8-44A7-98A9-943B9662E57E}
+		{C854C785-99B9-47B7-B00E-A87A16FD9400} = {0F55BBCF-6879-4C2C-AB06-B6997F52F782}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E031215B-9116-4BC0-AA58-A00A8C67440D}
