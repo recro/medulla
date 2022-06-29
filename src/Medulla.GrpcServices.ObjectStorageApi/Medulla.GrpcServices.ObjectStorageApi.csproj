@@ -8,19 +8,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-        <Protobuf Include="Protos\storage.proto">
-          <GrpcServices>Server</GrpcServices>
-          <Access>Public</Access>
-          <ProtoCompile>True</ProtoCompile>
-          <CompileOutputs>True</CompileOutputs>
-          <OutputDir>obj\Debug\net6.0\</OutputDir>
-          <Generator>MSBuild:Compile</Generator>
-        </Protobuf>
+        <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
     </ItemGroup>
 
+    <Target Name="Protobuf_Compile_Before_AssemblyReferences" BeforeTargets="ResolveAssemblyReferences">
+      <CallTarget Targets="_Protobuf_Compile_BeforeCsCompile" />
+    </Target>
+  
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+      <Protobuf Include="Protos\storage.proto">
+        <GrpcServices>Server</GrpcServices>
+        <Access>Public</Access>
+        <ProtoCompile>True</ProtoCompile>
+        <CompileOutputs>True</CompileOutputs>
+        <OutputDir>obj\Debug/net6.0/</OutputDir>
+        <Generator>MSBuild:Compile</Generator>
+      </Protobuf>
     </ItemGroup>
 
 </Project>
