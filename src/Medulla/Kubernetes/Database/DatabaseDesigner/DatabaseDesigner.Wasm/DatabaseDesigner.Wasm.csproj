@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    <PackageReference Include="Z.Blazor.Diagrams" Version="2.0.0" />
+  </ItemGroup>
+
+  <Target Name="AddMyWatchItems" BeforeTargets="GenerateWatchList">
+    <ItemGroup>
+      <Watch Include="**\*.js;**\*.css;**\*.cs;**\*.razor;**\*.html" />
+    </ItemGroup>
+  </Target>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseDesigner.Core\DatabaseDesigner.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+  </PropertyGroup>
+</Project>

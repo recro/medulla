@@ -5,10 +5,84 @@
 using k8s.Models;
 using KubeOps.Operator.Entities;
 using KubeOps.Operator.Entities.Annotations;
-using Medulla.Kubernetes.Operator.Model.Database;
 
-namespace Medulla.Kubernetes.Operator.Entities;
+namespace DatabaseControllerKubeOps.Controller.Entities;
 
+
+/// <summary>
+/// DatabaseSpec is spec of CRD for database
+/// </summary>
+public struct DatabaseSpec
+{
+    [Required]
+    public string? Name { get; set; }
+    [Required]
+    public string? Host { get; set; }
+    [Required]
+    public string? Dialect { get; set; }
+    [Required]
+    public string? UsernameSecretName { get; set; }
+    [Required]
+    public string? PasswordSecretName { get; set; }
+    [Required]
+    public List<ModelSpec> Models { get; set; }
+}
+
+/// <summary>
+/// Spec of CRD for model within Database
+/// </summary>
+public struct ModelSpec
+{
+    [Required]
+    public string? Name { get; set; }
+    [Required]
+    public List<ColumnSpec>? Columns { get; set; }
+}
+
+
+
+/// <summary>
+/// Spec in Column for validation
+/// </summary>
+public struct ValidateSpec
+{
+    public string? Is { get; set; }
+    public string? Not { get; set; }
+    public bool? IsEmail { get; set; }
+    public bool? IsUrl { get; set; }
+    public bool? IsIp { get; set; }
+    public bool? IsIpV4 { get; set; }
+    public bool? IsIpV6 { get; set; }
+    public bool? IsAlpha { get; set; }
+    public bool? IsAlphaNumeric { get; set; }
+    public bool? IsNumeric { get; set; }
+    public bool? IsInt { get; set; }
+    public bool? IsFloat { get; set; }
+    public bool? IsDecimal { get; set; }
+    public bool? IsLowercase { get; set; }
+    public bool? IsUppercase { get; set; }
+    public bool? IsNull { get; set; }
+    public bool? NotNull { get; set; }
+    public bool? NotEmpty { get; set; }
+}
+
+/// <summary>
+/// Spec of Column within Model as array
+/// </summary>
+public struct ColumnSpec
+{
+    public string? ColumnName { get; set; }
+    public string? Type { get; set; }
+    public bool AllowNull { get; set; }
+    public string? DefaultValue { get; set; }
+    public bool AutoIncrement { get; set; }
+    public bool PrimaryKey { get; set; }
+    public string? Field { get; set; }
+    public string? Unique { get; set; }
+    public string? Comment { get; set; }
+    public ValidateSpec? Validate { get; set; }
+
+}
 
 /// <summary>
 /// V1Alpha1DataEntity is CRD for data
@@ -17,17 +91,9 @@ namespace Medulla.Kubernetes.Operator.Entities;
 [KubernetesEntity(
     ApiVersion = "v1alpha1",
     Kind = "Data",
-    Group = "medulla.io",
+    Group = "medulla.recro.com",
     PluralName = "data")]
 public class V1Alpha1DataEntity : CustomKubernetesEntity
 {
-    /// <summary>
-    /// Empty Constructor for V1Alpha1DataEntity
-    /// </summary>
-    public V1Alpha1DataEntity() { }
-
-    /// <summary>
-    /// Spec is a list elements of type DatabaseSpec
-    /// </summary>
-    public List<DatabaseSpec> Spec { get; set; } = new List<DatabaseSpec>();
+    public List<DatabaseSpec>? Spec { get; set; }
 }

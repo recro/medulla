@@ -455,3 +455,16 @@ $RECYCLE.BIN/
 
 # Medulla
 kubeconfig.yaml
+
+.vs
+node_modules
+*obj/*
+.idea/
+packages
+*/obj/
+*/bin/
+**/bin/
+**/obj/
+
+src/LocalDeploy
+

@@ -1,3 +1,5 @@
+# Before running Tye make sure you have a local Kubernetes cluster running
+
 name: Medulla
 namespace: medulla-system
 network: medulla
@@ -20,6 +22,9 @@ ingress:
       - service: identity
         path: /identity
         preservePath: true
+      - service: database-service
+        path: /database-service
+        preservePath: false
 
 services:
   - name: shell
@@ -42,3 +47,57 @@ services:
     bindings:
       - name: http
         protocol: http
+        
+  - name: database-service
+    project: Medulla/Kubernetes/Database/DatabaseService/DatabaseService.csproj
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+
+  - name: database-designer
+    dockerFile: Medulla/Kubernetes/Database/DatabaseDesigner/Dockerfile
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+        port: 5000
+        containerPort: 80
+        
+  - name: database-sync
+    dockerFile: Medulla/Kubernetes/Database/DatabaseSync/Dockerfile
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+        containerPort: 3000
+    env:
+    - name: DATABASE_USERNAME
+      value: root
+    - name: DATABASE_PASSWORD
+      value: test
+  
+  # Before you can run Tye with this Controller process
+  # You need to install the Kubectl config manifests for the Controller
+  # kubectl apply -k .\src\Medulla\Kubernetes\Operator\config\install\
+  - name: controller
+    project: Medulla/Kubernetes/Operator/Operator.csproj
+    replicas: 1
+    bindings:
+      - name: http
+        protocol: http
+
+  - name: mysql
+    image: mysql:latest
+    replicas: 1
+    bindings:
+      - port: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: test
+    - name: MYSQL_DATABASE
+      value: medulla
+    - name: MYSQL_USER
+      value: medulla_user
+    - name: MYSQL_PASSWORD
+      value: test

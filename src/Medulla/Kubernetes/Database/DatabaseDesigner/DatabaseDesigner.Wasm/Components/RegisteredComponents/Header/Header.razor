@@ -1,0 +1,26 @@
+@* Add html here instead of just img *@
+
+
+@if (InTray) {
+    <Entity @ref="Entity" SettingsTitle="Header Settings" AddToScene="@AddToScene" Diagram="@Diagram" Name="Header" InTray="@InTray" Image="https://cdn4.iconfinder.com/data/icons/documents-42/512/document_file_paper_page-31-512.png">
+        <SettingsForm>
+            <form>
+                <Input WhenChanged="@QuickLoadingOnEntity" Label="Name" />
+                <Comment>Changes are automatically saved.</Comment>
+            </form>
+        </SettingsForm>
+        <NodePorts>
+            @if (Node.HasPrimaryColumn)
+                {
+                    <PortRenderer Port="Node.GetPort(PortAlignment.Right)"></PortRenderer>
+                }
+        </NodePorts>
+        <Preview>
+            @Preview
+        </Preview>
+    </Entity>
+} else {
+    <img src="img/header.png" />
+}
+
+

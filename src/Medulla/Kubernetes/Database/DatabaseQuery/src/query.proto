@@ -1,0 +1,64 @@
+
+syntax = "proto3";
+
+
+service DbQuery {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc Update(UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+}
+
+message Column {
+  string Type = 1;
+  string Value = 2;
+  string Name = 3;
+}
+
+message Model {
+  string ModelName = 1;
+  repeated Column Column = 2;
+}
+
+message CreateRequest {
+  string Database = 1;
+  string User = 2;
+  string Password = 3;
+  string Host = 4;
+  string Dialect = 5;
+  Model Model = 6;
+}
+
+message CreateResponse {
+  bool isCreated = 1;
+}
+
+message GetRequest {
+  string Model = 1;
+  string Database = 2;
+}
+
+message GetResponse {
+  string Model = 1;
+  string Database = 2;
+}
+
+message UpdateRequest {
+  string Model = 1;
+  string Database = 2;
+}
+
+message UpdateResponse {
+  string Model = 1;
+  string Database = 2;
+}
+
+message DeleteRequest {
+  string Model = 1;
+  string Database = 2;
+}
+
+message DeleteResponse {
+  string Model = 1;
+  string Database = 2;
+}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-sync-service
+  namespace: {{ .Release.namespace }}
+spec:
+  selector:
+    app: database-sync
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

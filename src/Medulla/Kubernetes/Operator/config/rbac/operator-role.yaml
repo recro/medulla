@@ -4,6 +4,14 @@ metadata:
   name: operator-role
 rules:
 - apiGroups:
+  - medulla.recro.com
+  - coordination.k8s.io
+  resources:
+  - data
+  - leases
+  verbs:
+  - '*'
+- apiGroups:
   - ''
   resources:
   - events

@@ -7,6 +7,8 @@ kind: Data
 metadata:
   name: test
 spec:
+  name: test-1
+databases:
   - name: medulla
     host: mysql-service
     dialect: mysql

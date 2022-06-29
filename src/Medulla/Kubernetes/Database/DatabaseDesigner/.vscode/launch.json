@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+            "name": ".NET Core Launch (web)",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "http://localhost:5000/",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start chrome.exe http://localhost:5000/"
+                },
+            },
+            "type": "blazorwasm",
+            "request": "launch",
+            "url": "https://localhost:{PORT}",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/DatabaseDesigner.Wasm/bin/Debug/net6/DatabaseDesigner.Wasm.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/DatabaseDesigner.Wasm",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "stopAtEntry": false
+        }
+    ]
+}

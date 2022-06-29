@@ -1,0 +1,75 @@
+﻿<div class="db-table-container color-bg-default border color-border-accent p-4 color-bg-accent" style="min-width: 608px;">
+    @if (!EditTable)
+    {
+        <p class="title color-fg-default">@TableName <a @onclick="() => EditTable = true" href="#">Edit</a></p>    
+    }
+    else
+    {
+        <input class="form-control mb-1" type="text" placeholder="@TableName" @onchange="(e) => TableName = e.Value.ToString()" />
+        <a @onclick="() => EditTable = false" href="#">Stop Edit</a>
+    }
+    
+    
+    <ul class="prop-list list-style-none border color-border-accent p-1">
+        @foreach (var column in Columns)
+        {
+            <li class="item d-flex Box flex-items-center justify-content-center flex-content-between position-relative">
+                @if (EditTable)
+                {
+                    <input class="form-control mr-1" type="text" placeholder="@column.Name" @onchange="(e) => column.SetName(e.Value.ToString())" />
+                    <select class="dropdown-menu dropdown-menu-se mr-1" style="position:unset;display: inline;" @onchange="(e) => { column.Type.Description = e.Value.ToString(); }">
+                        <option class="dropdown-item">
+                            Select
+                        </option>
+                        <option class="dropdown-item">
+                            Email (User Defined Type)
+                        </option>
+                        <option class="dropdown-item">
+                            Password (User Defined Type)
+                        </option>
+                        <option class="dropdown-item">
+                            String
+                        </option>
+                        <option class="dropdown-item">
+                            Integer
+                        </option>
+                        <option class="dropdown-item">
+                            Bool
+                        </option>
+                        <option class="dropdown-item">
+                            Date
+                        </option>
+                        <option class="dropdown-item">
+                            Datetime
+                        </option>
+                        <option class="dropdown-item">
+                            Large Text
+                        </option>
+                        <option class="dropdown-item">
+                            Blob
+                        </option>
+                    </select>
+                    <button class="btn btn-danger" @onclick="() => DeleteColumn(column)">Delete</button>
+                }
+                else
+                {
+                    @column.Name
+                    <span class="ml-1 type color-fg-accent">(@column.Type.Description)</span>
+                    @if (EditTable)
+                    {
+                        <button style="right: 0;
+                                       position: absolute!important;"  @onclick="() => { 
+                                                                                                                                         StopEditingAll();  
+                                                                                                                                         column.Editing(true);
+}" class="btn mr-1 btn-success position-fixed" type="button">Edit</button>    
+                    }
+                    
+                }
+            </li>    
+        }
+    </ul>
+    @if (EditTable)
+    {
+        <button @onclick="AddColumn" class="btn mr-2 mt-1 btn-sm" type="button">Add Column</button>
+    }
+</div>

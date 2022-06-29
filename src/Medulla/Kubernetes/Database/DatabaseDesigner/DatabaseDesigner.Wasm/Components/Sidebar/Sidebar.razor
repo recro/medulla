@@ -1,0 +1,113 @@
+﻿@using DatabaseDesigner.Wasm.Components.Database;
+@using DatabaseDesigner.Wasm.Components.Database.TableNode;
+@using DatabaseDesigner.Wasm.Components.Database.TableNode.TableColumnNode;
+@using DatabaseDesigner.Wasm.Components.RegisteredComponents.PageWrapper;
+@using DatabaseDesigner.Wasm.Components.RegisteredComponents.Footer;
+
+@{
+
+    void AddDatabase(Diagram diagram) {
+        Diagram.Nodes.Add(new Database());
+    }
+
+    void AddTable(Diagram diagram) {
+        Diagram.Nodes.Add(new Table());
+    }
+
+    void AddColumn(Diagram diagram) {
+        Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.TableColumn());
+    }
+
+    void AddCron(Diagram diagram) {
+        Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.Cron());
+    }
+
+    void AddPageWrapper(Diagram diagram) {
+        Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.PageWrapper());
+    }
+
+    void AddFooter(Diagram diagram) {
+        Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.Footer());
+    }
+
+    void AddHeader(Diagram diagram) {
+        Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.Header());
+    }
+
+    void AddDataTable(Diagram diagram) {
+        Diagram.Nodes.Add(new DatabaseDesigner.Core.Models.RegisteredComponents.DataTable());
+    }
+
+
+}
+
+
+<div style="display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: space-around;" class="Box sidebar">
+    <div>
+        <DatabaseNode Diagram="Diagram" InTray="@true" AddToScene="@AddDatabase" >
+            <Preview>
+                <h4 class="mb-2">Database Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </DatabaseNode>
+    </div>
+    <div>
+        <TableNode Diagram="Diagram" InTray="@true" AddToScene="@AddTable"  >
+            <Preview>
+                <h4 class="mb-2">Table Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </TableNode>
+    </div>
+    <div>
+        <TableColumnNode Diagram="Diagram" InTray="@true" AddToScene="@AddColumn"  >
+            <Preview>
+                <h4 class="mb-2">Column Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </TableColumnNode>
+    </div>
+    <div>
+        <DatabaseDesigner.Wasm.Components.Cron.Cron Diagram="Diagram" InTray="@true" AddToScene="@AddCron"  >
+            <Preview>
+                <h4 class="mb-2">Column Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </DatabaseDesigner.Wasm.Components.Cron.Cron>
+    </div>
+    <div>
+        <PageWrapper Diagram="Diagram" InTray="@true" AddToScene="@AddPageWrapper"  >
+            <Preview>
+                <h4 class="mb-2">Column Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </PageWrapper>
+    </div>
+    <div>
+        <Footer Diagram="Diagram" InTray="@true" AddToScene="@AddFooter"  >
+            <Preview>
+                <h4 class="mb-2">Column Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </Footer>
+    </div>
+    <div>
+        <DatabaseDesigner.Wasm.Components.RegisteredComponents.Header.Header Diagram="Diagram" InTray="@true" AddToScene="@AddHeader"  >
+            <Preview>
+                <h4 class="mb-2">Column Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </DatabaseDesigner.Wasm.Components.RegisteredComponents.Header.Header>
+    </div>
+    <div>
+        <DatabaseDesigner.Wasm.Components.DataTable.DataTable Diagram="Diagram" InTray="@true" AddToScene="@AddDataTable"  >
+            <Preview>
+                <h4 class="mb-2">Column Preview</h4>
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/701389688?h=ee48a54b23&amp;badge=0&amp;&autoplay=1&loop=1&amp&background=1&muted=1;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen autoplay style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2022-04-20 13-29-46.mkv"></iframe></div>
+            </Preview>
+        </DatabaseDesigner.Wasm.Components.DataTable.DataTable>
+    </div>
+</div>
