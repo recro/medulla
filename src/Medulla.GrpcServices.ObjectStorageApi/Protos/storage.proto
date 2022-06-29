@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "Medulla.GrpcServices.ObjectStorageApi";
+
+package storage;
+
+service Storage {
+  rpc SaveObject (SaveRequest) returns (SaveResponse);
+  rpc GetObject (GetObjectRequest) returns (GetObjectResponse);
+}
+
+message SaveRequest {
+  string serializedObject = 1;
+  string type = 2;
+}
+
+message SaveResponse {
+  string message = 1;
+}
+
+message GetObjectRequest {
+  string labelsEquals = 1;
+  string type = 2;
+}
+
+message GetObjectResponse {
+  string serializedObject = 1;
+}
