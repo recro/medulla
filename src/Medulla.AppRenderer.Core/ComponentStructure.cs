@@ -20,22 +20,13 @@ public class ComponentStructure
     /// <summary>
     /// Each component has properties which are rendered to the properties menu for low code.
     /// </summary>
-    public Dictionary<string, object>? Properties { get; set; }
+    public Dictionary<string, string>? Properties { get; set; }
 
     /// <summary>
     /// The name of the component which will appear in Component menu.
     /// </summary>
     public string? Name { get; set; }
 
-    /// <summary>
-    /// Reference to Component to be used in DynamicComponent as Type
-    /// </summary>
-    public Type ComponentTypeReference { get; set; } = typeof(Component1);
-
-
-    public DynamicComponent GetDynamicComponent()
-    {
-        
-    }
+    public ComponentType ComponentType = ComponentType.Component1;
 
 }

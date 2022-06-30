@@ -1,1 +1,18 @@
-﻿@Render()
+﻿@using Medulla.AppRenderer.Core
+@using Medulla.AppRenderer.Components
+
+@switch (ComponentStructure?.ComponentType)
+{
+    case ComponentType.Component1:
+        <Component1 Properties="@ComponentStructure.Properties">
+            @if (ComponentStructure.Children != null)
+            {
+                @foreach (var child in ComponentStructure?.Children!)
+                {
+                    <ComponentRenderer ComponentStructure="@child" />
+                }
+            }
+        </Component1>
+        break;
+
+}
