@@ -33,4 +33,9 @@ public class ComponentStructure
     public Type ComponentTypeReference { get; set; } = typeof(Component1);
 
 
+    public DynamicComponent GetDynamicComponent()
+    {
+        
+    }
+
 }

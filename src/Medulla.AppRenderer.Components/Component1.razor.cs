@@ -2,6 +2,8 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Components;
+
 namespace Medulla.AppRenderer.Components;
 
 /// <summary>
@@ -9,5 +11,8 @@ namespace Medulla.AppRenderer.Components;
 /// </summary>
 public partial class Component1
 {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 
 }

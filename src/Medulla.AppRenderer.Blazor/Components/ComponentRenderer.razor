@@ -1,12 +1,1 @@
-﻿@using Medulla.AppRenderer.Core.Abstractions
-
-
-<DynamicComponent Type="@ComponentStructure?.ComponentTypeReference">
-    @if (@ComponentStructure?.Children != null)
-    {
-        foreach (var child in @ComponentStructure.Children)
-        {
-            <ComponentRenderer ComponentStructure="@child" />
-        }
-    }
-</DynamicComponent>
+﻿@Render()

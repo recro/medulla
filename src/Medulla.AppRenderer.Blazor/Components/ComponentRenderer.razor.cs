@@ -21,5 +21,24 @@ public partial class ComponentRenderer
     [Parameter]
     public ComponentStructure? ComponentStructure { get; set; }
 
+    private DynamicComponent Render()
+    {
+        var dynamicComponent = new DynamicComponent() {Type = typeof(Component1)};
+        if (ComponentStructure != null)
+        {
+            dynamicComponent.Parameters = new Dictionary<string, object>();
+            dynamicComponent.Parameters["ChildContent"] = ComponentStructure.GetDynamicComponent();
+        }
+
+
+        /*var dictionary = new Dictionary<string, object>();
+        dictionary["ChildContent"] = new ComponentRenderer()
+        {
+            ComponentStructure =
+        }
+        return dictionary;*/
+        return dynamicComponent;
+    }
+
 
 }
