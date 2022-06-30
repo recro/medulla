@@ -17,6 +17,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Medulla.AppRenderer.Components\Medulla.AppRenderer.Components.csproj" />
+      <ProjectReference Include="..\Medulla.AppRenderer.Core\Medulla.AppRenderer.Core.csproj" />
     </ItemGroup>
 
 </Project>

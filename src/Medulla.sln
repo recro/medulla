@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.GrpcServices.Object
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator", "Medulla\Kubernetes\Operator\Operator.csproj", "{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Shell.WebApp", "Shell\Medulla.Shell.WebApp\Medulla.Shell.WebApp.csproj", "{F95D2949-5961-4EAD-92C2-510F84D09C7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,10 @@ Global
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95D2949-5961-4EAD-92C2-510F84D09C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95D2949-5961-4EAD-92C2-510F84D09C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95D2949-5961-4EAD-92C2-510F84D09C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95D2949-5961-4EAD-92C2-510F84D09C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{B9AC6A43-65A7-41BF-8E33-224D0C3CE04E} = {DC209F3A-6AAD-40E1-9FFB-ABC93C32049F}
 		{DC4CAAFC-96DF-494B-8596-BFC96C6185B4} = {DC209F3A-6AAD-40E1-9FFB-ABC93C32049F}
 		{D8E6E8D3-80B0-40A9-BBC4-4A64A2501301} = {21326846-56A8-44A7-98A9-943B9662E57E}
+		{F95D2949-5961-4EAD-92C2-510F84D09C7D} = {02D01352-BCEB-4764-A39E-965D75FCCE1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E031215B-9116-4BC0-AA58-A00A8C67440D}

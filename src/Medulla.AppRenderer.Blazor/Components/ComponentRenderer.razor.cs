@@ -5,11 +5,12 @@
 using Microsoft.AspNetCore.Components;
 using Medulla.AppRenderer;
 using Medulla.AppRenderer.Components;
+using Medulla.AppRenderer.Core.Abstractions;
 
 namespace Medulla.AppRenderer.Blazor.Components;
 
 /// <summary>
-/// Renders Components from a base IComponent.
+/// Renders Components from a base IComponentStructure.
 /// </summary>
 public partial class ComponentRenderer
 {
@@ -18,7 +19,7 @@ public partial class ComponentRenderer
     /// Base component which will render all components.
     /// </summary>
     [Parameter]
-    public Core.Abstractions.IComponent? BaseComponent { get; set; }
+    public ComponentStructure? ComponentStructure { get; set; }
 
 
 }

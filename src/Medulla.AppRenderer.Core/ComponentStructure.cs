@@ -2,17 +2,20 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using Medulla.AppRenderer.Components;
+using Microsoft.AspNetCore.Components;
+
 namespace Medulla.AppRenderer.Core.Abstractions;
 
 /// <summary>
 /// A Component is any visible Blazor component that has properties, children,
 /// </summary>
-public interface IComponent
+public class ComponentStructure
 {
     /// <summary>
-    /// Children of IComponent are IComponents which are rendered into a dom tree.
+    /// Children of IComponentStructure are IComponents which are rendered into a dom tree.
     /// </summary>
-    public List<IComponent>? Children { get; set; }
+    public List<ComponentStructure>? Children { get; set; }
 
     /// <summary>
     /// Each component has properties which are rendered to the properties menu for low code.
@@ -27,5 +30,7 @@ public interface IComponent
     /// <summary>
     /// Reference to Component to be used in DynamicComponent as Type
     /// </summary>
-    public Type? ComponentTypeReference { get; set; }
+    public Type ComponentTypeReference { get; set; } = typeof(Component1);
+
+
 }

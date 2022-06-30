@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Abstractions" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Medulla.AppRenderer.Components\Medulla.AppRenderer.Components.csproj" />
+    </ItemGroup>
+
 </Project>
