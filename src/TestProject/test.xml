@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ComponentStructure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <ComponentType>Component1</ComponentType>
+    <Children>
+        <ComponentStructure>
+            <ComponentType>Component1</ComponentType>
+            <Children>
+                <ComponentStructure>
+                    <ComponentType>Component1</ComponentType>
+                </ComponentStructure>
+            </Children>
+        </ComponentStructure>
+    </Children>
+</ComponentStructure>

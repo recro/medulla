@@ -40,12 +40,11 @@ public class ComponentStructure
 
     public static ComponentStructure CreateFromXml(string xml)
     {
-        StreamReader streamReader = new StreamReader(xml);
         XmlSerializer serializer = new XmlSerializer(typeof(ComponentStructure));
         ComponentStructure structure;
-        using (streamReader)
+        using (var reader = new StringReader(xml))
         {
-            structure = (ComponentStructure)serializer.Deserialize(streamReader)!;
+            structure = (ComponentStructure)serializer.Deserialize(reader)!;
         }
         return structure;
     }
