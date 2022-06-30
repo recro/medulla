@@ -38,4 +38,16 @@ public class ComponentStructure
         return xml;
     }
 
+    public static ComponentStructure CreateFromXml(string xml)
+    {
+        StreamReader streamReader = new StreamReader(xml);
+        XmlSerializer serializer = new XmlSerializer(typeof(ComponentStructure));
+        ComponentStructure structure;
+        using (streamReader)
+        {
+            structure = (ComponentStructure)serializer.Deserialize(streamReader)!;
+        }
+        return structure;
+    }
+
 }
