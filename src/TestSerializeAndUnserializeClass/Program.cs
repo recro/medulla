@@ -1,3 +1,23 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Hello, World!");
+[Serializable]
+class Test
+{
+    public string TestField = "Test";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
