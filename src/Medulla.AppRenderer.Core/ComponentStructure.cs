@@ -2,8 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using Medulla.AppRenderer.Components;
-using Microsoft.AspNetCore.Components;
+using System.Xml.Serialization;
 
 namespace Medulla.AppRenderer.Core.Abstractions;
 
@@ -20,7 +19,7 @@ public class ComponentStructure
     /// <summary>
     /// Each component has properties which are rendered to the properties menu for low code.
     /// </summary>
-    public Dictionary<string, string>? Properties { get; set; }
+    public List<string>? Properties { get; set; }
 
     /// <summary>
     /// The name of the component which will appear in Component menu.
@@ -28,5 +27,15 @@ public class ComponentStructure
     public string? Name { get; set; }
 
     public ComponentType ComponentType = ComponentType.Component1;
+
+    public string SerializeToXml()
+    {
+        StringWriter stringWriter = new StringWriter();
+        XmlSerializer serializer = new XmlSerializer(GetType());
+        serializer.Serialize(stringWriter, this);
+        string xml = stringWriter.ToString();
+        Console.WriteLine(xml);
+        return xml;
+    }
 
 }

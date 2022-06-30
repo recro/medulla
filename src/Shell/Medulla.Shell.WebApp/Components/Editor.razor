@@ -1,6 +1,6 @@
 ﻿@using Medulla.AppRenderer.Blazor.Components
 
-<div class="sidebar">
+<div class="sidebar" @onclick="ConsoleLog">
     <NavMenu/>
 </div>
 
@@ -10,4 +10,8 @@
 
 @code {
 
+    void ConsoleLog()
+    {
+        ComponentStructure.SerializeToXml();
+    }
 }

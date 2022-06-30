@@ -16,6 +16,6 @@ public partial class Component1
     public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
-    public Dictionary<string, object> Properties { get; set; } = new();
+    public List<string> Properties { get; set; } = new();
 
 }
