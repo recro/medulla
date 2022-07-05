@@ -13,12 +13,12 @@ internal abstract class ServiceUris
     {
         if (key == null)
         {
-            throw new ArgumentNullException(nameof(key));
+            Console.WriteLine("key was null");
         }
 
-        var value = Environment.GetEnvironmentVariable(key);
+        var value = Environment.GetEnvironmentVariable(key!);
         if (value.IsNullOrEmpty())
-            throw new Exception($"{key} is null or empty");
+            Console.WriteLine($"{key} is null or empty");
         return value!;
     }
 
@@ -29,11 +29,11 @@ internal abstract class ServiceUris
 
     public static string GetDatabaseSyncUri()
     {
-        return $"http://{GetEnvNotEmpty("SERVICE__DATABASE-SYNC__HTTP__HOST")}:{GetEnvNotEmpty("SERVICE__DATABASE-SYNC__HTTP__PORT")}";        
+        return $"http://{GetEnvNotEmpty("SERVICE__DATABASE-SYNC__HTTP__HOST")}:{GetEnvNotEmpty("SERVICE__DATABASE-SYNC__HTTP__PORT")}";
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }

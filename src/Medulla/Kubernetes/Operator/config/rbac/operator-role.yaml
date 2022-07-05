@@ -21,12 +21,6 @@ rules:
   - list
   - update
 - apiGroups:
-  - coordination.k8s.io
-  resources:
-  - leases
-  verbs:
-  - '*'
-- apiGroups:
   - apps
   resources:
   - deployments
