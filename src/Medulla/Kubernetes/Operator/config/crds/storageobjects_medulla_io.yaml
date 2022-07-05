@@ -15,7 +15,16 @@ spec:
     schema:
       openAPIV3Schema:
         description: A CustomResourceDefinition which allows building with data in Medulla.
-        properties: {}
+        properties:
+          uuid:
+            description: Unique Id
+            type: string
+          storageData:
+            description: StorageData
+            type: string
+          type:
+            description: Type of data
+            type: string
         type: object
     served: true
     storage: true

@@ -22,16 +22,16 @@ public class V1Alpha1GenericStorageObject : CustomKubernetesEntity
     /// <summary>
     /// Unique Id
     /// </summary>
-    public string Uuid = "";
+    public string Uuid { get; set; } = "";
 
     /// <summary>
     /// StorageData
     /// </summary>
-    public string StorageData = "";
+    public string StorageData { get; set; } = "";
 
     /// <summary>
     /// Type of data
     /// </summary>
-    public string Type = "";
+    public string Type { get; set; } = "";
 
 }
