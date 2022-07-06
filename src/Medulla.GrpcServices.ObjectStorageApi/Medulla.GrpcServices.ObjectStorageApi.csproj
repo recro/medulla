@@ -9,12 +9,14 @@
 
     <ItemGroup>
         <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+        <PackageReference Include="KubernetesClient" Version="8.0.12" />
+        <PackageReference Include="JsonPatch.Net" Version="1.1.2" />
     </ItemGroup>
 
     <Target Name="Protobuf_Compile_Before_AssemblyReferences" BeforeTargets="ResolveAssemblyReferences">
       <CallTarget Targets="_Protobuf_Compile_BeforeCsCompile" />
     </Target>
-  
+
     <ItemGroup>
       <Protobuf Include="Protos\storage.proto">
         <GrpcServices>Server</GrpcServices>
@@ -25,7 +27,7 @@
         <Generator>MSBuild:Compile</Generator>
       </Protobuf>
     </ItemGroup>
-  
+
     <ItemGroup>
       <ProjectReference Include="..\MedullaObjects\MedullaObjects.csproj" />
     </ItemGroup>

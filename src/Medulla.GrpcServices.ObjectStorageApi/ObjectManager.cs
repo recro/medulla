@@ -10,15 +10,7 @@ public class ObjectManager
 {
     public static async Task<SaveResponse> SaveObject(SaveRequest request)
     {
-        switch (request.Type)
-        {
-            case "MedullaAction":
 
-                break;
-            case "MedullaPage":
-
-                break;
-        }
         return new SaveResponse();
     }
 
