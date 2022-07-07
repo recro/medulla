@@ -12,9 +12,10 @@ message ObjectId {
 }
 
 message Object {
-  string uuid = 1;
-  string storageData = 2;
-  string type = 3;
+  string name = 1;
+  string uuid = 2;
+  string storageData = 3;
+  string type = 4;
 }
 
 message ObjectList {

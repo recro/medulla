@@ -15,11 +15,11 @@ export const createStorageObject = async (object) => {
             apiVersion: "medulla.io/v1alpha1",
             kind: "GenericStorageObject",
             metadata: {
-                name: "generic-storage-object"
+                name: object.name
             },
-            uuid: "test",
-            storageData: "Test",
-            type: "Test"
+            uuid: object.uuid,
+            storageData: object.storageData,
+            type: object.type
         }).then((e) => {
     }).catch(errorWithKubernetes)
 
