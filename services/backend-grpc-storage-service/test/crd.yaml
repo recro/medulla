@@ -1,0 +1,7 @@
+apiVersion: medulla.io/v1alpha1
+kind: GenericStorageObject
+metadata:
+  name: generic-storage-object
+uuid: test
+storageData: Test
+type: Test

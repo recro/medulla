@@ -5,6 +5,8 @@ service Storage {
 
 message Object {
   required string uuid = 1;
+  required string data = 2;
+  required string type = 3;
 }
 
 

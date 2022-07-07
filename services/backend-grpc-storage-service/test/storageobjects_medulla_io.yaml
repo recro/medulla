@@ -1,0 +1,30 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: storageobjects.medulla.io
+spec:
+  group: medulla.io
+  names:
+    kind: GenericStorageObject
+    listKind: GenericStorageObjectList
+    plural: storageobjects
+    singular: genericstorageobject
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: A CustomResourceDefinition which allows building with data in Medulla.
+        properties:
+          uuid:
+            description: Unique Id
+            type: string
+          storageData:
+            description: StorageData
+            type: string
+          type:
+            description: Type of data
+            type: string
+        type: object
+    served: true
+    storage: true
