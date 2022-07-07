@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.6.7",
-    "@grpc/proto-loader": "^0.6.13"
+    "@grpc/proto-loader": "^0.6.13",
+    "@kubernetes/client-node": "^0.17.0"
   }
 }

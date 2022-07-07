@@ -1,7 +1,7 @@
-
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader')
 import { saveObject } from "./grpc-storage-service/save-object";
+
 
 function getServer(routeguide) {
     const server = new grpc.Server();
