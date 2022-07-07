@@ -1,19 +1,18 @@
 
-import grpc from '@grpc/grpc-js';
-import protoLoader from '@grpc/proto-loader';
+const grpc = require('@grpc/grpc-js');
+const protoLoader = require('@grpc/proto-loader')
 import { saveObject } from "./grpc-storage-service/save-object";
 
 function getServer(routeguide) {
     const server = new grpc.Server();
-    server.addService(routeguide.RouteGuide.service, {
+    server.addService(routeguide.Storage.service, {
         saveObject
     });
     return server;
 }
 
 function createPackageDefinition() {
-    const PROTO_PATH = __dirname + './storage.proto';
-
+    const PROTO_PATH = __dirname + '/storage.proto';
     const packageDefinition = protoLoader.loadSync(
         PROTO_PATH,
         {keepCase: true,
@@ -22,9 +21,7 @@ function createPackageDefinition() {
             defaults: true,
             oneofs: true
         });
-    const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
-    const routeguide = protoDescriptor.routeguide;
-    return routeguide;
+    return grpc.loadPackageDefinition(packageDefinition);
 }
 
 
