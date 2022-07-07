@@ -11,5 +11,5 @@ export const saveObject = async ({ request }, callback) => {
 export const listObjects = async ({ request }, callback) => {
     console.log(request);
     const list = await getListOfStorageObjects(request)
-    callback(null, { list })
+    callback(null, { objects: [ ...list ]} )
 }

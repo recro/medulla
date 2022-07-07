@@ -2,6 +2,12 @@
 import {CONFIG} from "../config";
 import {loadLocal} from "./load-cluster";
 
+
+function errorWithKubernetes(err) {
+    console.log("ERROR CREATING KUBERNETES OBJECT\n\n\n".repeat(10))
+    console.log(err)
+}
+
 export const createStorageObject = async (object) => {
     const apiObjects = await loadLocal();
     apiObjects.customObjectsApi.createNamespacedCustomObject('medulla.io', 'v1alpha1',
@@ -15,15 +21,20 @@ export const createStorageObject = async (object) => {
             storageData: "Test",
             type: "Test"
         }).then((e) => {
-    }).catch((err) => {
-        console.log("ERROR CREATING KUBERNETES OBJECT\n\n\n".repeat(10))
-        console.log(err)
-    })
+    }).catch(errorWithKubernetes)
 
 };
 
 export const getListOfStorageObjects = async (object) => {
+    const apiObjects = await loadLocal();
     return new Promise((resolve) => {
-        resolve(true)
+        apiObjects.customObjectsApi.listNamespacedCustomObject('medulla.io', 'v1alpha1',
+            CONFIG.namespaceForCustomObjects, 'storageobjects')
+            .then((objects) => {
+                console.log('-'.repeat(20))
+                console.log(objects.body.items)
+                resolve(objects.body.items);
+        })
+            .catch(errorWithKubernetes)
     })
 };

@@ -13,7 +13,7 @@ message ObjectId {
 
 message Object {
   string uuid = 1;
-  string data = 2;
+  string storageData = 2;
   string type = 3;
 }
 
