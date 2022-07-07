@@ -1,18 +1,34 @@
 
+syntax = "proto3";
+
 service Storage {
   rpc saveObject(Object) returns (Response) {}
+  rpc listObjects(SearchObject) returns (ObjectList) {}
+  rpc deleteObject(ObjectId) returns (Response) {}
+}
+
+message ObjectId {
+  string uuid = 1;
 }
 
 message Object {
-  required string uuid = 1;
-  required string data = 2;
-  required string type = 3;
+  string uuid = 1;
+  string data = 2;
+  string type = 3;
 }
 
+message ObjectList {
+  repeated Object objects = 1;
+}
 
 message Response {
-  required string message = 1;
+  string message = 1;
 }
+
+message SearchObject {
+  string type = 1;
+}
+
 
 
 

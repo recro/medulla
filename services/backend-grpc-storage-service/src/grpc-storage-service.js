@@ -1,12 +1,12 @@
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader')
-import { saveObject } from "./grpc-storage-service/save-object";
+import { storageObject } from "./grpc-storage-service/save-object";
 
 
 function getServer(routeguide) {
     const server = new grpc.Server();
     server.addService(routeguide.Storage.service, {
-        saveObject
+        saveObject: storageObject
     });
     return server;
 }

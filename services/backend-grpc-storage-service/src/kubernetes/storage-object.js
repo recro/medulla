@@ -2,7 +2,7 @@
 import {CONFIG} from "../config";
 import {loadLocal} from "./load-cluster";
 
-export const createStorageObject = async (object) => {
+export const storageObject = async (object) => {
     const apiObjects = await loadLocal();
     apiObjects.customObjectsApi.createNamespacedCustomObject('medulla.io', 'v1alpha1',
         CONFIG.namespaceForCustomObjects, 'storageobjects', {
