@@ -24,10 +24,11 @@ function createPackageDefinition() {
     return grpc.loadPackageDefinition(packageDefinition);
 }
 
+export const SERVER_ADDRESS = '0.0.0.0:50051';
 
 export const run = async () => {
     const server = getServer(createPackageDefinition())
-    server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
+    server.bindAsync(SERVER_ADDRESS, grpc.ServerCredentials.createInsecure(), () => {
         server.start();
     });
 };
