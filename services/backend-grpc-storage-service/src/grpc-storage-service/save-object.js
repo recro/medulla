@@ -1,6 +1,6 @@
 
 
-export const saveObject = (call) => {
-    console.log(call);
-    call.end();
+export const saveObject = (request, callback) => {
+    console.log(request);
+    callback(null, { message: "test"})
 };
