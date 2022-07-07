@@ -1,12 +1,15 @@
-import {loadLocal} from "../kubernetes/load-cluster";
-import {storageObject} from "../kubernetes/storage-object";
+import {createStorageObject, getListOfStorageObjects} from "../kubernetes/storage-object";
 
 
-
-
-export const storageObject = async ({ request }, callback) => {
+export const saveObject = async ({ request }, callback) => {
     console.log(request);
-    await storageObject(request)
+    await createStorageObject(request)
 
-    callback(null, { message: "test"})
+    callback(null, { message: "created storage object"})
 };
+
+export const listObjects = async ({ request }, callback) => {
+    console.log(request);
+    const list = await getListOfStorageObjects(request)
+    callback(null, { list })
+}
