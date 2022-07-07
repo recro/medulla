@@ -1,0 +1,17 @@
+
+service Storage {
+  rpc saveObject(Object) returns (Response) {}
+}
+
+message Object {
+  required string uuid = 1;
+}
+
+
+message Response {
+  required string message = 1;
+}
+
+
+
+
