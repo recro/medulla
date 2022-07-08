@@ -1,7 +1,7 @@
 namespace DatabaseService.Utils;
 public class RandomPassword
 {
-    
+
     public static string RandomString(int length)
     {
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -15,7 +15,10 @@ public class RandomPassword
 
         var randomString = stringChars.ToString();
 
+        if (randomString == null)
+            throw new Exception("random string is null");
+
         return randomString;
     }
-    
+
 }
