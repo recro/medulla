@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
+    <ProjectReference Include="..\Medulla.WorkflowDesigner.Client\Medulla.WorkflowDesigner.Client.csproj" />
   </ItemGroup>
 
 </Project>

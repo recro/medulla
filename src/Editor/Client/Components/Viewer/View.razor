@@ -1,0 +1,29 @@
+﻿@{
+    bool isActive = OptionalViews!.WhichOption == OnClickSet;
+    string active = isActive ? "color-fg-accent" : "";
+
+
+}
+
+<div @onclick="Set" class="Box switcher-option pointer-cursor @active">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public OptionalViews? OptionalViews { get; set; }
+
+    [Parameter] public WhichOption OnClickSet { get; set; }
+
+    [Parameter] public EditorPage? EditorPage { get; set; }
+
+    private void Set()
+    {
+        OptionalViews!.WhichOption = OnClickSet;
+        EditorPage!.StateChanged();
+    }
+
+}
+

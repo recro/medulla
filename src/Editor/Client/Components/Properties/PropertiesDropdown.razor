@@ -1,0 +1,69 @@
+﻿<div>
+    @if (!isActive)
+    {
+        <details @onclick="() => isActive = true" class="dropdown details-overlay d-inline-block" @attributes="@GetAttributes()">
+            <summary class="btn">
+                @Title: @ActiveValue
+                <div class="dropdown-caret"></div>
+            </summary>
+        </details>
+    }
+    else
+    {
+        <details @onclick="() => isActive = false" class="dropdown details-overlay d-inline-block" @attributes="@GetAttributes()">
+            <summary class="btn">
+                @Title: @ActiveValue
+                <div class="dropdown-caret"></div>
+            </summary>
+
+            @if (isActive)
+            {
+                <ul class="dropdown-menu dropdown-menu-se">
+                    @foreach (var item in DropdownItems)
+                    {
+                        <li @onclick="() => { isActive = false; SetActiveValue(item.Key, item.Value); }"><span class="dropdown-item" style="cursor: pointer">@item.Key</span></li>
+                    }
+                </ul>
+            }
+        </details>
+    }
+
+</div>
+
+@code {
+
+    private bool isActive = false;
+
+    private string ActiveValue = "";
+
+    ///
+    /// Title for dropdown
+    ///
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public List<DropdownItem> DropdownItems { get; set; } = new();
+
+    [Parameter]
+    public Action<string?, string?>? Changed { get; set; }
+
+    void SetActiveValue(string key, string value)
+    {
+        ActiveValue = value;
+        Changed?.Invoke(key, value);
+    }
+
+    private Dictionary<string, object> GetAttributes()
+    {
+        var dict = new Dictionary<string, object>()
+        {
+        };
+        if (isActive)
+        {
+            dict.Add("open",true);
+        }
+        return dict;
+    }
+
+}

@@ -1,0 +1,36 @@
+﻿<p>
+    <input @oninput="(e) => ChangedName(e)" class="form-control" type="text" placeholder="@Title" aria-label="Repository description"/>
+    <PropertiesDropdown Changed="ChangedType" Title="@Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(DropdownItems)" />
+</p>
+
+@code {
+
+    private string? type = "string";
+    private string? name = "Field";
+
+
+    [Parameter]
+    public Action<string?, string?>? UpdatedField { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public List<string> DropdownItems { get; set; } = new();
+
+    private void ChangedName(ChangeEventArgs e)
+    {
+        Console.WriteLine(e?.Value?.ToString());
+        name = e?.Value?.ToString();
+        UpdatedField?.Invoke(type, name);
+    }
+
+    private void ChangedType(string key, string value)
+    {
+        type = value;
+        UpdatedField?.Invoke(type, name);
+    }
+
+
+
+}
