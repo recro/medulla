@@ -53,6 +53,9 @@ public partial class WorkflowDesigner : IDisposable
 
     private bool showContextMenu = false;
 
+    /*[Parameter]
+    public Action<List<WorkflowNodeInstance>> UpdateDatabase { get; set; }*/
+
     /// <summary>
     /// Diagram of Workflow designer
     /// </summary>
@@ -135,9 +138,17 @@ public partial class WorkflowDesigner : IDisposable
             Diagram.Nodes.Add(node);
         }
 
+        Console.WriteLine("Calling Update Database Invoke Action");
 
-
-
+        if (WorkflowEventsIn?.UpdateDatabase != null)
+        {
+            Console.WriteLine("WorkflowEventsIn?.UpdateDatabase is not null");
+            WorkflowEventsIn?.UpdateDatabase.Invoke(nodes);
+        }
+        else
+        {
+            Console.WriteLine("WorkflowEventsIn?.UpdateDatabase is null");
+        }
 
         StateHasChanged();
     }

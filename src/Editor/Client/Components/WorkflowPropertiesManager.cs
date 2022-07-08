@@ -10,6 +10,8 @@ using Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner;
 using Medulla.WorkflowDesigner.Client.Library;
 using Microsoft.AspNetCore.Components.Web;
 
+
+
 namespace Medulla.Editor.Client.Components;
 
 using WD = Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner.WorkflowDesigner;
@@ -30,11 +32,14 @@ public class WorkflowPropertiesManager
 
     private List<WorkflowNodeInstance>? nodes = new();
 
+    public Action<List<WorkflowNodeInstance>>? _updateDatabase { get; set; }
+
     public WorkflowPropertiesManager()
     {
         _workflowEventsIn = new WorkflowEventsIn()
         {
             SetWorkflowEventsOut = SetDesigner,
+            UpdateDatabase = UpdateDatabase
         };
     }
 
@@ -45,6 +50,12 @@ public class WorkflowPropertiesManager
     public WorkflowEventsIn? GetWorkflowDesignerEventsIn()
     {
         return _workflowEventsIn;
+    }
+
+    private void UpdateDatabase(List<WorkflowNodeInstance> nodes)
+    {
+        Console.WriteLine("-----------------------------------CALLING BACKEND DATABASE UPDATE");
+        _updateDatabase?.Invoke(nodes);
     }
 
     private void SetDesigner(WD workflowDesigner)

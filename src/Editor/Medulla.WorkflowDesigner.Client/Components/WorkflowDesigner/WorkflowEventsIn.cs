@@ -22,4 +22,6 @@ public class WorkflowEventsIn
     /// </summary>
     public Action? AddWorkflow;
 
+    public Action<List<WorkflowNodeInstance>>? UpdateDatabase { get; set; }
+
 }

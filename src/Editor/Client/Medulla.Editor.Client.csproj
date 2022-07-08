@@ -19,13 +19,13 @@
     <ProjectReference Include="..\Medulla.WorkflowDesigner.Client\Medulla.WorkflowDesigner.Client.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.6.1" />
     <PackageReference Include="Grpc" Version="1.17.0" />
     <PackageReference Include="Grpc.Tools" Version="1.17.0" PrivateAssets="All" />
-  </ItemGroup>
+  </ItemGroup>-->
   
-  <ItemGroup>
+  <!--<ItemGroup>
     <Protobuf Include="Protos\database.proto">
       <GrpcServices>Client</GrpcServices>
       <Access>Public</Access>
@@ -40,4 +40,9 @@
     <CallTarget Targets="_Protobuf_Compile_BeforeCsCompile" />
   </Target>
 
+  <ItemGroup>
+    &lt;!&ndash;<PackageReference Include="Grpc.Net.Client.Web" Version="2.47.0" PrivateAssets="All" />&ndash;&gt;
+    <PackageReference Include="Grpc.Net.Client.Web" Version="2.47.0" />
+  </ItemGroup>
+-->
 </Project>

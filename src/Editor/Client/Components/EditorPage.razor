@@ -6,6 +6,7 @@
 @using Medulla.Editor.Client.Abstractions.ObjectComposition
 @using Medulla.Editor.Client.Components.Viewer
 @using System.Runtime.CompilerServices
+@using Medulla.WorkflowDesigner.Client.Library
 
 <div class="d-flex flex-row">
     <CascadingValue Value="this">
@@ -48,6 +49,9 @@
 
 @code {
 
+    [Parameter]
+    public Action<List<WorkflowNodeInstance>>? UpdateDatabase { get; set; }
+
     private WorkflowPropertiesManager _workflowPropertiesManager = new WorkflowPropertiesManager();
     private OptionalViews _optionalViews = new();
     public EditorViewNode? CurrentComponent { get; set; } = default!;
@@ -69,6 +73,7 @@
     protected override void OnInitialized()
     {
         _workflowPropertiesManager._editorPage = this;
+        _workflowPropertiesManager._updateDatabase = UpdateDatabase;
     }
 
 
