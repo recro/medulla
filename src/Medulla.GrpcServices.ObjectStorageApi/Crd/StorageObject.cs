@@ -52,63 +52,30 @@ public class CustomResourceList<T> : KubernetesObject
     public List<T>? Items { get; set; }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 public class CResource : CustomResource<CResourceSpec, CResourceStatus>
 {
     public override string ToString()
     {
         var labels = "{";
-        foreach (var kvp in Metadata.Labels)
+        foreach (var kvp in Metadata?.Labels!)
         {
             labels += kvp.Key + " : " + kvp.Value + ", ";
         }
 
         labels = labels.TrimEnd(',', ' ') + "}";
 
-        return $"{Metadata.Name} (Labels: {labels}), Spec: {Spec.CityName}";
+        return $"{Metadata.Name} (Labels: {labels}), Spec: {Spec?.CityName}";
     }
 }
 
 public class CResourceSpec
 {
     [JsonPropertyName("cityName")]
-    public string CityName { get; set; }
+    public string? CityName { get; set; }
 }
 
 public class CResourceStatus : V1Status
 {
     [JsonPropertyName("temperature")]
-    public string Temperature { get; set; }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-public class StorageObject
-{
-
+    public string? Temperature { get; set; }
 }
