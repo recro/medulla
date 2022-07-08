@@ -60,6 +60,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedullaKubernetes", "MedullaKubernetes\MedullaKubernetes.csproj", "{8E180855-0047-41F7-8D4A-F8F8654BDC38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseService", "Medulla\Kubernetes\Database\DatabaseService\DatabaseService.csproj", "{331159E8-4B15-4A42-B0E2-08252DA59E5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{8E180855-0047-41F7-8D4A-F8F8654BDC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E180855-0047-41F7-8D4A-F8F8654BDC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E180855-0047-41F7-8D4A-F8F8654BDC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{331159E8-4B15-4A42-B0E2-08252DA59E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{331159E8-4B15-4A42-B0E2-08252DA59E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{331159E8-4B15-4A42-B0E2-08252DA59E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{331159E8-4B15-4A42-B0E2-08252DA59E5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,6 +157,7 @@ Global
 		{BFC4950E-178F-4BAB-A16A-B7BFE0A0A303} = {69D6DA5E-7F24-4ED2-B588-0C2A4550DC79}
 		{9F12CA08-73F8-417F-BD52-3ED86837EC0C} = {F5084BEE-BEF9-42A1-BD65-B4B9FD5D5434}
 		{8E180855-0047-41F7-8D4A-F8F8654BDC38} = {81CDB4B3-5CB1-42CF-9BE6-B209986800B9}
+		{331159E8-4B15-4A42-B0E2-08252DA59E5F} = {21326846-56A8-44A7-98A9-943B9662E57E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E031215B-9116-4BC0-AA58-A00A8C67440D}

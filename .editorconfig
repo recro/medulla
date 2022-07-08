@@ -33,6 +33,9 @@ indent_size = 2
 
 [*.{cs,vb}]
 
+# CS8618
+dotnet_diagnostic.CS8618.severity = none
+
 # Simplify name
 dotnet_diagnostic.IDE0001.severity = warning
 
@@ -1229,7 +1232,7 @@ dotnet_diagnostic.CA5400.severity = none
 # Do not use CreateEncryptor with non-default IV
 dotnet_diagnostic.CA5401.severity = none
 
-# Use CreateEncryptor with the default IV 
+# Use CreateEncryptor with the default IV
 dotnet_diagnostic.CA5402.severity = none
 
 # Do not hard-code certificate

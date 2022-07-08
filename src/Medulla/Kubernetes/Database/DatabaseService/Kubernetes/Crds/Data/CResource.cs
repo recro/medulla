@@ -17,8 +17,8 @@ public class CResource : CustomResource<Databases, CResourceStatus>
 
         return $"{Metadata.Name} (Labels: {labels}), Database Name: {Databases[0].Name}";
     }
-    
-    
+
+
 }
 
 
@@ -26,43 +26,43 @@ public class Column
 {
     [JsonPropertyName("columnName")]
     public string ColumnName { get; set; }
-    
-    
+
+
     [JsonPropertyName("type")]
     public string Type { get; set; }
-    
-    
+
+
     [JsonPropertyName("allowNull")]
     public bool AllowNull { get; set; }
-    
-    
+
+
     [JsonPropertyName("defaultValue")]
     public string DefaultValue { get; set; }
-    
-    
+
+
     [JsonPropertyName("primaryKey")]
     public bool PrimaryKey { get; set; }
-    
-    
+
+
     [JsonPropertyName("field")]
     public string Field { get; set; }
-    
-    
+
+
     [JsonPropertyName("unique")]
     public string Unique { get; set; }
-    
-    
+
+
     [JsonPropertyName("comment")]
     public string Comment { get; set; }
-    
+
 }
 
 public class Model
 {
     [JsonPropertyName("name")]
     public string Name { get; set; }
-    
-    
+
+
     [JsonPropertyName("columns")]
     public List<Column> Columns { get; set; }
 }
