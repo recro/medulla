@@ -4,6 +4,9 @@
     <option name="PROGRAM_PARAMETERS" value="--applicationpath C:\Users\keith\RiderProjects\medulla\src\Shell\Client\bin\Debug\net6.0\Medulla.Shell.Client.dll" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Shell/Client" />
     <option name="PASS_PARENT_ENVS" value="1" />
+    <envs>
+      <env name="ASPNETCORE_URLS" value="http://localhost:5044" />
+    </envs>
     <option name="USE_EXTERNAL_CONSOLE" value="0" />
     <option name="USE_MONO" value="0" />
     <option name="RUNTIME_ARGUMENTS" value="" />
@@ -13,6 +16,7 @@
     <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
     <option name="PROJECT_KIND" value="DotNetCore" />
     <option name="PROJECT_TFM" value="net6.0" />
+    <browser url="http://localhost:5003" />
     <method v="2">
       <option name="Build" />
     </method>
