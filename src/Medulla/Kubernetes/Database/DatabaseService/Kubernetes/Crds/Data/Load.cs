@@ -33,15 +33,15 @@ public class Load
                         Unique = requestDatabases[i].Models[modelsI].Column[columnsI].Unique,
                     });
                 }
-                
+
                 models.Add(new Model()
                 {
                     Name = requestDatabases[i].Models[modelsI].Name,
                     Columns = columns
                 });
             }
-            
-            
+
+
             databases.Add(new Databases()
             {
                 Name = requestDatabases[i].Name,
@@ -68,29 +68,31 @@ public class Load
     {
 
         RepeatedField<GrpcDatabaseService.Data> data = new RepeatedField<GrpcDatabaseService.Data>();
-        for (int i = 0; i < crs.Items.Count; i++)
+        for (int i = 0; i < crs?.Items?.Count; i++)
         {
             RepeatedField<GrpcDatabaseService.Database> databases = new RepeatedField<GrpcDatabaseService.Database>();
-            for (int dbI = 0; dbI < crs.Items[i].Databases.Count; dbI++)
+            for (int dbI = 0; dbI < crs?.Items?[i]?.Databases?.Count; dbI++)
             {
                 var db = new GrpcDatabaseService.Database();
-                db.Name = crs.Items[i].Databases[dbI].Name;
-                db.Dialect = crs.Items[i].Databases[dbI].Dialect;
-                
-                for (int modelI = 0; modelI < crs.Items[i].Databases[dbI].Models.Count; modelI++)
+                db.Name = crs?.Items?[i]?.Databases?[dbI].Name;
+                db.Dialect = crs?.Items?[i]?.Databases?[dbI].Dialect;
+
+                for (int modelI = 0; modelI < crs?.Items?[i]?.Databases?[dbI]?.Models?.Count; modelI++)
                 {
                     GrpcDatabaseService.Model model = new GrpcDatabaseService.Model();
-                    for (int columnI = 0; columnI < crs.Items[i].Databases[dbI].Models[modelI].Columns.Count; columnI++)
+                    for (int columnI = 0; columnI < crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?.Count; columnI++)
                     {
                         GrpcDatabaseService.Column column = new GrpcDatabaseService.Column();
 
-                        column.FieldName = crs.Items[i].Databases[dbI].Models[modelI].Columns[columnI].Field;
-                        column.Type = crs.Items[i].Databases[dbI].Models[modelI].Columns[columnI].Type;
-                        column.Unique = crs.Items[i].Databases[dbI].Models[modelI].Columns[columnI].Unique;
-                        column.PrimaryKey = crs.Items[i].Databases[dbI].Models[modelI].Columns[columnI].PrimaryKey;
-                        column.AllowNull = crs.Items[i].Databases[dbI].Models[modelI].Columns[columnI].AllowNull;
-                        column.Comment = crs.Items[i].Databases[dbI].Models[modelI].Columns[columnI].Comment;
-                        column.ColumnName = crs.Items[i].Databases[dbI].Models[modelI].Columns[columnI].ColumnName;
+                        column.FieldName = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Field;
+                        column.Type = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Type;
+                        column.Unique = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Unique;
+                        if (crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].PrimaryKey == null)
+                            throw new Exception("Primary Key may not be null");
+                        column.PrimaryKey = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].PrimaryKey ?? default(bool);
+                        column.AllowNull = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI]?.AllowNull ?? default(bool);
+                        column.Comment = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Comment;
+                        column.ColumnName = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].ColumnName;
 
                         model.Column.Add(column);
                     }
@@ -98,21 +100,21 @@ public class Load
                 }
                 databases.Add(db);
             }
-            
+
             data.Add(new GrpcDatabaseService.Data()
             {
-                Name = crs.Items[i].Metadata.Name,
+                Name = crs?.Items?[i]?.Metadata?.Name,
                 Databases = { databases }
             });
-            
+
         }
-        
-        
+
+
         return new GetDatabasesResponse()
         {
             Data = { data }
         };
     }
-    
-    
+
+
 }

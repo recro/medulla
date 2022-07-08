@@ -20,7 +20,7 @@ public class Actions
         var myCr = Utils.MakeCResource(name, "default", databases);
         try
         {
-            Console.WriteLine("creating CR {0}", myCr.Metadata.Name);
+            Console.WriteLine("creating CR {0}", myCr?.Metadata?.Name);
             Console.WriteLine(String.Join(",", myCr));
             Console.WriteLine("________________________________________________");
             Console.WriteLine(JsonSerializer.Serialize(myCr));
@@ -28,7 +28,7 @@ public class Actions
             var response = await client.CreateNamespacedCustomObjectWithHttpMessagesAsync(
                 myCr,
                 myCRD.Group, myCRD.Version,
-                myCr.Metadata.NamespaceProperty ?? "default",
+                myCr?.Metadata?.NamespaceProperty ?? "default",
                 myCRD.PluralName).ConfigureAwait(false);
             Console.WriteLine(response);
             Console.WriteLine(response.Response.StatusCode);
@@ -56,7 +56,7 @@ public class Actions
 
 
     }
-    
+
     public static async Task<CustomResourceList<CResource>> Get()
     {
         var myCRD = Utils.MakeCRD();
