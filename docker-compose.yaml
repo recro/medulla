@@ -1,0 +1,12 @@
+
+version: "3.4"
+services:
+  actionclass: 
+    build:
+      context: .
+    container_name: actionclass
+    image: codingkeith/actionclass:1.0.0
+    ports:
+    - 80:80
+    volumes:
+    - ./src/:/work
