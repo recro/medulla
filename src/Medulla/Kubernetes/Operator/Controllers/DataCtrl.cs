@@ -45,7 +45,9 @@ internal class OnChange
 
             HttpClient httpClient = new HttpClient();
 
-            var dbSyncServiceUri = ServiceUris.GetDatabaseSyncUri();
+            var dbSyncServiceUri = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_URI");
+            if (dbSyncServiceUri == null)
+                throw new Exception("db sync service env var is null");
             var dbSyncServiceAddress =
                 $"{dbSyncServiceUri}/listen-for-database-schema";
             Console.WriteLine("db sync service address: " + dbSyncServiceAddress);
