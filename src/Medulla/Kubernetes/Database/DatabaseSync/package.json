@@ -6,6 +6,9 @@
   "author": {
     "name": ""
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "body-parser": "^1.19.2",
     "express": "^4.17.3",

@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DATABASE_SYNC_RUNNER" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/Medulla/Kubernetes/Database/DatabaseSync/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="start" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs>
+      <env name="DATABASE_USERNAME" value="root" />
+      <env name="DATABASE_PASSWORD" value="test" />
+      <env name="SERVICE__MYSQL__HOST" value="localhost" />
+      <env name="MYSQL_MYSQL_SERVICE_PORT" value="3306" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>
