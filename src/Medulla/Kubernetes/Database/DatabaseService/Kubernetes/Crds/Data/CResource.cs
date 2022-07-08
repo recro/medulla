@@ -8,14 +8,14 @@ public class CResource : CustomResource<Databases, CResourceStatus>
     public override string ToString()
     {
         var labels = "{";
-        foreach (var kvp in Metadata.Labels)
+        foreach (var kvp in Metadata?.Labels!)
         {
             labels += kvp.Key + " : " + kvp.Value + ", ";
         }
 
         labels = labels.TrimEnd(',', ' ') + "}";
 
-        return $"{Metadata.Name} (Labels: {labels}), Database Name: {Databases[0].Name}";
+        return $"{Metadata.Name} (Labels: {labels}), Database Name: {Databases?[0].Name!}";
     }
 
 
@@ -25,11 +25,11 @@ public class CResource : CustomResource<Databases, CResourceStatus>
 public class Column
 {
     [JsonPropertyName("columnName")]
-    public string ColumnName { get; set; }
+    public string? ColumnName { get; set; }
 
 
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
 
     [JsonPropertyName("allowNull")]
@@ -37,7 +37,7 @@ public class Column
 
 
     [JsonPropertyName("defaultValue")]
-    public string DefaultValue { get; set; }
+    public string? DefaultValue { get; set; }
 
 
     [JsonPropertyName("primaryKey")]
@@ -45,47 +45,47 @@ public class Column
 
 
     [JsonPropertyName("field")]
-    public string Field { get; set; }
+    public string? Field { get; set; }
 
 
     [JsonPropertyName("unique")]
-    public string Unique { get; set; }
+    public string? Unique { get; set; }
 
 
     [JsonPropertyName("comment")]
-    public string Comment { get; set; }
+    public string? Comment { get; set; }
 
 }
 
 public class Model
 {
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 
     [JsonPropertyName("columns")]
-    public List<Column> Columns { get; set; }
+    public List<Column>? Columns { get; set; }
 }
 
 public class Databases
 {
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     [JsonPropertyName("host")]
-    public string Host { get; set; }
+    public string? Host { get; set; }
     [JsonPropertyName("dialect")]
-    public string Dialect { get; set; }
+    public string? Dialect { get; set; }
     [JsonPropertyName("usernameSecretName")]
-    public string UsernameSecretName { get; set; }
+    public string? UsernameSecretName { get; set; }
     [JsonPropertyName("passwordSecretName")]
-    public string PasswordSecretName { get; set; }
+    public string? PasswordSecretName { get; set; }
     [JsonPropertyName("models")]
-    public List<Model> Models { get; set; }
+    public List<Model>? Models { get; set; }
 
 }
 
 public class CResourceStatus : V1Status
 {
     [JsonPropertyName("temperature")]
-    public string Temperature { get; set; }
+    public string? Temperature { get; set; }
 }

@@ -28,8 +28,8 @@ public class DatabaseService : DatabaseSvc.DatabaseSvcBase
         var crs = await Kubernetes.Crds.Data.Actions.Get();
         return Load.GetDatabasesFromCrd(crs);
     }
-    
-    
+
+
 
     public override Task<CreateDatabasesResponse> CreateDatabases(CreateDatabasesRequest request,
         ServerCallContext context)
@@ -39,10 +39,10 @@ public class DatabaseService : DatabaseSvc.DatabaseSvcBase
             throw new Exception("Databases are empty");
 
         var databases = Load.GetDatabasesFromDatabaseRequest(request);
-        
+
         // Create Custom Crd
-        Kubernetes.Crds.Data.Actions.Create(databases[0].Name, databases);
-        
+        Kubernetes.Crds.Data.Actions.Create(databases[0].Name!, databases!);
+
         return Task.FromResult(new CreateDatabasesResponse()
         {
             IsCreated = true
@@ -54,14 +54,14 @@ public class DatabaseService : DatabaseSvc.DatabaseSvcBase
         Console.WriteLine("Running Delete Databases");
 
         var isDeleted = await Kubernetes.Crds.Data.Actions.Delete(request.Name);
-        
+
         return new DeleteDatabasesResponse
         {
             IsDeleted = isDeleted
         };
     }
-    
-    
-    
-    
+
+
+
+
 }
