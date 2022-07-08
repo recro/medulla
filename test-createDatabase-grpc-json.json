@@ -1,0 +1,25 @@
+{
+    "database": [
+        {
+            "models": [
+                {
+                    "column": [
+                        {
+                            "columnName": "firstName",
+                            "fieldName": "firstname",
+                            "allowNull": false,
+                            "primaryKey": false,
+                            "defaultValue": "",
+                            "type": "VARCHAR(100)",
+                            "comment": "this is the firstName",
+                            "unique": "firstName"
+                        }
+                    ],
+                    "name": "User"
+                }
+            ],
+            "dialect": "mysql",
+            "name": "medulla"
+        }
+    ]
+}
