@@ -21,9 +21,9 @@
 
 @code {
 
-    void UpdateDatabase(List<WorkflowNodeInstance> nodes)
+    async Task UpdateDatabaseAsync(List<WorkflowNodeInstance> nodes)
     {
-        _client.CreateDatabases(new CreateDatabasesRequest()
+        await _client.CreateDatabasesAsync(new CreateDatabasesRequest()
         {
             Database = { new []
             {
@@ -61,6 +61,11 @@
                 }
             } }
         });
+    }
+
+    void UpdateDatabase(List<WorkflowNodeInstance> nodes)
+    {
+        UpdateDatabaseAsync(nodes);
     }
 
 }
