@@ -13,7 +13,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
-var channel = Grpc.Net.Client.GrpcChannel.ForAddress("http://localhost:5188", new GrpcChannelOptions { HttpClient = httpClient });
+var channel = Grpc.Net.Client.GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
 var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
 
 builder.Services.AddSingleton(client);
