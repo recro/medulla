@@ -22,11 +22,8 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAll", policy =>
 var app = builder.Build();
 
 app.UseRouting();
-
-//app.UseAuthorization();
-
+app.UseCors("AllowAll");
 app.UseGrpcWeb();
-app.UseCors();
 
 app.UseEndpoints(endpoints =>
 {
