@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using Microsoft.AspNetCore.Components;
+using GrpcDatabaseService;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -18,5 +19,14 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 {
     builder.Configuration.Bind("Local", options.ProviderOptions);
 });*/
+
+var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
+/*var baseUri = services.GetRequiredService<NavigationManager>().BaseUri;*/
+var channel = Grpc.Net.Client.GrpcChannel.ForAddress("http://localhost:5188", new GrpcChannelOptions { HttpClient = httpClient });
+var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
+
+builder.Services.AddSingleton(client);
+
+
 
 await builder.Build().RunAsync();

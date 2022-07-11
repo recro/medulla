@@ -13,6 +13,7 @@
 @using Microsoft.AspNetCore.Components.Infrastructure;
 @using Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner;
 @using Model = GrpcDatabaseService.Model;
+@inject DatabaseSvc.DatabaseSvcClient _client
 
 
 <PageTitle>Medulla Editor</PageTitle>
@@ -22,12 +23,7 @@
 
     void UpdateDatabase(List<WorkflowNodeInstance> nodes)
     {
-        var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
-        /*var baseUri = services.GetRequiredService<NavigationManager>().BaseUri;*/
-        var channel = Grpc.Net.Client.GrpcChannel.ForAddress("http://localhost:5000", new GrpcChannelOptions { HttpClient = httpClient });
-        var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
-
-        client.CreateDatabases(new CreateDatabasesRequest()
+        _client.CreateDatabases(new CreateDatabasesRequest()
         {
             Database = { new []
             {
