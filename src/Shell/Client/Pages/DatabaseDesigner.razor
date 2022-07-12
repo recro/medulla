@@ -3,88 +3,12 @@
 @* See the LICENSE file in the project root for more information. *@
 
 @page "/database-designer"
-@using Medulla.WorkflowDesigner.Client.Library
-@using Grpc.Net.Client.Web
-@using Grpc.Net.Client
-@using GrpcDatabaseService
-@using Microsoft.AspNetCore.Components
-@using Google.Protobuf.Collections
-@using Microsoft.AspNetCore.Components.Infrastructure
-@using Medulla.WorkflowDesigner.Client.Components.WorkflowDesigner
 
-<WorkflowDesigner WorkflowEventsIn="WorkflowEventsIn" />
+<p>Test</p>
+<Medulla.App.Designer.Editors.DatabaseEditor.Compo />
 
 @code {
 
-    public WorkflowEventsIn WorkflowEventsIn = new WorkflowEventsIn()
-    {
-        AddWorkflow = AddWorkflow,
-        SetWorkflowEventsOut = SetWorkflowEventsOut,
-        UpdateDatabase = Update
-    };
-
-    public static void AddWorkflow()
-    {
-
-    }
-
-    public static void SetWorkflowEventsOut(WorkflowDesigner designer)
-    {
-
-    }
-
-    /*public Action<List<WorkflowNodeInstance>> UpdateDatabase { get; set; }*/
-
-    public static void Update(List<WorkflowNodeInstance> nodes)
-    {
-        Console.WriteLine("Running Grpc Client Code to update database");
-        /*var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
-        /*var baseUri = services.GetRequiredService<NavigationManager>().BaseUri;#1#
-        var channel = Grpc.Net.Client.GrpcChannel.ForAddress("localhost:5000", new GrpcChannelOptions { HttpClient = httpClient });
-
-        var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
-
-        client.CreateDatabases(new CreateDatabasesRequest()
-        {
-            Database = { new []
-            {
-                new Database()
-                {
-                    Dialect = "mysql",
-                    Name = "test-medulla",
-                    Models =
-                    {
-                        new []
-                        {
-                            new Model()
-                            {
-                                Name = "test",
-                                Column =
-                                {
-                                    new []
-                                    {
-                                        new Column()
-                                        {
-                                            FieldName = "test",
-                                            Comment = "test comment",
-                                            Type = "VARCHAR(100)",
-                                            Unique = "test",
-                                            AllowNull = false,
-                                            PrimaryKey = true,
-                                            ColumnName = "test",
-                                            DefaultValue = ""
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            } }
-        });*/
-    /*GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient service = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);*/
-
-    }
 
 
 }
