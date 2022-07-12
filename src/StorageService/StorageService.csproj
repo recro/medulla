@@ -8,11 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+        <Protobuf Include="Protos\storage.proto" GrpcServices="Server" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
     </ItemGroup>
+
+    <Target Name="Protobuf_Compile_Before_AssemblyReferences" BeforeTargets="ResolveAssemblyReferences">
+      <CallTarget Targets="_Protobuf_Compile_BeforeCsCompile" />
+    </Target>
 
 </Project>
