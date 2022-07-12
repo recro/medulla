@@ -29,8 +29,8 @@ public abstract class CustomResource : KubernetesObject
 
 public abstract class CustomResource<TSpec, TStatus> : CustomResource
 {
-    [JsonPropertyName("spec")]
-    public List<Databases>? Databases { get; set; }
+    /*[JsonPropertyName("spec")]
+    public List<Databases>? Databases { get; set; }*/
 
     [JsonPropertyName("CStatus")]
     public TStatus? CStatus { get; set; }

@@ -19,7 +19,7 @@ public class Utils
     }
 
     // creats a CR instance
-    public static CResource MakeCResource(string name, string _namespace, List<Databases> databases)
+    public static CResource MakeCResource(string name, string _namespace)
     {
         var myCResource = new CResource()
         {
@@ -36,7 +36,6 @@ public class Utils
                     },
                 },
             },
-            Databases = databases
         };
         return myCResource;
     }

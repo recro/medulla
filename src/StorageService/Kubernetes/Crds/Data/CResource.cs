@@ -15,7 +15,7 @@ public class CResource : CustomResource<Databases, CResourceStatus>
 
         labels = labels.TrimEnd(',', ' ') + "}";
 
-        return $"{Metadata.Name} (Labels: {labels}), Database Name: {Databases?[0].Name!}";
+        return $"{Metadata.Name} (Labels: {labels})";
     }
 
 

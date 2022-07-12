@@ -16,7 +16,7 @@ public class Actions
         //var generic = new GenericClient(client, myCRD.Group, myCRD.Version, myCRD.PluralName);
 
         // creating a sample custom resource content
-        var myCr = Utils.MakeCResource(name, "default", databases);
+        var myCr = Utils.MakeCResource(name, "default");
         try
         {
             Console.WriteLine("creating{1} CR {0}", myCr?.Metadata?.Name, "ARG1");
