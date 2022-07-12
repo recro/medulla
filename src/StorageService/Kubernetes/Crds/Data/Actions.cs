@@ -1,9 +1,8 @@
 using System.Text.Json;
 using k8s;
-using k8s.Autorest;
-using k8s.Models;
+using Microsoft.Rest;
 
-namespace DatabaseService.Kubernetes.Crds.Data;
+namespace StorageService.Kubernetes.Crds.Data;
 
 public class Actions
 {
@@ -20,7 +19,7 @@ public class Actions
         var myCr = Utils.MakeCResource(name, "default", databases);
         try
         {
-            Console.WriteLine("creating CR {0}", myCr?.Metadata?.Name);
+            Console.WriteLine("creating{1} CR {0}", myCr?.Metadata?.Name, "ARG1");
             Console.WriteLine(String.Join(",", myCr));
             Console.WriteLine("________________________________________________");
             Console.WriteLine(JsonSerializer.Serialize(myCr));

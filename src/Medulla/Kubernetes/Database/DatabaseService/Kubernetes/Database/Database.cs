@@ -1,7 +1,9 @@
+using DatabaseService.Kubernetes.Crds.Data;
 using DatabaseService.Utils;
 using GrpcDatabaseService;
 using k8s.Autorest;
 using k8s.Models;
+using SharedClasses.Kubernetes.Load.Client;
 
 namespace DatabaseService.Kubernetes.Database;
 
@@ -12,8 +14,8 @@ public class Database
     {
         string dbName = "db-" + request.Name;
         Console.WriteLine("new db name" + dbName);
-        var client = Kubernetes.Load.Client.Load.GetClient();
-        var pod = new V1Pod("v1", "Pod", 
+        var client = SharedClasses.Kubernetes.Load.Client.Load.GetClient();
+        var pod = new V1Pod("v1", "Pod",
             new V1ObjectMeta()
             {
                 Name = dbName,
@@ -128,11 +130,11 @@ public class Database
                         TargetPort = 3306
                     }
                 }
-                
+
             }
         };
-        
-        
+
+
         try
         {
             var res = await client.CreateNamespacedServiceWithHttpMessagesAsync(service, "default");
@@ -165,13 +167,13 @@ public class Database
             Console.WriteLine(e.Message);
             return false;
         }
-        
+
         return true;
     }
-    
-    
-    
-    
+
+
+
+
 }
 
 

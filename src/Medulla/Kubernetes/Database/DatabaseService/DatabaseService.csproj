@@ -23,6 +23,11 @@
 
     <ItemGroup>
       <Folder Include="deploy" />
+      <Folder Include="Kubernetes\Load\Client" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\SharedClasses\SharedClasses.csproj" />
     </ItemGroup>
 
 </Project>

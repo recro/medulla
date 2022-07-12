@@ -1,6 +1,6 @@
 using k8s;
 
-namespace DatabaseService.Kubernetes.Load.Client;
+namespace SharedClasses.Kubernetes.Load.Client;
 
 public class Load
 {
