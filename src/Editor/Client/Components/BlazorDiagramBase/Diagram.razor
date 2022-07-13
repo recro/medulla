@@ -33,18 +33,18 @@
             {
                 return PropertyMenuStructureFactory.GetStructure(new DatabaseModelMenuFactory(), value =>
                 {
-                    Console.WriteLine("Button Clicked");
-                    var table = new DatabaseTableModel();
-                    table.Name = "Test";
-                    table.Selected = true;
-                    AddTable(table);
+                    Console.WriteLine("Changed");
                 });
             }
             else
             {
                 return PropertyMenuStructureFactory.GetStructure(new AddDatabaseTableMenuStructureFactory(), value =>
                 {
-                    Console.WriteLine("Changed");
+                    Console.WriteLine("Button Clicked");
+                    var table = new DatabaseTableModel();
+                    table.Name = "Test";
+                    table.Selected = true;
+                    AddTable(table);
                 });
             }
         }
