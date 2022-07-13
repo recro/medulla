@@ -1,5 +1,6 @@
 ﻿@using Medulla.Editor.Client.Abstractions.ObjectComposition
 @using Blazor.Diagrams.Core.Models.Base
+@using Medulla.WorkflowDesigner.Client.Library.PropertyMenuStructureFactory
 <div class="wrapper">
     <div class="diagram-container">
         <CascadingValue Value="NodeDiagram">
@@ -30,45 +31,21 @@
         {
             if (ActiveModel != null)
             {
-                return new PropertyMenuStructure()
+                return PropertyMenuStructureFactory.GetStructure(new DatabaseModelMenuFactory(), value =>
                 {
-                    Nameable = Nameable.NewNameable("Model", null),
-                    PropertyMenuStructureNodes = new ()
-                    {
-                        new()
-                        {
-                            Nameable = Nameable.NewNameable("Model", "Model"),
-                            InputType = InputType.DatabaseTableModel,
-                            OnValueChange = (value =>
-                            {
-                                Console.WriteLine("Changed");
-                            })
-                        }
-                    }
-                };
+                    Console.WriteLine("Button Clicked");
+                    var table = new DatabaseTableModel();
+                    table.Name = "Test";
+                    table.Selected = true;
+                    AddTable(table);
+                });
             }
             else
             {
-                return new PropertyMenuStructure()
+                return PropertyMenuStructureFactory.GetStructure(new AddDatabaseTableMenuStructureFactory(), value =>
                 {
-                    Nameable = Nameable.NewNameable("Database Designer", null),
-                    PropertyMenuStructureNodes = new ()
-                    {
-                        new()
-                        {
-                            Nameable = Nameable.NewNameable("Add Table", "Add database table"),
-                            InputType = InputType.Button,
-                            OnValueChange = (value =>
-                            {
-                                Console.WriteLine("Button Clicked");
-                                var table = new DatabaseTableModel();
-                                table.Name = "Test";
-                                table.Selected = true;
-                                AddTable(table);
-                            })
-                        }
-                    }
-                };
+                    Console.WriteLine("Changed");
+                });
             }
         }
         else
