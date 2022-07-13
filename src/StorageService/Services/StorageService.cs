@@ -13,18 +13,28 @@ public class StorageService : Storage.StorageBase
         _logger = logger;
     }
 
-    public override Task<Response> saveObject(Object request, ServerCallContext context)
+    public override async Task<Response> saveObject(Object request, ServerCallContext context)
     {
+        await Task.Delay(1000);
         Actions.Create(request.Name, "default", request.Uuid, request.StorageData, request.Type);
-        return Task.FromResult(new Response() {Message = "Created"});
+        return new Response() {Message = "Created"};
     }
 
-    public override ObjectList listObjects(SearchObject request, ServerCallContext context)
+    public override async Task<ObjectList> listObjects(SearchObject request, ServerCallContext context)
     {
-        Actions.Get();
+        var crds = await Actions.Get();
         //return base.listObjects(request, context);
-        var objectList = new ObjectList();
         RepeatedField<Object> objects = new RepeatedField<Object>();
+        foreach (var crd in crds.Items!)
+        {
+            objects.Add(new Object()
+            {
+                Name = crd?.Metadata?.Name,
+                Type = crd?.Type,
+                Uuid = crd?.Uuid,
+                StorageData = crd?.StorageData
+            });
+        }
 
         return new ObjectList() { Objects = { objects }};
     }
