@@ -34,7 +34,7 @@
             </div>
         </div>
         <div style="width: 40vw;max-height:100vh;overflow: scroll;">
-            <PropertiesMenu PropertyMenuStructure="_workflowPropertiesManager._propertyMenuStructure" />
+            <PropertiesMenu />
             <ColumnManager Editor="this"/>
             <DataSources Editor="this"/>
             <PagesWindow/>
@@ -52,7 +52,6 @@
     [Parameter]
     public Action<List<WorkflowNodeInstance>>? UpdateDatabase { get; set; }
 
-    private WorkflowPropertiesManager _workflowPropertiesManager = new WorkflowPropertiesManager();
     private OptionalViews _optionalViews = new();
     public EditorViewNode? CurrentComponent { get; set; } = default!;
     public UniqueId? CurrentPropertiesForComponentUniqueId;
@@ -72,8 +71,6 @@
 
     protected override void OnInitialized()
     {
-        _workflowPropertiesManager._editorPage = this;
-        _workflowPropertiesManager._updateDatabase = UpdateDatabase;
     }
 
 

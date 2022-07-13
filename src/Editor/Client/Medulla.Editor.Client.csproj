@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <StaticWebAssetBasePath>shared</StaticWebAssetBasePath>
   </PropertyGroup>
   
   <ItemGroup>
@@ -12,12 +13,33 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="YamlDotNet" Version="11.2.1" />
     <!--<PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />-->
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.5" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+    <PackageReference Include="Z.Blazor.Diagrams" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Presentation\Assets\Medulla.Presentation.Assets.csproj" />
-    <ProjectReference Include="..\Medulla.WorkflowDesigner.Client\Medulla.WorkflowDesigner.Client.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <AdditionalFiles Include="Components\ObjectBrowser\ObjectBrowser.razor" />
+    <AdditionalFiles Include="Components\WorkflowDesigner\Node\WorkflowNodeComponent.razor" />
+    <AdditionalFiles Include="Components\WorkflowDesigner\Node\NodePort\NodePort.razor" />
+    <AdditionalFiles Include="Components\WorkflowDesigner\ComponentWorkflowDesigner.razor" />
+    <AdditionalFiles Include="Layouts\MainLayout.razor" />
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <Content Include="Components\WorkflowDesigner\Node\NodeComponent.razor.css" />
+    <Content Include="Components\WorkflowDesigner\WorkflowDesigner.razor.css" />
+  </ItemGroup>-->
 
   <!--<ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.6.1" />
