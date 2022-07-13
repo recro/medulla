@@ -28,6 +28,10 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\WorkflowDesigner" />
+  </ItemGroup>
+
   <!--<ItemGroup>
     <AdditionalFiles Include="Components\ObjectBrowser\ObjectBrowser.razor" />
     <AdditionalFiles Include="Components\WorkflowDesigner\Node\WorkflowNodeComponent.razor" />
