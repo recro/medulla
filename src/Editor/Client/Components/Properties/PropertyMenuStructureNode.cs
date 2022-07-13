@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
+using Medulla.Editor.Client.Components.Properties.Types;
 
 namespace Medulla.Editor.Client.Components.Properties;
 
@@ -52,6 +53,8 @@ public class AnyTypeValue
     /// Number
     /// </summary>
     public int Number = 0;
+
+    public DatabaseTable DatabaseTable { get; set; } = new();
 
 }
 

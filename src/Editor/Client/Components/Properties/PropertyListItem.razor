@@ -1,4 +1,5 @@
-﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+﻿@using Medulla.Editor.Client.Components.Properties.Types
+@* Licensed to the Medulla Contributors under one or more agreements. *@
 @* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
 @* See the LICENSE file in the project root for more information. *@
 
@@ -46,7 +47,7 @@
                     <WorkflowDataInput UpdatedField="UpdateChangedWorkflow" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="@PropertyMenuStructureNode.AnyTypeInput.ListOfStrings" />
                     break;
                 case InputType.DatabaseTableModel:
-                    <DatabaseTableModelProperties />
+                    <DatabaseTableModelProperties DatabaseTableChanged="DatabaseTableChanged" />
                     break;
             }
         }
@@ -109,5 +110,13 @@
     }
 
 
+    private void DatabaseTableChanged(DatabaseTable databaseTable)
+    {
+        Console.WriteLine("Database Table Changed");
+        PropertyMenuStructureNode.OnValueChange?.Invoke(new AnyTypeValue()
+        {
+            DatabaseTable = databaseTable
+        });
+    }
 
 }
