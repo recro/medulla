@@ -34,6 +34,15 @@ public abstract class CustomResource<TSpec, TStatus> : CustomResource
 
     [JsonPropertyName("CStatus")]
     public TStatus? CStatus { get; set; }
+
+    [JsonPropertyName("Uuid")]
+    public string? Uuid { get; set; }
+
+    [JsonPropertyName("Type")]
+    public string? Type { get; set; }
+
+    [JsonPropertyName("StorageData")]
+    public string? StorageData { get; set; }
 }
 
 public class CustomResourceList<T> : KubernetesObject

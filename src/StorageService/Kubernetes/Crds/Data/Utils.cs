@@ -19,12 +19,12 @@ public class Utils
     }
 
     // creats a CR instance
-    public static CResource MakeCResource(string name, string _namespace)
+    public static CResource MakeCResource(string name, string _namespace, string uuid, string storageData, string type)
     {
         var myCResource = new CResource()
         {
-            Kind = "Data",
-            ApiVersion = "medulla.recro.com/v1alpha1",
+            Kind = "GenericStorageObject",
+            ApiVersion = "medulla.io/v1alpha1",
             Metadata = new V1ObjectMeta
             {
                 Name = name,
@@ -36,6 +36,9 @@ public class Utils
                     },
                 },
             },
+            Uuid = uuid,
+            StorageData = storageData,
+            Type = type,
         };
         return myCResource;
     }

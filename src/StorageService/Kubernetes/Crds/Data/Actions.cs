@@ -6,7 +6,7 @@ namespace StorageService.Kubernetes.Crds.Data;
 
 public class Actions
 {
-    public static async void Create(string name, List<Databases> databases)
+    public static async void Create(string name, string _namespace, string uuid, string storageData, string type)
     {
         var client = SharedClasses.Kubernetes.Load.Client.Load.GetClient();
 
@@ -16,7 +16,7 @@ public class Actions
         //var generic = new GenericClient(client, myCRD.Group, myCRD.Version, myCRD.PluralName);
 
         // creating a sample custom resource content
-        var myCr = Utils.MakeCResource(name, "default");
+        var myCr = Utils.MakeCResource(name, _namespace, uuid, storageData, type);
         try
         {
             Console.WriteLine("creating{1} CR {0}", myCr?.Metadata?.Name, "ARG1");

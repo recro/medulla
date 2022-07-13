@@ -1,4 +1,6 @@
+using Google.Protobuf.Collections;
 using Grpc.Core;
+using StorageService.Kubernetes.Crds.Data;
 
 namespace StorageService.Services;
 
@@ -13,12 +15,18 @@ public class StorageService : Storage.StorageBase
 
     public override Task<Response> saveObject(Object request, ServerCallContext context)
     {
-        return base.saveObject(request, context);
+        Actions.Create(request.Name, "default", request.Uuid, request.StorageData, request.Type);
+        return Task.FromResult(new Response() {Message = "Created"});
     }
 
-    public override Task<ObjectList> listObjects(SearchObject request, ServerCallContext context)
+    public override ObjectList listObjects(SearchObject request, ServerCallContext context)
     {
-        return base.listObjects(request, context);
+        Actions.Get();
+        //return base.listObjects(request, context);
+        var objectList = new ObjectList();
+        RepeatedField<Object> objects = new RepeatedField<Object>();
+
+        return new ObjectList() { Objects = { objects }};
     }
 
     public override Task<Response> deleteObject(ObjectId request, ServerCallContext context)
