@@ -5,6 +5,8 @@
 using Blazor.Diagrams.Core;
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
+using Blazor.Diagrams.Core.Models.Base;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Medulla.Editor.Client.Components.BlazorDiagramBase;
 
@@ -18,29 +20,29 @@ public partial class Diagram
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-
         NodeDiagram = new BlazorDiagram();
+        NodeDiagram.RegisterModelComponent<DatabaseTableModel, DatabaseTable>();
+        NodeDiagram.MouseClick += ClickedDiagram;
     }
 
-    private void Setup()
+    private void ClickedDiagram(Model model, MouseEventArgs eventArgs)
     {
-        var node1 = NewNode(50, 50);
-        var node2 = NewNode(300, 300);
-        var node3 = NewNode(300, 50);
-        NodeDiagram?.Nodes.Add(node1);
-        NodeDiagram?.Nodes.Add(node2);
-        NodeDiagram?.Nodes.Add(node3);
+        try
+        {
+            Console.WriteLine("Checking if null");
+            Console.WriteLine(model.Id);
+            ActiveModel = (DatabaseTableModel)model;
+        }
+        catch (NullReferenceException e)
+        {
+            ActiveModel = null;
+        }
+        StateHasChanged();
     }
 
-    private NodeModel NewNode(double x, double y)
+    private void AddTable(DatabaseTableModel table)
     {
-        var node = new NodeModel(new Point(x, y));
-        node.AddPort(PortAlignment.Bottom);
-        node.AddPort(PortAlignment.Top);
-        node.AddPort(PortAlignment.Left);
-        node.AddPort(PortAlignment.Right);
-        return node;
+        NodeDiagram?.Nodes.Add(table);
     }
 
 }

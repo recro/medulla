@@ -21,4 +21,14 @@ public class Nameable
     public string Description { get; set; } = "No Description";
 
 
+    public static Nameable NewNameable(string? title, string? description)
+    {
+        var nameable = new Nameable();
+        if (title != null)
+            nameable.Title = title;
+        if (description != null)
+            nameable.Description = description;
+        return nameable;
+    }
+
 }

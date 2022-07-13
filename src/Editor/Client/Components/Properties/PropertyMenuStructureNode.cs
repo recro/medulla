@@ -35,6 +35,7 @@ public enum InputType
     /// Workflow Data input
     /// </summary>
     WorkflowDataInput,
+    DatabaseTableModel,
 }
 
 /// <summary>

@@ -1,0 +1,105 @@
+﻿@using Medulla.Editor.Client.Components.Properties.Types
+<div class="flex">
+    <div>
+        <p>Table Name</p>
+        <input @oninput="(e) => ChangedTableName(e)" class="form-control" type="text" placeholder="Table Name" aria-label="Repository description"/>
+    </div>
+    <ul>
+        @foreach (var _column in _columns)
+        {
+            <li>
+                <div>
+                    <p>Column</p>
+                    <div style="display:flex">
+                        <input style="width:50%;" @oninput="(e) => ChangedName(_column.Id, e)" class="form-control" type="text" placeholder="Column Name" aria-label="Repository description"/>
+                        <PropertiesDropdown Changed="(name, description) => ChangedType(_column.Id, name!, description!)" Title="@Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(DropdownItems)"/>
+                    </div>
+                </div>
+                <div style="display: flex;
+                                align-items: center;
+                                justify-items: center;
+                                align-content: center;
+                                padding-top: 10px;">
+                    <p style="padding-right: 10px;
+                                  margin: 0;">Is Unique</p>
+                    <input style="margin: 0;
+                                      margin-top: 5px;" type="checkbox" class="form-control" />
+                </div>
+            </li>
+        }
+    </ul>
+    <p>Add Column</p>
+    <button @onclick="AddColumn" class="btn">Add Column</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public Action<DatabaseTable>? DatabaseTableChanged { get; set; }
+
+    public string Title { get; set; } = "Type";
+
+    private List<Column> _columns { get; set; } = new();
+
+    private List<string> DropdownItems { get; set; } = new()
+    {
+        "string",
+        "boolean",
+    };
+
+    private string _tableName { get; set; } = "";
+
+    private void ChangedType(string id, string test, string test1)
+    {
+        Console.WriteLine($"changed {id} to type {test} and type {test1}");
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                _columns[i].Type = test;
+            }
+        }
+        var table = new DatabaseTable();
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void ChangedName(string id, ChangeEventArgs e)
+    {
+        Console.WriteLine($"changed {id} to {e?.Value?.ToString()}");
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                _columns[i].Name = e?.Value?.ToString()!;
+            }
+        }
+        var table = new DatabaseTable();
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void ChangedTableName(ChangeEventArgs e)
+    {
+        Console.WriteLine($"changed tablename to {e?.Value?.ToString()}");
+        _tableName = e?.Value?.ToString()!;
+        var table = new DatabaseTable();
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void AddColumn()
+    {
+        _columns.Add(new Column()
+        {
+            Id = Guid.NewGuid().ToString(),
+            Name = "New Column",
+            IsUnique = false,
+            Type = "string"
+        });
+    }
+
+}

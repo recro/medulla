@@ -45,6 +45,9 @@
                 case InputType.WorkflowDataInput:
                     <WorkflowDataInput UpdatedField="UpdateChangedWorkflow" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="@PropertyMenuStructureNode.AnyTypeInput.ListOfStrings" />
                     break;
+                case InputType.DatabaseTableModel:
+                    <DatabaseTableModelProperties />
+                    break;
             }
         }
         else
