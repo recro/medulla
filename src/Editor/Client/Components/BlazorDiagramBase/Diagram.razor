@@ -1,6 +1,8 @@
 ﻿@using Medulla.Editor.Client.Abstractions.ObjectComposition
 @using Blazor.Diagrams.Core.Models.Base
+@using Medulla.WorkflowDesigner.Client.Library
 @using Medulla.WorkflowDesigner.Client.Library.PropertyMenuStructureFactory
+
 <div class="wrapper">
     <div class="diagram-container">
         <CascadingValue Value="NodeDiagram">
@@ -34,6 +36,9 @@
                 return PropertyMenuStructureFactory.GetStructure(new DatabaseModelMenuFactory(), value =>
                 {
                     Console.WriteLine("Changed");
+                    var table = value.DatabaseTable;
+                    Database data = Database.GetDatabase();
+                    data.SaveTable(table);
                 });
             }
             else
