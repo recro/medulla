@@ -19,14 +19,18 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                 new()
                 {
                     Nameable = Nameable.NewNameable("Switch Table", "Switch Active Database Table"),
-                    InputType = InputType.Button,
+                    InputType = InputType.Dropdown,
                     AnyTypeInput = new AnyTypeInput()
                     {
                         ListOfStrings = new ()
                         {
-                            "Test",
-                            "test"
+                            "Table 1",
+                            "Table"
                         }
+                    },
+                    OnValueChange = (value) =>
+                    {
+                        Console.WriteLine($"Changed dropdown {value.DropdownValue.Name} {value.DropdownValue.Description}");
                     }
                 },
                 new()

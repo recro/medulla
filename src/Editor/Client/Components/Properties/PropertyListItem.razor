@@ -50,6 +50,9 @@
                     case InputType.DatabaseTableModel:
                         <DatabaseTableModelProperties DatabaseTableChanged="DatabaseTableChanged" />
                         break;
+                    case InputType.Dropdown:
+                        <PropertiesDropdown Changed="(name, description) => ChangedType(name!, description!)" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(PropertyMenuStructureNode.AnyTypeInput.ListOfStrings)"/>
+                    break;
                 }
             }
             else
@@ -118,6 +121,18 @@
         PropertyMenuStructureNode.OnValueChange?.Invoke(new AnyTypeValue()
         {
             DatabaseTable = databaseTable
+        });
+    }
+
+    private void ChangedType(string name, string description)
+    {
+        PropertyMenuStructureNode.OnValueChange?.Invoke(new AnyTypeValue()
+        {
+            DropdownValue = new DropdownValue()
+            {
+                Name = name,
+                Description = description
+            }
         });
     }
 

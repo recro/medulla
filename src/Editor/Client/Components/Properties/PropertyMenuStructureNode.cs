@@ -37,13 +37,22 @@ public enum InputType
     /// </summary>
     WorkflowDataInput,
     DatabaseTableModel,
+    Dropdown,
 }
 
+public class DropdownValue
+{
+    public string Name { get; set; } = "";
+    public string Description { get; set; } = "";
+}
 /// <summary>
 /// Type which is for any property that needs list of strings
 /// </summary>
 public class AnyTypeValue
 {
+
+
+
     /// <summary>
     /// Type which is for any property that needs list of strings
     /// </summary>
@@ -55,6 +64,8 @@ public class AnyTypeValue
     public int Number = 0;
 
     public DatabaseTable DatabaseTable { get; set; } = new();
+
+    public DropdownValue DropdownValue { get; set; } = new();
 
 }
 
