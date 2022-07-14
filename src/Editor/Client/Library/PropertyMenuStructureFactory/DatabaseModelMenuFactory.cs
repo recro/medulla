@@ -57,6 +57,11 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                             "Test",
                             "test"
                         }
+                    },
+                    OnValueChange = (AnyTypeValue value) =>
+                    {
+                        Database data = Database.GetDatabase();
+                        data.SyncTablesWithBackend();
                     }
                 }
             }

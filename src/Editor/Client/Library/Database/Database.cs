@@ -2,6 +2,7 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
+using System.Text;
 using Medulla.Editor.Client.Components.Properties.Types;
 
 namespace Medulla.WorkflowDesigner.Client.Library;
@@ -60,8 +61,35 @@ public class Database
 
     public void SyncTablesWithBackend()
     {
-
+        Print();
     }
 
+    public void Print()
+    {
+        Console.WriteLine(ToString());
+    }
 
+    public override string ToString()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.Append($"" +
+                             $"                " +
+                             $"                " +
+                             $"                ");
+
+        foreach (var table in Tables)
+        {
+            stringBuilder.Append($"" +
+                                 $"                " +
+                                 table.ToString()    +
+                                 $"                ");
+        }
+
+        stringBuilder.Append($"" +
+                             $"                " +
+                             $"                " +
+                             $"                ");
+
+        return stringBuilder.ToString();
+    }
 }
