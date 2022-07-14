@@ -2,8 +2,9 @@
 @* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
 @* See the LICENSE file in the project root for more information. *@
 
-<div class="Box width-full">
-    <p class="pl-1">@PropertyMenuStructure?.Nameable.Title</p>
+<div class="Box width-full" style="overflow-y: scroll;
+                                       height: 94vh;">
+    <h1 class="pl-1">@PropertyMenuStructure?.Nameable.Title</h1>
 
     @if (PropertyMenuStructure is { PropertyMenuStructureNodes: {} })
     {

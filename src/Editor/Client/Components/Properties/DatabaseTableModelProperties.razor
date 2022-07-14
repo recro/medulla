@@ -4,36 +4,74 @@
         <p>Table Name</p>
         <input @oninput="(e) => ChangedTableName(e)" class="form-control" type="text" placeholder="Table Name" aria-label="Repository description"/>
     </div>
-    <ul>
-        @foreach (var _column in _columns)
-        {
-            <li>
-                <div>
-                    <p>Column</p>
-                    <div style="display:flex">
-                        <input style="width:50%;" @oninput="(e) => ChangedName(_column.Id, e)" class="form-control" type="text" placeholder="Column Name" aria-label="Repository description"/>
-                        <PropertiesDropdown Changed="(name, description) => ChangedType(_column.Id, name!, description!)" Title="@Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(DropdownItems)"/>
-                    </div>
-                </div>
-                <div style="display: flex;
-                                align-items: center;
-                                justify-items: center;
-                                align-content: center;
-                                padding-top: 10px;">
-                    <p style="padding-right: 10px;
-                                  margin: 0;">Unique</p>
-                    <input style="margin: 0;
-                                      margin-top: 5px;" type="checkbox" class="form-control" />
-                    <p style="padding-right: 10px;
-                                                      margin: 0;">Required</p>
-                    <input style="margin: 0;
-                                                          margin-top: 5px;" type="checkbox" class="form-control" />
-                </div>
-            </li>
-        }
-    </ul>
-    <p>Add Column</p>
-    <button @onclick="AddColumn" class="btn">Add Column</button>
+
+
+    <table style="margin-top:1em;margin-right: 1em;" summary="This is a chart of invoices for 2011.">
+      <thead>
+        <tr>
+          <th style="width:25%;border: thin solid gray;" scope="col">Field</th>
+          <th style="width:25%;border: thin solid gray;" scope="col">Type</th>
+          <th style="width:25%;border: thin solid gray;" scope="col">Unique</th>
+          <th style="width:25%;border: thin solid gray;" scope="col">Required</th>
+        </tr>
+      </thead>
+      @*<tfoot>
+        <tr>
+          <td>Table footer 1</td>
+          <td>Table footer 2</td>
+          <td>Table footer 2</td>
+          <td>Table footer 2</td>
+        </tr>
+      </tfoot>*@
+      <tbody>
+
+      @foreach (var _column in _columns)
+          {
+
+              <tr>
+                  <td style="border: thin solid gray;">
+                      <input style="width:100%;" @oninput="(e) => ChangedName(_column.Id, e)" class="form-control" type="text" placeholder="Name" aria-label="Repository description"/>
+                  </td>
+                  <td style="border: thin solid gray;">
+                      <PropertiesDropdown Changed="(name, description) => ChangedType(_column.Id, name!, description!)" Title="@Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(DropdownItems)"/>
+                  </td>
+                  <td style="border: thin solid gray;margin: 0 auto!important;
+                                 text-align: center;">
+                      <input style="margin: 0 auto!important;
+                                        text-align: center;" type="checkbox" class="form-control" />
+                  </td>
+                  <td style="border: thin solid gray;margin: 0 auto!important;
+                                 text-align: center;">
+                      <input style="margin: 0;
+                                                                                  margin-top: 5px;" type="checkbox" class="form-control" />
+                  </td>
+              </tr>
+
+              @*<li>
+                  <div>
+                      <p>Column</p>
+                      <div style="display:flex">
+
+
+                      </div>
+                  </div>
+                  <div style="display: flex;
+                                  align-items: center;
+                                  justify-items: center;
+                                  align-content: center;
+                                  padding-top: 10px;">
+                      <p style="padding-right: 10px;
+                                    margin: 0;">Unique</p>
+
+                      <p style="padding-right: 10px;
+                                                        margin: 0;">Required</p>
+
+                  </div>
+              </li>*@
+          }
+      </tbody>
+    </table>
+    <button style="margin-top:1em;" @onclick="AddColumn" class="btn">Add Column</button>
 </div>
 
 @code {
