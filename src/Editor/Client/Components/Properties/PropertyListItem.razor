@@ -3,64 +3,66 @@
 @* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
 @* See the LICENSE file in the project root for more information. *@
 
-<div class="TimelineItem TimelineItem--condensed">
-    @{
-        var hasNoChildren = PropertyMenuStructureNode.HasNoChildren();
-    }
-    <PropertyListItemIcon PropertyMenuStructureNode="PropertyMenuStructureNode" PropertiesMenu="PropertiesMenu" />
-    <div class="TimelineItem-body">
-        @if (hasNoChildren)
-        {
-            <p class="pb-1">@PropertyMenuStructureNode.Nameable.Title</p>
+<Window WindowTitle="@PropertyMenuStructureNode.Nameable.Title">
+    <div class="TimelineItem TimelineItem--condensed">
+        @{
+            var hasNoChildren = PropertyMenuStructureNode.HasNoChildren();
         }
-        else
-        {
-            <p @onclick="OpenClose" class="pb-1" style="cursor:pointer;">@PropertyMenuStructureNode.Nameable.Title</p>
-        }
-
-
-        @if (hasNoChildren)
-        {
-            switch (@PropertyMenuStructureNode.InputType)
+        <PropertyListItemIcon PropertyMenuStructureNode="PropertyMenuStructureNode" PropertiesMenu="PropertiesMenu" />
+        <div class="TimelineItem-body">
+            @if (hasNoChildren)
             {
-                case InputType.TextInput:
-                    <p>
-                        <input class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description"/>
-                    </p>
-                    break;
-
-                case InputType.TextArea:
-                    <p>
-                        <textarea class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
-                    </p>
-                    break;
-
-                case InputType.AddMultiple:
-                    <AddList Description="@PropertyMenuStructureNode.Nameable.Description" OnChange="SetValueDatabaseTables" />
-                    break;
-                case InputType.Button:
-                    <p>@PropertyMenuStructureNode.Nameable.Description</p>
-                    <button @onclick="ClickButton" class="btn">@PropertyMenuStructureNode.Nameable.Title</button>
-                    break;
-
-                case InputType.WorkflowDataInput:
-                    <WorkflowDataInput UpdatedField="UpdateChangedWorkflow" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="@PropertyMenuStructureNode.AnyTypeInput.ListOfStrings" />
-                    break;
-                case InputType.DatabaseTableModel:
-                    <DatabaseTableModelProperties DatabaseTableChanged="DatabaseTableChanged" />
-                    break;
+                <p class="pb-1">@PropertyMenuStructureNode.Nameable.Title</p>
             }
-        }
-        else
-        {
-            @if (PropertyMenuStructureNode.IsOpen)
+            else
             {
-                <PropertyList PropertiesMenu="PropertiesMenu" PropertyMenuStructure="PropertyMenuStructureNode.PropertyMenuStructure"/>
+                <p @onclick="OpenClose" class="pb-1" style="cursor:pointer;">@PropertyMenuStructureNode.Nameable.Title</p>
             }
-        }
 
+
+            @if (hasNoChildren)
+            {
+                switch (@PropertyMenuStructureNode.InputType)
+                {
+                    case InputType.TextInput:
+                        <p>
+                            <input class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description"/>
+                        </p>
+                        break;
+
+                    case InputType.TextArea:
+                        <p>
+                            <textarea class="form-control" type="text" placeholder="@PropertyMenuStructureNode.Nameable.Title" aria-label="Repository description" />
+                        </p>
+                        break;
+
+                    case InputType.AddMultiple:
+                        <AddList Description="@PropertyMenuStructureNode.Nameable.Description" OnChange="SetValueDatabaseTables" />
+                        break;
+                    case InputType.Button:
+                        <p>@PropertyMenuStructureNode.Nameable.Description</p>
+                        <button @onclick="ClickButton" class="btn">@PropertyMenuStructureNode.Nameable.Title</button>
+                        break;
+
+                    case InputType.WorkflowDataInput:
+                        <WorkflowDataInput UpdatedField="UpdateChangedWorkflow" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="@PropertyMenuStructureNode.AnyTypeInput.ListOfStrings" />
+                        break;
+                    case InputType.DatabaseTableModel:
+                        <DatabaseTableModelProperties DatabaseTableChanged="DatabaseTableChanged" />
+                        break;
+                }
+            }
+            else
+            {
+                @if (PropertyMenuStructureNode.IsOpen)
+                {
+                    <PropertyList PropertiesMenu="PropertiesMenu" PropertyMenuStructure="PropertyMenuStructureNode.PropertyMenuStructure"/>
+                }
+            }
+
+        </div>
     </div>
-</div>
+</Window>
 
 @code {
 
