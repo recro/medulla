@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Text;
+using AutoMapper;
 using Google.Protobuf.Collections;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
@@ -73,7 +74,7 @@ public class Database
         var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
         var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
 
-        RepeatedField<Model> models = new RepeatedField<Model>();
+        RepeatedField<GrpcDatabaseService.Model> models = new RepeatedField<GrpcDatabaseService.Model>();
 
 
         client.CreateDatabasesAsync(new CreateDatabasesRequest()
