@@ -10,6 +10,7 @@ using Grpc.Net.Client.Web;
 using GrpcDatabaseService;
 using Medulla.Editor.Client.Components.Properties.Types;
 using Microsoft.AspNetCore.Components;
+using Column = Medulla.Editor.Client.Components.Properties.Types.Column;
 using Model = Blazor.Diagrams.Core.Models.Base.Model;
 
 namespace Medulla.WorkflowDesigner.Client.Library;
@@ -53,6 +54,27 @@ public class Database
     private DatabaseTable? ActiveEditingTable { get; set; }
     private List<DatabaseTable> Tables { get; set; } = new();
 
+
+    private RepeatedField<GrpcDatabaseService.Column> GetColumnsFromTableColumns(List<Column> tableColumns)
+    {
+        throw new NotImplementedException();
+    }
+
+    private RepeatedField<GrpcDatabaseService.Model> GetModelsFromTables()
+    {
+        var models = new RepeatedField<GrpcDatabaseService.Model>();
+        foreach (var table in Tables)
+        {
+            var model = new GrpcDatabaseService.Model()
+            {
+                Column = { GetColumnsFromTableColumns(table.Columns) },
+                Name = table.Name
+            };
+            models.Add(model);
+        }
+        return models;
+    }
+
     public void SaveTable(DatabaseTable table)
     {
         var t = Tables.Find(t => t.Id == table.Id);
@@ -74,12 +96,10 @@ public class Database
         var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
         var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
 
-        RepeatedField<GrpcDatabaseService.Model> models = new RepeatedField<GrpcDatabaseService.Model>();
-
-
+        var models = GetModelsFromTables();
         client.CreateDatabasesAsync(new CreateDatabasesRequest()
         {
-            Database = { new GrpcDatabaseService.Database[]
+            Database = { new[]
             {
                 new GrpcDatabaseService.Database()
                 {
