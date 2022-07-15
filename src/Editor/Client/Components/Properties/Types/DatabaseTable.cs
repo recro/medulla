@@ -12,6 +12,7 @@ public class Column
     public string Name { get; set; } = "";
     public string Type { get; set; } = "";
     public bool IsUnique { get; set; } = false;
+    public bool Required { get; set; } = false;
 
     public override string ToString()
     {
@@ -24,6 +25,7 @@ public class Column
             Name: {Name}
             Type: {Type}
             IsUnique: {IsUnique}
+            Required: {Required}
 
         ");
 

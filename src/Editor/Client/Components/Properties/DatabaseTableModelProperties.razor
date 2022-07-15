@@ -37,12 +37,12 @@
                   </td>
                   <td style="border: thin solid gray;margin: 0 auto!important;
                                  text-align: center;">
-                      <input style="margin: 0 auto!important;
+                      <input @bind="_column.IsUnique" style="margin: 0 auto!important;
                                         text-align: center;" type="checkbox" class="form-control" />
                   </td>
                   <td style="border: thin solid gray;margin: 0 auto!important;
                                  text-align: center;">
-                      <input style="margin: 0;
+                      <input @bind="_column.Required" style="margin: 0;
                                                                                   margin-top: 5px;" type="checkbox" class="form-control" />
                   </td>
               </tr>
@@ -92,6 +92,41 @@
     };
 
     private string _tableName { get; set; } = "";
+
+    private void ChangedRequired(string id, ChangeEventArgs changeEventArgs)
+    {
+
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                Console.WriteLine($"changeEventArgs is equal to {changeEventArgs}");
+                _columns[i].Required = changeEventArgs.Value != null;
+            }
+        }
+
+        var table = new DatabaseTable();
+        table.Id = _databaseTableId;
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void ChangedUnique(string id, ChangeEventArgs changeEventArgs)
+    {
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                _columns[i].Type = changeEventArgs.Value != null ? "unique-"+id : "";
+            }
+        }
+        var table = new DatabaseTable();
+        table.Id = _databaseTableId;
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
 
     private void ChangedType(string id, string test, string test1)
     {
