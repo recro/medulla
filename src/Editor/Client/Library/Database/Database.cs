@@ -57,7 +57,22 @@ public class Database
 
     private RepeatedField<GrpcDatabaseService.Column> GetColumnsFromTableColumns(List<Column> tableColumns)
     {
-        throw new NotImplementedException();
+        var columns = new RepeatedField<GrpcDatabaseService.Column>();
+        foreach (var tableColumn in tableColumns)
+        {
+            columns.Add(new GrpcDatabaseService.Column()
+            {
+                AllowNull = false,
+                Comment = "test",
+                Type = tableColumn.Type,
+                Unique = "test",
+                ColumnName = tableColumn.Name,
+                DefaultValue = "",
+                FieldName = tableColumn.Name,
+                PrimaryKey = false,
+            });
+        }
+        return columns;
     }
 
     private RepeatedField<GrpcDatabaseService.Model> GetModelsFromTables()
