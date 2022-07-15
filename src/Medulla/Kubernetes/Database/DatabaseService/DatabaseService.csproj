@@ -8,14 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="Protos\database.proto" GrpcServices="Server" />
-    </ItemGroup>
-
-    <Target Name="Protobuf_Compile_Before_AssemblyReferences" BeforeTargets="ResolveAssemblyReferences">
-        <CallTarget Targets="_Protobuf_Compile_BeforeCsCompile" />
-    </Target>
-
-    <ItemGroup>
         <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
         <PackageReference Include="Grpc.AspNetCore.Web" Version="2.47.0" />
         <PackageReference Include="KubernetesClient" Version="7.1.9" />
@@ -27,6 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\DatabaseServiceSharedProtos\DatabaseServiceSharedProtos.csproj" />
       <ProjectReference Include="..\..\..\..\SharedClasses\SharedClasses.csproj" />
     </ItemGroup>
 

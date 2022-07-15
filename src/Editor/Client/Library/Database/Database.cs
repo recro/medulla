@@ -3,7 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Text;
+using Google.Protobuf.Collections;
+using Grpc.Net.Client;
+using Grpc.Net.Client.Web;
+using GrpcDatabaseService;
 using Medulla.Editor.Client.Components.Properties.Types;
+using Microsoft.AspNetCore.Components;
+using Model = Blazor.Diagrams.Core.Models.Base.Model;
 
 namespace Medulla.WorkflowDesigner.Client.Library;
 
@@ -59,9 +65,29 @@ public class Database
         }
     }
 
-    public void SyncTablesWithBackend()
+    public async void SyncTablesWithBackend()
     {
-        Print();
+        //GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient
+        var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
+        //var baseUri = services.GetRequiredService<NavigationManager>().BaseUri;
+        var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
+        var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
+
+        RepeatedField<Model> models = new RepeatedField<Model>();
+
+
+        client.CreateDatabasesAsync(new CreateDatabasesRequest()
+        {
+            Database = { new GrpcDatabaseService.Database[]
+            {
+                new GrpcDatabaseService.Database()
+                {
+                    Dialect = "mysql",
+                    Name = "medulla",
+                    Models = { models }
+                }
+            } }
+        });
     }
 
     public void Print()
