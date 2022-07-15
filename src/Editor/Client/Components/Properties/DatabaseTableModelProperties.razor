@@ -83,6 +83,8 @@
 
     private List<Column> _columns { get; set; } = new();
 
+    private string _databaseTableId { get; set; } = Guid.NewGuid().ToString();
+
     private List<string> DropdownItems { get; set; } = new()
     {
         "string",
@@ -102,6 +104,7 @@
             }
         }
         var table = new DatabaseTable();
+        table.Id = _databaseTableId;
         table.Name = _tableName;
         table.Columns = _columns;
         DatabaseTableChanged?.Invoke(table);
@@ -118,8 +121,15 @@
             }
         }
         var table = new DatabaseTable();
+        table.Id = _databaseTableId;
         table.Name = _tableName;
         table.Columns = _columns;
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
         DatabaseTableChanged?.Invoke(table);
     }
 
@@ -128,8 +138,15 @@
         Console.WriteLine($"changed tablename to {e?.Value?.ToString()}");
         _tableName = e?.Value?.ToString()!;
         var table = new DatabaseTable();
+        table.Id = _databaseTableId;
         table.Name = _tableName;
         table.Columns = _columns;
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
         DatabaseTableChanged?.Invoke(table);
     }
 

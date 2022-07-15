@@ -60,8 +60,10 @@ public class DatabaseTable
          Id: {Id}
          Name: {Name}
          Columns:
-         {Columns.ToString()}
 ");
+
+        foreach (var column in Columns)
+            stringBuilder.Append(column);
 
         return stringBuilder.ToString();
     }

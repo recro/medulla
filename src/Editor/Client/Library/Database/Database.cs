@@ -77,12 +77,14 @@ public class Database
                              $"                " +
                              $"                ");
 
+        int item = 0;
         foreach (var table in Tables)
         {
-            stringBuilder.Append($"" +
+            stringBuilder.Append($"TABLE NUMBER {item}" +
                                  $"                " +
                                  table.ToString()    +
                                  $"                ");
+            item++;
         }
 
         stringBuilder.Append($"" +
