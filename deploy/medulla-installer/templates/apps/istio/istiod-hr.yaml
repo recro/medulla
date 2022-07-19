@@ -19,7 +19,7 @@ spec:
         namespace: istio-system
       interval: 1m
   dependsOn:
-    - name: istio-base
+    - name: istio
   upgrade:
     remediation:
       remediateLastFailure: true
