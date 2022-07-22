@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
+using Medulla.Editor.Client.Components.BlazorDiagramBase;
 using Medulla.Editor.Client.Components.Properties;
 using Medulla.WorkflowDesigner.Client.Library.Services;
 
@@ -10,6 +11,13 @@ namespace Medulla.WorkflowDesigner.Client.Library.PropertyMenuStructureFactory;
 
 public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
 {
+    private DatabaseTableModel _model;
+
+    public DatabaseModelMenuFactory(DatabaseTableModel model)
+    {
+        _model = model;
+    }
+
     public override PropertyMenuStructure GetStructure(Action<AnyTypeValue> action)
     {
         var tables = DatabaseService.GetListOfDatabaseTables(true);
@@ -36,6 +44,10 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                 {
                     Nameable = Nameable.NewNameable("Model", "Model"),
                     InputType = InputType.DatabaseTableModel,
+                    AnyTypeInput = new AnyTypeInput()
+                    {
+                        DatabaseTableModel = _model
+                    },
                     OnValueChange = (action),
                     PropertyMenuStructure = new()
                     {

@@ -33,7 +33,7 @@
         {
             if (ActiveModel != null)
             {
-                return PropertyMenuStructureFactory.GetStructure(new DatabaseModelMenuFactory(), value =>
+                return PropertyMenuStructureFactory.GetStructure(new DatabaseModelMenuFactory(ActiveModel), value =>
                 {
                     Console.WriteLine("Changed");
                     var table = value.DatabaseTable;

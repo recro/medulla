@@ -3,7 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
-using Medulla.Editor.Client.Components.Properties.Types;
+using Medulla.Editor.Client.Components.BlazorDiagramBase;
+using DatabaseTable = Medulla.Editor.Client.Components.Properties.Types.DatabaseTable;
 
 namespace Medulla.Editor.Client.Components.Properties;
 
@@ -67,6 +68,7 @@ public class AnyTypeValue
 
     public DropdownValue DropdownValue { get; set; } = new();
 
+
 }
 
 /// <summary>
@@ -83,6 +85,8 @@ public class AnyTypeInput
     /// Int
     /// </summary>
     public int Number = 0;
+
+    public DatabaseTableModel? DatabaseTableModel { get; set; } = new();
 
 }
 

@@ -48,7 +48,7 @@
                         <WorkflowDataInput UpdatedField="UpdateChangedWorkflow" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="@PropertyMenuStructureNode.AnyTypeInput.ListOfStrings" />
                         break;
                     case InputType.DatabaseTableModel:
-                        <DatabaseTableModelProperties DatabaseTableChanged="DatabaseTableChanged" />
+                        <DatabaseTableModelProperties DatabaseTableModel="PropertyMenuStructureNode?.AnyTypeInput.DatabaseTableModel" DatabaseTableChanged="DatabaseTableChanged" />
                         break;
                     case InputType.Dropdown:
                         <PropertiesDropdown Changed="(name, description) => ChangedType(name!, description!)" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(PropertyMenuStructureNode.AnyTypeInput.ListOfStrings)"/>

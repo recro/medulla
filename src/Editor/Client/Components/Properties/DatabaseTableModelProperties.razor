@@ -1,8 +1,10 @@
 ﻿@using Medulla.Editor.Client.Components.Properties.Types
+@using Medulla.Editor.Client.Components.BlazorDiagramBase
+@using DatabaseTable = Medulla.Editor.Client.Components.Properties.Types.DatabaseTable
 <div class="flex">
     <div>
         <p>Table Name</p>
-        <input @oninput="(e) => ChangedTableName(e)" class="form-control" type="text" placeholder="Table Name" aria-label="Repository description"/>
+        <input value="@DatabaseTableModel?.Name" @oninput="(e) => ChangedTableName(e)" class="form-control" type="text" placeholder="Table Name" aria-label="Repository description"/>
     </div>
 
 
@@ -30,7 +32,7 @@
 
               <tr>
                   <td style="border: thin solid gray;">
-                      <input style="width:100%;" @oninput="(e) => ChangedName(_column.Id, e)" class="form-control" type="text" placeholder="Name" aria-label="Repository description"/>
+                      <input style="width:100%;" @oninput="(e) => ChangedName(_column.Id, e)" class="form-control" type="text" value="@_column.Name" placeholder="Name" aria-label="Repository description"/>
                   </td>
                   <td style="border: thin solid gray;">
                       <PropertiesDropdown Changed="(name, description) => ChangedType(_column.Id, name!, description!)" Title="@Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(DropdownItems)"/>
@@ -75,6 +77,20 @@
 </div>
 
 @code {
+
+    [Parameter]
+    public DatabaseTableModel? DatabaseTableModel { get; set; }
+
+    protected override void OnInitialized()
+    {
+        foreach (var modelDataField in DatabaseTableModel?.InputDataFields!)
+        {
+            Column column = new();
+            column.Name = modelDataField.Name;
+            column.Type = modelDataField.Type;
+            _columns.Add(column);
+        }
+    }
 
     [Parameter]
     public Action<DatabaseTable>? DatabaseTableChanged { get; set; }
