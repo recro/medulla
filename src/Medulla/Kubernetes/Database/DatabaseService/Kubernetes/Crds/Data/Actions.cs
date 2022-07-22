@@ -25,6 +25,20 @@ public class Actions
             Console.WriteLine("________________________________________________");
             Console.WriteLine(JsonSerializer.Serialize(myCr));
             Console.WriteLine("________________________________________________");
+            try
+            {
+                await client.DeleteNamespacedCustomObjectWithHttpMessagesAsync(
+                    myCRD.Group,
+                    myCRD.Version,
+                    myCr?.Metadata?.NamespaceProperty ?? "default",
+                    myCRD.PluralName,
+                    myCr?.Metadata?.Name);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine("custom object didn't exist");
+            }
             var response = await client.CreateNamespacedCustomObjectWithHttpMessagesAsync(
                 myCr,
                 myCRD.Group, myCRD.Version,

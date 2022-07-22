@@ -97,7 +97,12 @@ public class Database
 
     public void SaveTable(DatabaseTable table)
     {
-        var t = Tables.Find(t => t.Id == table.Id);
+        var t = Tables.Find(t => t.Name == table.Name);
+        var tid = Tables.Find(t => t.Id == table.Id);
+        if (tid != null && t == null)
+        {
+            t = tid;
+        }
         if (t != null)
         {
             t.Overwrite(table);

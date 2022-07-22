@@ -76,8 +76,9 @@ public class DatabaseTable
         Name = table.Name;
         foreach (var tableColumn in table.Columns)
         {
-            if (Columns.Exists(t => t.Id == tableColumn.Id))
+            if (Columns.Exists(t => t.Id == tableColumn.Id) || Columns.Exists(t => t.Name == tableColumn.Name))
             {
+                Console.WriteLine($"id for column is {tableColumn.Id}");
                 foreach (var column in Columns)
                 {
                     if (column.Id == tableColumn.Id)

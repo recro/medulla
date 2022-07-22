@@ -83,11 +83,13 @@
 
     protected override void OnInitialized()
     {
+        _tableName = DatabaseTableModel?.Name!;
         foreach (var modelDataField in DatabaseTableModel?.InputDataFields!)
         {
             Column column = new();
             column.Name = modelDataField.Name;
             column.Type = modelDataField.Type;
+            column.Id = Guid.NewGuid().ToString();
             _columns.Add(column);
         }
     }
