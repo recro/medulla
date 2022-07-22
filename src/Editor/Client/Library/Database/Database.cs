@@ -75,7 +75,7 @@ public class Database
         return columns;
     }
 
-    private RepeatedField<GrpcDatabaseService.Model> GetModelsFromTables()
+    public RepeatedField<GrpcDatabaseService.Model> GetModelsFromTables()
     {
         var models = new RepeatedField<GrpcDatabaseService.Model>();
         foreach (var table in Tables)
@@ -103,28 +103,7 @@ public class Database
         }
     }
 
-    public async void SyncTablesWithBackend()
-    {
-        //GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient
-        var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
-        //var baseUri = services.GetRequiredService<NavigationManager>().BaseUri;
-        var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
-        var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
 
-        var models = GetModelsFromTables();
-        client.CreateDatabasesAsync(new CreateDatabasesRequest()
-        {
-            Database = { new[]
-            {
-                new GrpcDatabaseService.Database()
-                {
-                    Dialect = "mysql",
-                    Name = "medulla",
-                    Models = { models }
-                }
-            } }
-        });
-    }
 
     public void Print()
     {

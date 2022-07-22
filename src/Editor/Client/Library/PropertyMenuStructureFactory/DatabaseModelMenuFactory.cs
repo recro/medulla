@@ -4,6 +4,7 @@
 
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
 using Medulla.Editor.Client.Components.Properties;
+using Medulla.WorkflowDesigner.Client.Library.Services;
 
 namespace Medulla.WorkflowDesigner.Client.Library.PropertyMenuStructureFactory;
 
@@ -61,7 +62,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                     OnValueChange = (AnyTypeValue value) =>
                     {
                         Database data = Database.GetDatabase();
-                        data.SyncTablesWithBackend();
+                        DatabaseService.SaveDatabaseTablesToBackend(data);
                     }
                 }
             }
