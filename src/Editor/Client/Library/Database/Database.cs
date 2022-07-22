@@ -51,9 +51,14 @@ public class Database
 
 
     public string? Id { get; set; }
-    private DatabaseTable? ActiveEditingTable { get; set; }
-    private List<DatabaseTable> Tables { get; set; } = new();
+    public DatabaseTable? ActiveEditingTable { get; set; }
+    public List<DatabaseTable> Tables { get; set; } = new();
 
+
+    public void Clear()
+    {
+        Tables = new();
+    }
 
     private RepeatedField<GrpcDatabaseService.Column> GetColumnsFromTableColumns(List<Column> tableColumns)
     {
