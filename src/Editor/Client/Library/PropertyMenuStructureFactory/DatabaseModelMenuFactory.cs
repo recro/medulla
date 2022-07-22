@@ -64,6 +64,26 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                         Database data = Database.GetDatabase();
                         DatabaseService.SaveDatabaseTablesToBackend(data);
                     }
+                },
+                new()
+                {
+                    Nameable = Nameable.NewNameable("Load", "Load changes from backend."),
+                    InputType = InputType.Button,
+                    AnyTypeInput = new AnyTypeInput()
+                    {
+                        ListOfStrings = new ()
+                        {
+                            "Test",
+                            "test"
+                        }
+                    },
+                    OnValueChange = (AnyTypeValue value) =>
+                    {
+                        /*Database data = Database.GetDatabase();
+                        DatabaseService.SaveDatabaseTablesToBackend(data);*/
+
+                        DatabaseService.LoadDatabaseFromBackend();
+                    }
                 }
             }
         };

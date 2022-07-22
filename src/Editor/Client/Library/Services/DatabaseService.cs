@@ -19,7 +19,7 @@ public class DatabaseService
     }
 
 
-    public static async void LoadDatabase()
+    public static async void LoadDatabaseFromBackend()
     {
         var client = GetClient();
         var medullaDatabases = new GetDatabasesRequest() {Name = "medulla"};
