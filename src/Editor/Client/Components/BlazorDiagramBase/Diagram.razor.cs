@@ -6,6 +6,7 @@ using Blazor.Diagrams.Core;
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Core.Models.Base;
+using Medulla.WorkflowDesigner.Client.Library.Services;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace Medulla.Editor.Client.Components.BlazorDiagramBase;
@@ -23,6 +24,31 @@ public partial class Diagram
         NodeDiagram = new BlazorDiagram();
         NodeDiagram.RegisterModelComponent<DatabaseTableModel, DatabaseTable>();
         NodeDiagram.MouseClick += ClickedDiagram;
+
+        Console.WriteLine("On Load: Check Switch option");
+        if (DiagramSwitchOption == DiagramSwitch.DatabaseDesigner)
+        {
+            Console.WriteLine("On Load: Switch option db");
+            DatabaseService.LoadDatabaseFromBackend();
+            Task.Delay(1000).ContinueWith(t =>
+            {
+                LoadDatabaseTables();
+            });
+        }
+
+        StateHasChanged();
+    }
+
+    private void LoadDatabaseTables()
+    {
+        var models = DatabaseService.ConvertListDatabaseTableModelFromDatabase(true);
+        Console.WriteLine("On Load: Clear");
+        NodeDiagram?.Nodes.Clear();
+        foreach (var model in models)
+        {
+            Console.WriteLine("On Load: Adding new model to diagram");
+            NodeDiagram?.Nodes.Add(model);
+        }
     }
 
     private void ClickedDiagram(Model model, MouseEventArgs eventArgs)

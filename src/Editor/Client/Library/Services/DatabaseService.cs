@@ -6,6 +6,7 @@ using Google.Protobuf.Collections;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using GrpcDatabaseService;
+using Medulla.Editor.Client.Components.BlazorDiagramBase;
 
 namespace Medulla.WorkflowDesigner.Client.Library.Services;
 
@@ -45,6 +46,45 @@ public class DatabaseService
         Database database = Database.GetDatabase();
         Console.WriteLine($"Database name {dbs.Data[0].Databases[0].Models[0].Name}");
         UpdateDatabaseWithTables(database, dbs.Data[0].Databases[0].Models);
+    }
+
+    public static List<DatabaseTableModel> ConvertListDatabaseTableModelFromDatabase(bool loadFromBackend = false)
+    {
+        List<DatabaseTableModel> models = new();
+
+        if (loadFromBackend)
+        {
+            LoadDatabaseFromBackend();
+        }
+
+        Database db = Database.GetDatabase();
+
+        Console.WriteLine($"Found db with {db.Tables.Count} tables");
+        foreach (var table in db.Tables)
+        {
+            models.Add(ConvertDatabaseTableModelFromDatabaseTable(table));
+        }
+
+        return models;
+    }
+
+    private static DatabaseTableModel ConvertDatabaseTableModelFromDatabaseTable(
+        Editor.Client.Components.Properties.Types.DatabaseTable databaseTable)
+    {
+        DatabaseTableModel model = new();
+
+        model.Name = databaseTable.Name;
+
+        foreach (var tableColumn in databaseTable.Columns)
+        {
+            model.InputDataFields.Add(new Editor.Client.Components.BlazorDiagramBase.DataField()
+            {
+                Name = tableColumn.Name,
+                Type = tableColumn.Type
+            });
+        }
+
+        return model;
     }
 
     private static void UpdateDatabaseWithTables(Database database, RepeatedField<Model> models)
