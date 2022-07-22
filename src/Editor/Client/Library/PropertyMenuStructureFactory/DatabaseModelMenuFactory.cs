@@ -12,8 +12,10 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
 {
     public override PropertyMenuStructure GetStructure(Action<AnyTypeValue> action)
     {
+        var tables = DatabaseService.GetListOfDatabaseTables(true);
         return new PropertyMenuStructure()
         {
+
             Nameable = Nameable.NewNameable("Model", null),
             PropertyMenuStructureNodes = new ()
             {
@@ -23,11 +25,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                     InputType = InputType.Dropdown,
                     AnyTypeInput = new AnyTypeInput()
                     {
-                        ListOfStrings = new ()
-                        {
-                            "Table 1",
-                            "Table"
-                        }
+                        ListOfStrings = tables
                     },
                     OnValueChange = (value) =>
                     {
@@ -79,10 +77,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                     },
                     OnValueChange = (AnyTypeValue value) =>
                     {
-                        /*Database data = Database.GetDatabase();
-                        DatabaseService.SaveDatabaseTablesToBackend(data);*/
-
-                        DatabaseService.LoadDatabaseFromBackend();
+                       DatabaseService.LoadDatabaseFromBackend();
                     }
                 }
             }

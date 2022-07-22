@@ -80,6 +80,7 @@ public class Load
                 for (int modelI = 0; modelI < crs?.Items?[i]?.Databases?[dbI]?.Models?.Count; modelI++)
                 {
                     GrpcDatabaseService.Model model = new GrpcDatabaseService.Model();
+                    model.Name = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI].Name;
                     for (int columnI = 0; columnI < crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?.Count; columnI++)
                     {
                         GrpcDatabaseService.Column column = new GrpcDatabaseService.Column();

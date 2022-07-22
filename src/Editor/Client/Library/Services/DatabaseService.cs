@@ -18,6 +18,24 @@ public class DatabaseService
 
     }
 
+    public static List<string> GetListOfDatabaseTables(bool loadFromBackend = false)
+    {
+        List<string> tables = new();
+
+        if (loadFromBackend)
+        {
+            LoadDatabaseFromBackend();
+        }
+
+        Database db = Database.GetDatabase();
+        foreach (var table in db.Tables)
+        {
+            tables.Add(table.Name);
+        }
+
+        return tables;
+    }
+
 
     public static async void LoadDatabaseFromBackend()
     {
@@ -25,9 +43,8 @@ public class DatabaseService
         var medullaDatabases = new GetDatabasesRequest() {Name = "medulla"};
         var dbs = await client.GetDatabasesAsync(medullaDatabases);
         Database database = Database.GetDatabase();
-
+        Console.WriteLine($"Database name {dbs.Data[0].Databases[0].Models[0].Name}");
         UpdateDatabaseWithTables(database, dbs.Data[0].Databases[0].Models);
-
     }
 
     private static void UpdateDatabaseWithTables(Database database, RepeatedField<Model> models)
@@ -48,7 +65,9 @@ public class DatabaseService
         List<Editor.Client.Components.Properties.Types.DatabaseTable> tables = new();
         foreach (var model in models)
         {
+            Console.WriteLine($"Found model with name {model.Name}");
             tables.Add(ConvertDatabaseTableFromGrpcModel(model));
+            Console.WriteLine($"Found table with name {tables[tables.Count-1].Name}");
         }
         return tables;
     }
