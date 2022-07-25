@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Diagnostics;
+using System.Threading.Tasks.Dataflow;
 using DatabaseService.Utils;
 using Google.Protobuf.Collections;
 using GrpcDatabaseService;
@@ -21,7 +24,7 @@ public class Load
 
                 for (int columnsI = 0; columnsI < requestDatabases[i].Models[modelsI].Column.Count; columnsI++)
                 {
-                    columns.Add(new Column()
+                    var column = new Column()
                     {
                         AllowNull = requestDatabases[i].Models[modelsI].Column[columnsI].AllowNull,
                         ColumnName = requestDatabases[i].Models[modelsI].Column[columnsI].ColumnName,
@@ -31,7 +34,12 @@ public class Load
                         PrimaryKey = requestDatabases[i].Models[modelsI].Column[columnsI].PrimaryKey,
                         Type = requestDatabases[i].Models[modelsI].Column[columnsI].Type,
                         Unique = requestDatabases[i].Models[modelsI].Column[columnsI].Unique,
-                    });
+                    };
+                    if (column.Unique == "test")
+                    {
+                        column.Unique = null;
+                    }
+                    columns.Add(column);
                 }
 
                 models.Add(new Model()
@@ -87,7 +95,7 @@ public class Load
 
                         column.FieldName = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Field;
                         column.Type = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Type;
-                        column.Unique = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Unique;
+                        column.Unique = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Unique ?? "test";
                         if (crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].PrimaryKey == null)
                             throw new Exception("Primary Key may not be null");
                         column.PrimaryKey = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].PrimaryKey ?? default(bool);
