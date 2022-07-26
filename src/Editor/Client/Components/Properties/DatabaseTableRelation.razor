@@ -5,17 +5,14 @@
 @using UtilDropdownList = Utilities.Utilities;
 
 
-<div class="flex">
-    <div>
-        Table Name
-    </div>
+<div style="display: flex;">
     <div>
         @*(name, description) => ChangedType(_column.Id, name!, description!*@
-        <PropertiesDropdown Changed="" Title="Type" DropdownItems="_relationTypeDropdownItems"/>
+        <PropertiesDropdown Title="Type" DropdownItems="_relationTypeDropdownItems"/>
     </div>
     <div style="border: thin solid gray;">
         @*(name, description) => ChangedType(_column.Id, name!, description!)*@
-        <PropertiesDropdown Changed="" Title="Tables" DropdownItems="_tablesDropdownItems"/>
+        <PropertiesDropdown Title="Tables" DropdownItems="_tablesDropdownItems"/>
     </div>
 </div>
 
