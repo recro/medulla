@@ -1,0 +1,34 @@
+﻿@using Medulla.WorkflowDesigner.Client.Library.Services
+@using UtilDropdownList = Utilities.Utilities;
+
+<div style="display: flex;">
+    <div>
+        @*(name, description) => ChangedType(_column.Id, name!, description!*@
+        <PropertiesDropdown Title="Type" DropdownItems="_relationTypeDropdownItems"/>
+    </div>
+    <div style="border: thin solid gray;">
+        @*(name, description) => ChangedType(_column.Id, name!, description!)*@
+        <PropertiesDropdown Title="Tables" DropdownItems="_tablesDropdownItems"/>
+    </div>
+</div>
+
+@code {
+
+    private List<DropdownItem> _relationTypeDropdownItems;
+    private List<DropdownItem> _tablesDropdownItems;
+
+    public TableRelationItem()
+    {
+
+        _relationTypeDropdownItems = UtilDropdownList.CreateListOfDropdownItems(
+            "HasOne", "HasMany", "BelongsToMany", "BelongsToOne"
+            );
+
+        var tables = DatabaseService.GetListOfDatabaseTables(true);
+
+        _tablesDropdownItems =
+            UtilDropdownList.CreateListOfDropdownItems(tables.ToArray());
+
+    }
+
+}
