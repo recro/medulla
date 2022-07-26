@@ -33,7 +33,8 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                     InputType = InputType.Dropdown,
                     AnyTypeInput = new AnyTypeInput()
                     {
-                        ListOfStrings = tables
+                        ListOfStrings = tables,
+                        DropdownActiveItem = _model.Name
                     },
                     OnValueChange = (value) =>
                     {

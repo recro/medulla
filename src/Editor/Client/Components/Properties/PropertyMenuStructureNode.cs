@@ -88,6 +88,8 @@ public class AnyTypeInput
 
     public DatabaseTableModel? DatabaseTableModel { get; set; } = new();
 
+    public string? DropdownActiveItem = "";
+
 }
 
 /// <summary>

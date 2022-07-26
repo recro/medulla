@@ -21,7 +21,10 @@
                 <ul class="dropdown-menu dropdown-menu-se">
                     @foreach (var item in DropdownItems)
                     {
-                        <li @onclick="() => { isActive = false; SetActiveValue(item.Key, item.Value); }"><span class="dropdown-item" style="cursor: pointer">@item.Key</span></li>
+                        @if (@item.Key != ActiveValue)
+                        {
+                            <li @onclick="() => { isActive = false; SetActiveValue(item.Key, item.Value); }"><span class="dropdown-item" style="cursor: pointer">@item.Key</span></li>
+                        }
                     }
                 </ul>
             }
@@ -35,6 +38,14 @@
     private bool isActive = false;
 
     private string ActiveValue = "";
+
+    [Parameter]
+    public string? ActiveItem { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ActiveValue = ActiveItem ?? "";
+    }
 
     ///
     /// Title for dropdown

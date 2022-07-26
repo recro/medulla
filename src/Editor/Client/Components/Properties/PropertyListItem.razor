@@ -51,7 +51,7 @@
                         <DatabaseTableModelProperties DatabaseTableModel="PropertyMenuStructureNode?.AnyTypeInput.DatabaseTableModel" DatabaseTableChanged="DatabaseTableChanged" />
                         break;
                     case InputType.Dropdown:
-                        <PropertiesDropdown Changed="(name, description) => ChangedType(name!, description!)" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(PropertyMenuStructureNode.AnyTypeInput.ListOfStrings)"/>
+                        <PropertiesDropdown ActiveItem="@PropertyMenuStructureNode.AnyTypeInput.DropdownActiveItem" Changed="(name, description) => ChangedType(name!, description!)" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(PropertyMenuStructureNode.AnyTypeInput.ListOfStrings)"/>
                     break;
                 }
             }
