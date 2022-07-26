@@ -13,6 +13,26 @@ namespace Medulla.WorkflowDesigner.Client.Library.Services;
 public class DatabaseService
 {
 
+    public static void UpdateDiagramActiveDatabaseTableWithSwitchTable(Diagram diagram, string tableName)
+    {
+        bool found = false;
+        var models = ConvertListDatabaseTableModelFromDatabase(true);
+        foreach (var model in models)
+        {
+            if (model.Name == tableName)
+            {
+                diagram.UpdateActiveModel(model);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            throw new Exception($"Expected to find model with name {tableName}");
+        }
+    }
+
 
     public static void ConsoleLogListOfDatabases()
     {

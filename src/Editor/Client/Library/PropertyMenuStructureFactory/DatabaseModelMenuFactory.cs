@@ -12,10 +12,12 @@ namespace Medulla.WorkflowDesigner.Client.Library.PropertyMenuStructureFactory;
 public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
 {
     private DatabaseTableModel _model;
+    private Diagram _diagram;
 
-    public DatabaseModelMenuFactory(DatabaseTableModel model)
+    public DatabaseModelMenuFactory(DatabaseTableModel model, Diagram diagram)
     {
         _model = model;
+        _diagram = diagram;
     }
 
     public override PropertyMenuStructure GetStructure(Action<AnyTypeValue> action)
@@ -39,6 +41,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                     OnValueChange = (value) =>
                     {
                         Console.WriteLine($"Changed dropdown {value.DropdownValue.Name} {value.DropdownValue.Description}");
+                        DatabaseService.UpdateDiagramActiveDatabaseTableWithSwitchTable(_diagram, value.DropdownValue.Name);
                     }
                 },
                 new()

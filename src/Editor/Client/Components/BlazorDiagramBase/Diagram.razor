@@ -27,13 +27,20 @@
     [Parameter]
     public DiagramSwitch DiagramSwitchOption { get; set; } = DiagramSwitch.DatabaseDesigner;
 
+
+    public void UpdateActiveModel(DatabaseTableModel model)
+    {
+        ActiveModel = model;
+        StateHasChanged();
+    }
+
     private PropertyMenuStructure GetMenu()
     {
         if (DiagramSwitchOption == DiagramSwitch.DatabaseDesigner)
         {
             if (ActiveModel != null)
             {
-                return PropertyMenuStructureFactory.GetStructure(new DatabaseModelMenuFactory(ActiveModel), value =>
+                return PropertyMenuStructureFactory.GetStructure(new DatabaseModelMenuFactory(ActiveModel, this), value =>
                 {
                     Console.WriteLine("Changed");
                     var table = value.DatabaseTable;
