@@ -63,6 +63,22 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                 },
                 new()
                 {
+                    Nameable = Nameable.NewNameable("Relation", "Relation"),
+                    InputType = InputType.Button,
+                    AnyTypeInput = new AnyTypeInput()
+                    {
+                        DatabaseTableModel = _model
+                    },
+                    PropertyMenuStructure = new()
+                    {
+                        Nameable = Nameable.NewNameable("Test", "Test"),
+                        PropertyMenuStructureNodes = new ()
+                        {
+                        }
+                    }
+                },
+                new()
+                {
                     Nameable = Nameable.NewNameable("Commit", "Commit your work to the database."),
                     InputType = InputType.Button,
                     AnyTypeInput = new AnyTypeInput()
