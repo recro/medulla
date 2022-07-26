@@ -81,9 +81,10 @@
     [Parameter]
     public DatabaseTableModel? DatabaseTableModel { get; set; }
 
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
         _tableName = DatabaseTableModel?.Name!;
+        _columns.Clear();
         foreach (var modelDataField in DatabaseTableModel?.InputDataFields!)
         {
             Column column = new();
