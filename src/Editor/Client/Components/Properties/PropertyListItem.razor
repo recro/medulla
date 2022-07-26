@@ -53,6 +53,9 @@
                     case InputType.Dropdown:
                         <PropertiesDropdown ActiveItem="@PropertyMenuStructureNode.AnyTypeInput.DropdownActiveItem" Changed="(name, description) => ChangedType(name!, description!)" Title="@PropertyMenuStructureNode.Nameable.Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(PropertyMenuStructureNode.AnyTypeInput.ListOfStrings)"/>
                     break;
+                    case InputType.DatabaseTableRelation:
+                        <DatabaseTableRelation />
+                    break;
                 }
             }
             else

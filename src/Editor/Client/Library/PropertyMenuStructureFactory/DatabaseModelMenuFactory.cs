@@ -64,7 +64,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                 new()
                 {
                     Nameable = Nameable.NewNameable("Relation", "Relation"),
-                    InputType = InputType.Button,
+                    InputType = InputType.DatabaseTableRelation,
                     AnyTypeInput = new AnyTypeInput()
                     {
                         DatabaseTableModel = _model

@@ -39,6 +39,7 @@ public enum InputType
     WorkflowDataInput,
     DatabaseTableModel,
     Dropdown,
+    DatabaseTableRelation,
 }
 
 public class DropdownValue
