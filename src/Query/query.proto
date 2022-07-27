@@ -4,7 +4,7 @@ package query;
 
 service QuerySvc {
   // Create databases rpcs
-  rpc Get (GetRequest) returns (CreateDatabasesResponse) {}
+  rpc Get (GetRequest) returns (GetResponse) {}
   rpc List (ListRequest) returns (ListResponse) {}
   rpc Create (CreateRequest) returns (CreateResponse) {}
   rpc Update (UpdateRequest) returns (UpdateResponse) {}
@@ -15,7 +15,7 @@ message GetRequest {
     string ModelName = 1;
     string Column = 2;
     string Comparison = 3;
-    string Value = 3;
+    string Value = 4;
 }
 
 message Column {
@@ -36,7 +36,7 @@ message ListRequest {
     string Modelname = 1;
     string Column = 2;
     string Comparison = 3;
-    string Value = 3;
+    string Value = 4;
 }
 
 message ListResponse {
@@ -45,7 +45,7 @@ message ListResponse {
 
 message CreateRequest {
     string ModelName = 1;
-    Record Record = 1;
+    Record Record = 2;
 }
 
 message CreateResponse {

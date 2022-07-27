@@ -14,30 +14,35 @@ var packageDefinition = protoLoader.loadSync(
     });
 var protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 // The protoDescriptor object has the full package hierarchy
-var routeguide = protoDescriptor.routeguide;
+var routeguide = protoDescriptor.query;
 
 
 const Get = ({ request }, call) => {
+    console.log(request)
     console.log("Get");
     call("test")
 }
 
 const List = () => {
+    console.log(request)
     console.log("List");
     call("test")
 }
 
 const Create = () => {
+    console.log(request)
     console.log("Create");
     call("test")
 }
 
 const Update = () => {
+    console.log(request)
     console.log("Update");
     call("test")
 }
 
 const Delete = () => {
+    console.log(request)
     console.log("Delete");
     call("test")
 }
@@ -46,7 +51,8 @@ const Delete = () => {
 
 function getServer() {
     var server = new grpc.Server();
-    server.addService(routeguide.RouteGuide.service, {
+    console.log(routeguide)
+    server.addService(routeguide.QuerySvc.service, {
         Get,
         List,
         Create,
