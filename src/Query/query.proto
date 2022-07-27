@@ -6,9 +6,9 @@ service QuerySvc {
   // Create databases rpcs
   rpc Get (GetRequest) returns (CreateDatabasesResponse) {}
   rpc List (ListRequest) returns (ListResponse) {}
-  rpc Create (UpdateDatabasesRequest) returns (UpdateDatabasesResponse) {}
-  rpc Update (DeleteDatabasesRequest) returns (DeleteDatabasesResponse) {}
-  rpc Delete (CreateDatabaseResourcesRequest) returns (CreateDatabaseResourcesResponse) {}
+  rpc Create (CreateRequest) returns (CreateResponse) {}
+  rpc Update (UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete (DeleteRequest) returns (DeleteResponse) {}
 }
 
 message GetRequest {
@@ -42,3 +42,31 @@ message ListRequest {
 message ListResponse {
     repeated Record Records = 1;
 }
+
+message CreateRequest {
+    string ModelName = 1;
+    Record Record = 1;
+}
+
+message CreateResponse {
+    bool IsCreated = 1;
+}
+
+message UpdateRequest {
+    GetRequest GetRequest = 1;
+    Record Record = 2;
+}
+
+message UpdateResponse {
+    bool IsUpdated = 1;
+}
+
+message DeleteRequest {
+    GetRequest GetRequest = 1;
+}
+
+message DeleteResponse {
+    bool IsDeleted = 1;
+}
+
+
