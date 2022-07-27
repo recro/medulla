@@ -18,33 +18,73 @@ var routeguide = protoDescriptor.query;
 
 
 const Get = ({ request }, call) => {
-    console.log(request)
-    console.log("Get");
-    call("test")
+    call(null, {
+        Record: {
+            Columns: [
+                {
+                    Name: "Test",
+                    Value: "Test",
+                    ValueType: "String"
+                }
+            ]
+        }
+    })
 }
 
 const List = ({ request }, call) => {
-    console.log(request)
-    console.log("List");
-    call("test")
+    call(null, {
+        Record: {
+            Columns: [
+                {
+                    Name: "Test",
+                    Value: "Test",
+                    ValueType: "String"
+                }
+            ]
+        }
+    })
 }
 
 const Create = ({ request }, call) => {
-    console.log(request)
-    console.log("Create");
-    call("test")
+    call(null, {
+        Record: {
+            Columns: [
+                {
+                    Name: "Test",
+                    Value: "Test",
+                    ValueType: "String"
+                }
+            ]
+        }
+    })
 }
 
 const Update = ({ request }, call) => {
-    console.log(request)
-    console.log("Update");
-    call("test")
+    call(null, {
+        Record: {
+            Columns: [
+                {
+                    Name: "Test",
+                    Value: "Test",
+                    ValueType: "String"
+                }
+            ]
+        }
+    })
 }
 
 const Delete = ({ request }, call) => {
-    console.log(request)
-    console.log("Delete");
-    call("test")
+    call(null, {
+        Record: {
+            Columns: [
+                {
+                    Name: "Test",
+                    Value: "Test",
+                    ValueType: "String"
+                }
+            ]
+        }
+    })
 }
 
 
