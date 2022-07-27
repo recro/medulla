@@ -16,6 +16,8 @@
     "@grpc/grpc-js": "^1.6.8",
     "@grpc/proto-loader": "0.7.0",
     "@babel/cli": "7.18.9",
-    "@babel/core": "7.18.9"
+    "@babel/core": "7.18.9",
+    "sequelize": "6.21.3",
+    "mysql2": "2.3.3"
   }
 }

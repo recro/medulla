@@ -2,6 +2,9 @@ const PROTO_PATH = __dirname + '/../query.proto';
 let grpc = require('@grpc/grpc-js');
 let protoLoader = require('@grpc/proto-loader');
 
+const { Sequelize, QueryTypes } = require('sequelize');
+
+
 // Suggested options for similarity to existing grpc.load behavior
 var packageDefinition = protoLoader.loadSync(
     PROTO_PATH,
@@ -16,9 +19,37 @@ var protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 // The protoDescriptor object has the full package hierarchy
 var routeguide = protoDescriptor.query;
 
+const { DATABASE, USERNAME, PASSWORD, HOST } = process.env
 
-const Get = ({ request }, call) => {
-    call(null, {
+
+function generateSQLSelect(column, comparison, modelName, value) {
+
+    return "SELECT * FROM `users`"
+}
+
+
+const Get = async ({ request }, call) => {
+
+    const sequelize = new Sequelize(DATABASE, USERNAME, PASSWORD, {
+        host: HOST,
+        dialect: 'mysql'
+    });
+
+
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+
+    const { Column, Comparison, ModelName, Value } = request;
+
+    const users = await sequelize.query(generateSQLSelect(Column, Comparison, ModelName, Value), { type: QueryTypes.SELECT });
+
+    console.log(users);
+
+    let record = {
         Record: {
             Columns: [
                 {
@@ -28,7 +59,16 @@ const Get = ({ request }, call) => {
                 }
             ]
         }
-    })
+    }
+
+
+
+
+    sequelize.close();
+
+
+
+    call(null, record)
 }
 
 const List = ({ request }, call) => {
