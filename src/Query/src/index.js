@@ -23,25 +23,25 @@ const Get = ({ request }, call) => {
     call("test")
 }
 
-const List = () => {
+const List = ({ request }, call) => {
     console.log(request)
     console.log("List");
     call("test")
 }
 
-const Create = () => {
+const Create = ({ request }, call) => {
     console.log(request)
     console.log("Create");
     call("test")
 }
 
-const Update = () => {
+const Update = ({ request }, call) => {
     console.log(request)
     console.log("Update");
     call("test")
 }
 
-const Delete = () => {
+const Delete = ({ request }, call) => {
     console.log(request)
     console.log("Delete");
     call("test")
