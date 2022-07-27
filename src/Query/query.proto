@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package query;
+
+service QuerySvc {
+  // Create databases rpcs
+  rpc Get (GetRequest) returns (CreateDatabasesResponse) {}
+  rpc List (ListRequest) returns (ListResponse) {}
+  rpc Create (UpdateDatabasesRequest) returns (UpdateDatabasesResponse) {}
+  rpc Update (DeleteDatabasesRequest) returns (DeleteDatabasesResponse) {}
+  rpc Delete (CreateDatabaseResourcesRequest) returns (CreateDatabaseResourcesResponse) {}
+}
+
+message GetRequest {
+    string ModelName = 1;
+    string Column = 2;
+    string Comparison = 3;
+    string Value = 3;
+}
+
+message Column {
+    string Name = 1;
+    string Value = 2;
+    string ValueType = 3;
+}
+
+message Record {
+    repeated Column Columns = 1;
+}
+
+message GetResponse {
+    Record Record = 1;
+}
+
+message ListRequest {
+    string Modelname = 1;
+    string Column = 2;
+    string Comparison = 3;
+    string Value = 3;
+}
+
+message ListResponse {
+    repeated Record Records = 1;
+}

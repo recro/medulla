@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>a6cd579f-40b3-45c4-8eb3-6b45ae3c2058</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\app.js</StartupFile>
+    <StartupFile>src\index.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -28,7 +28,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="src\app.js" />
+    <Content Include="query.proto" />
+    <Content Include="src\index.js" />
     <Content Include="babel.config.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
