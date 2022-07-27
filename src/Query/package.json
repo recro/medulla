@@ -1,0 +1,13 @@
+{
+  "name": "query",
+  "version": "0.0.0",
+  "description": "Query",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.6.8",
+    "@grpc/proto-loader": "0.7.0"
+  }
+}
