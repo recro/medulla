@@ -23,8 +23,13 @@ const { DATABASE, USERNAME, PASSWORD, HOST } = process.env
 
 
 function generateSQLSelect(column, comparison, modelName, value) {
-
-    return "SELECT * FROM `users`"
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    return `SELECT * FROM \`${modelName}\` WHERE ${column} ${comparison} ${value}`;
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
 }
 
 
@@ -45,7 +50,13 @@ const Get = async ({ request }, call) => {
 
     const { Column, Comparison, ModelName, Value } = request;
 
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
     const users = await sequelize.query(generateSQLSelect(Column, Comparison, ModelName, Value), { type: QueryTypes.SELECT });
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
+    //NOT FINAL CODE, WILL REPLACE WITH ORM CODE EVENTUALLY
 
     console.log(users);
 
