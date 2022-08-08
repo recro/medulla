@@ -2,4 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
+  labels:
+    istio-injection: enabled
+    kubernetes.io/metadata.name: istio-ingress
   name: istio-system
