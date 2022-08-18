@@ -1,0 +1,219 @@
+﻿@using Medulla.Editor.Client.Components.Properties.Types
+@using Medulla.Editor.Client.Components.BlazorDiagramBase
+@using DatabaseTable = Medulla.Editor.Client.Components.Properties.Types.DatabaseTable
+<div class="flex">
+    <div>
+        <p>Table Name</p>
+        <input value="@DatabaseTableModel?.Name" @oninput="(e) => ChangedTableName(e)" class="form-control" type="text" placeholder="Table Name" aria-label="Repository description"/>
+    </div>
+
+
+    <table style="margin-top:1em;margin-right: 1em;" summary="This is a chart of invoices for 2011.">
+      <thead>
+        <tr>
+          <th style="width:25%;border: thin solid gray;" scope="col">Field</th>
+          <th style="width:25%;border: thin solid gray;" scope="col">Type</th>
+          <th style="width:25%;border: thin solid gray;" scope="col">Unique</th>
+          <th style="width:25%;border: thin solid gray;" scope="col">Required</th>
+        </tr>
+      </thead>
+      @*<tfoot>
+        <tr>
+          <td>Table footer 1</td>
+          <td>Table footer 2</td>
+          <td>Table footer 2</td>
+          <td>Table footer 2</td>
+        </tr>
+      </tfoot>*@
+      <tbody>
+
+      @foreach (var _column in _columns)
+          {
+
+              <tr>
+                  <td style="border: thin solid gray;">
+                      <input style="width:100%;" @oninput="(e) => ChangedName(_column.Id, e)" class="form-control" type="text" value="@_column.Name" placeholder="Name" aria-label="Repository description"/>
+                  </td>
+                  <td style="border: thin solid gray;">
+                      <PropertiesDropdown Changed="(name, description) => ChangedType(_column.Id, name!, description!)" Title="@Title" DropdownItems="DropdownItem.CreateDropdownItemsFromList(DropdownItems)"/>
+                  </td>
+                  <td style="border: thin solid gray;margin: 0 auto!important;
+                                 text-align: center;">
+                      <input @bind="_column.IsUnique" style="margin: 0 auto!important;
+                                        text-align: center;" type="checkbox" class="form-control" />
+                  </td>
+                  <td style="border: thin solid gray;margin: 0 auto!important;
+                                 text-align: center;">
+                      <input @bind="_column.Required" style="margin: 0;
+                                                                                  margin-top: 5px;" type="checkbox" class="form-control" />
+                  </td>
+              </tr>
+
+              @*<li>
+                  <div>
+                      <p>Column</p>
+                      <div style="display:flex">
+
+
+                      </div>
+                  </div>
+                  <div style="display: flex;
+                                  align-items: center;
+                                  justify-items: center;
+                                  align-content: center;
+                                  padding-top: 10px;">
+                      <p style="padding-right: 10px;
+                                    margin: 0;">Unique</p>
+
+                      <p style="padding-right: 10px;
+                                                        margin: 0;">Required</p>
+
+                  </div>
+              </li>*@
+          }
+      </tbody>
+    </table>
+    <button style="margin-top:1em;" @onclick="AddColumn" class="btn">Add Column</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public DatabaseTableModel? DatabaseTableModel { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        _tableName = DatabaseTableModel?.Name!;
+        _columns.Clear();
+        foreach (var modelDataField in DatabaseTableModel?.InputDataFields!)
+        {
+            Column column = new();
+            column.Name = modelDataField.Name;
+            column.Type = modelDataField.Type;
+            column.Id = Guid.NewGuid().ToString();
+            _columns.Add(column);
+        }
+    }
+
+    [Parameter]
+    public Action<DatabaseTable>? DatabaseTableChanged { get; set; }
+
+    public string Title { get; set; } = "Type";
+
+    private List<Column> _columns { get; set; } = new();
+
+    private string _databaseTableId { get; set; } = Guid.NewGuid().ToString();
+
+    private List<string> DropdownItems { get; set; } = new()
+    {
+        "VARCHAR(100)",
+        "VARCHAR(500)",
+        "BOOL",
+    };
+
+    private string _tableName { get; set; } = "";
+
+    private void ChangedRequired(string id, ChangeEventArgs changeEventArgs)
+    {
+
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                Console.WriteLine($"changeEventArgs is equal to {changeEventArgs}");
+                _columns[i].Required = changeEventArgs.Value != null;
+            }
+        }
+
+        var table = new DatabaseTable();
+        table.Id = _databaseTableId;
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void ChangedUnique(string id, ChangeEventArgs changeEventArgs)
+    {
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                _columns[i].Type = changeEventArgs.Value != null ? "unique-"+id : "";
+            }
+        }
+        var table = new DatabaseTable();
+        table.Id = _databaseTableId;
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void ChangedType(string id, string test, string test1)
+    {
+        Console.WriteLine($"changed {id} to type {test} and type {test1}");
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                _columns[i].Type = test;
+            }
+        }
+        var table = new DatabaseTable();
+        table.Id = _databaseTableId;
+        table.Name = _tableName;
+        table.Columns = _columns;
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void ChangedName(string id, ChangeEventArgs e)
+    {
+        Console.WriteLine($"changed {id} to {e?.Value?.ToString()}");
+        for (var i = 0; i < _columns.Count; i++)
+        {
+            if (_columns[i].Id == id)
+            {
+                _columns[i].Name = e?.Value?.ToString()!;
+            }
+        }
+        var table = new DatabaseTable();
+        table.Id = _databaseTableId;
+        table.Name = _tableName;
+        table.Columns = _columns;
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void ChangedTableName(ChangeEventArgs e)
+    {
+        Console.WriteLine($"changed tablename to {e?.Value?.ToString()}");
+        _tableName = e?.Value?.ToString()!;
+        var table = new DatabaseTable();
+        table.Id = _databaseTableId;
+        table.Name = _tableName;
+        table.Columns = _columns;
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        Console.WriteLine($"Database table has been changed with id {table.Id}");
+        DatabaseTableChanged?.Invoke(table);
+    }
+
+    private void AddColumn()
+    {
+        _columns.Add(new Column()
+        {
+            Id = Guid.NewGuid().ToString(),
+            Name = "New Column",
+            IsUnique = false,
+            Type = "string"
+        });
+    }
+
+}
