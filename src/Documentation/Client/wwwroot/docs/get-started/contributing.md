@@ -21,7 +21,7 @@ In development you will use tye as a part of your inner development loop. This m
 
 In order to get started you will need to install the Tye .NET global tool, you can install it by running the following in powershell:
 ```powershell
-dotnet tool install -g Microsoft.Tye --version "0.10.0-alpha.21420.1"
+dotnet tool install -g Microsoft.Tye --version "0.11.0-alpha.22111.1"
 ```
 
 After tye has been installed, you can run the following in the `/src` directory to start Medulla.
