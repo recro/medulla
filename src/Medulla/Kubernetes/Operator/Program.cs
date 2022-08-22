@@ -9,6 +9,9 @@ using Operator;
 
 namespace DatabaseControllerKubeOps;
 
+/// <summary>
+/// Programcs for KubeOps
+/// </summary>
 public static class Program
 {
     /// <summary>

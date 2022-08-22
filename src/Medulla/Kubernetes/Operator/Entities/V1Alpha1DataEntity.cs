@@ -14,16 +14,34 @@ namespace DatabaseControllerKubeOps.Controller.Entities;
 /// </summary>
 public struct DatabaseSpec
 {
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public string? Name { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public string? Host { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public string? Dialect { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public string? UsernameSecretName { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public string? PasswordSecretName { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public List<ModelSpec> Models { get; set; }
 }
@@ -33,8 +51,14 @@ public struct DatabaseSpec
 /// </summary>
 public struct ModelSpec
 {
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public string? Name { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     [Required]
     public List<ColumnSpec>? Columns { get; set; }
 }
@@ -46,23 +70,77 @@ public struct ModelSpec
 /// </summary>
 public struct ValidateSpec
 {
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? Is { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? Not { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsEmail { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsUrl { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsIp { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsIpV4 { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsIpV6 { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsAlpha { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsAlphaNumeric { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsNumeric { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsInt { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsFloat { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsDecimal { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsLowercase { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsUppercase { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? IsNull { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? NotNull { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool? NotEmpty { get; set; }
 }
 
@@ -71,16 +149,47 @@ public struct ValidateSpec
 /// </summary>
 public struct ColumnSpec
 {
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? ColumnName { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? Type { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool AllowNull { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? DefaultValue { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool AutoIncrement { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public bool PrimaryKey { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? Field { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? Unique { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public string? Comment { get; set; }
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public ValidateSpec? Validate { get; set; }
+
 
 }
 
@@ -95,5 +204,8 @@ public struct ColumnSpec
     PluralName = "data")]
 public class V1Alpha1DataEntity : CustomKubernetesEntity
 {
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public List<DatabaseSpec>? Spec { get; set; }
 }

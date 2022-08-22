@@ -6,8 +6,14 @@
 using StorageService.Kubernetes.Crds.Data;
 
 namespace StorageService.Test;
+/// <summary>
+/// Test
+/// </summary>
 public class StorageServiceTests
 {
+    /// <summary>
+    /// Test
+    /// </summary>
     [Fact]
     public void TestToStringOfCrd()
     {

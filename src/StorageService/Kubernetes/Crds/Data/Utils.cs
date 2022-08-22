@@ -5,10 +5,15 @@
 using k8s.Models;
 
 namespace StorageService.Kubernetes.Crds.Data;
-
+/// <summary>
+/// code will be deleted
+/// </summary>
 public class Utils
 {
     // creats a CRD definition
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public static CustomResourceDefinition MakeCRD()
     {
         var myCRD = new CustomResourceDefinition()
@@ -23,6 +28,9 @@ public class Utils
     }
 
     // creats a CR instance
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public static CResource MakeCResource(string name, string _namespace, string uuid, string storageData, string type)
     {
         var myCResource = new CResource()

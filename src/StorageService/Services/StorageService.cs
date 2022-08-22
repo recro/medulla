@@ -8,15 +8,24 @@ using StorageService.Kubernetes.Crds.Data;
 
 namespace StorageService.Services;
 
+/// <summary>
+/// code will be deleted
+/// </summary>
 public class StorageService : Storage.StorageBase
 {
     private readonly ILogger<StorageService> _logger;
 
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public StorageService(ILogger<StorageService> logger)
     {
         _logger = logger;
     }
 
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public override async Task<Response> saveObject(Object request, ServerCallContext context)
     {
         await Task.Delay(1000);
@@ -24,6 +33,9 @@ public class StorageService : Storage.StorageBase
         return new Response() { Message = "Created" };
     }
 
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public override async Task<ObjectList> listObjects(SearchObject request, ServerCallContext context)
     {
         var crds = await Actions.Get();
@@ -43,6 +55,9 @@ public class StorageService : Storage.StorageBase
         return new ObjectList() { Objects = { objects } };
     }
 
+    /// <summary>
+    /// code will be deleted
+    /// </summary>
     public override Task<Response> deleteObject(ObjectId request, ServerCallContext context)
     {
         return base.deleteObject(request, context);
