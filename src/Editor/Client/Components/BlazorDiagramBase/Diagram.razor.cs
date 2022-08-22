@@ -2,17 +2,13 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using Blazor.Diagrams.Core;
-using Blazor.Diagrams.Core.Geometry;
-using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Core.Models.Base;
 using Medulla.WorkflowDesigner.Client.Library.Services;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace Medulla.Editor.Client.Components.BlazorDiagramBase;
-
 using BlazorDiagram = Blazor.Diagrams.Core.Diagram;
 
+namespace Medulla.Editor.Client.Components.BlazorDiagramBase;
 public partial class Diagram
 {
 

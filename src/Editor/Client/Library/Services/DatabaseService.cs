@@ -15,7 +15,7 @@ public class DatabaseService
 
     public static void UpdateDiagramActiveDatabaseTableWithSwitchTable(Diagram diagram, string tableName)
     {
-        bool found = false;
+        var found = false;
         var models = ConvertListDatabaseTableModelFromDatabase(true);
         foreach (var model in models)
         {
@@ -48,7 +48,7 @@ public class DatabaseService
             LoadDatabaseFromBackend();
         }
 
-        Database db = Database.GetDatabase();
+        var db = Database.GetDatabase();
         foreach (var table in db.Tables)
         {
             tables.Add(table.Name);
@@ -61,9 +61,9 @@ public class DatabaseService
     public static async void LoadDatabaseFromBackend()
     {
         var client = GetClient();
-        var medullaDatabases = new GetDatabasesRequest() {Name = "medulla"};
+        var medullaDatabases = new GetDatabasesRequest() { Name = "medulla" };
         var dbs = await client.GetDatabasesAsync(medullaDatabases);
-        Database database = Database.GetDatabase();
+        var database = Database.GetDatabase();
         Console.WriteLine($"Database name {dbs.Data[0].Databases[0].Models[0].Name}");
         UpdateDatabaseWithTables(database, dbs.Data[0].Databases[0].Models);
     }
@@ -77,7 +77,7 @@ public class DatabaseService
             LoadDatabaseFromBackend();
         }
 
-        Database db = Database.GetDatabase();
+        var db = Database.GetDatabase();
 
         Console.WriteLine($"Found db with {db.Tables.Count} tables");
         foreach (var table in db.Tables)
@@ -91,9 +91,10 @@ public class DatabaseService
     private static DatabaseTableModel ConvertDatabaseTableModelFromDatabaseTable(
         Editor.Client.Components.Properties.Types.DatabaseTable databaseTable)
     {
-        DatabaseTableModel model = new();
-
-        model.Name = databaseTable.Name;
+        DatabaseTableModel model = new()
+        {
+            Name = databaseTable.Name
+        };
 
         foreach (var tableColumn in databaseTable.Columns)
         {
@@ -109,7 +110,7 @@ public class DatabaseService
 
     private static void UpdateDatabaseWithTables(Database database, RepeatedField<Model> models)
     {
-        List<Editor.Client.Components.Properties.Types.DatabaseTable> tables =
+        var tables =
             ConvertDatabaseTablesFromGrpcModels(models);
 
         database.Clear();
@@ -127,16 +128,17 @@ public class DatabaseService
         {
             Console.WriteLine($"Found model with name {model.Name}");
             tables.Add(ConvertDatabaseTableFromGrpcModel(model));
-            Console.WriteLine($"Found table with name {tables[tables.Count-1].Name}");
+            Console.WriteLine($"Found table with name {tables[^1].Name}");
         }
         return tables;
     }
 
     private static Editor.Client.Components.Properties.Types.DatabaseTable ConvertDatabaseTableFromGrpcModel(Model model)
     {
-        Editor.Client.Components.Properties.Types.DatabaseTable table = new();
-
-        table.Name = model.Name;
+        Editor.Client.Components.Properties.Types.DatabaseTable table = new()
+        {
+            Name = model.Name
+        };
         foreach (var column in model.Column)
         {
             table.Columns.Add(ConvertDatabaseColumnFromGrpcColumn(column));
@@ -147,19 +149,20 @@ public class DatabaseService
     private static Editor.Client.Components.Properties.Types.Column ConvertDatabaseColumnFromGrpcColumn(Column column)
     {
         Editor.Client.Components.Properties.Types.Column
-            tableColumn = new();
-
-        tableColumn.Name = column.FieldName;
-        tableColumn.Type = column.Type;
-        tableColumn.Required = !column.AllowNull;
-        tableColumn.IsUnique = column.Unique.Length > 0;
+            tableColumn = new()
+            {
+                Name = column.FieldName,
+                Type = column.Type,
+                Required = !column.AllowNull,
+                IsUnique = column.Unique.Length > 0
+            };
 
         return tableColumn;
     }
 
     public static void SaveDatabaseTablesToBackend(Database database)
     {
-        var client = DatabaseService.GetClient();
+        var client = GetClient();
         var models = database.GetModelsFromTables();
         client.CreateDatabasesAsync(new CreateDatabasesRequest()
         {
@@ -175,12 +178,12 @@ public class DatabaseService
         });
     }
 
-    private static GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient GetClient()
+    private static DatabaseSvc.DatabaseSvcClient GetClient()
     {
         var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
         //var baseUri = services.GetRequiredService<NavigationManager>().BaseUri;
         var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
-        var client = new GrpcDatabaseService.DatabaseSvc.DatabaseSvcClient(channel);
+        var client = new DatabaseSvc.DatabaseSvcClient(channel);
         return client;
     }
 

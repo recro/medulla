@@ -11,8 +11,8 @@ namespace Medulla.WorkflowDesigner.Client.Library.PropertyMenuStructureFactory;
 
 public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
 {
-    private DatabaseTableModel _model;
-    private Diagram _diagram;
+    private readonly DatabaseTableModel _model;
+    private readonly Diagram _diagram;
 
     public DatabaseModelMenuFactory(DatabaseTableModel model, Diagram diagram)
     {
@@ -27,7 +27,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
         {
 
             Nameable = Nameable.NewNameable("Model", null),
-            PropertyMenuStructureNodes = new ()
+            PropertyMenuStructureNodes = new()
             {
                 new()
                 {
@@ -52,7 +52,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                     {
                         DatabaseTableModel = _model
                     },
-                    OnValueChange = (action),
+                    OnValueChange = action,
                     PropertyMenuStructure = new()
                     {
                         Nameable = Nameable.NewNameable("Test", "Test"),
@@ -91,7 +91,7 @@ public class DatabaseModelMenuFactory : PropertyMenuStructureFactory
                     },
                     OnValueChange = (AnyTypeValue value) =>
                     {
-                        Database data = Database.GetDatabase();
+                        var data = Database.GetDatabase();
                         DatabaseService.SaveDatabaseTablesToBackend(data);
                     }
                 },

@@ -25,9 +25,15 @@ public class Nameable
     {
         var nameable = new Nameable();
         if (title != null)
+        {
             nameable.Title = title;
+        }
+
         if (description != null)
+        {
             nameable.Description = description;
+        }
+
         return nameable;
     }
 

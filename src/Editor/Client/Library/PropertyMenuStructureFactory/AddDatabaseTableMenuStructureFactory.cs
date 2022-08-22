@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using Medulla.Editor.Client.Abstractions.ObjectComposition;
-using Medulla.Editor.Client.Components.BlazorDiagramBase;
 using Medulla.Editor.Client.Components.Properties;
 
 namespace Medulla.WorkflowDesigner.Client.Library.PropertyMenuStructureFactory;
@@ -15,13 +14,13 @@ public class AddDatabaseTableMenuStructureFactory : PropertyMenuStructureFactory
         return new PropertyMenuStructure()
         {
             Nameable = Nameable.NewNameable("Database Designer", null),
-            PropertyMenuStructureNodes = new ()
+            PropertyMenuStructureNodes = new()
             {
                 new()
                 {
                     Nameable = Nameable.NewNameable("Add Table", "Add database table"),
                     InputType = InputType.Button,
-                    OnValueChange = (action)
+                    OnValueChange = action
                 }
             }
         };

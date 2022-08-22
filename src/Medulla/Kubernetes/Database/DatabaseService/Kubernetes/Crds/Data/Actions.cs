@@ -1,7 +1,10 @@
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
+
 using System.Text.Json;
 using k8s;
 using k8s.Autorest;
-using k8s.Models;
 
 namespace DatabaseService.Kubernetes.Crds.Data;
 
@@ -21,7 +24,7 @@ public class Actions
         try
         {
             Console.WriteLine("creating CR {0}", myCr?.Metadata?.Name);
-            Console.WriteLine(String.Join(",", myCr));
+            Console.WriteLine(string.Join(",", myCr));
             Console.WriteLine("________________________________________________");
             Console.WriteLine(JsonSerializer.Serialize(myCr));
             Console.WriteLine("________________________________________________");

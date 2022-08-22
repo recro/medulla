@@ -1,3 +1,7 @@
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
+
 using DatabaseService.Kubernetes.Crds.Data;
 using Grpc.Core;
 using GrpcDatabaseService;
@@ -25,7 +29,7 @@ public class DatabaseService : DatabaseSvc.DatabaseSvcBase
     public override async Task<GetDatabasesResponse> GetDatabases(GetDatabasesRequest request, ServerCallContext context)
     {
         Console.WriteLine("Running Get Databases");
-        var crs = await Kubernetes.Crds.Data.Actions.Get();
+        var crs = await Actions.Get();
         return Load.GetDatabasesFromCrd(crs);
     }
 
@@ -37,12 +41,14 @@ public class DatabaseService : DatabaseSvc.DatabaseSvcBase
     {
         Console.WriteLine("Running Create Databases");
         if (request.Database.Count == 0)
+        {
             throw new Exception("Databases are empty");
+        }
 
         var databases = Load.GetDatabasesFromDatabaseRequest(request);
 
         // Create Custom Crd
-        Kubernetes.Crds.Data.Actions.Create(databases[0].Name!, databases!);
+        Actions.Create(databases[0].Name!, databases!);
 
         return Task.FromResult(new CreateDatabasesResponse()
         {
@@ -54,7 +60,7 @@ public class DatabaseService : DatabaseSvc.DatabaseSvcBase
     {
         Console.WriteLine("Running Delete Databases");
 
-        var isDeleted = await Kubernetes.Crds.Data.Actions.Delete(request.Name);
+        var isDeleted = await Actions.Delete(request.Name);
 
         return new DeleteDatabasesResponse
         {

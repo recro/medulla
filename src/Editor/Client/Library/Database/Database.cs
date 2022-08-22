@@ -3,15 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Text;
-using AutoMapper;
 using Google.Protobuf.Collections;
-using Grpc.Net.Client;
-using Grpc.Net.Client.Web;
-using GrpcDatabaseService;
 using Medulla.Editor.Client.Components.Properties.Types;
-using Microsoft.AspNetCore.Components;
 using Column = Medulla.Editor.Client.Components.Properties.Types.Column;
-using Model = Blazor.Diagrams.Core.Models.Base.Model;
 
 namespace Medulla.WorkflowDesigner.Client.Library;
 
@@ -42,10 +36,7 @@ public class Database
 
     public static Database GetDatabase()
     {
-        if (_database == null)
-        {
-            _database = new Database();
-        }
+        _database ??= new Database();
         return _database;
     }
 
@@ -60,7 +51,7 @@ public class Database
         Tables = new();
     }
 
-    private RepeatedField<GrpcDatabaseService.Column> GetColumnsFromTableColumns(List<Column> tableColumns)
+    private static RepeatedField<GrpcDatabaseService.Column> GetColumnsFromTableColumns(List<Column> tableColumns)
     {
         var columns = new RepeatedField<GrpcDatabaseService.Column>();
         foreach (var tableColumn in tableColumns)
@@ -122,18 +113,18 @@ public class Database
 
     public override string ToString()
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
         stringBuilder.Append($"" +
                              $"                " +
                              $"                " +
                              $"                ");
 
-        int item = 0;
+        var item = 0;
         foreach (var table in Tables)
         {
             stringBuilder.Append($"TABLE NUMBER {item}" +
                                  $"                " +
-                                 table.ToString()    +
+                                 table.ToString() +
                                  $"                ");
             item++;
         }

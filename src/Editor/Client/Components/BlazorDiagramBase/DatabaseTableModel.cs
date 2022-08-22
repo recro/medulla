@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using Blazor.Diagrams.Core.Models;
-using Blazor.Diagrams.Core.Models.Base;
 
 namespace Medulla.Editor.Client.Components.BlazorDiagramBase;
 

@@ -4,19 +4,11 @@
 
 
 using System.Text.Json;
-using System.Threading;
 using DatabaseControllerKubeOps.Controller.Entities;
-using Grpc.Core;
-using Grpc.Net.Client;
-using GrpcDatabaseService;
-using k8s;
-using k8s.Models;
 using KubeOps.Operator.Controller;
 using KubeOps.Operator.Controller.Results;
 using KubeOps.Operator.Rbac;
 using Microsoft.Rest;
-using System.IO;
-using Operator;
 
 namespace DatabaseControllerKubeOps.Controller.Controllers;
 
@@ -43,11 +35,14 @@ internal class OnChange
             };
             var content = new FormUrlEncodedContent(values);
 
-            HttpClient httpClient = new HttpClient();
+            var httpClient = new HttpClient();
 
             var dbSyncServiceUri = Environment.GetEnvironmentVariable("DATABASE_SYNC_SERVICE_URI");
             if (dbSyncServiceUri == null)
+            {
                 throw new Exception("db sync service env var is null");
+            }
+
             var dbSyncServiceAddress =
                 $"{dbSyncServiceUri}/listen-for-database-schema";
             Console.WriteLine("db sync service address: " + dbSyncServiceAddress);

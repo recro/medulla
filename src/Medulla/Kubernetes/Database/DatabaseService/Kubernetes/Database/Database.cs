@@ -1,9 +1,10 @@
-using DatabaseService.Kubernetes.Crds.Data;
-using DatabaseService.Utils;
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
+
 using GrpcDatabaseService;
 using k8s.Autorest;
 using k8s.Models;
-using SharedClasses.Kubernetes.Load.Client;
 
 namespace DatabaseService.Kubernetes.Database;
 
@@ -12,7 +13,7 @@ public class Database
 
     public static async Task<bool> Create(CreateDatabaseResourcesRequest request)
     {
-        string dbName = "db-" + request.Name;
+        var dbName = "db-" + request.Name;
         Console.WriteLine("new db name" + dbName);
         var client = SharedClasses.Kubernetes.Load.Client.Load.GetClient();
         var pod = new V1Pod("v1", "Pod",

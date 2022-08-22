@@ -1,3 +1,7 @@
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
+
 using System.Text.Json.Serialization;
 using k8s;
 using k8s.Models;
@@ -30,7 +34,7 @@ public abstract class CustomResource : KubernetesObject
 public abstract class CustomResource<TSpec, TStatus> : CustomResource
 {
     [JsonPropertyName("spec")]
-    public List<Kubernetes.Crds.Data.Databases>? Databases { get; set; }
+    public List<Databases>? Databases { get; set; }
 
     [JsonPropertyName("CStatus")]
     public TStatus? CStatus { get; set; }

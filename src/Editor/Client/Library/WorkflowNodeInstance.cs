@@ -40,7 +40,7 @@ public class WorkflowNodeInstance : NodeModel
 
     public void UpdateInputField(int id, string name, string type)
     {
-        bool found = false;
+        var found = false;
         foreach (var inputDataField in InputDataFields)
         {
             if (inputDataField.Id == id)
@@ -58,22 +58,22 @@ public class WorkflowNodeInstance : NodeModel
         Console.WriteLine($"input field name {name} type {type}");
     }
 
-    public void UpdateOutputField(string id, string name, string type)
+    public static void UpdateOutputField(string id, string name, string type)
     {
         Console.WriteLine($"output field name {name} type {type}");
     }
 
     public DataField AddInputField(int index, string name, string type)
     {
-        var field = new DataField() {Id = index, Name = "", Type = ""};
+        var field = new DataField() { Id = index, Name = "", Type = "" };
         InputDataFields.Add(field);
         return field;
     }
 
     public static string NewId()
     {
-        Guid myuuid = Guid.NewGuid();
-        string myuuidAsString = myuuid.ToString();
+        var myuuid = Guid.NewGuid();
+        var myuuidAsString = myuuid.ToString();
         return myuuidAsString;
     }
 

@@ -16,7 +16,7 @@ public class Column
 
     public override string ToString()
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
 
         stringBuilder.Append($@"
 
@@ -55,7 +55,7 @@ public class DatabaseTable
 
     public override string ToString()
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
 
         stringBuilder.Append(@$"
 
@@ -65,7 +65,9 @@ public class DatabaseTable
 ");
 
         foreach (var column in Columns)
+        {
             stringBuilder.Append(column);
+        }
 
         return stringBuilder.ToString();
     }

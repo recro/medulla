@@ -1,3 +1,7 @@
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Google.Protobuf.Collections;
 using Grpc.Core;
 using StorageService.Kubernetes.Crds.Data;
@@ -17,14 +21,14 @@ public class StorageService : Storage.StorageBase
     {
         await Task.Delay(1000);
         Actions.Create(request.Name, "default", request.Uuid, request.StorageData, request.Type);
-        return new Response() {Message = "Created"};
+        return new Response() { Message = "Created" };
     }
 
     public override async Task<ObjectList> listObjects(SearchObject request, ServerCallContext context)
     {
         var crds = await Actions.Get();
         //return base.listObjects(request, context);
-        RepeatedField<Object> objects = new RepeatedField<Object>();
+        var objects = new RepeatedField<Object>();
         foreach (var crd in crds.Items!)
         {
             objects.Add(new Object()
@@ -36,7 +40,7 @@ public class StorageService : Storage.StorageBase
             });
         }
 
-        return new ObjectList() { Objects = { objects }};
+        return new ObjectList() { Objects = { objects } };
     }
 
     public override Task<Response> deleteObject(ObjectId request, ServerCallContext context)

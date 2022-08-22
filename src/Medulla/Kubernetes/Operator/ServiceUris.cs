@@ -18,7 +18,10 @@ internal abstract class ServiceUris
 
         var value = Environment.GetEnvironmentVariable(key!);
         if (value.IsNullOrEmpty())
+        {
             Console.WriteLine($"{key} is null or empty");
+        }
+
         return value!;
     }
 

@@ -27,10 +27,7 @@ namespace Medulla.Editor.Client.Library.Abstractions.Environment
         /// </summary>
         public static Page GetInstance()
         {
-            if (s_instance == null)
-            {
-                s_instance = new Page();
-            }
+            s_instance ??= new Page();
             return s_instance;
         }
 

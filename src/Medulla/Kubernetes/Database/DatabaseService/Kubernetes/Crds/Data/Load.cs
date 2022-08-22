@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Diagnostics;
-using System.Threading.Tasks.Dataflow;
-using DatabaseService.Utils;
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Google.Protobuf.Collections;
 using GrpcDatabaseService;
 
@@ -11,18 +11,18 @@ public class Load
 {
 
 
-    private static List<Kubernetes.Crds.Data.Databases> LoadFrom(RepeatedField<GrpcDatabaseService.Database> requestDatabases)
+    private static List<Databases> LoadFrom(RepeatedField<GrpcDatabaseService.Database> requestDatabases)
     {
-        var databases = new List<Kubernetes.Crds.Data.Databases>();
-        for (int i = 0; i < requestDatabases.Count; i++)
+        var databases = new List<Databases>();
+        for (var i = 0; i < requestDatabases.Count; i++)
         {
-            var models = new List<Kubernetes.Crds.Data.Model>();
+            var models = new List<Model>();
 
-            for (int modelsI = 0; modelsI < requestDatabases[i].Models.Count; modelsI++)
+            for (var modelsI = 0; modelsI < requestDatabases[i].Models.Count; modelsI++)
             {
-                var columns = new List<Kubernetes.Crds.Data.Column>();
+                var columns = new List<Column>();
 
-                for (int columnsI = 0; columnsI < requestDatabases[i].Models[modelsI].Column.Count; columnsI++)
+                for (var columnsI = 0; columnsI < requestDatabases[i].Models[modelsI].Column.Count; columnsI++)
                 {
                     var column = new Column()
                     {
@@ -65,41 +65,52 @@ public class Load
 
     }
 
-    public static List<Kubernetes.Crds.Data.Databases> GetDatabasesFromDatabaseRequest(CreateDatabasesRequest request)
-        => LoadFrom(request.Database);
+    public static List<Databases> GetDatabasesFromDatabaseRequest(CreateDatabasesRequest request)
+    {
+        return LoadFrom(request.Database);
+    }
 
-    public static List<Kubernetes.Crds.Data.Databases> GetDatabasesFromDatabaseRequest(UpdateDatabasesRequest request)
-        => LoadFrom(request.Database);
-
+    public static List<Databases> GetDatabasesFromDatabaseRequest(UpdateDatabasesRequest request)
+    {
+        return LoadFrom(request.Database);
+    }
 
     public static GetDatabasesResponse GetDatabasesFromCrd(CustomResourceList<CResource> crs)
     {
 
-        RepeatedField<GrpcDatabaseService.Data> data = new RepeatedField<GrpcDatabaseService.Data>();
-        for (int i = 0; i < crs?.Items?.Count; i++)
+        var data = new RepeatedField<GrpcDatabaseService.Data>();
+        for (var i = 0; i < crs?.Items?.Count; i++)
         {
-            RepeatedField<GrpcDatabaseService.Database> databases = new RepeatedField<GrpcDatabaseService.Database>();
-            for (int dbI = 0; dbI < crs?.Items?[i]?.Databases?.Count; dbI++)
+            var databases = new RepeatedField<GrpcDatabaseService.Database>();
+            for (var dbI = 0; dbI < crs?.Items?[i]?.Databases?.Count; dbI++)
             {
-                var db = new GrpcDatabaseService.Database();
-                db.Name = crs?.Items?[i]?.Databases?[dbI].Name;
-                db.Dialect = crs?.Items?[i]?.Databases?[dbI].Dialect;
-
-                for (int modelI = 0; modelI < crs?.Items?[i]?.Databases?[dbI]?.Models?.Count; modelI++)
+                var db = new GrpcDatabaseService.Database
                 {
-                    GrpcDatabaseService.Model model = new GrpcDatabaseService.Model();
-                    model.Name = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI].Name;
-                    for (int columnI = 0; columnI < crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?.Count; columnI++)
-                    {
-                        GrpcDatabaseService.Column column = new GrpcDatabaseService.Column();
+                    Name = crs?.Items?[i]?.Databases?[dbI].Name,
+                    Dialect = crs?.Items?[i]?.Databases?[dbI].Dialect
+                };
 
-                        column.FieldName = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Field;
-                        column.Type = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Type;
-                        column.Unique = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Unique ?? "test";
+                for (var modelI = 0; modelI < crs?.Items?[i]?.Databases?[dbI]?.Models?.Count; modelI++)
+                {
+                    var model = new GrpcDatabaseService.Model
+                    {
+                        Name = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI].Name
+                    };
+                    for (var columnI = 0; columnI < crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?.Count; columnI++)
+                    {
+                        var column = new GrpcDatabaseService.Column
+                        {
+                            FieldName = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Field,
+                            Type = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Type,
+                            Unique = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Unique ?? "test"
+                        };
                         if (crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].PrimaryKey == null)
+                        {
                             throw new Exception("Primary Key may not be null");
-                        column.PrimaryKey = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].PrimaryKey ?? default(bool);
-                        column.AllowNull = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI]?.AllowNull ?? default(bool);
+                        }
+
+                        column.PrimaryKey = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].PrimaryKey ?? default;
+                        column.AllowNull = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI]?.AllowNull ?? default;
                         column.Comment = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].Comment;
                         column.ColumnName = crs?.Items?[i]?.Databases?[dbI]?.Models?[modelI]?.Columns?[columnI].ColumnName;
 
