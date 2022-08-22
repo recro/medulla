@@ -8,8 +8,14 @@ using Microsoft.Rest;
 
 namespace StorageService.Kubernetes.Crds.Data;
 
+/// <summary>
+/// delete code
+/// </summary>
 public class Actions
 {
+    /// <summary>
+    /// delete code
+    /// </summary>
     public static async void Create(string name, string _namespace, string uuid, string storageData, string type)
     {
         var client = SharedClasses.Kubernetes.Load.Client.Load.GetClient();
@@ -60,6 +66,9 @@ public class Actions
 
     }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     public static async Task<CustomResourceList<CResource>> Get()
     {
         var myCRD = Utils.MakeCRD();
@@ -74,6 +83,9 @@ public class Actions
         return crs;
     }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     public static async Task<bool> Delete(string name)
     {
         // deleting the custom resource

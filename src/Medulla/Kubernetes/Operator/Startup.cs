@@ -6,13 +6,23 @@ using KubeOps.Operator;
 
 namespace Controller;
 
+
+/// <summary>
+/// delete code
+/// </summary>
 public class Startup
 {
+    /// <summary>
+    /// delete code
+    /// </summary>
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddKubernetesOperator();
     }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     public void Configure(IApplicationBuilder app)
     {
         app.UseKubernetesOperator();

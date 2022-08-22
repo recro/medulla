@@ -12,46 +12,95 @@ using k8s.Models;
 namespace StorageService.Kubernetes.Crds.Data;
 
 
+/// <summary>
+/// delete code
+/// </summary>
 public class CustomResourceDefinition
 {
+    /// <summary>
+    /// delete code
+    /// </summary>
     public string? Version { get; set; }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     public string? Group { get; set; }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     public string? PluralName { get; set; }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     public string? Kind { get; set; }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     public string? Namespace { get; set; }
 }
 
+/// <summary>
+/// delete code
+/// </summary>
 public abstract class CustomResource : KubernetesObject
 {
+    /// <summary>
+    /// delete code
+    /// </summary>
     [JsonPropertyName("metadata")]
     public V1ObjectMeta? Metadata { get; set; }
 }
 
+/// <summary>
+/// delete code
+/// </summary>
 public abstract class CustomResource<TSpec, TStatus> : CustomResource
 {
     /*[JsonPropertyName("spec")]
     public List<Databases>? Databases { get; set; }*/
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     [JsonPropertyName("CStatus")]
     public TStatus? CStatus { get; set; }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     [JsonPropertyName("Uuid")]
     public string? Uuid { get; set; }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     [JsonPropertyName("Type")]
     public string? Type { get; set; }
 
+    /// <summary>
+    /// delete code
+    /// </summary>
     [JsonPropertyName("StorageData")]
     public string? StorageData { get; set; }
 }
 
+/// <summary>
+/// delete code
+/// </summary>
 public class CustomResourceList<T> : KubernetesObject
     where T : CustomResource
 {
+    /// <summary>
+    /// delete code
+    /// </summary>
     public V1ListMeta? Metadata { get; set; }
+
+    /// <summary>
+    /// delete code
+    /// </summary>
     public List<T>? Items { get; set; }
 }
