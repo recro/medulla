@@ -10,4 +10,11 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Application\Permissions" />
+      <Folder Include="Application\Settings" />
+      <Folder Include="Application\UI" />
+      <Folder Include="Application\Workflows" />
+    </ItemGroup>
+
 </Project>
