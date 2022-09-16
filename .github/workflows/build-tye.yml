@@ -1,4 +1,4 @@
-name: Build Code
+name: Tye Build and Push
 
 on:
   # release:
