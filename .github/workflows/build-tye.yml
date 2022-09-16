@@ -1,8 +1,11 @@
 name: Build Code
 
 on:
-  release:
-    types: [prereleased,released]
+  # release:
+    # types: [prereleased,released]
+  push:
+    branches:
+      - main
 
 jobs:
   tye-build:
