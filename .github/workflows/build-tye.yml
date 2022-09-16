@@ -39,6 +39,8 @@ jobs:
       - name: Tye Build
         run: |
           dotnet --version
+          dotnet tool install -g Microsoft.Tye --version "0.11.0-alpha.22111.1"
+          export PATH=$HOME/.dotnet/tools:$PATH
           cd src/
           tye build
           tye push
