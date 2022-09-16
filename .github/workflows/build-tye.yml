@@ -33,5 +33,9 @@ jobs:
           commitMode: true
           configuration: .github/changelog.json
 
-      - name: Build solution
-        run: dotnet build src/
+      - name: Tye Build
+        run: |
+          cd src/
+          tye build
+          tye push
+
