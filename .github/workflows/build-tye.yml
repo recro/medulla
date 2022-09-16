@@ -38,6 +38,7 @@ jobs:
 
       - name: Tye Build
         run: |
+          dotnet --version
           cd src/
           tye build
           tye push
