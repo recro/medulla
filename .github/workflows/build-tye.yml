@@ -16,25 +16,25 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
 
-      - name: Get Previous Release
-        id: previous_release
-        uses: joutvhu/get-release@v1
-        with:
-          latest: true
-          prerelease: ${{ github.event.release.prerelease }}
-          pattern: ^((?!${{ env.ReleaseVersion }}).)*$
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Get Previous Release
+      #   id: previous_release
+      #   uses: joutvhu/get-release@v1
+      #   with:
+      #     latest: true
+      #     prerelease: ${{ github.event.release.prerelease }}
+      #     pattern: ^((?!${{ env.ReleaseVersion }}).)*$
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Changelog
-        id: changelog
-        uses: mikepenz/release-changelog-builder-action@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fromTag: ${{ steps.previous_release.outputs.tag_name }}
-          toTag: ${{ env.ReleaseVersion }}
-          commitMode: true
-          configuration: .github/changelog.json
+      # - name: Build Changelog
+      #   id: changelog
+      #   uses: mikepenz/release-changelog-builder-action@v2
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     fromTag: ${{ steps.previous_release.outputs.tag_name }}
+      #     toTag: ${{ env.ReleaseVersion }}
+      #     commitMode: true
+      #     configuration: .github/changelog.json
 
       - name: Tye Build
         run: |
