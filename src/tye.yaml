@@ -1,5 +1,5 @@
 name: Medulla
-registry: ghcr.io/recro/medulla
+registry: ghcr.io/recro
 namespace: medulla-system
 network: medulla
 
