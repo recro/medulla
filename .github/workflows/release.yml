@@ -1,0 +1,61 @@
+name: Release Medulla
+
+on:
+  release:
+    types: [prereleased,released]
+
+jobs:
+  platform:
+    name: Release Platform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Git repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 1
+
+      - name: Set Up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: "6.0.x"
+
+      - name: Set Up Tye
+        run: dotnet tool install -g Microsoft.Tye --version "0.11.0-alpha.22111.1"
+
+      - name: Log In to Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Build and Push Platform Containers
+        run: |
+          export PATH=$HOME/.dotnet/tools:$PATH
+          tye push src/
+
+      - name: Get Previous Release
+        id: previous_release
+        uses: joutvhu/get-release@v1
+        with:
+          latest: true
+          prerelease: ${{ github.event.release.prerelease }}
+          pattern: ^((?!${{ github.event.release.tag_name }}).)*$
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Changelog
+        id: changelog
+        uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fromTag: ${{ steps.previous_release.outputs.tag_name }}
+          toTag: ${{ github.event.release.tag_name }}
+          commitMode: true
+          configuration: .github/changelog.json
+
+      - name: Update Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.event.release.tag_name }}
+          allowUpdates: true
+          prerelease: ${{ github.event.release.prerelease }}
+          body: ${{ steps.changelog.outputs.changelog }}
