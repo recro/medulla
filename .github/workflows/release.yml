@@ -13,7 +13,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.release.tag_name }}
-          fetch-depth: 1
 
       - name: Set Up .NET
         uses: actions/setup-dotnet@v2
@@ -31,22 +30,11 @@ jobs:
           export PATH=$HOME/.dotnet/tools:$PATH
           tye push src/
 
-      - name: Get Previous Release
-        id: previous_release
-        uses: joutvhu/get-release@v1
-        with:
-          latest: true
-          prerelease: ${{ github.event.release.prerelease }}
-          pattern: ^((?!${{ github.event.release.tag_name }}).)*$
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build Changelog
         id: changelog
         uses: mikepenz/release-changelog-builder-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fromTag: ${{ steps.previous_release.outputs.tag_name }}
           toTag: ${{ github.event.release.tag_name }}
           commitMode: true
           configuration: .github/changelog.json
