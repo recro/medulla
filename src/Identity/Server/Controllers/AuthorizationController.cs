@@ -149,16 +149,13 @@ public class AuthorizationController : Controller
 
         var authorization = authorizations.LastOrDefault();
 
-        if (authorization == null)
-        {
-            authorization = await _authorizationManager.CreateAsync(
+        authorization ??= await _authorizationManager.CreateAsync(
                 principal: principal,
                 subject: await _userManager.GetUserIdAsync(user),
                 client: await _applicationManager.GetIdAsync(application) ?? string.Empty,
                 type: AuthorizationTypes.Permanent,
                 scopes: principal.GetScopes()
             );
-        }
 
         principal.SetAuthorizationId(await _authorizationManager.GetIdAsync(authorization));
 
