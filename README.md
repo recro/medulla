@@ -10,7 +10,7 @@ Please see the dependencies on your environment before you install medulla.
 
 [Chart Depedencies](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/CHART_DEPENDENCIES.md)
 
-[Kubernetes Version Dependencies](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/KUBERNETES_VERSION.md)
+[Kubernetes Version](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/KUBERNETES_VERSION.md)
 
 ## Getting Started
 Check out the [Medulla documentation](https://recro.github.io/docs/) to find out all you need in relation to Medulla.
