@@ -5,7 +5,7 @@ In order to deploy medulla through it's helm chart you need to have these depend
 
 ### Istio
 
-(Install Istio through istioctl)[https://istio.io/latest/docs/setup/getting-started/#download]
+(https://istio.io/latest/docs/setup/getting-started/#download)[Install Istio through istioctl]
 
     istioctl install -y
 
