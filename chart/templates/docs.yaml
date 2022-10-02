@@ -20,3 +20,49 @@ spec:
         image: ghcr.io/recro/medulla/documentation:0.1.0
         ports:
         - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docs-service
+spec:
+  selector:
+    app: docs
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: default-gateway
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "docs.medulla.io"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: docs-example-com
+spec:
+  hosts:
+  - "docs.medulla.io"
+  gateways:
+  - default-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /docs
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: docs-service
