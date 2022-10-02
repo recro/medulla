@@ -3,7 +3,7 @@
 k8s_yaml(helm('chart'))
 
 # Build: tell Tilt what images to build from which directories
-docker_build('ghcr.io/recro/medulla/documentation:0.1.0', 'src/Documentation/Server')
+docker_build('ghcr.io/recro/medulla/documentation:0.1.0', 'src', dockerfile='src/Dockerfile.Documentation')
 #docker_build('companyname/backend', 'backend')
 # ...
 
