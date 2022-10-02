@@ -13,7 +13,9 @@ In order to deploy medulla through it's helm chart you need to have these depend
 
     helm repo add jetstack https://charts.jetstack.io
 
+
     helm repo update
+
 
     helm install \
     cert-manager jetstack/cert-manager \
