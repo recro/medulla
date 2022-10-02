@@ -5,7 +5,7 @@
 # Medulla
 Medulla is an open-source and Kubernetes-native platform for building modern web apps and API's. Apps run using Blazor, a WebAssembly based SPA framework.
 
-## Before getting started please see the depdencies on your environment
+## Before getting started please see the dependencies on your environment
 Please see the dependencies on your environment before you install medulla.
 
 [Chart Depedencies](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/CHART_DEPENDENCIES.md)
