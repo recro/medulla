@@ -1,1 +1,22 @@
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs-deployment
+  labels:
+    app: docs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docs
+  template:
+    metadata:
+      labels:
+        app: docs
+    spec:
+      containers:
+      - name: docs
+        image: ghcr.io/recro/medulla/documentation:0.1.0
+        ports:
+        - containerPort: 80
