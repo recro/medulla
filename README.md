@@ -7,7 +7,9 @@ Medulla is an open-source and Kubernetes-native platform for building modern web
 
 ## Before getting started please see the depdencies on your environment
 Please see the dependencies on your environment before you install medulla.
+
 [Chart Depedencies](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/CHART_DEPENDENCIES.md)
+
 [Kubernetes Version Dependencies](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/KUBERNETES_VERSION.md)
 
 ## Getting Started
