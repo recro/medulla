@@ -8,9 +8,9 @@ Medulla is an open-source and Kubernetes-native platform for building modern web
 ## Before getting started please see the dependencies on your environment
 Please see the dependencies on your environment before you install medulla.
 
-[Chart Depedencies](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/CHART_DEPENDENCIES.md)
+[CHART_DEPENDENCIES.md](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/CHART_DEPENDENCIES.md)
 
-[Kubernetes Version](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/KUBERNETES_VERSION.md)
+[KUBERNETES_VERSION.md](https://github.com/keithlogan94/medulla/blob/kbecker/feat/sept-2/kubernetes/chart/KUBERNETES_VERSION.md)
 
 ## Getting Started
 Check out the [Medulla documentation](https://recro.github.io/docs/) to find out all you need in relation to Medulla.
