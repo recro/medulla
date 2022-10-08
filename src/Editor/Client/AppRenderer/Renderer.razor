@@ -2,7 +2,15 @@
 @foreach (var node in AppNodeList!) {
     if (node.Component == "Button") {
         <Medulla.Editor.Client.AppRenderer.RendererComponents.Button />
-    }    
+    } else if (node.Component == "Box") {
+        <Medulla.Editor.Client.AppRenderer.RendererComponents.Box>
+            @* This component is a component that can have children,
+            so it is rendered like this *@
+            @if (node.Children.Count > 0) {
+                <Renderer AppNodeList=node.Children />
+            }
+        </Medulla.Editor.Client.AppRenderer.RendererComponents.Box>
+    }
 }
 
 @code {
