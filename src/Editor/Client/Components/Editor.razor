@@ -4,7 +4,7 @@
 @using Medulla.Editor.Client.AppRenderer.RendererComponents;
 
 @{
-    List<AppNode> appNodeList = new List<AppNode>();
+    @* List<AppNode> appNodeList = new List<AppNode>();
     appNodeList.Add(new AppNode() {
         Component = "Button"
     });    
@@ -31,7 +31,7 @@
                 Component = "Button"
             }
         }
-    });    
+    });     *@
 
 
 }
@@ -73,33 +73,6 @@
 
             </a>
             <a class="menu-item" href="#url">
-                Button
-                <MenuItemButton>
-                    <Minus />
-                </MenuItemButton>
-                <MenuItemButton>
-                    <Copy />
-                </MenuItemButton>
-                <MenuItemButton>
-                    <Settings />
-                </MenuItemButton>
-                <MenuItemButton>
-                    <UpArrow />
-                </MenuItemButton>
-                <MenuItemButton>
-                    <DownArrow />
-                </MenuItemButton>
-                <span class="Label">
-                    <div style="
-                        position: relative;
-                        top: 1px;">
-                        <span style="font-weight: bold;font-size: 15px;padding: 4px;">
-                            1
-                        </span>
-                    </div>
-                </span>
-            </a>
-            <a class="menu-item" href="#url">
                 New Component                 
             </a>
         </nav>
@@ -109,7 +82,23 @@
 
 @code {
 
-    
+    private List<AppNode> appNodeList = new List<AppNode>() {
+        new AppNode() {
+            Component = "Button",
+            Options = new () {
+                Options = new () {
+                    new () {
+                        Key = new Key() {
+                            KeyName = "Content"
+                        },
+                        Value = new Value() {
+                            ValueOfKey = "Create Something Awesome!"
+                        }
+                    }
+                }
+            }
+        },    
+    };
 
 
 }

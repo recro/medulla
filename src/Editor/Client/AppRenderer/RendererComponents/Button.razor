@@ -1,3 +1,21 @@
 
-<button>Test</button>
+<button>@GetContent()</button>
+
+@code {
+    [Parameter]
+    public AppNodeOptions? Options { get; set; }
+
+    private string? GetContent()
+    {
+        if (Options == null) {
+            return "No Content";
+        }
+        var contentItem = Options?.Options?.Find((i) => i?.Key?.KeyName == "Content");
+        if (contentItem == null) {
+            return "Key Not Found";
+        }
+        return contentItem?.Value?.ValueOfKey.ToString();
+    }
+}
+
 
