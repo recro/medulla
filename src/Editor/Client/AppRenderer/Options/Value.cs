@@ -1,9 +1,9 @@
-namespace AppRenderer.Options;
+namespace Medulla.Editor.Client.AppRenderer.Options;
 
 /// <summary>
 /// Value for Pair.
 /// </summary>
-class Value
+public class Value
 {
 
     /// <summary>

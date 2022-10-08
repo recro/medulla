@@ -1,9 +1,9 @@
-namespace AppRenderer.Options;
+namespace Medulla.Editor.Client.AppRenderer.Options;
 
 /// <summary>
 /// Key for Pair.
 /// </summary>
-class Key 
+public class Key 
 {
     /// <summary>
     /// Name of Key

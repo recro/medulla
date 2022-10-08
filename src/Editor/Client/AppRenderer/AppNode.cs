@@ -1,11 +1,11 @@
-namespace AppRenderer;
+namespace Medulla.Editor.Client.AppRenderer;
 
 using AppRenderer.Options;
 
 /// <summary>
 /// AppNode is the basic building block for an app
 /// </summary>
-class AppNode 
+public class AppNode 
 {
     /// <summary>
     /// Component to render
@@ -23,7 +23,6 @@ class AppNode
     /// <summary>
     /// List of Children
     /// </summary>
-    /// <typeparam name="AppNode"></typeparam>
     /// <returns></returns>
     public List<AppNode> Children { get; set; } = new List<AppNode>();
 

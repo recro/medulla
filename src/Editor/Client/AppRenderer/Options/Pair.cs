@@ -1,9 +1,9 @@
-namespace AppRenderer.Options;
+namespace Medulla.Editor.Client.AppRenderer.Options;
 
 /// <summary>
 /// Stores Pair of Key and Value.
 /// </summary>
-class Pair
+public class Pair
 {
     /// <summary>
     /// Key of Pair
