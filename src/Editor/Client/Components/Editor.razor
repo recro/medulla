@@ -13,7 +13,7 @@
     <div class="Box" style="height: 100vh">
 
         <nav class="menu" aria-label="Person settings">
-            @foreach (var appNode in appNodeList)
+            @foreach (var appNode in GetAppNodeList())
             {
                 <span class="menu-item" aria-current="page">
                     @appNode.Component
@@ -33,7 +33,7 @@
                         <DownArrow />
                     </MenuItemButton>
 
-                    <span @onclick="@nodeChildren" class="Label">
+                    <span style="cursor: pointer;" @onclick=@(() => nodeChildren(appNode)) class="Label">
                         <div style="
                             position: relative;
                             top: 1px;">
@@ -55,6 +55,24 @@
 </div>
 
 @code {
+
+    private List<AppNode>? tmpChildAppNodeList = null;
+
+    private List<AppNode> GetAppNodeList()
+    {
+        var nodeList = new List<AppNode>();
+
+        if (tmpChildAppNodeList != null)
+        {
+            nodeList = tmpChildAppNodeList;
+        }
+        else
+        {
+            nodeList = appNodeList;
+        }
+
+        return nodeList;
+    }
 
     private void nodeMinus()
     {
@@ -86,9 +104,10 @@
         Console.WriteLine("clicked down arrow button");
     }
 
-    private void nodeChildren()
+    private void nodeChildren(AppNode node)
     {
-        Console.WriteLine("clicked children button");
+        tmpChildAppNodeList = node.Children;
+        StateHasChanged();
     }
 
     private void newcomponent()
