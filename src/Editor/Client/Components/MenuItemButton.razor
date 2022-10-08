@@ -1,4 +1,4 @@
-<span class="Label">
+<span class="Label" style="cursor: pointer;" @onclick="UserClicked">
     <div style="position: relative;
         top: 2px;">
         @ChildContent
@@ -14,4 +14,18 @@
     /// <value></value>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Action when clicked
+    /// </summary>
+    /// <value></value>
+    [Parameter]
+    public Action? OnClick { get; set; }
+
+    private void UserClicked()
+    {
+        if (OnClick != null)
+            OnClick?.Invoke();
+    }
+
 }

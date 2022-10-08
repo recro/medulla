@@ -3,66 +3,36 @@
 @using Medulla.Editor.Client.AppRenderer.Options;
 @using Medulla.Editor.Client.AppRenderer.RendererComponents;
 
-@{
-    @* List<AppNode> appNodeList = new List<AppNode>();
-    appNodeList.Add(new AppNode() {
-        Component = "Button"
-    });    
 
-    appNodeList.Add(new AppNode() {
-        Component = "Box",
-        Children = new List<AppNode>() {
-            new AppNode() {
-                Component = "Button"
-            },
-            new AppNode() {
-                Component = "Button"
-            }
-        }
-    });    
-
-    appNodeList.Add(new AppNode() {
-        Component = "Box",
-        Children = new List<AppNode>() {
-            new AppNode() {
-                Component = "Button"
-            },
-            new AppNode() {
-                Component = "Button"
-            }
-        }
-    });     *@
-
-
-}
 
 <div style="display: grid; grid-template-columns: 70% auto;">
     <div>
         <Renderer AppNodeList=appNodeList />
     </div>
+
     <div class="Box" style="height: 100vh">
 
         <nav class="menu" aria-label="Person settings">
-            @foreach (var appNode in appNodeList) 
+            @foreach (var appNode in appNodeList)
             {
-                <a class="menu-item" href="#url" aria-current="page">
+                <span class="menu-item" aria-current="page">
                     @appNode.Component
-                    <MenuItemButton>
+                    <MenuItemButton OnClick="@nodeMinus">
                         <Minus />
                     </MenuItemButton>
-                    <MenuItemButton>
+                    <MenuItemButton OnClick="@nodeCopy">
                         <Copy />
                     </MenuItemButton>
-                    <MenuItemButton>
+                    <MenuItemButton OnClick="@nodeSettings">
                         <Settings />
                     </MenuItemButton>
-                    <MenuItemButton>
+                    <MenuItemButton OnClick="@nodeUpArrow">
                         <UpArrow />
                     </MenuItemButton>
-                    <MenuItemButton>
+                    <MenuItemButton OnClick="@nodeDownArrow">
                         <DownArrow />
                     </MenuItemButton>
-                    
+
                     <span class="Label">
                         <div style="
                             position: relative;
@@ -72,12 +42,12 @@
                             </span>
                         </div>
                     </span>
-                </a>
+                </span>
             }
-            
-            
+
+
             <a class="menu-item" href="#url">
-                New Component                 
+                New Component
             </a>
         </nav>
 
@@ -85,6 +55,36 @@
 </div>
 
 @code {
+
+    private void nodeMinus()
+    {
+        Console.WriteLine("clicked minus button");
+    }
+
+    private void nodePlus()
+    {
+        Console.WriteLine("clicked plus button");
+    }
+
+    private void nodeCopy()
+    {
+        Console.WriteLine("clicked copy button");
+    }
+
+    private void nodeSettings()
+    {
+        Console.WriteLine("clicked settings button");
+    }
+
+    private void nodeUpArrow()
+    {
+        Console.WriteLine("clicked up arrow button");
+    }
+
+    private void nodeDownArrow()
+    {
+        Console.WriteLine("clicked down arrow button");
+    }
 
     private List<AppNode> appNodeList = new List<AppNode>() {
         new AppNode() {
@@ -101,7 +101,7 @@
                     }
                 }
             }
-        },    
+        },
         new AppNode() {
             Component = "Button",
             Options = new () {
@@ -116,7 +116,7 @@
                     }
                 }
             }
-        },    
+        },
         new AppNode() {
             Component = "Box",
             Options = new () {
@@ -148,7 +148,7 @@
                 }
             },
             }
-        },    
+        },
     };
 
 
