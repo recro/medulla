@@ -1,0 +1,13 @@
+<span class="Label">
+    <div style="position: relative;
+        top: 2px;">
+        @ChildContent
+    </div>
+</span>
+
+
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
