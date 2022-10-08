@@ -17,7 +17,7 @@
 
             <nav aria-label="Breadcrumb" class="p-4">
                 <ol>
-                    <li class="breadcrumb-item">
+                    <li  class="breadcrumb-item">
                         <a style="cursor: pointer;" @onclick=@(() => { tmpChildAppNodeList = null; ChildList.Clear(); })>root</a>
                     </li>
                     @foreach (var child in ChildList)
@@ -33,9 +33,9 @@
         <nav class="menu" aria-label="Person settings">
             @foreach (var appNode in GetAppNodeList())
             {
-                <span class="menu-item" aria-current="page">
+                <span data-node-id="@appNode.Id" class="menu-item" aria-current="page">
                     @appNode.Component
-                    <MenuItemButton OnClick="@nodeMinus">
+                    <MenuItemButton OnClick=@(() => nodeMinus(appNode))>
                         <Minus/>
                     </MenuItemButton>
                     <MenuItemButton OnClick="@nodeCopy">
@@ -50,6 +50,7 @@
                     <MenuItemButton OnClick="@nodeDownArrow">
                         <DownArrow/>
                     </MenuItemButton>
+
 
                     <span style="cursor: pointer;" @onclick=@(() => nodeChildren(appNode)) class="Label">
                         <div style="
@@ -183,9 +184,18 @@
         return nodeList;
     }
 
-    private void nodeMinus()
+    private void nodeMinus(AppNode node)
     {
-        Console.WriteLine("clicked minus button");
+        Console.WriteLine("nodeMinus");
+        if (tmpChildAppNodeList != null)
+        {
+            tmpChildAppNodeList = tmpChildAppNodeList.FindAll(x => x.Id != node.Id);
+        }
+        else
+        {
+            appNodeList = appNodeList.FindAll(x => x.Id != node.Id);
+        }
+        StateHasChanged();
     }
 
     private void nodePlus()

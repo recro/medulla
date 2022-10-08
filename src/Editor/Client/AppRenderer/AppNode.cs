@@ -11,6 +11,12 @@ namespace Medulla.Editor.Client.AppRenderer;
 /// </summary>
 public class AppNode
 {
+
+    /// <summary>
+    /// Id of the node
+    /// </summary>
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+
     /// <summary>
     /// Component to render
     /// </summary>
