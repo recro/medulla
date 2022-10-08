@@ -90,7 +90,7 @@
                         </div>
                     </details>
 
-                    <div class="flex mt-5">
+                    @*<div class="flex mt-5">
                         <span @onclick="@newcomponent" style="cursor:pointer;" class="btn" type="button">
                             Cancel
                         </span>
@@ -103,7 +103,7 @@
                             <button class="btn" type="button">Add</button>
                         }
 
-                    </div>
+                    </div>*@
 
                 </div>
             }
@@ -141,7 +141,6 @@
         }
         isNewComponentOpen = false;
         isAddingNewComponent = false;
-        StateHasChanged();
     }
 
     private bool isAddingNewComponent = false;
@@ -162,6 +161,7 @@
     {
         isNewComponentOpen = false;
         newComponent = component;
+        AddComponent(component);
         StateHasChanged();
     }
 
