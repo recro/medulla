@@ -1,11 +1,15 @@
+﻿// Licensed to the Medulla Contributors under one or more agreements.
+// The Medulla Contributors licenses this file to you under the Apache 2.0 license.
+// See the LICENSE file in the project root for more information.
+
+
+using Medulla.Editor.Client.AppRenderer.Options;
+
 namespace Medulla.Editor.Client.AppRenderer;
-
-using AppRenderer.Options;
-
 /// <summary>
 /// AppNode is the basic building block for an app
 /// </summary>
-public class AppNode 
+public class AppNode
 {
     /// <summary>
     /// Component to render
