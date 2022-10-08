@@ -1,0 +1,28 @@
+﻿<div class="Header">
+    <div class="Header-item">
+        <a href="#" class="Header-link">About</a>
+    </div>
+    <div class="Header-item">
+        <a href="#" class="Header-link">Releases</a>
+    </div>
+    <div class="Header-item">
+        <a href="#" class="Header-link">Team</a>
+    </div>
+</div>
+
+@code {
+    /// <summary>
+    /// Options
+    /// </summary>
+    /// <value></value>
+    [Parameter]
+    public AppNodeOptions? Options { get; set; }
+
+    private string? Content()
+    {
+        string? value = Options?.GetOption("Content");
+        if (string.IsNullOrEmpty(value))
+            return "'Content' not set";
+        return value;
+    }
+}
