@@ -18,14 +18,14 @@
             <nav aria-label="Breadcrumb" class="p-4">
                 <ol>
                     <li class="breadcrumb-item">
-                        <a style="cursor: pointer;" @onclick=@(() => tmpChildAppNodeList = null)>root</a>
+                        <a style="cursor: pointer;" @onclick=@(() => { tmpChildAppNodeList = null; ChildList.Clear(); })>root</a>
                     </li>
-                    <li class="breadcrumb-item">
-                        <a href="https://github.com/business/customers">Customers</a>
-                    </li>
-                    <li class="breadcrumb-item breadcrumb-item-selected">
-                        <a href="https://github.com/business/customers/mailchimp" aria-current="page">MailChimp</a>
-                    </li>
+                    @foreach (var child in ChildList)
+                    {
+                        <li class="breadcrumb-item">
+                            <a @onclick=@(() => tmpChildAppNodeList = child?.Children)>@child.Component</a>
+                        </li>
+                    }
                 </ol>
             </nav>
         }
@@ -119,6 +119,8 @@
 </div>
 
 @code {
+
+    private List<AppNode> ChildList = new List<AppNode>();
 
     private void AddComponent(string component)
     {
@@ -214,6 +216,7 @@
     private void nodeChildren(AppNode node)
     {
         tmpChildAppNodeList = node.Children;
+        ChildList.Add(node);
         StateHasChanged();
     }
 
