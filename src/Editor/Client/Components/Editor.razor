@@ -102,6 +102,53 @@
                 }
             }
         },    
+        new AppNode() {
+            Component = "Button",
+            Options = new () {
+                Options = new () {
+                    new () {
+                        Key = new Key() {
+                            KeyName = "Content"
+                        },
+                        Value = new Value() {
+                            ValueOfKey = "Create Something Awesome!"
+                        }
+                    }
+                }
+            }
+        },    
+        new AppNode() {
+            Component = "Box",
+            Options = new () {
+                Options = new () {
+                    new () {
+                        Key = new Key() {
+                            KeyName = "Content"
+                        },
+                        Value = new Value() {
+                            ValueOfKey = "Create Something Awesome!"
+                        }
+                    }
+                }
+            },
+            Children = new() {
+                new AppNode() {
+                Component = "Button",
+                Options = new () {
+                    Options = new () {
+                        new () {
+                            Key = new Key() {
+                                KeyName = "Content"
+                            },
+                            Value = new Value() {
+                                ValueOfKey = "Create Something Awesome!"
+                            }
+                        }
+                    }
+                }
+            },
+            }
+        },    
     };
 
 
