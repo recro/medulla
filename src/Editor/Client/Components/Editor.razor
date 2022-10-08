@@ -44,10 +44,10 @@
                     <MenuItemButton OnClick="@nodeSettings">
                         <Settings/>
                     </MenuItemButton>
-                    <MenuItemButton OnClick="@nodeUpArrow">
+                    <MenuItemButton OnClick=@(() => nodeUpArrow(appNode))>
                         <UpArrow/>
                     </MenuItemButton>
-                    <MenuItemButton OnClick="@nodeDownArrow">
+                    <MenuItemButton OnClick=@(() => nodeDownArrow(appNode))>
                         <DownArrow/>
                     </MenuItemButton>
 
@@ -224,14 +224,54 @@
         Console.WriteLine("clicked settings button");
     }
 
-    private void nodeUpArrow()
+    private void nodeUpArrow(AppNode node)
     {
-        Console.WriteLine("clicked up arrow button");
+        if (tmpChildAppNodeList != null)
+        {
+            var index = tmpChildAppNodeList.FindIndex(x => x.Id == node.Id);
+            if (index > 0)
+            {
+                var nodeToMove = tmpChildAppNodeList[index];
+                tmpChildAppNodeList.RemoveAt(index);
+                tmpChildAppNodeList.Insert(index - 1, nodeToMove);
+            }
+        }
+        else
+        {
+            var index = appNodeList.FindIndex(x => x.Id == node.Id);
+            if (index > 0)
+            {
+                var nodeToMove = appNodeList[index];
+                appNodeList.RemoveAt(index);
+                appNodeList.Insert(index - 1, nodeToMove);
+            }
+        }
+        StateHasChanged();
     }
 
-    private void nodeDownArrow()
+    private void nodeDownArrow(AppNode node)
     {
-        Console.WriteLine("clicked down arrow button");
+        if (tmpChildAppNodeList != null)
+        {
+            var index = tmpChildAppNodeList.FindIndex(x => x.Id == node.Id);
+            if (index < tmpChildAppNodeList.Count - 1)
+            {
+                var nodeToMove = tmpChildAppNodeList[index];
+                tmpChildAppNodeList.RemoveAt(index);
+                tmpChildAppNodeList.Insert(index + 1, nodeToMove);
+            }
+        }
+        else
+        {
+            var index = appNodeList.FindIndex(x => x.Id == node.Id);
+            if (index < appNodeList.Count - 1)
+            {
+                var nodeToMove = appNodeList[index];
+                appNodeList.RemoveAt(index);
+                appNodeList.Insert(index + 1, nodeToMove);
+            }
+        }
+        StateHasChanged();
     }
 
     private void nodeChildren(AppNode node)
