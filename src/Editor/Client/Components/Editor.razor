@@ -46,15 +46,74 @@
             }
 
 
-            <span @onclick="@newcomponent" class="menu-item" href="#url">
-                New Component
-            </span>
+            @if (isAddingNewComponent)
+            {
+                <div class="Box p-4">
+                    <p>Adding a new component</p>
+
+                    <details class="details-reset details-overlay" @attributes="@GetNewComponentOpen()">
+                        <summary style="pointer-events: none" class="btn" aria-haspopup="true">
+                            @if (newComponent == null)
+                            {
+                                <span>Choose a component</span>
+                            }
+                            else
+                            {
+                                <span>@newComponent</span>
+                            }
+                        </summary>
+                        <div class="SelectMenu" style="display: block; position: static;">
+                            <div class="SelectMenu-modal">
+                                <div class="SelectMenu-list">
+                                    <button @onclick=@(() => SetNewComponentOpen("Box")) class="SelectMenu-item" role="menuitem">Box</button>
+                                    <button @onclick=@(() => SetNewComponentOpen("Button")) class="SelectMenu-item" role="menuitem">Button</button>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <div class="flex mt-5">
+                        <span @onclick="@newcomponent" style="cursor:pointer;" class="btn" type="button">
+                            Cancel
+                        </span>
+                        <button class="btn" type="button">Add</button>
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <span style="cursor:pointer;" @onclick="@newcomponent" class="menu-item" href="#url">
+                    New Component
+                </span>
+            }
         </nav>
 
     </div>
 </div>
 
 @code {
+
+    private bool isAddingNewComponent = false;
+    private bool isNewComponentOpen = true;
+    private string? newComponent = null;
+
+    private Dictionary<string, object> GetNewComponentOpen()
+    {
+        var options = new Dictionary<string, object>()
+        {
+            { "open", isNewComponentOpen },
+        };
+
+        return options;
+    }
+
+    private void SetNewComponentOpen(string component)
+    {
+        isNewComponentOpen = false;
+        newComponent = component;
+        StateHasChanged();
+    }
 
     private List<AppNode>? tmpChildAppNodeList = null;
 
@@ -112,6 +171,10 @@
 
     private void newcomponent()
     {
+        isAddingNewComponent = !isAddingNewComponent;
+        isNewComponentOpen = true;
+        newComponent = null;
+        StateHasChanged();
         Console.WriteLine("clicked new component button");
     }
 
