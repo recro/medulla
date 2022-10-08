@@ -16,5 +16,33 @@ public class AppNodeOptions
     /// <value></value>
     public List<Pair>? Options { get; set; }
 
+    /// <summary>
+    /// Get the value of the key.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    public string GetOption(string key)
+    {
+        Console.WriteLine("GetOption key: " + key);
+        if (Options == null) {
+            return "Options is null not set";
+        }
+        if (Options.Count == 0) {
+            return "Options is empty";
+        }
+        Console.WriteLine("Options count: " + Options.Count);
+        var contentItem = Options?.Find((i) => i?.Key?.KeyName == key);
+        if (contentItem == null) {
+            return "Key Not Found";
+        }
+        string? content = contentItem?.Value?.ValueOfKey.ToString();
+        if (content == null) {
+            return "No Content";
+        }
+
+        return content;
+    }
+
+
 }
 

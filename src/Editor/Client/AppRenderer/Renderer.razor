@@ -11,6 +11,8 @@
                 <Renderer AppNodeList=node.Children />
             }
         </Medulla.Editor.Client.AppRenderer.RendererComponents.Box>
+    } else if (node.Component == "Input") {
+        <Medulla.Editor.Client.AppRenderer.RendererComponents.Input Options=node.Options />
     }
 }
 
