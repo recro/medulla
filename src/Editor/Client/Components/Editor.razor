@@ -9,6 +9,15 @@
         Component = "Button"
     });    
 
+    appNodeList.Add(new AppNode() {
+        Component = "Box",
+        Children = new List<AppNode>() {
+            new AppNode() {
+                Component = "Button"
+            }
+        }
+    });    
+
 
 }
 
