@@ -12,25 +12,43 @@
 
     <div class="Box" style="height: 100vh">
 
+        @if (tmpChildAppNodeList != null)
+        {
+
+            <nav aria-label="Breadcrumb" class="p-4">
+                <ol>
+                    <li class="breadcrumb-item">
+                        <a style="cursor: pointer;" @onclick=@(() => tmpChildAppNodeList = null)>root</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="https://github.com/business/customers">Customers</a>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-item-selected">
+                        <a href="https://github.com/business/customers/mailchimp" aria-current="page">MailChimp</a>
+                    </li>
+                </ol>
+            </nav>
+        }
+
         <nav class="menu" aria-label="Person settings">
             @foreach (var appNode in GetAppNodeList())
             {
                 <span class="menu-item" aria-current="page">
                     @appNode.Component
                     <MenuItemButton OnClick="@nodeMinus">
-                        <Minus />
+                        <Minus/>
                     </MenuItemButton>
                     <MenuItemButton OnClick="@nodeCopy">
-                        <Copy />
+                        <Copy/>
                     </MenuItemButton>
                     <MenuItemButton OnClick="@nodeSettings">
-                        <Settings />
+                        <Settings/>
                     </MenuItemButton>
                     <MenuItemButton OnClick="@nodeUpArrow">
-                        <UpArrow />
+                        <UpArrow/>
                     </MenuItemButton>
                     <MenuItemButton OnClick="@nodeDownArrow">
-                        <DownArrow />
+                        <DownArrow/>
                     </MenuItemButton>
 
                     <span style="cursor: pointer;" @onclick=@(() => nodeChildren(appNode)) class="Label">
