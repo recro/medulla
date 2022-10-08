@@ -33,7 +33,7 @@
                         <DownArrow />
                     </MenuItemButton>
 
-                    <span class="Label">
+                    <span @onclick="@nodeChildren" class="Label">
                         <div style="
                             position: relative;
                             top: 1px;">
@@ -46,9 +46,9 @@
             }
 
 
-            <a class="menu-item" href="#url">
+            <span @onclick="@newcomponent" class="menu-item" href="#url">
                 New Component
-            </a>
+            </span>
         </nav>
 
     </div>
@@ -84,6 +84,16 @@
     private void nodeDownArrow()
     {
         Console.WriteLine("clicked down arrow button");
+    }
+
+    private void nodeChildren()
+    {
+        Console.WriteLine("clicked children button");
+    }
+
+    private void newcomponent()
+    {
+        Console.WriteLine("clicked new component button");
     }
 
     private List<AppNode> appNodeList = new List<AppNode>() {
