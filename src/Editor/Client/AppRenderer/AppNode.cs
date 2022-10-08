@@ -9,7 +9,7 @@ namespace Medulla.Editor.Client.AppRenderer;
 /// <summary>
 /// AppNode is the basic building block for an app
 /// </summary>
-public class AppNode
+public class AppNode : ICloneable
 {
 
     /// <summary>
@@ -35,6 +35,23 @@ public class AppNode
     /// </summary>
     /// <returns></returns>
     public List<AppNode> Children { get; set; } = new List<AppNode>();
+
+    /// <summary>
+    /// Clone the AppNode
+    /// </summary>
+    /// <returns></returns>
+    public object Clone()
+    {
+        return new AppNode
+        {
+            Id = Guid.NewGuid().ToString(),
+            Component = Component,
+            Options = Options,
+            Children = Children.Select(x => (AppNode)x.Clone()).ToList()
+        };
+    }
+
+
 
 }
 

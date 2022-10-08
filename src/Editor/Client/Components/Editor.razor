@@ -38,7 +38,7 @@
                     <MenuItemButton OnClick=@(() => nodeMinus(appNode))>
                         <Minus/>
                     </MenuItemButton>
-                    <MenuItemButton OnClick="@nodeCopy">
+                    <MenuItemButton OnClick=@(() => nodeCopy(appNode))>
                         <Copy/>
                     </MenuItemButton>
                     <MenuItemButton OnClick="@nodeSettings">
@@ -189,11 +189,11 @@
         Console.WriteLine("nodeMinus");
         if (tmpChildAppNodeList != null)
         {
-            tmpChildAppNodeList = tmpChildAppNodeList.FindAll(x => x.Id != node.Id);
+            tmpChildAppNodeList.Remove(node);
         }
         else
         {
-            appNodeList = appNodeList.FindAll(x => x.Id != node.Id);
+            appNodeList.Remove(node);
         }
         StateHasChanged();
     }
@@ -203,9 +203,20 @@
         Console.WriteLine("clicked plus button");
     }
 
-    private void nodeCopy()
+    private void nodeCopy(AppNode node)
     {
-        Console.WriteLine("clicked copy button");
+        var nodeToAdd = (AppNode)node.Clone();
+
+        if (tmpChildAppNodeList != null)
+        {
+            tmpChildAppNodeList.Insert(tmpChildAppNodeList.FindIndex(x => x.Id == node.Id) + 1, nodeToAdd);
+        }
+        else
+        {
+            appNodeList.Insert(appNodeList.FindIndex(x => x.Id == node.Id) + 1, nodeToAdd);
+        }
+
+        StateHasChanged();
     }
 
     private void nodeSettings()
