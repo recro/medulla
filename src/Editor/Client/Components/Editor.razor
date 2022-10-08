@@ -1,4 +1,24 @@
 
-<p>This is a test</p>
+@using Medulla.Editor.Client.AppRenderer;
+@using Medulla.Editor.Client.AppRenderer.Options;
+@using Medulla.Editor.Client.AppRenderer.RendererComponents;
+
+@{
+    List<AppNode> appNodeList = new List<AppNode>();
+    appNodeList.Add(new AppNode() {
+        Component = "Button"
+    });    
+
+
+}
+
+<Renderer AppNodeList=appNodeList />
+
+@code {
+
+    
+
+
+}
 
 

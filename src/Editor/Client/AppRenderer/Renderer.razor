@@ -1,13 +1,18 @@
 
-<div class="renderer">
-
-
-</div>
+@foreach (var node in AppNodeList!) {
+    if (node.Component == "Button") {
+        <Medulla.Editor.Client.AppRenderer.RendererComponents.Button />
+    }    
+}
 
 @code {
 
+/// <summary>
+/// List of App Nodes
+/// </summary>
+/// <value></value>
 [Parameter]
-public List<AppNode>? AppNodeList { get; set; }
+public List<AppNode> AppNodeList { get; set; } = new List<AppNode>();
 
 
 
