@@ -1,0 +1,23 @@
+﻿
+<div class="Subhead">
+    <h2 class="Subhead-heading">Subhead with description</h2>
+    <div class="Subhead-description">The subhead is a subdued header style with a light bottom border.</div>
+</div>
+
+
+@code {
+    /// <summary>
+    /// Options
+    /// </summary>
+    /// <value></value>
+    [Parameter]
+    public AppNodeOptions? Options { get; set; }
+
+    private string? Content()
+    {
+        string? value = Options?.GetOption("Content");
+        if (string.IsNullOrEmpty(value))
+            return "'Content' not set";
+        return value;
+    }
+}
