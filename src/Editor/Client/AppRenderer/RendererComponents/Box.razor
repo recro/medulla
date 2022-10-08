@@ -1,9 +1,16 @@
 <div class="Box">
-  This is a box.
+    @ChildContent
 </div>
 
 
 @code {
+
+    /// <summary>
+    /// Child content
+    /// </summary>
+    /// <value></value>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 
 
 

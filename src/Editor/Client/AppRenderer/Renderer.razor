@@ -1,5 +1,6 @@
 
 @foreach (var node in AppNodeList!) {
+    Console.WriteLine("node found");
     if (node.Component == "Button") {
         <Medulla.Editor.Client.AppRenderer.RendererComponents.Button />
     } else if (node.Component == "Box") {
