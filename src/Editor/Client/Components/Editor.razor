@@ -76,7 +76,15 @@
                         <span @onclick="@newcomponent" style="cursor:pointer;" class="btn" type="button">
                             Cancel
                         </span>
-                        <button class="btn" type="button">Add</button>
+                        @if (newComponent != null)
+                        {
+                            <button @onclick=@(() => AddComponent(newComponent)) class="btn" type="button">Add</button>
+                        }
+                        else
+                        {
+                            <button class="btn" type="button">Add</button>
+                        }
+
                     </div>
 
                 </div>
@@ -93,6 +101,28 @@
 </div>
 
 @code {
+
+    private void AddComponent(string component)
+    {
+        if (tmpChildAppNodeList != null)
+        {
+            tmpChildAppNodeList.Add(new AppNode
+            {
+                Component = component
+            });
+
+        }
+        else
+        {
+            appNodeList.Add(new AppNode
+            {
+                Component = component
+            });
+        }
+        isNewComponentOpen = false;
+        isAddingNewComponent = false;
+        StateHasChanged();
+    }
 
     private bool isAddingNewComponent = false;
     private bool isNewComponentOpen = true;
