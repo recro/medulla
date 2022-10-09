@@ -2,6 +2,7 @@
 @using Medulla.Editor.Client.AppRenderer;
 @using Medulla.Editor.Client.AppRenderer.Options;
 @using Medulla.Editor.Client.AppRenderer.RendererComponents;
+@using System.Text;
 
 
 
@@ -126,6 +127,19 @@
 
     private List<AppNode> ChildList = new List<AppNode>();
 
+    private string GetJson()
+    {
+        var app = new AppNode();
+        app.Component = "index";
+        app.Children = appNodeList;
+        return app.ToString();
+    }
+
+    private string GetBase64()
+    {
+        return Convert.ToBase64String(Encoding.UTF8.GetBytes(GetJson()));
+    }
+
     private void AddComponent(string component)
     {
         if (tmpChildAppNodeList != null)
@@ -166,6 +180,8 @@
         isNewComponentOpen = false;
         newComponent = component;
         AddComponent(component);
+        Console.WriteLine(GetJson());
+        Console.WriteLine(GetBase64());
         StateHasChanged();
     }
 
