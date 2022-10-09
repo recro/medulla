@@ -1,4 +1,4 @@
-syntax = "proto3";
+yntax = "proto3";
 
 option csharp_namespace = "EditorService";
 
