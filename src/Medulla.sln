@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{F2319A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Editor.Service", "Editor\EditorService\Medulla.Editor.Service\Medulla.Editor.Service.csproj", "{C2D36CB2-5FF1-4C06-82C9-EABEF7305C4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medulla.Editor.Shared", "Editor\Medulla.Editor.Shared\Medulla.Editor.Shared.csproj", "{7FCCF967-2830-4323-B615-E2FEA05D595C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{C2D36CB2-5FF1-4C06-82C9-EABEF7305C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2D36CB2-5FF1-4C06-82C9-EABEF7305C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2D36CB2-5FF1-4C06-82C9-EABEF7305C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FCCF967-2830-4323-B615-E2FEA05D595C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FCCF967-2830-4323-B615-E2FEA05D595C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FCCF967-2830-4323-B615-E2FEA05D595C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FCCF967-2830-4323-B615-E2FEA05D595C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +91,7 @@ Global
 		{9E496632-495A-4D09-BD25-BBCE6CAED4A1} = {F297D403-0BD6-4214-90FE-AA3684EBAE0C}
 		{8FE20926-13BC-4F6A-9659-FE27AB14D0B0} = {F2319A8C-1966-4A6F-B82C-9F3BAE82E23B}
 		{C2D36CB2-5FF1-4C06-82C9-EABEF7305C4A} = {F2319A8C-1966-4A6F-B82C-9F3BAE82E23B}
+		{7FCCF967-2830-4323-B615-E2FEA05D595C} = {F2319A8C-1966-4A6F-B82C-9F3BAE82E23B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E031215B-9116-4BC0-AA58-A00A8C67440D}
