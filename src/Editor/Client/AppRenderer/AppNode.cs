@@ -51,6 +51,10 @@ public class AppNode : ICloneable
         };
     }
 
+    /// <summary>
+    /// Serialize the AppNode to JSON
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return Newtonsoft.Json.JsonConvert.SerializeObject(this);

@@ -88,6 +88,14 @@
                         <div class="SelectMenu" style="display: block; position: static;">
                             <div class="SelectMenu-modal">
                                 <div class="SelectMenu-list">
+                                    @{
+                                        var listOfComponents = RenderComponentsFinder.GetComponents();
+                                        foreach (var component in listOfComponents)
+                                        {
+                                            Console.WriteLine($"found component: {component.GetType().Name}");
+                                        }
+
+                                    }
                                     <button @onclick=@(() => SetNewComponentOpen("Box")) class="SelectMenu-item" role="menuitem">Box</button>
                                     <button @onclick=@(() => SetNewComponentOpen("Button")) class="SelectMenu-item" role="menuitem">Button</button>
                                     <button @onclick=@(() => SetNewComponentOpen("Input")) class="SelectMenu-item" role="menuitem">Input</button>
