@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: documentation-cm
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: medulla
+    service: documentation
+data:
+  ASPNETCORE_URLS: http://0.0.0.0:8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: documentation
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: medulla
+    service: documentation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: documentation
+  template:
+    metadata:
+      labels:
+        app: medulla
+        service: documentation
+    spec:
+      containers:
+        - name: documentation
+          image: ghcr.io/recro/medulla/documentation:0.1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: documentation-cm
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: documentation
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: medulla
+    service: documentation
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    service: documentation
