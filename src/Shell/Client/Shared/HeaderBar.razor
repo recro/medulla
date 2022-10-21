@@ -3,7 +3,6 @@
 @* See the LICENSE file in the project root for more information. *@
 
 @inject NavigationManager Navigation
-@inject SignOutSessionStateManager SignOutManager
 
 <header class="Header position-fixed width-full px-4">
     <div class="Header-item mt-n1 mb-n1">
@@ -42,9 +41,8 @@
     /// Begins the sign out process.
     /// </summary>
     /// <returns>abstract task representing logging the user out.</returns>
-    private async Task BeginSignOut()
+    private void BeginSignOut()
     {
-        await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
+        Navigation.NavigateToLogout("authentication/logout");
     }
 }

@@ -199,7 +199,6 @@ public class AuthorizationController : Controller
         if (request.IsAuthorizationCodeGrantType() || request.IsRefreshTokenGrantType())
         {
             var principal = (await HttpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)).Principal;
-            var user = await _userManager.GetUserAsync(principal);
 
             if (principal == null)
             {
@@ -212,6 +211,8 @@ public class AuthorizationController : Controller
                     })
                 );
             }
+
+            var user = await _userManager.GetUserAsync(principal);
 
             if (user == null)
             {
