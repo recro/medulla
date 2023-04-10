@@ -3,7 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/recro/medulla?style=for-the-badge)](https://github.com/recro/medulla/issues)
 
 # Medulla
-Medulla is an open source low-code platform for building modern web apps and API's. Apps run on Blazor, a WebAssembly based SPA framework.
+Medulla is a cloud native low-code platform for building modern web apps and API's.
 
 ## Getting Started
 Check out the [Medulla documentation](https://recro.github.io/docs/) to find out all you need in relation to Medulla.
