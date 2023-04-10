@@ -5,8 +5,8 @@ on:
     types: [prereleased,released]
 
 jobs:
-  platform:
-    name: Release Platform
+  release:
+    name: Release App
     runs-on: ubuntu-latest
 
     steps:
@@ -18,18 +18,18 @@ jobs:
         with:
           dotnet-version: "7.0.x"
 
-      - name: Set Up Tye
+      - name: Set up tye
         run: dotnet tool install -g Microsoft.Tye --version "0.11.0-alpha.22111.1"
 
-      - name: Log In to Container Registry
+      - name: Log in to container registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
-      - name: Build and Push Platform Containers
+      - name: Build and push containers
         run: |
           export PATH=$HOME/.dotnet/tools:$PATH
           tye push src/
 
-      - name: Build Changelog
+      - name: Build changelog
         id: changelog
         uses: mikepenz/release-changelog-builder-action@v3
         with:
@@ -38,7 +38,7 @@ jobs:
           commitMode: true
           configuration: .github/changelog.json
 
-      - name: Update Release
+      - name: Update release
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
