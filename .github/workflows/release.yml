@@ -8,16 +8,15 @@ jobs:
   platform:
     name: Release Platform
     runs-on: ubuntu-latest
-    steps:
-      - name: Check Out Git repository
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.release.tag_name }}
 
-      - name: Set Up .NET
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: "7.0.100-rc.2.22477.23"
+          dotnet-version: "7.0.x"
 
       - name: Set Up Tye
         run: dotnet tool install -g Microsoft.Tye --version "0.11.0-alpha.22111.1"
