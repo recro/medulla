@@ -1,9 +1,36 @@
 <Project>
+
   <PropertyGroup>
-    <Version>0.1.0</Version>
+    <Product>Medulla</Product>
+    <Version>1.0.0</Version>
+    <Authors>The Medulla Contributors</Authors>
+    <Description>A Cloud Native Low-Code Platform</Description>
+    <RepositoryUrl>https://github.com/recro/medulla</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/recro/medulla</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/recro/medulla/releases</PackageReleaseNotes>
+    <PackageTags>Low;Code;Low-Code;Platform;Medulla</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)../bin/$(MSBuildProjectName)</BaseOutputPath>
+    <Copyright>© $(Authors). All rights reserved.</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageIcon>nuget.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)../assets/nuget.png" Pack="true" PackagePath="/" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)../README.md" Pack="true" PackagePath="/" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)../LICENSE.txt" Pack="true" PackagePath="/" Visible="false" />
+  </ItemGroup>
+
 </Project>
