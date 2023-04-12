@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Medulla.Shell.Client": {
+    "Medulla.Client.Shell": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
