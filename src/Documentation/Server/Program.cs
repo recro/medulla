@@ -19,7 +19,7 @@ else
 app.UseBlazorFrameworkFiles(new PathString("/docs"));
 app.UseStaticFiles(new StaticFileOptions()
 {
-    ServeUnknownFileTypes = true,
+    ServeUnknownFileTypes = true
 });
 app.UseStaticFiles(new PathString("/docs"));
 
