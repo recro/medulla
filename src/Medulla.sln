@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Client.Server", "Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Client.Shell", "Client\Shell\Medulla.Client.Shell.csproj", "{93942F5B-76AF-4E5D-8B34-07217FB4AFBE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shell", "Shell", "{02D01352-BCEB-4764-A39E-965D75FCCE1F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tye", "Tye", "{6A9E255A-3500-43FE-8EB8-C7778CF5551E}"
 	ProjectSection(SolutionItems) = preProject
 		tye.yaml = tye.yaml
