@@ -1,28 +1,22 @@
 @mixin medulla-colors-light_colorblind {
     & {
         --color-select-menu-tap-focus-bg: #ecd8ff;
-        --color-btn-focus-shadow: 0 0 0 3px rgba(130,80,223,0.3);
-        --color-btn-shadow-input-focus: 0 0 0 0.2em rgba(130,80,223,0.3);
         --color-btn-primary-bg: #8250df;
         --color-btn-primary-hover-bg: #6639ba;
         --color-btn-primary-selected-bg: hsla(261,69%,59%,1);
         --color-btn-primary-selected-shadow: inset 0 1px 0 rgba(46,20,97,0.2);
         --color-btn-primary-disabled-bg: #d8b9ff;
-        --color-btn-primary-focus-bg: #8250df;
-        --color-btn-primary-focus-shadow: 0 0 0 3px rgba(164, 117, 249,0.4);
         --color-btn-outline-text: #8250df;
         --color-btn-outline-hover-bg: #8250df;
         --color-btn-outline-selected-bg: hsla(261,53%,48%,1);
         --color-btn-outline-selected-shadow: inset 0 1px 0 rgba(46,20,97,0.2);
         --color-btn-outline-disabled-text: rgba(130,80,223,0.5);
         --color-btn-outline-disabled-counter-bg: rgba(130,80,223,0.05);
-        --color-btn-outline-focus-shadow: 0 0 0 3px rgba(102,57,186,0.4);
         --color-btn-outline-counter-bg: rgba(130,80,223,0.1);
         --color-accent-fg: #8250df;
         --color-accent-emphasis: #8250df;
         --color-accent-muted: rgba(194,151,255,0.4);
-        --color-accent-subtle: #fbefff;
+        --color-accent-subtle: #ecd8ff;
         --color-primer-border-active: #c297ff;
-        --color-primer-shadow-focus: 0 0 0 3px rgba(130,80,223,0.3);
     }
 }

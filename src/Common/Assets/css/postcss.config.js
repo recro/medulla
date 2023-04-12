@@ -5,10 +5,7 @@ const scssImport = require('postcss-import')
 const {join} = require('path')
 
 module.exports = {
-    map: {
-        sourceContent: false,
-        annotation: true
-    },
+    map: null,
     customSyntax: scss,
     parser: scss,
     plugins: [

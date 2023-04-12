@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <StaticWebAssetBasePath>common</StaticWebAssetBasePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="css/**" />
+    <None Remove="css/**" />
+    <None Include="css/**" Exclude="css/node_modules/**" />
+  </ItemGroup>
+
+  <Target Name="BuildCss" BeforeTargets="Build" Condition="!Exists('wwwroot/css/medulla.min.css')">
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="css/" Command="npm install" />
+    <Message Importance="high" Text="Building css using 'postcss'. This may take several minutes..." />
+    <Exec WorkingDirectory="css/" Command="npm run dist" />
+  </Target>
+
+</Project>

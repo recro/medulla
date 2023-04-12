@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Documentation.Server", "Documentation\Server\Medulla.Documentation.Server.csproj", "{BE4785DE-7387-4E50-8EBF-9F47B88E69A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Presentation.Assets", "Presentation\Assets\Medulla.Presentation.Assets.csproj", "{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Common.Assets", "Common\Assets\Medulla.Common.Assets.csproj", "{D0FD1D90-4ACF-4FF8-AB0B-AE379B070A69}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{8457ECE5-1285-43BB-8864-83863F65C064}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{421E8D73-A1B8-4D9D-9868-045DDF5BBD57}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{421E8D73-A1B8-4D9D-9868-045DDF5BBD57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Shell.Server", "Shell\Server\Medulla.Shell.Server.csproj", "{684054EF-5272-44B6-929E-6B72B81DE00F}"
 EndProject
