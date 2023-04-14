@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "Medulla.Identity.Server": {
+    "Medulla.Services.Identity": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

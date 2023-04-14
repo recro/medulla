@@ -22,9 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tye", "Tye", "{6A9E255A-350
 		tye.yaml = tye.yaml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Identity.Server", "Identity\Server\Medulla.Identity.Server.csproj", "{9E496632-495A-4D09-BD25-BBCE6CAED4A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Services.Identity", "Services\Identity\Medulla.Services.Identity.csproj", "{9E496632-495A-4D09-BD25-BBCE6CAED4A1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{F297D403-0BD6-4214-90FE-AA3684EBAE0C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F297D403-0BD6-4214-90FE-AA3684EBAE0C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medulla.Client.Editor", "Client\Editor\Medulla.Client.Editor.csproj", "{8FE20926-13BC-4F6A-9659-FE27AB14D0B0}"
 EndProject

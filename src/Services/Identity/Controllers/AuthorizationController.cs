@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Security.Claims;
-using Medulla.Identity.Server.Extensions;
-using Medulla.Identity.Server.Models;
+using Medulla.Services.Identity.Extensions;
+using Medulla.Services.Identity.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +14,7 @@ using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Medulla.Identity.Server.Controllers;
+namespace Medulla.Services.Identity.Controllers;
 
 /// <summary>
 /// A controller that handles authorization.

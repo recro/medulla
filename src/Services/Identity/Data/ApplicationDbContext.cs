@@ -2,11 +2,11 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using Medulla.Identity.Server.Models;
+using Medulla.Services.Identity.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Medulla.Identity.Server.Data;
+namespace Medulla.Services.Identity.Data;
 
 /// <summary>
 /// The application database context.

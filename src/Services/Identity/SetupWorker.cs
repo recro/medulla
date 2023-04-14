@@ -2,13 +2,13 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using Medulla.Identity.Server.Data;
-using Medulla.Identity.Server.Models;
+using Medulla.Services.Identity.Data;
+using Medulla.Services.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using OpenIddict.Abstractions;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Medulla.Identity.Server;
+namespace Medulla.Services.Identity;
 
 /// <summary>
 /// A worker that configures the identity server.

@@ -4,7 +4,7 @@
 
 using Microsoft.AspNetCore.Identity;
 
-namespace Medulla.Identity.Server.Models;
+namespace Medulla.Services.Identity.Models;
 
 /// <summary>
 /// Represents an application user.

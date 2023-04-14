@@ -2,9 +2,9 @@
 // The Medulla Contributors licenses this file to you under the Apache 2.0 license.
 // See the LICENSE file in the project root for more information.
 
-using Medulla.Identity.Server;
-using Medulla.Identity.Server.Data;
-using Medulla.Identity.Server.Models;
+using Medulla.Services.Identity;
+using Medulla.Services.Identity.Data;
+using Medulla.Services.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Quartz;

@@ -13,7 +13,7 @@ ingress:
         port: 443
         protocol: https
     rules:
-      - service: shell
+      - service: client
         path: /
       - service: documentation
         path: /docs
@@ -23,8 +23,8 @@ ingress:
         preservePath: true
 
 services:
-  - name: shell
-    project: Shell/Server/Medulla.Shell.Server.csproj
+  - name: client
+    project: Client/Server/Medulla.Client.Server.csproj
     replicas: 1
     bindings:
       - name: http
@@ -38,7 +38,7 @@ services:
         protocol: http
 
   - name: identity
-    project: Identity/Server/Medulla.Identity.Server.csproj
+    project: Services/Identity/Medulla.Services.Identity.csproj
     replicas: 1
     bindings:
       - name: http
