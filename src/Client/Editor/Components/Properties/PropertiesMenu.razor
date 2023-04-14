@@ -1,0 +1,27 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+@using Medulla.Client.Editor.Abstractions.ObjectComposition
+
+<div>
+    <PropertyList PropertiesMenu="this" PropertyMenuStructure="PropertyMenuStructure"/>
+</div>
+
+@code {
+
+    /// <summary>
+    /// Forces render of component.
+    /// </summary>
+    public new void ShouldRender()
+    {
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// The menu structure to be rendered.
+    /// </summary>
+    [Parameter]
+    public PropertyMenuStructure? PropertyMenuStructure { get; set; }
+
+}

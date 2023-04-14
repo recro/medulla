@@ -1,0 +1,5 @@
+@import '../../colors/dark_tritanopia.scss';
+
+@include color-mode-theme(dark_tritanopia) {
+    @include medulla-colors-dark_tritanopia;
+}

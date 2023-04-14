@@ -1,0 +1,20 @@
+@mixin medulla-colors-dark_dimmed {
+    & {
+        --color-select-menu-tap-focus-bg: #472c82;
+        --color-btn-primary-bg: #8256d0;
+        --color-btn-primary-hover-bg: #986ee2;
+        --color-btn-primary-selected-bg: #8256d0;
+        --color-btn-primary-disabled-bg: rgba(130,86,208,0.6);
+        --color-btn-outline-text: #b083f0;
+        --color-btn-outline-hover-text: #b083f0;
+        --color-btn-outline-selected-bg: #5936a2;
+        --color-btn-outline-disabled-text: rgba(176,131,240,0.5);
+        --color-btn-outline-disabled-counter-bg: rgba(130,86,208,0.05);
+        --color-btn-outline-counter-bg: rgba(130,86,208,0.1);
+        --color-accent-fg: #b083f0;
+        --color-accent-emphasis: #8256d0;
+        --color-accent-muted: rgba(152,110,226,0.4);
+        --color-accent-subtle: rgba(152,110,226,0.15);
+        --color-primer-border-active: #b083f0;
+    }
+}

@@ -29,7 +29,7 @@ Given this decision, the architecture diagrams follow an assumption that an end 
 
 Less text, more pictures:
 
-![High-Level Architecture](../../images/concepts/high-level-architecture.png)
+![High-Level Architecture](docs/concepts/images/high-level-architecture.png)
 
 Yes there's a lot going on here, and were gonna break it down from the bottom up to explain in detail each and every component and reasoning behind them. We will also be linking to other pages documenting what actual open source project was chosen to fill each block as well as alternatives while also potentially going into the actual implementation while using said technology.
 

@@ -1,0 +1,20 @@
+@mixin medulla-colors-dark_tritanopia {
+    & {
+        --color-select-menu-tap-focus-bg: #3c1e70;
+        --color-btn-primary-bg: #8957e5;
+        --color-btn-primary-hover-bg: #a371f7;
+        --color-btn-primary-selected-bg: #8957e5;
+        --color-btn-primary-disabled-bg: rgba(137,87,229,0.6);
+        --color-btn-outline-text: #bc8cff;
+        --color-btn-outline-hover-text: #bc8cff;
+        --color-btn-outline-selected-bg: #553098;
+        --color-btn-outline-disabled-text: rgba(188,140,255,0.5);
+        --color-btn-outline-disabled-counter-bg: rgba(137,87,229,0.05);
+        --color-btn-outline-counter-bg: rgba(137,87,229,0.1);
+        --color-accent-fg: #bc8cff;
+        --color-accent-emphasis: #8957e5;
+        --color-accent-muted: rgba(163,113,247,0.4);
+        --color-accent-subtle: rgba(163,113,247,0.15);
+        --color-primer-border-active: #bc8cff;
+    }
+}

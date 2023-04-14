@@ -1,0 +1,38 @@
+﻿@* Licensed to the Medulla Contributors under one or more agreements. *@
+@* The Medulla Contributors licenses this file to you under the Apache 2.0 license. *@
+@* See the LICENSE file in the project root for more information. *@
+
+@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Join Medulla";
+}
+
+<div class="pt-5 pb-4 width-full container text-center width-full">
+    <image src="common/img/logo.svg" height="48" width="48" />
+</div>
+<div class="px-3 mx-auto my-0" style="width: 340px;">
+    <div class="p-0 text-center  mb-3">
+        <h1 class="f2-light" style="letter-spacing: -0.5px;">Join Medulla</h1>
+    </div>
+
+    @await Html.PartialAsync("_ValidationSummary")
+
+    <div class="mt-3 Box color-bg-subtle p-3">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <label asp-for="Input.Email" class="mb-2 d-block" style="font-weight: 400;">Email address</label>
+            <input asp-for="Input.Email" class="form-control input-block mb-3" autocomplete="username" aria-required="true">
+            <label asp-for="Input.Password" class="mb-2 d-block" style="font-weight: 400;">Password</label>
+            <input asp-for="Input.Password" class="form-control input-block mb-3" autocomplete="new-password" aria-required="true">
+            <label asp-for="Input.ConfirmPassword" class="mb-2 d-block" style="font-weight: 400;">Confirm password</label>
+            <input asp-for="Input.ConfirmPassword" class="form-control input-block mb-3" autocomplete="new-password" aria-required="true">
+            <button type="submit" class="btn btn-primary btn-block">Join</button>
+        </form>
+    </div>
+    <p class="mt-3 Box p-3 text-center">
+        Already have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Sign in</a>.
+    </p>
+</div>
+
+@await Html.PartialAsync("_FooterLinks")
