@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shell
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.shell.replicaCount }}
+  selector:
+    matchLabels:
+      app: shell
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: shell
+        version: v1
+    spec:
+      serviceAccountName: shell
+      containers:
+      - image: "{{ .Values.shell.image.repository }}:{{ .Values.shell.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        name: shell
+        ports:
+        - containerPort: 80

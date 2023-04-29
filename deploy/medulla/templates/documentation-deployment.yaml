@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: documentation
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.documentation.replicaCount }}
+  selector:
+    matchLabels:
+      app: documentation
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: documentation
+        version: v1
+    spec:
+      serviceAccountName: documentation
+      containers:
+      - image: "{{ .Values.documentation.image.repository }}:{{ .Values.documentation.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        name: documentation
+        ports:
+        - containerPort: 80

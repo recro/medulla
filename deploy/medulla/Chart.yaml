@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+name: medulla
+description: Medulla is an open-source and Kubernetes-native platform for building modern web apps and API's. Apps run using Blazor, a WebAssembly based SPA framework.
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
